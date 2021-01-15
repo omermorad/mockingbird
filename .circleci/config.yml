@@ -1,0 +1,113 @@
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.2
+
+defaults: &defaults
+  working_directory: ~/repo
+
+  docker:
+    - image: circleci/node:erbium
+
+jobs:
+  install:
+    <<: *defaults
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package-lock.json" }}
+            - v1-dependencies-
+
+      - run:
+          name: Install
+          command: npm ci
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+  test:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Test
+          command: npm run test:ci
+          environment:
+            JEST_JUNIT_OUTPUT_DIR: ./coverage
+
+      - store_test_results:
+          path: ./coverage
+
+      - store_artifacts:
+          path: ./coverage
+
+      - codecov/upload:
+          file: ./coverage/cobertura-coverage.xml
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package-lock.json" }}
+
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Build
+          command: npm run build
+          environment:
+            NODE_ENV: 'test'
+
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+
+  release:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Semantic Release
+          command: npx semantic-release
+
+workflows:
+  version: 2.1
+
+  test-and-release:
+    jobs:
+      - install
+
+      - test:
+          requires:
+            - install
+
+      - build:
+          requires:
+            - install
+
+      - approve:
+          type: approval
+          requires:
+            - test
+            - build
+          filters:
+            branches:
+              only: master
+
+      - release:
+          requires:
+            - approve
+          filters:
+            branches:
+              only: master
