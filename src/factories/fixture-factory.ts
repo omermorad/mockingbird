@@ -1,29 +1,29 @@
 import faker from 'faker';
-import { FixturesCreator } from '../handlers/fixtures-creator';
+import { ClassProcessor } from '../handlers/class-processor';
 import { ClassLiteral, ClassType } from '../types/class.type';
-import { GeneratorFactoryOptions } from '../types/generator-factory-options.interface';
+import { FixtureFactoryOptions } from '../types';
 
 export class FixtureFactory {
-  public static create<T = unknown>(target: ClassType<T>, options: GeneratorFactoryOptions): ClassLiteral<T>[];
+  public static create<T = unknown>(target: ClassType<T>, options: FixtureFactoryOptions): ClassLiteral<T>[];
 
   public static create<T = unknown>(target: ClassType<T>): ClassLiteral<T>;
 
   public static create<T = unknown>(
     target: ClassType<T>,
-    options?: GeneratorFactoryOptions
+    options?: FixtureFactoryOptions
   ): ClassLiteral<T> | ClassLiteral<T>[] {
-    const { total = 1, locale = FixturesCreator.DEFAULT_LOCALE } = options || {};
+    const { total = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
 
-    const factory = new FixturesCreator<T>(faker, locale);
+    const factory = new ClassProcessor<T>(faker, locale);
 
     if (!total || total === 1) {
-      return factory.createForTarget(target) as ClassLiteral<T>;
+      return factory.process(target) as ClassLiteral<T>;
     }
 
     const objects: ClassLiteral<T>[] = []; // test
 
     for (let i = 1; i <= total; i++) {
-      objects.push(factory.createForTarget(target));
+      objects.push(factory.process(target));
     }
 
     return objects;

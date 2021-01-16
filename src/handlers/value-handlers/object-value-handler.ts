@@ -1,8 +1,9 @@
 import { ValueHandler } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 import { ClassType } from '../../types';
-import { FixturesCreator } from '../fixtures-creator';
 import { ClassReflection } from '@plumier/reflect';
+import { ClassProcessorInterface } from '../../types/class-processor.interface';
+import FakerStatic = Faker.FakerStatic;
 
 export class ObjectValueHandler implements ValueHandler {
   private static readonly DEFAULT_COUNT = 3;
@@ -11,7 +12,8 @@ export class ObjectValueHandler implements ValueHandler {
     return propertyDto.type === 'object';
   }
 
-  handle<T>(propertyDto: PropertyDto, handler: FixturesCreator<T>): any {
+  // TODO - break to multiple value handlers
+  handle<T>(propertyDto: PropertyDto, classProcessor: ClassProcessorInterface<T>, faker: FakerStatic): any {
     const { value } = propertyDto;
     // null value
     if (value === null) {
@@ -22,7 +24,7 @@ export class ObjectValueHandler implements ValueHandler {
     if (Object.prototype.hasOwnProperty.call(value, 'enum')) {
       const { enum: enumObj } = value as { enum: object };
 
-      return handler.faker.random.arrayElement(ObjectValueHandler.getEnumValues(enumObj));
+      return faker.random.arrayElement(ObjectValueHandler.getEnumValues(enumObj));
     }
 
     // { type: Class, count: 5 }
@@ -35,7 +37,7 @@ export class ObjectValueHandler implements ValueHandler {
       const instances = new Array<any>(count);
 
       for (let index = 0; index < count; index++) {
-        instances[index] = handler.createForTarget(classType);
+        instances[index] = classProcessor.process(classType);
       }
 
       return instances;

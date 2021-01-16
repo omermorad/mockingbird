@@ -1,7 +1,7 @@
 import { ValueHandler } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
-import { FixturesCreator } from '../fixtures-creator';
 import FakerStatic = Faker.FakerStatic;
+import { ClassProcessorInterface } from '../../types/class-processor.interface';
 
 export class PrimitiveValueHandler implements ValueHandler {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
@@ -10,13 +10,13 @@ export class PrimitiveValueHandler implements ValueHandler {
     return PrimitiveValueHandler.PRIMITIVES.includes(propertyDto.constructorName) && propertyDto.type !== 'function';
   }
 
-  handle<T>(propertyDto: PropertyDto, handler: FixturesCreator<T>): any {
+  handle<T>(propertyDto: PropertyDto, classProcessor: ClassProcessorInterface<T>, faker: FakerStatic): any {
     if (propertyDto.value) {
       return propertyDto.value;
     }
 
     // Flowing random primitive value
-    return this.generateRandomValueFromPrimitive(propertyDto.constructorName, handler.faker);
+    return this.generateRandomValueFromPrimitive(propertyDto.constructorName, faker);
   }
 
   protected generateRandomValueFromPrimitive(ctor: string, faker: FakerStatic) {

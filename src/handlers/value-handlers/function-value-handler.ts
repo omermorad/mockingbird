@@ -1,8 +1,9 @@
 import { ValueHandler } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 import { ClassType } from '../../types';
-import { FixturesCreator } from '../fixtures-creator';
 import { ClassReflection } from '@plumier/reflect';
+import { ClassProcessorInterface } from '../../types/class-processor.interface';
+import FakerStatic = Faker.FakerStatic;
 
 export class FunctionValueHandler implements ValueHandler {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
@@ -11,15 +12,14 @@ export class FunctionValueHandler implements ValueHandler {
     return propertyDto.type === 'function';
   }
 
-  handle<T>(propertyDto: PropertyDto, handler: FixturesCreator<T>): any {
+  handle<T>(propertyDto: PropertyDto, classProcessor: ClassProcessorInterface<T>, faker: FakerStatic): any {
     if (!this.isConstructorNameAPrimitive(propertyDto)) {
       // ClassType
-      // TODO - protect against infinite loop
-      return handler.createForTarget(propertyDto.value as ClassType);
+      return classProcessor.process(propertyDto.value as ClassType);
     }
 
     // Callback
-    return (propertyDto.value as Function)(handler.faker);
+    return (propertyDto.value as Function)(faker);
   }
 
   isConstructorNameAPrimitive(propertyDto: PropertyDto): boolean {
