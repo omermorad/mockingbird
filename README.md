@@ -15,13 +15,15 @@
 </p>
 
 ## Installation
-Install the package alongside `faker.js` peer dependency:
+Install the package alongside `faker.js` and `@types/faker` peer dependency:
 
 ```bash
-npm i -D faker.ts faker
+npm i -D faker.ts faker @types/faker
 ```
 
 ## Usage
+
+**You can play with Faker.ts in the [REPL Playground here](https://repl.it/@omermorad/Fakerts-Playground)**
 
 **Here is the simplest usage of `Faker.ts`:**
 
@@ -74,15 +76,18 @@ readonly dog: Dog;
 **[You can jump to the full documentation and explore the full API](/tree/master/docs). There are more options available to you in using `@Fixture` decorator and also the `@Generator` decorator as well**
 
 ## Motivation
-For those of you who are unfamiliar with `Faker`, it is an old library written in (pure) JavaScript (it also has types in `@types/faker`), which is used to _"generate massive amounts of fake data in the browser and Node"_
+For those of you who are unfamiliar with `Faker.js`, it is an old library written with pure JavaScript (it also has types in `@types/faker`), which is used to
+"generate massive amounts of fake data in the browser and Node".
 
-Fake data is usually needed for testing purposes, to assist in the development process itself, and sometimes, also for the purpose of demonstrations and training.
+Fake data is usually needed for testing purposes, to assist in the development process itself,
+and sometimes, also for the purpose of demonstrations and training.
 To generate the data, use the faker library directly, such as: `faker.internet.email()`
 and that, of course, will generate a random email address from a pre-made database.
 
 To create full fake objects, you need to place them in a literal object and use `for` loop.
-`Faker.ts` provides an easy and simple solution to an annoying and inconvenient problem that allows you to set "fixtures" as metadata on the department itself.
-This also allows the use of interfaces and, among other things, the enforcement of contracts
+`Faker.ts` provides an easy and simple solution to an annoying and inconvenient problem that
+allows you to set "fixtures" as metadata on the department itself.
+This also allows the use of interfaces and, among other things, the enforcement of contracts.
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.
