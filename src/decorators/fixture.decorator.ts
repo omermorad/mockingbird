@@ -7,10 +7,7 @@ export const FIXTURE_DECORATOR_NAME = 'Fixture';
 
 export function Fixture();
 export function Fixture(callback: (faker: Faker.FakerStatic) => any);
-export function Fixture(value: string);
-export function Fixture(value: number);
-export function Fixture(value: boolean);
-export function Fixture(value: Date);
+export function Fixture(value: string | number | boolean);
 export function Fixture(value: ClassType);
 export function Fixture(options: { enum: object });
 export function Fixture(options: { type: ClassType; count: number });
