@@ -60,7 +60,7 @@ export class ObjectValueHandler implements ValueHandler {
     }
   }
 
-  public detectCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
+  public hasCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
     if (!Object.prototype.hasOwnProperty.call(propertyDto.value, 'type')) {
       return false;
     }

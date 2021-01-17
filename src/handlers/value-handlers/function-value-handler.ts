@@ -27,7 +27,7 @@ export class FunctionValueHandler implements ValueHandler {
     return FunctionValueHandler.PRIMITIVES.includes(propertyDto.constructorName);
   }
 
-  public detectCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
+  public hasCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
     return !this.isConstructorNameAPrimitive(propertyDto) && parentClassReflection.type === propertyDto.value;
   }
 }

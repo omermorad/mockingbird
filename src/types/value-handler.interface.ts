@@ -7,7 +7,7 @@ import FakerStatic = Faker.FakerStatic;
 export interface ValueHandler {
   shouldHandle(propertyDto: PropertyDto): boolean;
 
-  detectCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean;
+  hasCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean;
 
   handle<T>(propertyDto: PropertyDto, classProcessor: IClassProcessor<T>, faker: FakerStatic): any | any[];
 }

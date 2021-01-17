@@ -22,7 +22,8 @@ export class FixtureFactory {
    * @example
    * class Person { @Fixture() name: string }
    * FixtureFactory.create(Person, { count: 3, locale: 'es' }) will return an
-   * array of objects [{ name: <random-string> }, { name: <random-string> }, { name: <random-string> }]
+   * array of objects [{ name: <random-string> }, { name: <random-string> },
+   * { name: <random-string> }]
    *
    * Passing a 'locale' property will set a different locale for faker calls
    * The default locale is 'en' (english)
@@ -33,7 +34,8 @@ export class FixtureFactory {
   public static create<T = unknown>(target: ClassType<T>, options: FixtureFactoryOptions): ClassLiteral<T>[];
 
   /**
-   * Return one or many objects (array) with all the properties decorated by the Fixture decorator
+   * Return one or many objects (array) with all the properties decorated
+   * by the Fixture decorator
    *
    * @param target
    * @param options
@@ -50,7 +52,7 @@ export class FixtureFactory {
       return factory.process(target) as ClassLiteral<T>;
     }
 
-    const objects: ClassLiteral<T>[] = []; // test
+    const objects: ClassLiteral<T>[] = [];
 
     for (let i = 1; i <= count; i++) {
       objects.push(factory.process(target));

@@ -34,7 +34,7 @@ export class PrimitiveValueHandler implements ValueHandler {
     return this.generateRandomValueFromPrimitive(propertyDto.constructorName, faker);
   }
 
-  public detectCircularClassFixture(): boolean {
+  public hasCircularClassFixture(): boolean {
     return false;
   }
 }
