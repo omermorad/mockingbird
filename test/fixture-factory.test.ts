@@ -76,7 +76,7 @@ describe('Fixture Factory', () => {
 
     let result;
     describe('When calling FixtureFactory.create', () => {
-      result = FixtureFactory.create<Person>(Person, { total: 9 });
+      result = FixtureFactory.create<Person>(Person, { count: 9 });
     });
 
     test('Then the result should contain an array with the total amount of elements', () => {

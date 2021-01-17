@@ -1,19 +1,35 @@
+import { ClassReflection } from '@plumier/reflect';
 import { ValueHandler } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 import { ClassType } from '../../types';
-import { ClassReflection } from '@plumier/reflect';
-import { ClassProcessorInterface } from '../../types/class-processor.interface';
+import { IClassProcessor } from '../../types/iclass-processor.interface';
 import FakerStatic = Faker.FakerStatic;
 
 export class ObjectValueHandler implements ValueHandler {
   private static readonly DEFAULT_COUNT = 3;
 
-  shouldHandle(propertyDto: PropertyDto): boolean {
+  private static getEnumValues(enumObj: any): any[] {
+    const keysList = Object.getOwnPropertyNames(enumObj).filter(
+      (key) => enumObj.propertyIsEnumerable(key) && key !== String(parseFloat(key))
+    );
+
+    const length = keysList.length;
+    const valuesList = new Array<any>(length);
+
+    for (let index = 0; index < length; ++index) {
+      const key = keysList[index];
+      valuesList[index] = enumObj[key];
+    }
+
+    return valuesList;
+  }
+
+  public shouldHandle(propertyDto: PropertyDto): boolean {
     return propertyDto.type === 'object';
   }
 
   // TODO - break to multiple value handlers
-  handle<T>(propertyDto: PropertyDto, classProcessor: ClassProcessorInterface<T>, faker: FakerStatic): any {
+  public handle<T>(propertyDto: PropertyDto, classProcessor: IClassProcessor<T>, faker: FakerStatic): any {
     const { value } = propertyDto;
     // null value
     if (value === null) {
@@ -44,23 +60,7 @@ export class ObjectValueHandler implements ValueHandler {
     }
   }
 
-  private static getEnumValues(enumObj: any): any[] {
-    const keysList = Object.getOwnPropertyNames(enumObj).filter(
-      (key) => enumObj.propertyIsEnumerable(key) && key !== String(parseFloat(key))
-    );
-
-    const length = keysList.length;
-    const valuesList = new Array<any>(length);
-
-    for (let index = 0; index < length; ++index) {
-      const key = keysList[index];
-      valuesList[index] = enumObj[key];
-    }
-
-    return valuesList;
-  }
-
-  detectCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
+  public detectCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
     if (!Object.prototype.hasOwnProperty.call(propertyDto.value, 'type')) {
       return false;
     }

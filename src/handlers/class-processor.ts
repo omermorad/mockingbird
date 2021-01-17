@@ -11,8 +11,10 @@ import { PrimitiveValueHandler } from './value-handlers/primitive-value-handler'
 
 export class ClassProcessor<T> {
   public static readonly DEFAULT_LOCALE = 'en';
+
   private static readonly REFLECTED_CLASSES: Record<string, ClassReflection> = {};
-  protected static VALUE_HANDLERS: ClassType<ValueHandler>[] = [
+
+  protected static readonly VALUE_HANDLERS: ClassType<ValueHandler>[] = [
     PrimitiveValueHandler,
     FunctionValueHandler,
     ObjectValueHandler,
@@ -22,6 +24,10 @@ export class ClassProcessor<T> {
     this.faker.setLocale(locale);
   }
 
+  /**
+   *
+   * @param target
+   */
   public process(target: ClassType<unknown>): ClassLiteral<T> | any {
     if (!target) {
       throw new Error(`Target class '${target}' is 'undefined'`);
@@ -41,6 +47,7 @@ export class ClassProcessor<T> {
   private handlePropertyValue(propertyDto: PropertyDto, parentClassReflection: ClassReflection): any | any[] {
     for (const handlerClass of ClassProcessor.VALUE_HANDLERS) {
       const handler = new handlerClass();
+
       if (handler.shouldHandle(propertyDto)) {
         if (handler.detectCircularClassFixture(parentClassReflection, propertyDto)) {
           throw Error(
