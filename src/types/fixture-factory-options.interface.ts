@@ -1,6 +1,6 @@
 import FakerStatic = Faker.FakerStatic;
 
-export interface GeneratorOptions {
+export interface FixtureFactoryOptions {
   locale?: FakerStatic['locale'];
   total?: number;
 }
