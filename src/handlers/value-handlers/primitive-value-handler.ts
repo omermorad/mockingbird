@@ -1,13 +1,16 @@
 import { ValueHandler } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
-import { IClassProcessor } from '../../types/iclass-processor.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
 export class PrimitiveValueHandler implements ValueHandler {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
-  protected generateRandomValueFromPrimitive(ctor: string, faker: FakerStatic) {
+  public constructor(protected readonly faker?: FakerStatic) {}
+
+  protected generateRandomValueFromPrimitive(ctor: string) {
+    const { faker } = this;
+
     if (ctor === 'String') {
       return faker.random.alpha({ count: 10 });
     } else if (ctor === 'Number') {
@@ -25,16 +28,15 @@ export class PrimitiveValueHandler implements ValueHandler {
     return PrimitiveValueHandler.PRIMITIVES.includes(propertyDto.constructorName) && propertyDto.type !== 'function';
   }
 
-  public handle<T>(propertyDto: PropertyDto, classProcessor: IClassProcessor<T>, faker: FakerStatic): any {
+  public handle<T>(propertyDto: PropertyDto): any {
     if (propertyDto.value) {
       return propertyDto.value;
     }
 
-    // Flowing random primitive value
-    return this.generateRandomValueFromPrimitive(propertyDto.constructorName, faker);
+    return this.generateRandomValueFromPrimitive(propertyDto.constructorName);
   }
 
-  public detectCircularClassFixture(): boolean {
+  public hasCircularClassFixture(): boolean {
     return false;
   }
 }

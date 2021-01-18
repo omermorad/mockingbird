@@ -5,6 +5,7 @@ export type FixtureOptions =
   | string
   | number
   | boolean
+  | object
   | ClassType
   | { enum: object }
   | { type: ClassType; count?: number };
