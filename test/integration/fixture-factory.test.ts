@@ -20,7 +20,7 @@ describe('Fixture Factory - Snapshot test', () => {
         @Fixture(true)
         binary: boolean;
 
-        @Fixture(new Date('01/01/1970'))
+        @Fixture(Date())
         date: Date;
       }
 
