@@ -1,6 +1,6 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { ClassLiteral, ClassType } from '../types/class.type';
-import { FixtureOptions } from '../types/fixture-options.type';
+import { ClassLiteral, ClassType } from '../types';
+import { FixtureOptions } from '../types';
 import { PropertyDto } from '../types/property-dto.interface';
 import { FIXTURE_DECORATOR_NAME } from '../decorators';
 import FakerStatic = Faker.FakerStatic;

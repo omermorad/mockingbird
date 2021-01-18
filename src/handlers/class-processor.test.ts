@@ -11,14 +11,36 @@ const factory = new ClassProcessor(faker, 'en');
 
 const reflectSpy = jest.spyOn(reflectModule, 'default');
 
-describe('createForTarget', () => {
-  class Dog {
-    @Fixture()
-    readonly name: string;
+class Dog {
+  @Fixture()
+  readonly name: string;
 
-    @Fixture()
-    readonly age: number;
-  }
+  @Fixture()
+  readonly age: number;
+}
+
+const reflection: ClassReflection = {
+  kind: 'Class',
+  name: 'Dog',
+  decorators: [],
+  methods: [],
+  properties: [],
+  ctor: {
+    kind: 'Constructor',
+    name: 'constructor',
+    parameters: [],
+  },
+  typeClassification: 'Class',
+  super: Dog,
+  type: Dog,
+};
+
+describe('ClassProcessor', () => {
+  let reflectionMock;
+
+  beforeEach(() => {
+    reflectionMock = JSON.parse(JSON.stringify(reflection));
+  });
 
   test('Should throw error if target parameter is not a class', () => {
     expect(() => factory.process(undefined)).toThrow(`Target class 'undefined' is 'undefined'`);
@@ -30,24 +52,41 @@ describe('createForTarget', () => {
     expect(setLocaleMock[0][0]).toEqual('en');
   });
 
-  test.skip('Should throw an error if no target was passed', () => {
-    const reflectionMock: ClassReflection = {
-      kind: 'Class',
-      name: 'Dog',
-      decorators: [],
-      methods: [],
-      properties: [],
-      ctor: {
-        kind: 'Constructor',
-        name: 'constructor',
-        parameters: [],
+  test('Should throw an error if no target was passed', () => {
+    delete reflectionMock.properties;
+    reflectSpy.mockImplementationOnce(() => reflectionMock);
+
+    const res = factory.process(Dog);
+
+    expect(res).toEqual(undefined);
+  });
+
+  test('Should return specific value passed from fixture', () => {
+    class AnotherDog {
+      @Fixture('doggo')
+      name: string;
+    }
+
+    reflectionMock.properties = [
+      {
+        kind: 'Property',
+        name: 'name',
+        type: {
+          name: 'String',
+        },
+        decorators: [
+          {
+            type: 'Fixture',
+            value: 'doggo',
+          },
+        ],
+        typeClassification: 'Primitive',
       },
-      typeClassification: 'Class',
-      super: Dog,
-      type: Dog,
-    };
+    ];
 
     reflectSpy.mockImplementationOnce(() => reflectionMock);
-    const res = factory.process(Dog);
+    const result = factory.process(AnotherDog);
+
+    expect(result).toEqual({ name: 'doggo' });
   });
 });
