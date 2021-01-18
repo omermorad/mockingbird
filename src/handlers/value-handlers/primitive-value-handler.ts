@@ -6,7 +6,7 @@ import FakerStatic = Faker.FakerStatic;
 export class PrimitiveValueHandler implements ValueHandler {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
-  public constructor(protected readonly faker?: FakerStatic) {}
+  public constructor(protected readonly faker: FakerStatic) {}
 
   protected generateRandomValueFromPrimitive(ctor: string) {
     const { faker } = this;
