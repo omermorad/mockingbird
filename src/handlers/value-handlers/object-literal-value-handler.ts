@@ -1,13 +1,13 @@
-import { TypeValueHandler } from './type-value-handler';
+import { TypeValueInspector } from 'src/handlers/value-handlers/type-value-inspector';
 import { EnumValueHandler } from './enum-value-handler';
-import { ValueHandler } from '../../types/value-handler.interface';
+import { ValueInspector } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 
-export class ObjectLiteralValueHandler implements ValueHandler {
-  public shouldHandle(propertyDto: PropertyDto): boolean {
+export class ObjectLiteralValueHandler implements ValueInspector {
+  public shouldInspect(propertyDto: PropertyDto): boolean {
     return (
       propertyDto.type === 'object' &&
-      !TypeValueHandler.isTypeValue(propertyDto) &&
+      !TypeValueInspector.isTypeValue(propertyDto) &&
       !EnumValueHandler.isEnumValue(propertyDto)
     );
   }
@@ -16,7 +16,7 @@ export class ObjectLiteralValueHandler implements ValueHandler {
     return false;
   }
 
-  public handle<T>(propertyDto: PropertyDto): any {
+  public deduceValue<T>(propertyDto: PropertyDto): any {
     return propertyDto.value;
   }
 }

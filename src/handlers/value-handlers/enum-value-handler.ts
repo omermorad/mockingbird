@@ -1,9 +1,9 @@
-import { ValueHandler } from '../../types/value-handler.interface';
+import { ValueInspector } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class EnumValueHandler implements ValueHandler {
+export class EnumValueHandler implements ValueInspector {
   public constructor(protected readonly faker: FakerStatic) {}
 
   private static getEnumValues(enumObj: object): any[] {
@@ -22,7 +22,7 @@ export class EnumValueHandler implements ValueHandler {
     return valuesList;
   }
 
-  public shouldHandle(propertyDto: PropertyDto): boolean {
+  public shouldInspect(propertyDto: PropertyDto): boolean {
     return propertyDto.type === 'object' && EnumValueHandler.isEnumValue(propertyDto);
   }
 
@@ -32,7 +32,7 @@ export class EnumValueHandler implements ValueHandler {
     return Object.prototype.hasOwnProperty.call(value, 'enum');
   }
 
-  public handle<T>(propertyDto: PropertyDto): any {
+  public deduceValue<T>(propertyDto: PropertyDto): any {
     const { value } = propertyDto;
     const { enum: enumObj } = value as { enum: object };
 

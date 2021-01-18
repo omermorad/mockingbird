@@ -1,9 +1,9 @@
-import { ValueHandler } from '../../types/value-handler.interface';
+import { ValueInspector } from '../../types/value-handler.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class PrimitiveValueHandler implements ValueHandler {
+export class PrimitiveValueInspector implements ValueInspector {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
   public constructor(protected readonly faker: FakerStatic) {}
@@ -24,11 +24,11 @@ export class PrimitiveValueHandler implements ValueHandler {
     }
   }
 
-  public shouldHandle(propertyDto: PropertyDto): boolean {
-    return PrimitiveValueHandler.PRIMITIVES.includes(propertyDto.constructorName) && propertyDto.type !== 'function';
+  public shouldInspect(propertyDto: PropertyDto): boolean {
+    return PrimitiveValueInspector.PRIMITIVES.includes(propertyDto.constructorName) && propertyDto.type !== 'function';
   }
 
-  public handle<T>(propertyDto: PropertyDto): any {
+  public deduceValue<T>(propertyDto: PropertyDto): any {
     if (propertyDto.value) {
       return propertyDto.value;
     }

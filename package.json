@@ -2,7 +2,7 @@
   "name": "faker.ts",
   "version": "0.0.0-semantic-release",
   "license": "MIT",
-  "description": "Just a Mongoose Seeder for NestJS",
+  "description": "Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper",
   "keywords": [
     "faker",
     "faker-typescript",
@@ -11,12 +11,21 @@
     "fixture",
     "fixture-factory",
     "faker-factory",
-    "faker-fixture"
+    "faker-fixture",
+    "faker.ts"
   ],
   "contributors": [
     {
       "name": "Omer Morad",
       "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    },
+    {
+      "name": "Amit Wagner",
+      "email": "amit.wagner@gmail.com"
     }
   ],
   "repository": {

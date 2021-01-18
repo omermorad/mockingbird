@@ -2,25 +2,26 @@ import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
 import { FunctionValueHandler } from './value-handlers/function-value-handler';
 import { ObjectLiteralValueHandler } from './value-handlers/object-literal-value-handler';
 import { EnumValueHandler } from './value-handlers/enum-value-handler';
-import { TypeValueHandler } from './value-handlers/type-value-handler';
-import { PrimitiveValueHandler } from './value-handlers/primitive-value-handler';
+import { TypeValueInspector } from 'src/handlers/value-handlers/type-value-inspector';
+import { PrimitiveValueInspector } from 'src/handlers/value-handlers/primitive-value-inspector';
 import { ClassLiteral, ClassType } from '../types/class.type';
 import { FixtureOptions } from '../types/fixture-options.type';
 import { PropertyDto } from '../types/property-dto.interface';
-import { ValueHandler } from '../types/value-handler.interface';
+import { ValueInspector } from '../types/value-handler.interface';
+import { IClassProcessor } from '../types/iclass-processor.interface';
 import { FIXTURE_DECORATOR_NAME } from '../decorators/fixture.decorator';
 
 import FakerStatic = Faker.FakerStatic;
-import { IClassProcessor } from 'src/types/iclass-processor.interface';
+
 export class ClassProcessor<T> implements IClassProcessor<T> {
   private static readonly REFLECTED_CLASSES: Record<string, ClassReflection> = {};
 
-  private static readonly VALUE_HANDLERS: ClassType<ValueHandler>[] = [
-    PrimitiveValueHandler,
+  private static readonly VALUE_INSPECTORS: ClassType<ValueInspector>[] = [
+    PrimitiveValueInspector,
     FunctionValueHandler,
     ObjectLiteralValueHandler,
     EnumValueHandler,
-    TypeValueHandler,
+    TypeValueInspector,
   ];
 
   public static readonly DEFAULT_LOCALE = 'en';
@@ -30,17 +31,17 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
   }
 
   private handlePropertyValue(propertyDto: PropertyDto, parentClassReflection: ClassReflection): T {
-    for (const handlerClass of ClassProcessor.VALUE_HANDLERS) {
-      const handler = new handlerClass(this.faker);
+    for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
+      const inspector = new inspectorClass(this.faker);
 
-      if (handler.shouldHandle(propertyDto)) {
-        if (handler.hasCircularClassFixture(parentClassReflection, propertyDto)) {
+      if (inspector.shouldInspect(propertyDto)) {
+        if (inspector.hasCircularClassFixture(parentClassReflection, propertyDto)) {
           throw Error(
             `Circular class-type fixture detected! Target: ${parentClassReflection.name}; Property: ${propertyDto.name}`
           );
         }
 
-        return handler.handle<T>(propertyDto, this);
+        return inspector.deduceValue<T>(propertyDto, this);
       }
     }
 
@@ -55,7 +56,7 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
     return ClassProcessor.REFLECTED_CLASSES[target.name];
   }
 
-  private static createValueDto(
+  private static createPropertyDto(
     property: PropertyReflection,
     fixtureDecoratorValue: FixtureOptions | null
   ): PropertyDto {
@@ -91,7 +92,7 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
 
     return classReflection.properties?.reduce((acc, val) => {
       const fixtureDecoratorValue = ClassProcessor.extractFixtureDecoratorValue(val);
-      const dto = ClassProcessor.createValueDto(val, fixtureDecoratorValue);
+      const dto = ClassProcessor.createPropertyDto(val, fixtureDecoratorValue);
 
       return { ...acc, [val.name]: this.handlePropertyValue(dto, classReflection) };
     }, {});

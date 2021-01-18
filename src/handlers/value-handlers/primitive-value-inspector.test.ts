@@ -1,9 +1,9 @@
-import { PrimitiveValueHandler } from './primitive-value-handler';
+import { PrimitiveValueInspector } from 'src/handlers/value-handlers/primitive-value-inspector';
 
 import FakerStatic = Faker.FakerStatic;
 
-describe('PrimitiveValueHandler Unit', () => {
-  let dto, valueHandler: PrimitiveValueHandler;
+describe('PrimitiveValueInspector Unit', () => {
+  let dto, inspector: PrimitiveValueInspector;
 
   const fakerMock = ({
     random: {
@@ -22,21 +22,21 @@ describe('PrimitiveValueHandler Unit', () => {
     dto = { type: 'string', value: 'TestStr', name: 'name' };
   });
 
-  describe('given a PrimitiveValueHandler', () => {
+  describe('given a PrimitiveValueInspector', () => {
     beforeAll(() => {
-      valueHandler = new PrimitiveValueHandler(fakerMock);
+      inspector = new PrimitiveValueInspector(fakerMock);
     });
 
     describe('when there is a value', () => {
       test('then return the exact same value', () => {
         dto.value = 'TestStr';
-        expect(valueHandler.handle(dto)).toBe('TestStr');
+        expect(inspector.deduceValue(dto)).toBe('TestStr');
 
         dto.value = 12345;
-        expect(valueHandler.handle(dto)).toBe(12345);
+        expect(inspector.deduceValue(dto)).toBe(12345);
 
         dto.value = true;
-        expect(valueHandler.handle(dto)).toBe(true);
+        expect(inspector.deduceValue(dto)).toBe(true);
       });
     });
 
@@ -46,7 +46,7 @@ describe('PrimitiveValueHandler Unit', () => {
           dto.value = false;
           dto.constructorName = 'String';
 
-          valueHandler.handle(dto);
+          inspector.deduceValue(dto);
 
           expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
         });
@@ -57,7 +57,7 @@ describe('PrimitiveValueHandler Unit', () => {
           dto.value = false;
           dto.constructorName = 'Number';
 
-          valueHandler.handle(dto);
+          inspector.deduceValue(dto);
 
           expect(fakerMock.random.number).toHaveBeenCalledTimes(1);
           expect(fakerMock.random.number).toHaveBeenCalledWith(1000);
@@ -69,7 +69,7 @@ describe('PrimitiveValueHandler Unit', () => {
           dto.value = false;
           dto.constructorName = 'Boolean';
 
-          valueHandler.handle(dto);
+          inspector.deduceValue(dto);
           expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
         });
       });
@@ -79,7 +79,7 @@ describe('PrimitiveValueHandler Unit', () => {
           dto.value = false;
           dto.constructorName = 'Date';
 
-          valueHandler.handle(dto);
+          inspector.deduceValue(dto);
           expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
         });
       });
@@ -89,7 +89,7 @@ describe('PrimitiveValueHandler Unit', () => {
           dto.value = false;
           dto.constructorName = 'not-a-primitive';
 
-          valueHandler.handle(dto);
+          inspector.deduceValue(dto);
           expect(fakerMock.random.alphaNumeric).toHaveBeenCalledTimes(1);
         });
       });
