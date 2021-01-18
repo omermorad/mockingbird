@@ -1,9 +1,11 @@
 import { PrimitiveValueHandler } from './primitive-value-handler';
-import { ClassProcessor } from '../class-processor';
-import faker from 'faker';
 
-jest.mock('faker', () => {
-  return {
+import FakerStatic = Faker.FakerStatic;
+
+describe('PrimitiveValueHandler Unit', () => {
+  let dto, valueHandler: PrimitiveValueHandler;
+
+  const fakerMock = ({
     random: {
       alpha: jest.fn(),
       number: jest.fn(),
@@ -14,64 +16,83 @@ jest.mock('faker', () => {
       recent: jest.fn(),
     },
     setLocale: () => jest.fn(),
-  };
-});
+  } as unknown) as FakerStatic;
 
-const valueHandler = new PrimitiveValueHandler();
-
-describe('PrimitiveValueHandler', () => {
-  let dto;
   beforeEach(() => {
-    dto = {
-      type: 'string',
-      value: 'TestStr',
-      name: 'name',
-    };
+    dto = { type: 'string', value: 'TestStr', name: 'name' };
   });
 
-  test('Should return value if primitive value passed', () => {
-    dto.value = 'TestStr';
-    const result = valueHandler.handle(dto, new ClassProcessor(faker, 'en'), faker);
-    expect(result).toEqual('TestStr');
-  });
+  describe('given a PrimitiveValueHandler', () => {
+    beforeAll(() => {
+      valueHandler = new PrimitiveValueHandler(fakerMock);
+    });
 
-  test('Should return faker random string if there is no value and ctor is a string', () => {
-    dto.value = false;
-    dto.constructorName = 'String';
+    describe('when there is a value', () => {
+      test('then return the exact same value', () => {
+        dto.value = 'TestStr';
+        expect(valueHandler.handle(dto)).toBe('TestStr');
 
-    valueHandler.handle(dto, new ClassProcessor(faker, 'en'), faker);
-    expect(faker.random.alpha).toHaveBeenCalledTimes(1);
-  });
+        dto.value = 12345;
+        expect(valueHandler.handle(dto)).toBe(12345);
 
-  test('Should return faker random string if there is no value and ctor is a number', () => {
-    dto.value = false;
-    dto.constructorName = 'Number';
+        dto.value = true;
+        expect(valueHandler.handle(dto)).toBe(true);
+      });
+    });
 
-    valueHandler.handle(dto, new ClassProcessor(faker, 'en'), faker);
-    expect(faker.random.number).toHaveBeenCalledTimes(1);
-  });
+    describe('when there is no value', () => {
+      describe('and the constructor is a String', () => {
+        test('then generate a random string from faker', () => {
+          dto.value = false;
+          dto.constructorName = 'String';
 
-  test('Should return faker random Boolean if there is no value and ctor is a Boolean', () => {
-    dto.value = false;
-    dto.constructorName = 'Boolean';
+          valueHandler.handle(dto);
 
-    valueHandler.handle(dto, new ClassProcessor(faker, 'en'), faker);
-    expect(faker.random.boolean).toHaveBeenCalledTimes(1);
-  });
+          expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
+        });
+      });
 
-  test('Should return faker random Date if there is no value and ctor is Date', () => {
-    dto.value = false;
-    dto.constructorName = 'Date';
+      describe('and the constructor is a Number', () => {
+        test('then return a random number between 1 to 1000', () => {
+          dto.value = false;
+          dto.constructorName = 'Number';
 
-    valueHandler.handle(dto, new ClassProcessor(faker, 'en'), faker);
-    expect(faker.random.boolean).toHaveBeenCalledTimes(1);
-  });
+          valueHandler.handle(dto);
 
-  test('Should return faker random alphaNumeric if constructorName is not a primitive', () => {
-    dto.value = false;
-    dto.constructorName = 'notPrimitive';
+          expect(fakerMock.random.number).toHaveBeenCalledTimes(1);
+          expect(fakerMock.random.number).toHaveBeenCalledWith(1000);
+        });
+      });
 
-    valueHandler.handle(dto, new ClassProcessor(faker, 'en'), faker);
-    expect(faker.random.alphaNumeric).toHaveBeenCalledTimes(1);
+      describe('and the constructor is a Boolean', () => {
+        test('then return random boolean value', () => {
+          dto.value = false;
+          dto.constructorName = 'Boolean';
+
+          valueHandler.handle(dto);
+          expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
+        });
+      });
+
+      describe('and the constructor is a Date', () => {
+        test('then return a random date', () => {
+          dto.value = false;
+          dto.constructorName = 'Date';
+
+          valueHandler.handle(dto);
+          expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
+        });
+      });
+
+      describe('and constructor is not a primitive one', () => {
+        test('then return alpha numeric string', () => {
+          dto.value = false;
+          dto.constructorName = 'not-a-primitive';
+
+          valueHandler.handle(dto);
+          expect(fakerMock.random.alphaNumeric).toHaveBeenCalledTimes(1);
+        });
+      });
+    });
   });
 });

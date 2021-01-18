@@ -3,7 +3,7 @@
 exports[`Fixture Factory - Snapshot test Absolute values should use the actual strait value from the decorator 1`] = `
 Object {
   "binary": true,
-  "date": 1969-12-31T22:00:00.000Z,
+  "date": "Mon Jan 18 2021 23:43:52 GMT+0200 (Israel Standard Time)",
   "name": "Johnny Boy",
   "num": 1234,
 }
