@@ -1,5 +1,5 @@
-import { ValueInspector } from '../../types/value-inspector.interface';
-import { PropertyDto } from '../../types/property-dto.interface';
+import { ValueInspector } from '../types/value-inspector.interface';
+import { PropertyDto } from '../types/property-dto.interface';
 
 import FakerStatic = Faker.FakerStatic;
 

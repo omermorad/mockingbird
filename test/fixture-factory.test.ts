@@ -32,55 +32,52 @@ describe('Fixture Factory', () => {
     }
 
     class Person {
-      @Fixture((faker) => faker.internet.email())
-      readonly email: string;
+      // @Fixture((faker) => faker.internet.email())
+      // readonly email: string;
+      //
+      // @Fixture((faker) => faker.random.number(30))
+      // readonly age: number;
+      //
+      // @Fixture('Omer')
+      // readonly name: string;
 
-      @Fixture((faker) => faker.random.number(30))
-      readonly age: number;
-
-      @Fixture('Omer')
-      readonly name: string;
-
-      @Fixture({ type: Book, count: 1 })
+      @Fixture({ type: Book, count: 4 })
       readonly books: Book[];
 
-      @Fixture()
-      readonly date: Date;
-
-      @Fixture(Dog)
-      readonly dog: Dog;
-
-      @Fixture({ type: Date, count: 3 })
-      readonly id: number[];
-
-      @Fixture({ type: String, count: 3 })
-      readonly strings: string[];
-
-      @Fixture({ enum: Activity })
-      readonly active: Activity;
-
-      @Fixture()
-      readonly coins: number;
-
-      @Fixture()
-      readonly binary: boolean;
-
-      @Fixture()
-      readonly mahrozet: string;
-
-      readonly propertyWithoutDecorator: string;
-
-      @Fixture()
-      readonly propertyWithoutType;
+      // @Fixture()
+      // readonly date: Date;
+      //
+      // @Fixture(Dog)
+      // readonly dog: Dog;
+      //
+      // @Fixture({ type: String, count: 3 })
+      // readonly strings: string[];
+      //
+      // @Fixture({ type: Date, count: 3 })
+      // readonly id: number[];
+      //
+      // @Fixture({ enum: Activity })
+      // readonly active: Activity;
+      //
+      // @Fixture()
+      // readonly coins: number;
+      //
+      // @Fixture()
+      // readonly binary: boolean;
+      //
+      // @Fixture()
+      // readonly mahrozet: string;
+      //
+      // readonly propertyWithoutDecorator: string;
+      //
+      // @Fixture()
+      // readonly propertyWithoutType;
     }
 
     let result;
+
     describe('When calling FixtureFactory.create', () => {
       result = FixtureFactory.create<Person>(Person);
-    });
-
-    test('Then the result should contain an array with the total amount of elements', () => {
-      expect(result).toHaveLength(9);
     });
   });
 });

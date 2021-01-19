@@ -1,9 +1,9 @@
 import { ClassReflection } from '@plumier/reflect';
-import { IClassProcessor } from '../../types/iclass-processor.interface';
-import { ValueInspector } from '../../types/value-inspector.interface';
-import { PropertyDto } from '../../types/property-dto.interface';
-import { ClassType } from '../../types/class.type';
-import { Circular } from '../../types/circular.interface';
+import { IClassProcessor } from '../types/iclass-processor.interface';
+import { ValueInspector } from '../types/value-inspector.interface';
+import { PropertyDto } from '../types/property-dto.interface';
+import { ClassType } from '../types/class.type';
+import { Circular } from '../types/circular.interface';
 
 import FakerStatic = Faker.FakerStatic;
 

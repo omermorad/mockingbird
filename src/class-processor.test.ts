@@ -1,7 +1,7 @@
 import { ClassProcessor } from './class-processor';
 import * as faker from 'faker';
 import { mocked } from 'ts-jest/utils';
-import { Fixture } from '../decorators';
+import { Fixture } from './decorators/fixture.decorator';
 import * as reflectModule from '@plumier/reflect';
 import { ClassReflection } from '@plumier/reflect';
 

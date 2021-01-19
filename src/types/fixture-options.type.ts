@@ -1,11 +1,11 @@
 import { ClassType } from './class.type';
+import { ExactValue } from 'src/types/exact-value.type';
+
+export type MultiClass = { type: ClassType; count?: number };
 
 export type FixtureOptions =
   | ((faker?: Faker.FakerStatic) => any)
-  | string
-  | number
-  | boolean
-  | object
+  | ExactValue
   | ClassType
   | { enum: object }
-  | { type: ClassType; count?: number };
+  | MultiClass;

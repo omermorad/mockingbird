@@ -2,6 +2,7 @@ import 'reflect-metadata';
 import { decorateProperty } from '@plumier/reflect';
 import { ClassType } from '../types/class.type';
 import { FixtureOptions } from '../types/fixture-options.type';
+import { ExactValue } from 'src/types/exact-value.type';
 
 export const FIXTURE_DECORATOR_NAME = 'Fixture';
 
@@ -35,7 +36,7 @@ export function Fixture(callback: (faker: Faker.FakerStatic) => any): PropertyDe
  * @param value
  * @constructor
  */
-export function Fixture(value: string | number | boolean): PropertyDecorator;
+export function Fixture(value: ExactValue): PropertyDecorator;
 
 /**
  * Generate an object matching to the given class (assuming the class is decorated with Fixture)
