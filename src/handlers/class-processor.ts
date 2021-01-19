@@ -1,13 +1,13 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { FunctionValueHandler } from './value-handlers/function-value-handler';
-import { ObjectLiteralValueHandler } from './value-handlers/object-literal-value-handler';
-import { EnumValueHandler } from './value-handlers/enum-value-handler';
+import { FunctionValueInspector } from './value-handlers/function-value-inspector';
+import { ObjectLiteralValueInspector } from './value-handlers/object-literal-value-inspector';
+import { EnumValueInspector } from './value-handlers/enum-value-inspector';
 import { TypeValueInspector } from 'src/handlers/value-handlers/type-value-inspector';
 import { PrimitiveValueInspector } from 'src/handlers/value-handlers/primitive-value-inspector';
 import { ClassLiteral, ClassType } from '../types/class.type';
 import { FixtureOptions } from '../types/fixture-options.type';
 import { PropertyDto } from '../types/property-dto.interface';
-import { ValueInspector } from '../types/value-handler.interface';
+import { ValueInspector } from '../types/value-inspector.interface';
 import { IClassProcessor } from '../types/iclass-processor.interface';
 import { FIXTURE_DECORATOR_NAME } from '../decorators/fixture.decorator';
 
@@ -18,9 +18,9 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
 
   private static readonly VALUE_INSPECTORS: ClassType<ValueInspector>[] = [
     PrimitiveValueInspector,
-    FunctionValueHandler,
-    ObjectLiteralValueHandler,
-    EnumValueHandler,
+    FunctionValueInspector,
+    ObjectLiteralValueInspector,
+    EnumValueInspector,
     TypeValueInspector,
   ];
 

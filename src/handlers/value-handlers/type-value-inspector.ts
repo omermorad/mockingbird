@@ -1,10 +1,8 @@
 import { ClassReflection } from '@plumier/reflect';
-import { ValueInspector } from '../../types/value-handler.interface';
+import { ValueInspector } from '../../types/value-inspector.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
-import { ClassType, FixtureOptions } from '../../types';
+import { ClassType } from '../../types/class.type';
 import { IClassProcessor } from '../../types/iclass-processor.interface';
-
-import FakerStatic = Faker.FakerStatic;
 
 export class TypeValueInspector implements ValueInspector {
   private static readonly DEFAULT_COUNT = 3;

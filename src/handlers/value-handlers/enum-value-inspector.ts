@@ -1,9 +1,9 @@
-import { ValueInspector } from '../../types/value-handler.interface';
+import { ValueInspector } from '../../types/value-inspector.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class EnumValueHandler implements ValueInspector {
+export class EnumValueInspector implements ValueInspector {
   public constructor(protected readonly faker: FakerStatic) {}
 
   private static getEnumValues(enumObj: object): any[] {
@@ -23,7 +23,7 @@ export class EnumValueHandler implements ValueInspector {
   }
 
   public shouldInspect(propertyDto: PropertyDto): boolean {
-    return propertyDto.type === 'object' && EnumValueHandler.isEnumValue(propertyDto);
+    return propertyDto.type === 'object' && EnumValueInspector.isEnumValue(propertyDto);
   }
 
   public static isEnumValue(propertyDto: PropertyDto): boolean {
@@ -36,7 +36,7 @@ export class EnumValueHandler implements ValueInspector {
     const { value } = propertyDto;
     const { enum: enumObj } = value as { enum: object };
 
-    return this.faker.random.arrayElement(EnumValueHandler.getEnumValues(enumObj));
+    return this.faker.random.arrayElement(EnumValueInspector.getEnumValues(enumObj));
   }
 
   public hasCircularClassFixture(): boolean {

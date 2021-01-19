@@ -1,4 +1,4 @@
-import { PrimitiveValueInspector } from 'src/handlers/value-handlers/primitive-value-inspector';
+import { PrimitiveValueInspector } from './primitive-value-inspector';
 
 import FakerStatic = Faker.FakerStatic;
 
@@ -53,7 +53,7 @@ describe('PrimitiveValueInspector Unit', () => {
       });
 
       describe('and the constructor is a Number', () => {
-        test('then return a random number between 1 to 1000', () => {
+        test('then return a random number between 1 to 1000 from faker', () => {
           dto.value = false;
           dto.constructorName = 'Number';
 
