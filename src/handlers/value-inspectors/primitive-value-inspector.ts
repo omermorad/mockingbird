@@ -29,7 +29,7 @@ export class PrimitiveValueInspector implements ValueInspector {
   }
 
   public deduceValue<T>(propertyDto: PropertyDto): any {
-    if (propertyDto.value) {
+    if (propertyDto.value !== 'undefined') {
       return propertyDto.value;
     }
 

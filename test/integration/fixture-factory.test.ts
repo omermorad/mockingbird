@@ -1,12 +1,6 @@
 import { Fixture } from '../../src/decorators/fixture.decorator';
 import { FixtureFactory } from '../../src/factories/fixture-factory';
 
-enum Activity {
-  VeryActive,
-  Active,
-  NotActive,
-}
-
 describe('Fixture Factory - Snapshot test', () => {
   describe('Absolute values', () => {
     it('should use the actual strait value from the decorator', () => {
