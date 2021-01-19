@@ -35,8 +35,4 @@ export class PrimitiveValueInspector implements ValueInspector {
 
     return this.generateRandomValueFromPrimitive(propertyDto.constructorName);
   }
-
-  public hasCircularClassFixture(): boolean {
-    return false;
-  }
 }

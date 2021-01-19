@@ -1,9 +1,9 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { FunctionValueInspector } from './value-handlers/function-value-inspector';
-import { ObjectLiteralValueInspector } from './value-handlers/object-literal-value-inspector';
-import { EnumValueInspector } from './value-handlers/enum-value-inspector';
-import { TypeValueInspector } from 'src/handlers/value-handlers/type-value-inspector';
-import { PrimitiveValueInspector } from 'src/handlers/value-handlers/primitive-value-inspector';
+import { FunctionValueInspector } from './value-inspectors/function-value-inspector';
+import { ObjectLiteralValueInspector } from './value-inspectors/object-literal-value-inspector';
+import { EnumValueInspector } from './value-inspectors/enum-value-inspector';
+import { TypeValueInspector } from './value-inspectors/type-value-inspector';
+import { PrimitiveValueInspector } from './value-inspectors/primitive-value-inspector';
 import { ClassLiteral, ClassType } from '../types/class.type';
 import { FixtureOptions } from '../types/fixture-options.type';
 import { PropertyDto } from '../types/property-dto.interface';
@@ -12,6 +12,7 @@ import { IClassProcessor } from '../types/iclass-processor.interface';
 import { FIXTURE_DECORATOR_NAME } from '../decorators/fixture.decorator';
 
 import FakerStatic = Faker.FakerStatic;
+import { Circular } from 'src/types/circular.interface';
 
 export class ClassProcessor<T> implements IClassProcessor<T> {
   private static readonly REFLECTED_CLASSES: Record<string, ClassReflection> = {};
@@ -31,11 +32,15 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
   }
 
   private handlePropertyValue(propertyDto: PropertyDto, parentClassReflection: ClassReflection): T {
+    function isCircular(inspector: object): inspector is Circular {
+      return (inspector as Circular).hasCircularClassFixture !== undefined;
+    }
+
     for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
       const inspector = new inspectorClass(this.faker);
 
       if (inspector.shouldInspect(propertyDto)) {
-        if (inspector.hasCircularClassFixture(parentClassReflection, propertyDto)) {
+        if (isCircular(inspector) && inspector.hasCircularClassFixture(parentClassReflection, propertyDto)) {
           throw Error(
             `Circular class-type fixture detected! Target: ${parentClassReflection.name}; Property: ${propertyDto.name}`
           );

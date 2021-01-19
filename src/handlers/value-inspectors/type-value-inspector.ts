@@ -3,8 +3,9 @@ import { ValueInspector } from '../../types/value-inspector.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 import { ClassType } from '../../types/class.type';
 import { IClassProcessor } from '../../types/iclass-processor.interface';
+import { Circular } from '../../types/circular.interface';
 
-export class TypeValueInspector implements ValueInspector {
+export class TypeValueInspector implements ValueInspector, Circular {
   private static readonly DEFAULT_COUNT = 3;
 
   public shouldInspect(propertyDto: PropertyDto): boolean {

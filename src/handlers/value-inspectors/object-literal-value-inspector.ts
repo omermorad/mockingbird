@@ -1,4 +1,4 @@
-import { TypeValueInspector } from 'src/handlers/value-handlers/type-value-inspector';
+import { TypeValueInspector } from '../value-inspectors/type-value-inspector';
 import { EnumValueInspector } from './enum-value-inspector';
 import { ValueInspector } from '../../types/value-inspector.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
@@ -10,10 +10,6 @@ export class ObjectLiteralValueInspector implements ValueInspector {
       !TypeValueInspector.isTypeValue(propertyDto) &&
       !EnumValueInspector.isEnumValue(propertyDto)
     );
-  }
-
-  public hasCircularClassFixture(): boolean {
-    return false;
   }
 
   public deduceValue<T>(propertyDto: PropertyDto): any {

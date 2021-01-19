@@ -38,8 +38,4 @@ export class EnumValueInspector implements ValueInspector {
 
     return this.faker.random.arrayElement(EnumValueInspector.getEnumValues(enumObj));
   }
-
-  public hasCircularClassFixture(): boolean {
-    return false;
-  }
 }

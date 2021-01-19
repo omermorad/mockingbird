@@ -3,10 +3,11 @@ import { IClassProcessor } from '../../types/iclass-processor.interface';
 import { ValueInspector } from '../../types/value-inspector.interface';
 import { PropertyDto } from '../../types/property-dto.interface';
 import { ClassType } from '../../types/class.type';
+import { Circular } from '../../types/circular.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class FunctionValueInspector implements ValueInspector {
+export class FunctionValueInspector implements ValueInspector, Circular {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
   public constructor(protected readonly faker: FakerStatic) {}
