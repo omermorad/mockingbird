@@ -1,6 +1,7 @@
+import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueInspector } from '../types/value-inspector.interface';
 import { PropertyDto } from '../types/property-dto.interface';
-import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
+import { MultiClassValueInspector } from '../handlers/multi-class-value-inspector';
 
 import FakerStatic = Faker.FakerStatic;
 
@@ -17,6 +18,12 @@ export class PrimitiveValueInspector extends PrimitiveHandlerAbstract implements
     const { value } = propertyDto;
 
     if (typeof value !== 'undefined') {
+      if (MultiClassValueInspector.isTypeValue(propertyDto)) {
+        throw new Error(
+          'Type mismatch. Properties decorated with @Fixture({ type: ClassType }) must be typed as array (e.g. prop: string[])'
+        );
+      }
+
       return value;
     }
 

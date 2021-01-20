@@ -41,40 +41,40 @@ describe('Fixture Factory', () => {
       // @Fixture('Omer')
       // readonly name: string;
 
-      // @Fixture({ type: Book, count: 4 })
-      // readonly books: Book[];
-      //
-      // @Fixture()
-      // readonly date: Date;
-      //
-      // @Fixture()
-      // readonly string: string;
-      //
-      // @Fixture(Dog)
-      // readonly dog: Dog;
-      //
-      // @Fixture({ type: String, count: 3 })
-      // readonly strings: string[];
+      @Fixture({ type: Book, count: 4 })
+      readonly books: Book[];
+
+      @Fixture()
+      readonly date: Date;
+
+      @Fixture()
+      readonly string: string;
+
+      @Fixture(Dog)
+      readonly dog: Dog;
+
+      @Fixture({ type: String, count: 3 })
+      readonly strings: string[];
 
       @Fixture({ type: Number, count: 3 })
-      readonly numbersInvalidTS: number;
+      readonly numbers: number[];
 
-      // @Fixture({ enum: Activity })
-      // readonly active: Activity;
-      //
-      // @Fixture()
-      // readonly coins: number;
-      //
-      // @Fixture()
-      // readonly binary: boolean;
-      //
-      // @Fixture()
-      // readonly mahrozet: string;
-      //
-      // readonly propertyWithoutDecorator: string;
-      //
-      // @Fixture()
-      // readonly propertyWithoutType;
+      @Fixture({ enum: Activity })
+      readonly active: Activity;
+
+      @Fixture()
+      readonly coins: number;
+
+      @Fixture()
+      readonly binary: boolean;
+
+      @Fixture()
+      readonly mahrozet: string;
+
+      readonly propertyWithoutDecorator: string;
+
+      @Fixture()
+      readonly propertyWithoutType;
     }
 
     let result;

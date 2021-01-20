@@ -14,12 +14,12 @@ import FakerStatic = Faker.FakerStatic;
 
 export class ClassProcessor<T> implements IClassProcessor<T> {
   private static readonly VALUE_INSPECTORS: ClassType<ValueInspector>[] = [
-    PrimitiveValueInspector,
     CallbackValueInspector,
+    PrimitiveValueInspector,
+    MultiClassValueInspector,
     SingleClassValueInspector,
     ObjectLiteralValueInspector,
     EnumValueInspector,
-    MultiClassValueInspector,
   ];
 
   public static readonly DEFAULT_LOCALE = 'en';
