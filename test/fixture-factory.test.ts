@@ -32,23 +32,20 @@ describe('Fixture Factory', () => {
     }
 
     class Person {
-      // @Fixture((faker) => faker.internet.email())
-      // readonly email: string;
-      //
-      // @Fixture((faker) => faker.random.number(30))
-      // readonly age: number;
-      //
-      // @Fixture('Omer')
-      // readonly name: string;
+      @Fixture((faker) => faker.internet.email())
+      readonly email: string;
+
+      @Fixture((faker) => faker.random.number(30))
+      readonly age: number;
+
+      @Fixture('Omer')
+      readonly name: string;
 
       @Fixture({ type: Book, count: 4 })
       readonly books: Book[];
 
       @Fixture()
       readonly date: Date;
-
-      @Fixture()
-      readonly string: string;
 
       @Fixture(Dog)
       readonly dog: Dog;
@@ -60,16 +57,16 @@ describe('Fixture Factory', () => {
       readonly numbers: number[];
 
       @Fixture({ enum: Activity })
-      readonly active: Activity;
+      readonly activeEnum: Activity;
 
       @Fixture()
-      readonly coins: number;
+      readonly emptyNumber: number;
 
       @Fixture()
-      readonly binary: boolean;
+      readonly emptyBoolean: boolean;
 
       @Fixture()
-      readonly mahrozet: string;
+      readonly emptyString: string;
 
       readonly propertyWithoutDecorator: string;
 

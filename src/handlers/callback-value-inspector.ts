@@ -1,13 +1,11 @@
-import { ClassReflection } from '@plumier/reflect';
 import { IClassProcessor } from '../types/iclass-processor.interface';
 import { ValueInspector } from '../types/value-inspector.interface';
 import { PropertyDto } from '../types/property-dto.interface';
 import { ClassType } from '../types/class.type';
-import { Circular } from '../types/circular.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class CallbackValueInspector implements ValueInspector, Circular {
+export class CallbackValueInspector implements ValueInspector {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
   public constructor(protected readonly faker: FakerStatic, protected readonly classProcessor: IClassProcessor<any>) {}
@@ -28,12 +26,5 @@ export class CallbackValueInspector implements ValueInspector, Circular {
 
     // Callback
     return (propertyDto.value as Function)(this.faker);
-  }
-
-  public hasCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
-    return (
-      !CallbackValueInspector.isConstructorNamePrimitive(propertyDto) &&
-      parentClassReflection.type === propertyDto.value
-    );
   }
 }

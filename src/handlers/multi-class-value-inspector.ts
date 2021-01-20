@@ -1,16 +1,14 @@
-import { ClassReflection } from '@plumier/reflect';
 import { ValueInspector } from '../types/value-inspector.interface';
 import { PropertyDto } from '../types/property-dto.interface';
 import { ClassLiteral, ClassType } from '../types/class.type';
 import { MultiClass } from '../types/fixture-options.type';
-import { Circular } from '../types/circular.interface';
 import { ExactValue } from '../types/exact-value.type';
-import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ClassProcessor } from '../class-processor';
+import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class MultiClassValueInspector extends PrimitiveHandlerAbstract implements ValueInspector, Circular {
+export class MultiClassValueInspector extends PrimitiveHandlerAbstract implements ValueInspector {
   private static readonly DEFAULT_COUNT = 3;
 
   public constructor(
@@ -56,11 +54,5 @@ export class MultiClassValueInspector extends PrimitiveHandlerAbstract implement
     }
 
     return instances;
-  }
-
-  public hasCircularClassFixture(parentClassReflection: ClassReflection, propertyDto: PropertyDto): boolean {
-    const { type } = propertyDto.value as { type: ClassType };
-
-    return parentClassReflection.type === type;
   }
 }
