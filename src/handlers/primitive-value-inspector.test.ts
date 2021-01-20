@@ -43,7 +43,7 @@ describe('PrimitiveValueInspector Unit', () => {
     describe('when there is no value', () => {
       describe('and the constructor is a String', () => {
         test('then generate a random string from faker', () => {
-          dto.value = false;
+          dto.value = undefined;
           dto.constructorName = 'String';
 
           inspector.deduceValue(dto);
@@ -54,7 +54,7 @@ describe('PrimitiveValueInspector Unit', () => {
 
       describe('and the constructor is a Number', () => {
         test('then return a random number between 1 to 1000 from faker', () => {
-          dto.value = false;
+          dto.value = undefined;
           dto.constructorName = 'Number';
 
           inspector.deduceValue(dto);
@@ -66,7 +66,7 @@ describe('PrimitiveValueInspector Unit', () => {
 
       describe('and the constructor is a Boolean', () => {
         test('then return random boolean value', () => {
-          dto.value = false;
+          dto.value = undefined;
           dto.constructorName = 'Boolean';
 
           inspector.deduceValue(dto);
@@ -76,7 +76,7 @@ describe('PrimitiveValueInspector Unit', () => {
 
       describe('and the constructor is a Date', () => {
         test('then return a random date', () => {
-          dto.value = false;
+          dto.value = undefined;
           dto.constructorName = 'Date';
 
           inspector.deduceValue(dto);
@@ -86,7 +86,7 @@ describe('PrimitiveValueInspector Unit', () => {
 
       describe('and constructor is not a primitive one', () => {
         test('then return alpha numeric string', () => {
-          dto.value = false;
+          dto.value = undefined;
           dto.constructorName = 'not-a-primitive';
 
           inspector.deduceValue(dto);

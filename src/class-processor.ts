@@ -16,8 +16,8 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
   private static readonly VALUE_INSPECTORS: ClassType<ValueInspector>[] = [
     EnumValueInspector,
     MultiClassValueInspector,
-    CallbackValueInspector,
     SingleClassValueInspector,
+    CallbackValueInspector,
     ObjectLiteralValueInspector,
     PrimitiveValueInspector,
   ];
