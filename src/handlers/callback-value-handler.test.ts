@@ -24,7 +24,7 @@ describe('CallbackValueInspector Unit', () => {
       inspector = new CallbackValueInspector(fakerMock);
     });
 
-    describe("when calling 'shouldInspect' method with type function name empty name", () => {
+    describe("when calling 'shouldInspect' method with type function name and empty constructor name", () => {
       test('then return true', () => {
         const result = inspector.shouldInspect({ ...dto, value: { name: '' } });
 

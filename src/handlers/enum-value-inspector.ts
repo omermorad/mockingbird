@@ -22,14 +22,14 @@ export class EnumValueInspector implements ValueInspector {
     return valuesList;
   }
 
-  public shouldInspect(propertyDto: PropertyDto): boolean {
-    return propertyDto.type === 'object' && EnumValueInspector.isEnumValue(propertyDto);
-  }
-
   public static isEnumValue(propertyDto: PropertyDto): boolean {
     const { value = '' } = propertyDto;
 
     return Object.prototype.hasOwnProperty.call(value, 'enum');
+  }
+
+  public shouldInspect(propertyDto: PropertyDto): boolean {
+    return propertyDto.type === 'object' && EnumValueInspector.isEnumValue(propertyDto);
   }
 
   public deduceValue<T>(propertyDto: PropertyDto): any {
