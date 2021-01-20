@@ -23,6 +23,10 @@ export abstract class PrimitiveHandlerAbstract {
     }
   }
 
+  public isConstructorNamePrimitive(propertyDto: PropertyDto) {
+    return PrimitiveHandlerAbstract.PRIMITIVES.includes(propertyDto.constructorName);
+  }
+
   public isPrimitive(propertyDto: PropertyDto): boolean {
     return PrimitiveHandlerAbstract.PRIMITIVES.includes(propertyDto.constructorName) && propertyDto.type !== 'function';
   }

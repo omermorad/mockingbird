@@ -10,7 +10,7 @@ import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class ClassValueInspector extends PrimitiveHandlerAbstract implements ValueInspector, Circular {
+export class MultiClassValueInspector extends PrimitiveHandlerAbstract implements ValueInspector, Circular {
   private static readonly DEFAULT_COUNT = 3;
 
   public constructor(
@@ -27,21 +27,25 @@ export class ClassValueInspector extends PrimitiveHandlerAbstract implements Val
   }
 
   public shouldInspect(propertyDto: PropertyDto): boolean {
-    return propertyDto.type === 'object' && ClassValueInspector.isTypeValue(propertyDto);
+    return propertyDto.type === 'object' && MultiClassValueInspector.isTypeValue(propertyDto);
   }
 
   public deduceValue<T>(propertyDto: PropertyDto): any {
     const { value } = propertyDto;
+    const multiClassVal = value as MultiClass;
 
     if (value === null) {
       return value;
     }
 
-    const { count = ClassValueInspector.DEFAULT_COUNT } = value as MultiClass;
+    const { count = MultiClassValueInspector.DEFAULT_COUNT } = multiClassVal;
 
     const instances = new Array<ExactValue | ClassLiteral<T>>(count);
 
-    if (this.isPrimitive(propertyDto)) {
+    if (
+      ['String', 'Boolean', 'Number', 'Date'].includes(multiClassVal.type.name) &&
+      propertyDto.constructorName === 'Array'
+    ) {
       for (let index = 0; index < count; index++) {
         instances[index] = super.generateRandomValueFromPrimitive((value as MultiClass).type?.name);
       }

@@ -1,8 +1,9 @@
 import { ClassReflector } from './class-reflector';
-import { FunctionValueInspector } from './handlers/function-value-inspector';
+import { CallbackValueInspector } from './handlers/callback-value-inspector';
 import { ObjectLiteralValueInspector } from './handlers/object-literal-value-inspector';
 import { EnumValueInspector } from './handlers/enum-value-inspector';
-import { ClassValueInspector } from './handlers/class-value-inspector';
+import { MultiClassValueInspector } from './handlers/multi-class-value-inspector';
+import { SingleClassValueInspector } from './handlers/single-class-value-inspector';
 import { PrimitiveValueInspector } from './handlers/primitive-value-inspector';
 import { ClassLiteral, ClassType } from './types/class.type';
 import { PropertyDto } from './types/property-dto.interface';
@@ -14,10 +15,11 @@ import FakerStatic = Faker.FakerStatic;
 export class ClassProcessor<T> implements IClassProcessor<T> {
   private static readonly VALUE_INSPECTORS: ClassType<ValueInspector>[] = [
     PrimitiveValueInspector,
-    FunctionValueInspector,
+    CallbackValueInspector,
+    SingleClassValueInspector,
     ObjectLiteralValueInspector,
     EnumValueInspector,
-    ClassValueInspector,
+    MultiClassValueInspector,
   ];
 
   public static readonly DEFAULT_LOCALE = 'en';
@@ -26,12 +28,12 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
     this.faker.setLocale(locale);
   }
 
-  private handlePropertyValue(propertyDto: PropertyDto): T {
+  private handlePropertyValue(propertyDto: PropertyDto): T | T[] {
     for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
-      const inspector = new inspectorClass(this.faker) as ValueInspector;
+      const inspector = new inspectorClass(this.faker, this) as ValueInspector;
 
       if (inspector.shouldInspect(propertyDto)) {
-        return inspector.deduceValue<T>(propertyDto, this);
+        return inspector.deduceValue<T>(propertyDto);
       }
     }
 

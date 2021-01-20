@@ -41,21 +41,24 @@ describe('Fixture Factory', () => {
       // @Fixture('Omer')
       // readonly name: string;
 
-      @Fixture({ type: Book, count: 4 })
-      readonly books: Book[];
-
+      // @Fixture({ type: Book, count: 4 })
+      // readonly books: Book[];
+      //
       // @Fixture()
       // readonly date: Date;
+      //
+      // @Fixture()
+      // readonly string: string;
       //
       // @Fixture(Dog)
       // readonly dog: Dog;
       //
       // @Fixture({ type: String, count: 3 })
       // readonly strings: string[];
-      //
-      // @Fixture({ type: Date, count: 3 })
-      // readonly id: number[];
-      //
+
+      @Fixture({ type: Number, count: 3 })
+      readonly numbersInvalidTS: number;
+
       // @Fixture({ enum: Activity })
       // readonly active: Activity;
       //
