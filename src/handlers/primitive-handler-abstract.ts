@@ -1,6 +1,7 @@
-import FakerStatic = Faker.FakerStatic;
 import { PropertyDto } from '../types/property-dto.interface';
 import { ExactValue } from '../types/exact-value.type';
+
+import FakerStatic = Faker.FakerStatic;
 
 export abstract class PrimitiveHandlerAbstract {
   protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];

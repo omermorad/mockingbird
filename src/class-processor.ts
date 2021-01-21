@@ -1,25 +1,25 @@
 import { ClassReflector } from './class-reflector';
-import { CallbackValueInspector } from './handlers/callback-value-inspector';
-import { ObjectLiteralValueInspector } from './handlers/object-literal-value-inspector';
-import { EnumValueInspector } from './handlers/enum-value-inspector';
-import { MultiClassValueInspector } from './handlers/multi-class-value-inspector';
-import { SingleClassValueInspector } from './handlers/single-class-value-inspector';
-import { PrimitiveValueInspector } from './handlers/primitive-value-inspector';
+import { CallbackValueHandler } from './handlers/callback-value-handler';
+import { ObjectLiteralValueHandler } from './handlers/object-literal-value-handler';
+import { EnumValueHandler } from './handlers/enum-value-handler';
+import { MultiClassValueHandler } from './handlers/multi-class-value-handler';
+import { SingleClassValueHandler } from './handlers/single-class-value-handler';
+import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
 import { ClassLiteral, ClassType } from './types/class.type';
 import { PropertyDto } from './types/property-dto.interface';
-import { ValueInspector } from './types/value-inspector.interface';
+import { ValueHandler } from './types/value-handler.interface';
 import { IClassProcessor } from './types/iclass-processor.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
 export class ClassProcessor<T> implements IClassProcessor<T> {
-  private static readonly VALUE_INSPECTORS: ClassType<ValueInspector>[] = [
-    EnumValueInspector,
-    MultiClassValueInspector,
-    SingleClassValueInspector,
-    CallbackValueInspector,
-    ObjectLiteralValueInspector,
-    PrimitiveValueInspector,
+  private static readonly VALUE_INSPECTORS: ClassType<ValueHandler>[] = [
+    EnumValueHandler,
+    MultiClassValueHandler,
+    SingleClassValueHandler,
+    CallbackValueHandler,
+    ObjectLiteralValueHandler,
+    PrimitiveValueHandler,
   ];
 
   public static readonly DEFAULT_LOCALE = 'en';
@@ -30,10 +30,10 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
 
   private handlePropertyValue(propertyDto: PropertyDto): T | T[] {
     for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
-      const inspector = new inspectorClass(this.faker, this) as ValueInspector;
+      const inspector = new inspectorClass(this.faker, this) as ValueHandler;
 
-      if (inspector.shouldInspect(propertyDto)) {
-        return inspector.deduceValue<T>(propertyDto);
+      if (inspector.shouldHandle(propertyDto)) {
+        return inspector.produceValue<T>(propertyDto);
       }
     }
 

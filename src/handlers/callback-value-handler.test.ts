@@ -1,9 +1,9 @@
-import { CallbackValueInspector } from '../handlers/callback-value-inspector';
+import { CallbackValueHandler } from '../handlers/callback-value-handler';
 
 import FakerStatic = Faker.FakerStatic;
 
 describe('CallbackValueInspector Unit', () => {
-  let dto, inspector: CallbackValueInspector;
+  let dto, inspector: CallbackValueHandler;
 
   const fakerMock = ({
     internet: {
@@ -21,22 +21,22 @@ describe('CallbackValueInspector Unit', () => {
 
   describe('given a CallbackValueInspector', () => {
     beforeAll(() => {
-      inspector = new CallbackValueInspector(fakerMock);
+      inspector = new CallbackValueHandler(fakerMock);
     });
 
-    describe("when calling 'shouldInspect' method with type function name and empty constructor name", () => {
+    describe("when calling 'shouldHandle' method with type function name and empty constructor name", () => {
       test('then return true', () => {
-        const result = inspector.shouldInspect({ ...dto, value: { name: '' } });
+        const result = inspector.shouldHandle({ ...dto, value: { name: '' } });
 
         expect(result).toBeTruthy();
       });
     });
 
-    describe("when calling 'deduceValue' ", () => {
+    describe("when calling 'produceValue' ", () => {
       test('then call the callback function with same faker instance', () => {
         dto.value.mockReturnValueOnce((faker) => faker.internet.email());
 
-        inspector.deduceValue(dto);
+        inspector.produceValue(dto);
 
         expect(dto.value).toHaveBeenCalledTimes(1);
         expect(dto.value).toHaveBeenCalledWith(fakerMock);

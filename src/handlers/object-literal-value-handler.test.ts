@@ -1,13 +1,13 @@
-import { ObjectLiteralValueInspector } from '../handlers/object-literal-value-inspector';
+import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
 
 describe('ObjectLiteralValueInspector Unit', () => {
-  let dto, inspector: ObjectLiteralValueInspector;
+  let dto, inspector: ObjectLiteralValueHandler;
 
   const OBJECT_LITERAL_VALUE = { testArbitrary: 'and-arbitrary-value' };
 
   describe('given a ObjectLiteralValueInspector', () => {
     beforeAll(() => {
-      inspector = new ObjectLiteralValueInspector();
+      inspector = new ObjectLiteralValueHandler();
 
       dto = {
         type: 'object',
@@ -16,15 +16,15 @@ describe('ObjectLiteralValueInspector Unit', () => {
       };
     });
 
-    describe("when calling 'shouldInspect' method with object literal", () => {
+    describe("when calling 'shouldHandle' method with object literal", () => {
       test('then return true', () => {
-        expect(inspector.shouldInspect(dto)).toBeTruthy();
+        expect(inspector.shouldHandle(dto)).toBeTruthy();
       });
     });
 
-    describe("when calling 'deduceValue' method", () => {
+    describe("when calling 'produceValue' method", () => {
       test('return the exact same object literal', () => {
-        expect(inspector.deduceValue(dto)).toBe(OBJECT_LITERAL_VALUE);
+        expect(inspector.produceValue(dto)).toBe(OBJECT_LITERAL_VALUE);
       });
     });
   });

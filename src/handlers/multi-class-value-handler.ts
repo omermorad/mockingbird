@@ -1,4 +1,4 @@
-import { ValueInspector } from '../types/value-inspector.interface';
+import { ValueHandler } from '../types/value-handler.interface';
 import { PropertyDto } from '../types/property-dto.interface';
 import { ClassLiteral, ClassType } from '../types/class.type';
 import { MultiClass } from '../types/fixture-options.type';
@@ -8,7 +8,7 @@ import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class MultiClassValueInspector extends PrimitiveHandlerAbstract implements ValueInspector {
+export class MultiClassValueHandler extends PrimitiveHandlerAbstract implements ValueHandler {
   private static readonly DEFAULT_COUNT = 3;
 
   public constructor(
@@ -24,11 +24,11 @@ export class MultiClassValueInspector extends PrimitiveHandlerAbstract implement
     return Object.prototype.hasOwnProperty.call(value, 'type');
   }
 
-  public shouldInspect(propertyDto: PropertyDto): boolean {
-    return propertyDto.type === 'object' && MultiClassValueInspector.isTypeValue(propertyDto);
+  public shouldHandle(propertyDto: PropertyDto): boolean {
+    return propertyDto.type === 'object' && MultiClassValueHandler.isTypeValue(propertyDto);
   }
 
-  public deduceValue<T>(propertyDto: PropertyDto): any {
+  public produceValue<T>(propertyDto: PropertyDto): any {
     const { value } = propertyDto;
     const multiClassVal = value as MultiClass;
 
@@ -36,7 +36,7 @@ export class MultiClassValueInspector extends PrimitiveHandlerAbstract implement
       return value;
     }
 
-    const { count = MultiClassValueInspector.DEFAULT_COUNT } = multiClassVal;
+    const { count = MultiClassValueHandler.DEFAULT_COUNT } = multiClassVal;
 
     const instances = new Array<ExactValue | ClassLiteral<T>>(count);
 
