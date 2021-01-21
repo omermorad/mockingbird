@@ -1,16 +1,13 @@
+import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
+import { ClassProcessor } from '../class-processor';
 import { ValueInspector } from '../types/value-inspector.interface';
 import { PropertyDto } from '../types/property-dto.interface';
 import { ClassType } from '../types/class.type';
-import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
-import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;
 
 export class SingleClassValueInspector extends PrimitiveHandlerAbstract implements ValueInspector {
-  public constructor(
-    protected readonly faker: FakerStatic,
-    protected readonly classProcessor: ClassProcessor<ClassType>
-  ) {
+  public constructor(protected readonly faker: FakerStatic, protected readonly classProcessor: ClassProcessor<any>) {
     super(faker);
   }
 

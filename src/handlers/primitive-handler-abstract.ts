@@ -28,6 +28,6 @@ export abstract class PrimitiveHandlerAbstract {
   }
 
   public isPrimitive(propertyDto: PropertyDto): boolean {
-    return PrimitiveHandlerAbstract.PRIMITIVES.includes(propertyDto.constructorName) && propertyDto.type !== 'function';
+    return this.isConstructorNamePrimitive(propertyDto) && propertyDto.type !== 'function';
   }
 }
