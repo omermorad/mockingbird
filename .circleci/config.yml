@@ -102,12 +102,16 @@ workflows:
             - test
             - build
           filters:
+            tags:
+              only: /^v.*/
             branches:
-              only: master
+              ignore: /.*/
 
       - release:
           requires:
             - approve
           filters:
+            tags:
+              only: /^v.*/
             branches:
-              only: master
+              ignore: /.*/
