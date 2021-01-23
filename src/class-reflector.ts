@@ -6,7 +6,7 @@ import { PropertyDto } from './types/property-dto.interface';
 import { ClassReflectionDto } from './types/class-reflection-dto.type';
 
 export class ClassReflector {
-  private static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
+  public static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
 
   private extractDecoratedProperties(classReflection: ClassReflection): PropertyDto<FixtureOptions>[] {
     return classReflection.properties?.map((property) => {
