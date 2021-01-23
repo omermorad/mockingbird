@@ -1,7 +1,8 @@
 import faker from 'faker';
-import { ClassProcessor } from '../handlers/class-processor';
-import { ClassLiteral, ClassType } from '../types/class.type';
+import { ClassProcessor } from '../class-processor';
+import { ClassLiteral, ClassType } from '../types/fixture-options.type';
 import { FixtureFactoryOptions } from '../types';
+import { ClassReflector } from '../class-reflector';
 
 export class FixtureFactory {
   /**
@@ -46,7 +47,7 @@ export class FixtureFactory {
   ): ClassLiteral<T> | ClassLiteral<T>[] {
     const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
 
-    const factory = new ClassProcessor<T>(faker, locale);
+    const factory = new ClassProcessor<T>(faker, new ClassReflector(), locale);
 
     if (!count || count === 1) {
       return factory.process(target) as ClassLiteral<T>;
