@@ -1,7 +1,8 @@
 import { FixtureOptions } from './fixture-options.type';
 
-export interface PropertyDto {
-  value: FixtureOptions;
+// TODO: Make generic
+export interface PropertyDto<T extends FixtureOptions> {
+  value: T;
   name: string;
   constructorName: string;
   type: string;

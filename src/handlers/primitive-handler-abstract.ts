@@ -1,10 +1,10 @@
 import { PropertyDto } from '../types/property-dto.interface';
-import { ExactValue } from '../types/exact-value.type';
+import { ExactValue, FixtureOptions } from '../types/fixture-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 
-export abstract class PrimitiveHandlerAbstract {
-  protected static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
+export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> {
+  public static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
   protected constructor(protected readonly faker: FakerStatic) {}
 
@@ -24,11 +24,11 @@ export abstract class PrimitiveHandlerAbstract {
     }
   }
 
-  public isConstructorNamePrimitive(propertyDto: PropertyDto) {
+  public isConstructorNamePrimitive(propertyDto: PropertyDto<P>) {
     return PrimitiveHandlerAbstract.PRIMITIVES.includes(propertyDto.constructorName);
   }
 
-  public isPrimitive(propertyDto: PropertyDto): boolean {
+  public isPrimitive(propertyDto: PropertyDto<P>): boolean {
     return this.isConstructorNamePrimitive(propertyDto) && propertyDto.type !== 'function';
   }
 }

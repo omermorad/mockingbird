@@ -1,10 +1,11 @@
 import { PrimitiveValueHandler } from './primitive-value-handler';
 import { PropertyDto } from '../types/property-dto.interface';
+import { ExactValue } from '../types/fixture-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 
 describe('PrimitiveValueInspector Unit', () => {
-  let dto, inspector: PrimitiveValueHandler;
+  let dto, handler: PrimitiveValueHandler<ExactValue>;
 
   const fakerMock = ({
     random: {
@@ -21,11 +22,11 @@ describe('PrimitiveValueInspector Unit', () => {
 
   describe('given a PrimitiveValueInspector', () => {
     beforeAll(() => {
-      inspector = new PrimitiveValueHandler(fakerMock);
+      handler = new PrimitiveValueHandler(fakerMock);
     });
 
     describe("when calling 'shouldHandle' method", () => {
-      const dto: PropertyDto = {
+      const dto: PropertyDto<ExactValue> = {
         name: 'some-prop-name',
         value: undefined,
         type: 'not-a-function',
@@ -35,22 +36,22 @@ describe('PrimitiveValueInspector Unit', () => {
       describe('and the property type is not a function', () => {
         test('then return true when constructor name is a String', () => {
           dto.constructorName = 'String';
-          expect(inspector.shouldHandle(dto)).toBeTruthy();
+          expect(handler.shouldHandle(dto)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Number', () => {
           dto.constructorName = 'Number';
-          expect(inspector.shouldHandle(dto)).toBeTruthy();
+          expect(handler.shouldHandle(dto)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Boolean', () => {
           dto.constructorName = 'Boolean';
-          expect(inspector.shouldHandle(dto)).toBeTruthy();
+          expect(handler.shouldHandle(dto)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Date', () => {
           dto.constructorName = 'Date';
-          expect(inspector.shouldHandle(dto)).toBeTruthy();
+          expect(handler.shouldHandle(dto)).toBeTruthy();
         });
       });
     });
@@ -63,20 +64,20 @@ describe('PrimitiveValueInspector Unit', () => {
       describe('and there is a value', () => {
         test('then return the exact same value', () => {
           dto.value = 'TestStr';
-          expect(inspector.produceValue(dto)).toBe('TestStr');
+          expect(handler.produceValue(dto)).toBe('TestStr');
 
           dto.value = 12345;
-          expect(inspector.produceValue(dto)).toBe(12345);
+          expect(handler.produceValue(dto)).toBe(12345);
 
           dto.value = true;
-          expect(inspector.produceValue(dto)).toBe(true);
+          expect(handler.produceValue(dto)).toBe(true);
         });
       });
 
       describe('and the value is including { type } inside (multi class)', () => {
         test('then throw an error about type mismatch', () => {
           dto.value = { type: String, count: 3 };
-          expect(() => inspector.produceValue(dto)).toThrowError(Error);
+          expect(() => handler.produceValue(dto)).toThrowError(Error);
         });
       });
 
@@ -89,7 +90,7 @@ describe('PrimitiveValueInspector Unit', () => {
           test('then generate a random string from faker', () => {
             dto.constructorName = 'String';
 
-            inspector.produceValue(dto);
+            handler.produceValue(dto);
 
             expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
           });
@@ -99,7 +100,7 @@ describe('PrimitiveValueInspector Unit', () => {
           test('then return a random number between 1 to 1000 from faker', () => {
             dto.constructorName = 'Number';
 
-            inspector.produceValue(dto);
+            handler.produceValue(dto);
 
             expect(fakerMock.random.number).toHaveBeenCalledTimes(1);
             expect(fakerMock.random.number).toHaveBeenCalledWith(1000);
@@ -110,7 +111,7 @@ describe('PrimitiveValueInspector Unit', () => {
           test('then return random boolean value', () => {
             dto.constructorName = 'Boolean';
 
-            inspector.produceValue(dto);
+            handler.produceValue(dto);
             expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
           });
         });
@@ -119,8 +120,8 @@ describe('PrimitiveValueInspector Unit', () => {
           test('then return a random date', () => {
             dto.constructorName = 'Date';
 
-            inspector.produceValue(dto);
-            expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
+            handler.produceValue(dto);
+            expect(fakerMock.date.recent).toHaveBeenCalledTimes(1);
           });
         });
 
@@ -128,7 +129,7 @@ describe('PrimitiveValueInspector Unit', () => {
           test('then return alpha numeric string', () => {
             dto.constructorName = 'not-a-primitive';
 
-            inspector.produceValue(dto);
+            handler.produceValue(dto);
             expect(fakerMock.random.alphaNumeric).toHaveBeenCalledTimes(1);
           });
         });

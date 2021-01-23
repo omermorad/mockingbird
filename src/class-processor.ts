@@ -5,7 +5,7 @@ import { EnumValueHandler } from './handlers/enum-value-handler';
 import { MultiClassValueHandler } from './handlers/multi-class-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
-import { ClassLiteral, ClassType } from './types/class.type';
+import { ClassLiteral, ClassType, FixtureOptions } from './types/fixture-options.type';
 import { PropertyDto } from './types/property-dto.interface';
 import { ValueHandler } from './types/value-handler.interface';
 import { IClassProcessor } from './types/iclass-processor.interface';
@@ -13,7 +13,7 @@ import { IClassProcessor } from './types/iclass-processor.interface';
 import FakerStatic = Faker.FakerStatic;
 
 export class ClassProcessor<T> implements IClassProcessor<T> {
-  private static readonly VALUE_INSPECTORS: ClassType<ValueHandler>[] = [
+  private static readonly VALUE_INSPECTORS: ClassType<ValueHandler<FixtureOptions>>[] = [
     EnumValueHandler,
     MultiClassValueHandler,
     SingleClassValueHandler,
@@ -28,9 +28,9 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
     this.faker.setLocale(locale);
   }
 
-  private handlePropertyValue(propertyDto: PropertyDto): T | T[] {
+  private handlePropertyValue(propertyDto: PropertyDto<FixtureOptions>): T | T[] {
     for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
-      const inspector = new inspectorClass(this.faker, this) as ValueHandler;
+      const inspector = new inspectorClass(this.faker, this) as ValueHandler<FixtureOptions>;
 
       if (inspector.shouldHandle(propertyDto)) {
         return inspector.produceValue<T>(propertyDto);

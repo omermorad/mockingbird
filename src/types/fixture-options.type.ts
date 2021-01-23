@@ -1,7 +1,12 @@
-import { ClassType } from './class.type';
-import { ExactValue } from 'src/types/exact-value.type';
-
+export type ExactValue = string | number | boolean | object;
 export type MultiClass = { type: ClassType; count: number };
 export type EnumObject = { enum: object };
+export type Callback = (faker: Faker.FakerStatic) => any;
 
-export type FixtureOptions = ((faker?: Faker.FakerStatic) => any) | ExactValue | ClassType | EnumObject | MultiClass;
+export interface ClassType<T = any> extends Function {
+  new (...args: any[]): T;
+}
+
+export type ClassLiteral<T> = Partial<{ [K in keyof T]: T[K] }>;
+
+export type FixtureOptions = Callback | ExactValue | ClassType | EnumObject | MultiClass;

@@ -34,44 +34,44 @@ describe('Fixture Factory', () => {
     class Person {
       @Fixture((faker) => faker.internet.email())
       readonly email: string;
-
-      @Fixture((faker) => faker.random.number(30))
-      readonly age: number;
-
-      @Fixture('Omer')
-      readonly name: string;
-
-      @Fixture({ type: Book, count: 4 })
-      readonly books: Book[];
-
-      @Fixture()
-      readonly date: Date;
-
-      @Fixture(Dog)
-      readonly dog: Dog;
-
-      @Fixture({ type: String, count: 3 })
-      readonly strings: string[];
-
-      @Fixture({ type: Number, count: 3 })
-      readonly numbers: number[];
-
-      @Fixture({ enum: Activity })
-      readonly activeEnum: Activity;
-
-      @Fixture()
-      readonly emptyNumber: number;
-
-      @Fixture()
-      readonly emptyBoolean: boolean;
-
-      @Fixture()
-      readonly emptyString: string;
-
-      readonly propertyWithoutDecorator: string;
-
-      @Fixture()
-      readonly propertyWithoutType;
+      //
+      // @Fixture((faker) => faker.random.number(30))
+      // readonly age: number;
+      //
+      // @Fixture('Omer')
+      // readonly name: string;
+      //
+      // @Fixture({ type: Book, count: 4 })
+      // readonly books: Book[];
+      //
+      // @Fixture()
+      // readonly date: Date;
+      //
+      // @Fixture(Dog)
+      // readonly dog: Dog;
+      //
+      // @Fixture({ type: String, count: 3 })
+      // readonly strings: string[];
+      //
+      // @Fixture({ type: Number, count: 3 })
+      // readonly numbers: number[];
+      //
+      // @Fixture({ enum: Activity })
+      // readonly activeEnum: Activity;
+      //
+      // @Fixture()
+      // readonly emptyNumber: number;
+      //
+      // @Fixture()
+      // readonly emptyBoolean: boolean;
+      //
+      // @Fixture()
+      // readonly emptyString: string;
+      //
+      // readonly propertyWithoutDecorator: string;
+      //
+      // @Fixture()
+      // readonly propertyWithoutType;
     }
 
     let result;

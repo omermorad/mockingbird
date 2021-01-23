@@ -1,5 +1,5 @@
-import { PropertyDto } from '../types/property-dto.interface';
 import { EnumValueHandler } from '../handlers/enum-value-handler';
+import { EnumObject } from '../types/fixture-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 
@@ -16,11 +16,11 @@ describe('EnumValueInspector Unit', () => {
     },
   } as unknown) as FakerStatic;
 
-  let dto, inspector: EnumValueHandler;
+  let dto, handler: EnumValueHandler<EnumObject>;
 
   describe('given a EnumValueInspector', () => {
     beforeAll(() => {
-      inspector = new EnumValueHandler(fakerMock);
+      handler = new EnumValueHandler(fakerMock);
 
       dto = {
         type: 'object',
@@ -31,14 +31,14 @@ describe('EnumValueInspector Unit', () => {
 
     describe("when calling 'shouldHandle' method with type object and { type: enum }", () => {
       test('then return true', () => {
-        expect(inspector.shouldHandle(dto)).toBeTruthy();
+        expect(handler.shouldHandle(dto)).toBeTruthy();
       });
     });
 
     describe("when calling 'produceValue' method", () => {
       test('then call faker random array element', () => {
         dto.value = { enum: TestEnum };
-        inspector.produceValue(dto as PropertyDto);
+        handler.produceValue(dto);
 
         expect(fakerMock.random.arrayElement).toHaveBeenCalledTimes(1);
         expect(fakerMock.random.arrayElement).toHaveBeenCalledWith(['one', 'two', 'three']);

@@ -1,16 +1,15 @@
 import { ValueHandler } from '../types/value-handler.interface';
 import { PropertyDto } from '../types/property-dto.interface';
-import { ClassLiteral, ClassType } from '../types/class.type';
+import { ExactValue, ClassType } from '../types/fixture-options.type';
 import { MultiClass } from '../types/fixture-options.type';
-import { ExactValue } from '../types/exact-value.type';
 import { ClassProcessor } from '../class-processor';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class MultiClassValueHandler extends PrimitiveHandlerAbstract implements ValueHandler {
-  private static readonly DEFAULT_COUNT = 3;
-
+export class MultiClassValueHandler<P extends MultiClass>
+  extends PrimitiveHandlerAbstract<P>
+  implements ValueHandler<P> {
   public constructor(
     protected readonly faker: FakerStatic,
     protected readonly classProcessor: ClassProcessor<ClassType>
@@ -18,39 +17,39 @@ export class MultiClassValueHandler extends PrimitiveHandlerAbstract implements 
     super(faker);
   }
 
-  public static isTypeValue(propertyDto: PropertyDto): boolean {
+  public static isTypeValue(propertyDto: PropertyDto<MultiClass>): boolean {
     const { value = '' } = propertyDto;
 
     return Object.prototype.hasOwnProperty.call(value, 'type');
   }
 
-  public shouldHandle(propertyDto: PropertyDto): boolean {
+  public shouldHandle(propertyDto: PropertyDto<P>): boolean {
     return propertyDto.type === 'object' && MultiClassValueHandler.isTypeValue(propertyDto);
   }
 
-  public produceValue<T>(propertyDto: PropertyDto): any {
+  public produceValue<T>(propertyDto: PropertyDto<P>): any {
     const { value } = propertyDto;
-    const multiClassVal = value as MultiClass;
 
     if (value === null) {
       return value;
     }
 
-    const { count = MultiClassValueHandler.DEFAULT_COUNT } = multiClassVal;
+    const { count, type } = value;
 
-    const instances = new Array<ExactValue | ClassLiteral<T>>(count);
+    if (PrimitiveHandlerAbstract.PRIMITIVES.includes(type.name)) {
+      const instances = new Array<ExactValue>(count);
 
-    if (
-      ['String', 'Boolean', 'Number', 'Date'].includes(multiClassVal.type.name) &&
-      propertyDto.constructorName === 'Array'
-    ) {
       for (let index = 0; index < count; index++) {
-        instances[index] = super.generateRandomValueFromPrimitive((value as MultiClass).type?.name);
+        instances[index] = super.generateRandomValueFromPrimitive(type.name);
       }
-    } else {
-      for (let index = 0; index < count; index++) {
-        instances[index] = this.classProcessor.process((propertyDto.value as any).type);
-      }
+
+      return instances;
+    }
+
+    const instances = new Array(count);
+
+    for (let index = 0; index < count; index++) {
+      instances[index] = this.classProcessor.process(type);
     }
 
     return instances;

@@ -1,8 +1,7 @@
 import 'reflect-metadata';
 import { decorateProperty } from '@plumier/reflect';
-import { ClassType } from '../types/class.type';
+import { ClassType, ExactValue } from '../types/fixture-options.type';
 import { FixtureOptions } from '../types/fixture-options.type';
-import { ExactValue } from 'src/types/exact-value.type';
 
 export const FIXTURE_DECORATOR_NAME = 'Fixture';
 

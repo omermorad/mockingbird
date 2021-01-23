@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { ClassProcessor } from '../class-processor';
-import { ClassLiteral, ClassType } from '../types/class.type';
+import { ClassLiteral, ClassType } from '../types/fixture-options.type';
 import { FixtureFactoryOptions } from '../types';
 import { ClassReflector } from '../class-reflector';
 

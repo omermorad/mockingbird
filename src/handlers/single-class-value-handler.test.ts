@@ -3,12 +3,13 @@ import { SingleClassValueHandler } from '../handlers/single-class-value-handler'
 import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;
+import { ClassType } from 'src/types';
 
 describe('SingleClassValueInspector Unit', () => {
-  let inspector: SingleClassValueHandler;
+  let handler: SingleClassValueHandler<ClassType>;
   const DTO_CLASS_VALUE = class TestClass {};
 
-  const dto: PropertyDto = {
+  const dto: PropertyDto<ClassType> = {
     type: 'function',
     value: DTO_CLASS_VALUE,
     name: 'testPropertyName',
@@ -21,18 +22,18 @@ describe('SingleClassValueInspector Unit', () => {
 
   describe('given a SingleClassValueInspector', () => {
     beforeAll(() => {
-      inspector = new SingleClassValueHandler({} as FakerStatic, classProcessorMock);
+      handler = new SingleClassValueHandler({} as FakerStatic, classProcessorMock);
     });
 
     describe("when calling 'shouldHandle' with a none-primitive, 'function' type", () => {
       test('then return true', () => {
-        expect(inspector.shouldHandle(dto)).toBeTruthy();
+        expect(handler.shouldHandle(dto)).toBeTruthy();
       });
     });
 
     describe("when calling 'produceValue' method", () => {
       test("then call 'process' with the given class", () => {
-        inspector.produceValue(dto);
+        handler.produceValue(dto);
 
         expect(classProcessorMock.process).toHaveBeenCalledTimes(1);
         expect(classProcessorMock.process).toHaveBeenCalledWith(DTO_CLASS_VALUE);

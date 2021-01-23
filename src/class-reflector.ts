@@ -1,5 +1,5 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { ClassType } from './types/class.type';
+import { ClassType } from './types/fixture-options.type';
 import { FixtureOptions } from './types/fixture-options.type';
 import { FIXTURE_DECORATOR_NAME } from './decorators/fixture.decorator';
 import { PropertyDto } from './types/property-dto.interface';
@@ -8,7 +8,7 @@ import { ClassReflectionDto } from './types/class-reflection-dto.type';
 export class ClassReflector {
   private static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
 
-  private extractDecoratedProperties(classReflection: ClassReflection): PropertyDto[] {
+  private extractDecoratedProperties(classReflection: ClassReflection): PropertyDto<FixtureOptions>[] {
     return classReflection.properties?.map((property) => {
       const value = ClassReflector.extractFixtureDecoratorValue(property);
       return ClassReflector.createPropertyDto(property, value);
@@ -18,7 +18,7 @@ export class ClassReflector {
   private static createPropertyDto(
     property: PropertyReflection,
     fixtureDecoratorValue: FixtureOptions | null
-  ): PropertyDto {
+  ): PropertyDto<FixtureOptions> {
     const { name, type: { name: constructorName } = {} } = property;
 
     return {
@@ -34,10 +34,6 @@ export class ClassReflector {
     const fixtureDecorator = decorators.find((decorator) => decorator.type === FIXTURE_DECORATOR_NAME);
 
     return fixtureDecorator ? fixtureDecorator.value : null;
-  }
-
-  public getReflectedClassByName(targetName: string): ClassReflectionDto | undefined {
-    return ClassReflector.REFLECTED_CLASSES[targetName];
   }
 
   public reflectClass(target: ClassType<unknown>): ClassReflectionDto {
