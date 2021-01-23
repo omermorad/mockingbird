@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { decorateProperty } from '@plumier/reflect';
-import { ClassType, ExactValue } from '../types/fixture-options.type';
+import { Callback, ClassType, EnumObject, ExactValue, MultiClass } from '../types/fixture-options.type';
 import { FixtureOptions } from '../types/fixture-options.type';
 
 export const FIXTURE_DECORATOR_NAME = 'Fixture';
@@ -22,7 +22,7 @@ export function Fixture(): PropertyDecorator;
  * @param callback
  * @constructor
  */
-export function Fixture(callback: (faker: Faker.FakerStatic) => any): PropertyDecorator;
+export function Fixture(callback: Callback): PropertyDecorator;
 
 /**
  * Generate the exact given value
@@ -59,7 +59,7 @@ export function Fixture(value: ClassType): PropertyDecorator;
  * @param options: { enum: object }
  * @constructor
  */
-export function Fixture(options: { enum: object }): PropertyDecorator;
+export function Fixture(options: EnumObject): PropertyDecorator;
 
 /**
  * Generate multiple objects matching the given class (assuming the class is decorated with Fixture)
@@ -67,7 +67,7 @@ export function Fixture(options: { enum: object }): PropertyDecorator;
  * @param options: { type: ClassType; count: number }
  * @constructor
  */
-export function Fixture(options: { type: ClassType; count: number }): PropertyDecorator;
+export function Fixture(options: MultiClass): PropertyDecorator;
 
 /**
  * Fixture property decorator. This decorator will be parsed and will determine
