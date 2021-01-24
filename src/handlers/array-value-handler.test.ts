@@ -1,15 +1,15 @@
 import { PropertyDto } from '../types/property-dto.interface';
-import { MultiClassValueHandler } from '../handlers/multi-class-value-handler';
+import { ArrayValueHandler } from './array-value-handler';
 import { ClassProcessor } from '../class-processor';
 import { MultiClass } from '../types/fixture-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 
-describe('MultiClassValueHandler Unit', () => {
+describe('ArrayValueHandler Unit', () => {
   const DTO_CLASS_VALUE = class TestClass {};
   const DEFAULT_COUNT_FOR_DTO = 3;
 
-  let handler: MultiClassValueHandler<MultiClass>;
+  let handler: ArrayValueHandler<MultiClass>;
 
   const dto: PropertyDto<MultiClass> = {
     type: 'object',
@@ -34,9 +34,9 @@ describe('MultiClassValueHandler Unit', () => {
     },
   } as unknown) as FakerStatic;
 
-  describe('given a MultiClassValueHandler', () => {
+  describe('given a ArrayValueHandler', () => {
     beforeAll(() => {
-      handler = new MultiClassValueHandler(fakerMock, classProcessorMock);
+      handler = new ArrayValueHandler(fakerMock, classProcessorMock);
     });
 
     describe("when calling 'shouldHandle' with type 'object' and value of multi class ({ type: ClassType })", () => {
