@@ -8,8 +8,8 @@ export class ObjectLiteralValueHandler<P extends ObjectLiteral> implements Value
   public shouldHandle(propertyDto: PropertyDto<P>): boolean {
     return (
       propertyDto.type === 'object' &&
-      !ArrayValueHandler.hasTypeKey(propertyDto as PropertyDto<MultiClass>) &&
-      !EnumValueHandler.isEnumValue(propertyDto as PropertyDto<EnumObject>)
+      !ArrayValueHandler.hasTypeKey((propertyDto as unknown) as PropertyDto<MultiClass>) &&
+      !EnumValueHandler.isEnumValue((propertyDto as unknown) as PropertyDto<EnumObject>)
     );
   }
 
