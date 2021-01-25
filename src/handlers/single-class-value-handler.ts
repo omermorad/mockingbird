@@ -2,13 +2,11 @@ import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ClassProcessor } from '../class-processor';
 import { ValueHandler } from '../types/value-handler.interface';
 import { PropertyDto } from '../types/property-dto.interface';
-import { ClassType } from '../types/fixture-options.type';
+import { Class } from '../types/fixture-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class SingleClassValueHandler<P extends ClassType>
-  extends PrimitiveHandlerAbstract<P>
-  implements ValueHandler<P> {
+export class SingleClassValueHandler<P extends Class> extends PrimitiveHandlerAbstract<P> implements ValueHandler<P> {
   public constructor(protected readonly faker: FakerStatic, protected readonly classProcessor: ClassProcessor<any>) {
     super(faker);
   }

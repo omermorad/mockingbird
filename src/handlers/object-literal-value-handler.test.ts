@@ -1,7 +1,8 @@
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
+import { ObjectLiteral } from '../types/fixture-options.type';
 
 describe('ObjectLiteralValueInspector Unit', () => {
-  let dto, handler: ObjectLiteralValueHandler<object>;
+  let dto, handler: ObjectLiteralValueHandler<ObjectLiteral>;
 
   const OBJECT_LITERAL_VALUE = { testArbitrary: 'and-arbitrary-value' };
 

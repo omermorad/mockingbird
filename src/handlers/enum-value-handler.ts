@@ -24,7 +24,7 @@ export class EnumValueHandler<P extends EnumObject> implements ValueHandler<P> {
   }
 
   public static isEnumValue(propertyDto: PropertyDto<EnumObject>): boolean {
-    const { value = '' } = propertyDto;
+    const { value } = propertyDto;
 
     return Object.prototype.hasOwnProperty.call(value, 'enum');
   }

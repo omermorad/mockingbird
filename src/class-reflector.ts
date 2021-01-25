@@ -1,5 +1,5 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { ClassType } from './types/fixture-options.type';
+import { Class } from './types/fixture-options.type';
 import { FixtureOptions } from './types/fixture-options.type';
 import { FIXTURE_DECORATOR_NAME } from './decorators/fixture.decorator';
 import { PropertyDto } from './types/property-dto.interface';
@@ -9,7 +9,7 @@ export class ClassReflector {
   public static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
 
   private extractDecoratedProperties(classReflection: ClassReflection): PropertyDto<FixtureOptions>[] {
-    return classReflection.properties?.map((property) => {
+    return classReflection.properties.map((property) => {
       const value = ClassReflector.extractFixtureDecoratorValue(property);
       return ClassReflector.createPropertyDto(property, value);
     });
@@ -19,7 +19,10 @@ export class ClassReflector {
     property: PropertyReflection,
     fixtureDecoratorValue: FixtureOptions | null
   ): PropertyDto<FixtureOptions> {
-    const { name, type: { name: constructorName } = {} } = property;
+    const {
+      name,
+      type: { name: constructorName },
+    } = property;
 
     return {
       type: typeof fixtureDecoratorValue,
@@ -30,13 +33,13 @@ export class ClassReflector {
   }
 
   private static extractFixtureDecoratorValue(property: PropertyReflection): FixtureOptions | null {
-    const { decorators = [] } = property;
+    const { decorators } = property;
     const fixtureDecorator = decorators.find((decorator) => decorator.type === FIXTURE_DECORATOR_NAME);
 
     return fixtureDecorator ? fixtureDecorator.value : null;
   }
 
-  public reflectClass(target: ClassType<unknown>): ClassReflectionDto {
+  public reflectClass(target: Class<unknown>): ClassReflectionDto {
     if (!ClassReflector.REFLECTED_CLASSES.hasOwnProperty(target.name)) {
       ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflect(target));
     }

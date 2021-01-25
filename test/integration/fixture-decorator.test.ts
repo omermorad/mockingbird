@@ -77,7 +77,7 @@ describe('Fixture Factory - Integration Test', () => {
         result = FixtureFactory.create(TestClassWithMultiClass);
       });
 
-      test("then return array with length 'count'", () => {
+      test("then return contain a property 'dogs' which is array of Dog with length of 'count'", () => {
         expect(result.dogs).toBeInstanceOf(Array);
         expect(result.dogs).toHaveLength(3);
       });
@@ -86,6 +86,17 @@ describe('Fixture Factory - Integration Test', () => {
         expect(result.dogs).toEqual(
           expect.arrayContaining([expect.objectContaining({ name: expect.any(String), points: expect.any(Number) })])
         );
+      });
+    });
+
+    describe("when using the related decorator with 'count' option", () => {
+      beforeAll(() => {
+        result = FixtureFactory.create(TestClassWithAbsoluteValues, { count: 4 });
+      });
+
+      test("then return array with length of 'count'", () => {
+        expect(result).toBeInstanceOf(Array);
+        expect(result).toHaveLength(4);
       });
     });
   });

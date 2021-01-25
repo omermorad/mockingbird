@@ -1,6 +1,6 @@
 import 'reflect-metadata';
 import { decorateProperty } from '@plumier/reflect';
-import { Callback, ClassType, EnumObject, ExactValue, MultiClass } from '../types/fixture-options.type';
+import { Callback, Class, EnumObject, ExactValue, MultiClass } from '../types/fixture-options.type';
 import { FixtureOptions } from '../types/fixture-options.type';
 
 export const FIXTURE_DECORATOR_NAME = 'Fixture';
@@ -47,7 +47,7 @@ export function Fixture(value: ExactValue): PropertyDecorator;
  * @param value
  * @constructor
  */
-export function Fixture(value: ClassType): PropertyDecorator;
+export function Fixture(value: Class): PropertyDecorator;
 
 /**
  * Generate a random value from the given enum

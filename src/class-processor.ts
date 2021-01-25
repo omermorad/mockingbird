@@ -5,7 +5,7 @@ import { EnumValueHandler } from './handlers/enum-value-handler';
 import { MultiClassValueHandler } from './handlers/multi-class-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
-import { ClassLiteral, ClassType, FixtureOptions } from './types/fixture-options.type';
+import { ClassLiteral, Class, FixtureOptions } from './types/fixture-options.type';
 import { PropertyDto } from './types/property-dto.interface';
 import { ValueHandler } from './types/value-handler.interface';
 import { IClassProcessor } from './types/iclass-processor.interface';
@@ -13,7 +13,7 @@ import { IClassProcessor } from './types/iclass-processor.interface';
 import FakerStatic = Faker.FakerStatic;
 
 export class ClassProcessor<T> implements IClassProcessor<T> {
-  private static readonly VALUE_INSPECTORS: ClassType<ValueHandler<FixtureOptions>>[] = [
+  private static readonly VALUE_INSPECTORS: Class<ValueHandler<FixtureOptions>>[] = [
     EnumValueHandler,
     MultiClassValueHandler,
     SingleClassValueHandler,
@@ -36,8 +36,6 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
         return inspector.produceValue<T>(propertyDto);
       }
     }
-
-    return null;
   }
 
   /**
@@ -46,7 +44,7 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
    *
    * @param target
    */
-  public process(target: ClassType<T>): ClassLiteral<T> {
+  public process(target: Class<T>): ClassLiteral<T> {
     if (!target) {
       throw new Error(`Target class '${target}' is 'undefined'`);
     }

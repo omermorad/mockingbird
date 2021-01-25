@@ -3,13 +3,13 @@ import { SingleClassValueHandler } from '../handlers/single-class-value-handler'
 import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;
-import { ClassType } from 'src/types';
+import { Class } from 'src/types';
 
 describe('SingleClassValueInspector Unit', () => {
-  let handler: SingleClassValueHandler<ClassType>;
+  let handler: SingleClassValueHandler<Class>;
   const DTO_CLASS_VALUE = class TestClass {};
 
-  const dto: PropertyDto<ClassType> = {
+  const dto: PropertyDto<Class> = {
     type: 'function',
     value: DTO_CLASS_VALUE,
     name: 'testPropertyName',

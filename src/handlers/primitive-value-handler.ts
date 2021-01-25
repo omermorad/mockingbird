@@ -21,7 +21,7 @@ export class PrimitiveValueHandler<P extends ExactValue>
     const { value } = propertyDto;
 
     if (typeof value !== 'undefined') {
-      if (MultiClassValueHandler.isTypeValue(propertyDto as PropertyDto<MultiClass>)) {
+      if (MultiClassValueHandler.isTypeValue((propertyDto as unknown) as PropertyDto<MultiClass>)) {
         throw new Error(
           'Type mismatch. Properties decorated with @Fixture({ type: ClassType }) must be typed as array (e.g. prop: string[])'
         );
