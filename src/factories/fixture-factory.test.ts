@@ -7,7 +7,7 @@ describe('Fixture Factory - Unit', () => {
   describe('given a Fixture Factory', () => {
     class TestClass {}
 
-    describe("when calling 'create' method without extra options { count: 3 }", () => {
+    describe("when calling 'create' method without options", () => {
       test('then call process exactly once', () => {
         FixtureFactory.create(TestClass);
 

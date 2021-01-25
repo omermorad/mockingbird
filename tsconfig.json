@@ -5,7 +5,7 @@
     "removeComments": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "target": "es2017",
+    "target": "es5",
     "sourceMap": true,
     "baseUrl": "./",
     "outDir": "./dist",
@@ -29,10 +29,8 @@
   "exclude": [
     "index.ts",
     "node_modules",
-    "sample",
     "dist",
     "test",
-    "env",
     "coverage"
   ]
 }

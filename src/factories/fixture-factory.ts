@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { ClassProcessor } from '../class-processor';
-import { ClassLiteral, ClassType } from '../types/fixture-options.type';
+import { ClassLiteral, Class } from '../types/fixture-options.type';
 import { FixtureFactoryOptions } from '../types';
 import { ClassReflector } from '../class-reflector';
 
@@ -14,7 +14,7 @@ export class FixtureFactory {
    *
    * @param target
    */
-  public static create<T = unknown>(target: ClassType<T>): ClassLiteral<T>;
+  public static create<T = unknown>(target: Class<T>): ClassLiteral<T>;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -32,7 +32,7 @@ export class FixtureFactory {
    * @param target
    * @param options
    */
-  public static create<T = unknown>(target: ClassType<T>, options: FixtureFactoryOptions): ClassLiteral<T>[];
+  public static create<T = unknown>(target: Class<T>, options: FixtureFactoryOptions): ClassLiteral<T>[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -42,7 +42,7 @@ export class FixtureFactory {
    * @param options
    */
   public static create<T = unknown>(
-    target: ClassType<T>,
+    target: Class<T>,
     options?: FixtureFactoryOptions
   ): ClassLiteral<T> | ClassLiteral<T>[] {
     const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
