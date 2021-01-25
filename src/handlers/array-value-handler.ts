@@ -7,21 +7,20 @@ import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 
 import FakerStatic = Faker.FakerStatic;
 
-export class MultiClassValueHandler<P extends MultiClass>
-  extends PrimitiveHandlerAbstract<P>
-  implements ValueHandler<P> {
+// TODO: refactor (2nd phase). All other fixture options should be wrapped with 'multiple' functionality
+export class ArrayValueHandler<P extends MultiClass> extends PrimitiveHandlerAbstract<P> implements ValueHandler<P> {
   public constructor(protected readonly faker: FakerStatic, protected readonly classProcessor: ClassProcessor<Class>) {
     super(faker);
   }
 
-  public static isTypeValue(propertyDto: PropertyDto<any>): boolean {
+  public static hasTypeKey(propertyDto: PropertyDto<MultiClass>): boolean {
     const { value } = propertyDto;
 
     return Object.prototype.hasOwnProperty.call(value, 'type');
   }
 
   public shouldHandle(propertyDto: PropertyDto<P>): boolean {
-    return propertyDto.type === 'object' && MultiClassValueHandler.isTypeValue(propertyDto);
+    return propertyDto.type === 'object' && ArrayValueHandler.hasTypeKey(propertyDto);
   }
 
   public produceValue<T>(propertyDto: PropertyDto<P>): any {

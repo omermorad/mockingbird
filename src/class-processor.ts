@@ -2,7 +2,7 @@ import { ClassReflector } from './class-reflector';
 import { CallbackValueHandler } from './handlers/callback-value-handler';
 import { ObjectLiteralValueHandler } from './handlers/object-literal-value-handler';
 import { EnumValueHandler } from './handlers/enum-value-handler';
-import { MultiClassValueHandler } from './handlers/multi-class-value-handler';
+import { ArrayValueHandler } from './handlers/array-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
 import { ClassLiteral, Class, FixtureOptions } from './types/fixture-options.type';
@@ -15,7 +15,7 @@ import FakerStatic = Faker.FakerStatic;
 export class ClassProcessor<T> implements IClassProcessor<T> {
   private static readonly VALUE_INSPECTORS: Class<ValueHandler<FixtureOptions>>[] = [
     EnumValueHandler,
-    MultiClassValueHandler,
+    ArrayValueHandler,
     SingleClassValueHandler,
     CallbackValueHandler,
     ObjectLiteralValueHandler,
