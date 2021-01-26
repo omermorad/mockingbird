@@ -105,6 +105,8 @@ workflows:
     jobs:
       - install
 
+      - lint-commit-message
+
       - test:
           requires:
             - install
