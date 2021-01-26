@@ -29,6 +29,23 @@ jobs:
           root: ~/repo
           paths: .
 
+  lint-commit-message:
+    <<: *defaults
+    steps:
+      - checkout
+
+      - attach_workspace:
+          at: ~/repo
+
+      - run:
+          name: Define environment variable with lastest commit's message
+          command: |
+            echo 'export COMMIT_MESSAGE=$(git log -1 --pretty=format:"%s")' >> $BASH_ENV
+            source $BASH_ENV
+      - run:
+          name: Lint Commit Message
+          command: echo "$COMMIT_MESSAGE" | npx commitlint
+
   test:
     <<: *defaults
     steps:
