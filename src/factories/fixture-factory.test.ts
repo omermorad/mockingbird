@@ -1,28 +1,37 @@
 import { FixtureFactory } from './fixture-factory';
-import { ClassProcessor } from '../class-processor';
 
-ClassProcessor.prototype.process = jest.fn();
+const processMock = jest.fn();
+jest.mock('../class-processor', () => {
+  return {
+    ClassProcessor: jest.fn().mockImplementation(() => {
+      return { process: processMock };
+    }),
+  };
+});
 
 describe('Fixture Factory - Unit', () => {
   describe('given a Fixture Factory', () => {
+    afterEach(() => {
+      processMock.mockClear();
+    });
     class TestClass {}
 
     describe("when calling 'create' method without options", () => {
       test('then call process exactly once', () => {
         FixtureFactory.create(TestClass);
 
-        expect(ClassProcessor.prototype.process).toHaveBeenCalledTimes(1);
-        expect(ClassProcessor.prototype.process).toHaveBeenCalledWith(TestClass);
+        expect(processMock).toHaveBeenCalledTimes(1);
+        expect(processMock).toHaveBeenCalledWith(TestClass);
       });
     });
 
-    // describe("when calling 'create' method without extra options ({ count: 3 })'", () => {
-    //   test('then call process exactly once', () => {
-    //     FixtureFactory.create(TestClass);
-    //
-    //     expect(ClassProcessor.prototype.process).toHaveBeenCalledTimes(1);
-    //     // expect(ClassProcessor.prototype.process).toHaveBeenCalledWith(TestClass);
-    //   });
-    // });
+    describe("when calling 'create' method with count = 3", () => {
+      const count = 3;
+      test('then call process 3 times ', () => {
+        FixtureFactory.create(TestClass, { count });
+
+        expect(processMock).toHaveBeenCalledTimes(count);
+      });
+    });
   });
 });
