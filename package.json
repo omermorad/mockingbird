@@ -1,6 +1,6 @@
 {
-  "name": "faker.ts",
-  "version": "0.0.0-semantic-release",
+  "name": "@websolute/faker.ts",
+  "version": "1.0.0-alpha.1",
   "license": "MIT",
   "description": "Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper",
   "keywords": [
@@ -91,6 +91,9 @@
     "tsconfig-paths": "^3.9.0",
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
   },
   "lint-staged": {
     "*.ts": [

@@ -122,17 +122,17 @@ workflows:
           requires:
             - test
             - build
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+#          filters:
+#            tags:
+#              only: /^v.*/
+#            branches:
+#              ignore: /.*/
 
       - release:
           requires:
             - approve
-          filters:
-            tags:
-              only: /^v.*/
-            branches:
-              ignore: /.*/
+#          filters:
+#            tags:
+#              only: /^v.*/
+#            branches:
+#              ignore: /.*/
