@@ -1,6 +1,6 @@
 {
   "name": "faker.ts",
-  "version": "0.0.0-semantic-release",
+  "version": "1.0.0-alpha",
   "license": "MIT",
   "description": "Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper",
   "keywords": [
