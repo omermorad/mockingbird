@@ -1,5 +1,5 @@
 {
-  "name": "faker.ts",
+  "name": "@websolute/faker.ts",
   "version": "1.0.0-alpha",
   "license": "MIT",
   "description": "Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper",
