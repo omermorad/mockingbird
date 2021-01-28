@@ -32,11 +32,11 @@ export class ClassReflector {
     };
   }
 
-  private static extractFixtureDecoratorValue(property: PropertyReflection): FixtureOptions | null {
+  private static extractFixtureDecoratorValue(property: PropertyReflection): FixtureOptions | undefined {
     const { decorators } = property;
     const fixtureDecorator = decorators.find((decorator) => decorator.type === FIXTURE_DECORATOR_NAME);
 
-    return fixtureDecorator ? fixtureDecorator.value : null;
+    return fixtureDecorator.value;
   }
 
   public reflectClass(target: Class<unknown>): ClassReflectionDto {

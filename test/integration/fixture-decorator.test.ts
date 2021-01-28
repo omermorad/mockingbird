@@ -91,7 +91,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe("when using the related decorator with 'count' option", () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithAbsoluteValues, { count: 4 });
+        result = FixtureFactory.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
       });
 
       test("then return array with length of 'count'", () => {
