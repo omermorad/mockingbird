@@ -1,5 +1,12 @@
 {
-  "branches": ["master", "next"],
+  "branches": [
+    "master",
+    "next",
+    {
+      "name": "alpha",
+      "prerelease": true
+    }
+  ],
   "repositoryUrl": "https://github.com/omermorad/faker.ts.git",
   "debug": "true",
   "plugins": [
