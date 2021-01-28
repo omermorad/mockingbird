@@ -1,5 +1,5 @@
 [![ISC license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![npm version](http://img.shields.io/npm/v/faker.ts.svg?style=flat)](https://npmjs.org/package/faker.ts "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/@websolute/faker.ts.svg?style=flat)](https://npmjs.org/package/faker.ts "View this project on npm")
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/faker.ts/master.svg?style=flat-square)](https://codecov.io/gh/omer-morad-ni/faker.ts)
 [![CircleCI](https://circleci.com/gh/omermorad/faker.ts.svg?style=shield)](https://circleci.com/gh/circleci/circleci-docs)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
