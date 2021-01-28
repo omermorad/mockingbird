@@ -7,7 +7,7 @@
 ![alt text](docs/faker.ts-logo.png "Faker.ts")
 
 <p align="center">
-  <h1 align="center">Faker.ts</h1>
+  <h1 align="center">Faker.ts (Alpha Release)</h1>
 
   <p align="center">
     <strong>Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper</strong>
@@ -18,7 +18,7 @@
 Install the package alongside `faker.js` and `@types/faker` peer dependencies:
 
 ```bash
-npm i -D faker.ts faker @types/faker
+npm i -D @websolute/faker.ts@1.0.0-alpha.1 faker @types/faker
 ```
 
 ## Playground 
