@@ -40,7 +40,7 @@ describe('ClassReflector', () => {
         });
 
         test('then create a property dto for each of the properties', () => {
-          expect(Object.keys(classReflection[0])).toEqual(['type', 'value', 'name', 'constructorName']);
+          expect(Object.keys(classReflection[0])).toEqual(['name', 'constructorName', 'decoratorValue']);
         });
 
         test('then register the class in the reflected classes storage', () => {

@@ -6,7 +6,7 @@ import { ArrayValueHandler } from './handlers/array-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
 import { ClassLiteral, Class, FixtureOptions } from './types/fixture-options.type';
-import { PropertyDto } from './types/property-dto.interface';
+import { PropertyInterface } from './types/property.interface';
 import { ValueHandler } from './types/value-handler.interface';
 import { IClassProcessor } from './types/iclass-processor.interface';
 
@@ -28,12 +28,12 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
     this.faker.setLocale(locale);
   }
 
-  private handlePropertyValue(propertyDto: PropertyDto<FixtureOptions>): T | T[] {
+  private handlePropertyValue(property: PropertyInterface<FixtureOptions>): T | T[] {
     for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
       const inspector = new inspectorClass(this.faker, this) as ValueHandler<FixtureOptions>;
 
-      if (inspector.shouldHandle(propertyDto)) {
-        return inspector.produceValue<T>(propertyDto);
+      if (inspector.shouldHandle(property)) {
+        return inspector.produceValue<T>(property);
       }
     }
   }

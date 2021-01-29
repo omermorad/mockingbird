@@ -66,7 +66,7 @@ describe('ClassProcessor', () => {
   });
    */
 
-  test('Should return specific value passed from fixture', () => {
+  test('Should return specific decoratorValue passed from fixture', () => {
     class AnotherDog {
       @Fixture('doggo')
       name: string;

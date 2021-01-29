@@ -10,7 +10,7 @@ describe('Fixture Factory - circular class-type', () => {
 
     test('when calling FixtureFactory.create it throws an exception', () => {
       expect(() => FixtureFactory.create<Man>(Man)).toThrowError(
-        'Circular class-type fixture detected! Target: Man; Property: son'
+        'Circular class-type fixture detected! Target: Man; PropertyInterface: son'
       );
     });
   });
@@ -23,7 +23,7 @@ describe('Fixture Factory - circular class-type', () => {
 
     test('When calling FixtureFactory.create it throws an exception', () => {
       expect(() => FixtureFactory.create<AnotherMan>(AnotherMan)).toThrowError(
-        'Circular class-type fixture detected! Target: AnotherMan; Property: sons'
+        'Circular class-type fixture detected! Target: AnotherMan; PropertyInterface: sons'
       );
     });
   });

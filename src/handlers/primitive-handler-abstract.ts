@@ -1,13 +1,10 @@
-import { PropertyDto } from '../types/property-dto.interface';
+import { PropertyInterface } from '../types/property.interface';
 import { ExactValue, FixtureOptions } from '../types/fixture-options.type';
 
-import FakerStatic = Faker.FakerStatic;
+import { AbstractValueHandler } from './abstract-value-handler';
+import { isPrimitive } from '../utils/isPrimitive';
 
-export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> {
-  public static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
-
-  protected constructor(protected readonly faker: FakerStatic) {}
-
+export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> extends AbstractValueHandler {
   protected generateRandomValueFromPrimitive(ctor: string): ExactValue {
     const { faker } = this;
 
@@ -24,11 +21,7 @@ export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> {
     }
   }
 
-  public isConstructorNamePrimitive(propertyDto: PropertyDto<P>) {
-    return PrimitiveHandlerAbstract.PRIMITIVES.includes(propertyDto.constructorName);
-  }
-
-  public isPrimitive(propertyDto: PropertyDto<P>): boolean {
-    return this.isConstructorNamePrimitive(propertyDto) && propertyDto.type !== 'function';
+  public isPrimitive(propertyDto: PropertyInterface<P>): boolean {
+    return isPrimitive(propertyDto.constructorName) && !propertyDto.decoratorValue.isCallback();
   }
 }

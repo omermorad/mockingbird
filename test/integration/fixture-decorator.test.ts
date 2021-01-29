@@ -1,6 +1,5 @@
 import { TestClasses } from './common/test-classes';
 import { FixtureFactory } from '../../src/factories/fixture-factory';
-
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
 import TestClassWithCallback = TestClasses.TestClassWithCallback;
@@ -37,12 +36,12 @@ describe('Fixture Factory - Integration Test', () => {
       });
     });
 
-    describe('when using the related decorator with an enum value', () => {
+    describe('when using the related decorator with an enum decoratorValue', () => {
       beforeAll(() => {
         result = FixtureFactory.create(TestClassWithEnum);
       });
 
-      test('then return one random value (not key)', () => {
+      test('then return one random decoratorValue (not key)', () => {
         expect(['foo', 111, 'Bazz1234']).toContain(result.someEnumVal);
       });
     });
@@ -52,7 +51,7 @@ describe('Fixture Factory - Integration Test', () => {
         result = FixtureFactory.create(TestClassWithNoValues);
       });
 
-      test('then infer the value from the type itself', () => {
+      test('then infer the decoratorValue from the type itself', () => {
         expect(result).toMatchSnapshot({
           name: expect.any(String),
           num: expect.any(Number),

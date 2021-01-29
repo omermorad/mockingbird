@@ -1,11 +1,11 @@
 import { PrimitiveValueHandler } from './primitive-value-handler';
-import { PropertyDto } from '../types/property-dto.interface';
 import { ExactValue } from '../types/fixture-options.type';
-
 import FakerStatic = Faker.FakerStatic;
+import { Property } from '../property';
+import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('PrimitiveValueInspector Unit', () => {
-  let dto, handler: PrimitiveValueHandler<ExactValue>;
+  let handler: PrimitiveValueHandler<ExactValue>;
 
   const fakerMock = ({
     random: {
@@ -26,71 +26,55 @@ describe('PrimitiveValueInspector Unit', () => {
     });
 
     describe("when calling 'shouldHandle' method", () => {
-      const dto: PropertyDto<ExactValue> = {
-        name: 'some-prop-name',
-        value: undefined,
-        type: 'not-a-function',
-        constructorName: null,
-      };
-
       describe('and the property type is not a function', () => {
         test('then return true when constructor name is a String', () => {
-          dto.constructorName = 'String';
-          expect(handler.shouldHandle(dto)).toBeTruthy();
+          const property = new Property('some-prop-name', 'String', new PropertyDecoratorValue(undefined));
+          expect(handler.shouldHandle(property)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Number', () => {
-          dto.constructorName = 'Number';
-          expect(handler.shouldHandle(dto)).toBeTruthy();
+          const property = new Property('some-prop-name', 'Number', new PropertyDecoratorValue(undefined));
+          expect(handler.shouldHandle(property)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Boolean', () => {
-          dto.constructorName = 'Boolean';
-          expect(handler.shouldHandle(dto)).toBeTruthy();
+          const property = new Property('some-prop-name', 'Boolean', new PropertyDecoratorValue(undefined));
+          expect(handler.shouldHandle(property)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Date', () => {
-          dto.constructorName = 'Date';
-          expect(handler.shouldHandle(dto)).toBeTruthy();
+          const property = new Property('some-prop-name', 'Date', new PropertyDecoratorValue(undefined));
+          expect(handler.shouldHandle(property)).toBeTruthy();
         });
       });
     });
 
     describe("when calling 'produceValue' method", () => {
-      beforeEach(() => {
-        dto = { type: 'string', value: 'TestStr', name: 'name' };
-      });
+      describe('and there is a decoratorValue', () => {
+        test('then return the exact same decoratorValue', () => {
+          let property = new Property('name', '', new PropertyDecoratorValue('TestStr'));
+          expect(handler.produceValue(property)).toBe('TestStr');
 
-      describe('and there is a value', () => {
-        test('then return the exact same value', () => {
-          dto.value = 'TestStr';
-          expect(handler.produceValue(dto)).toBe('TestStr');
+          property = new Property('name', '', new PropertyDecoratorValue(12345));
+          expect(handler.produceValue(property)).toBe(12345);
 
-          dto.value = 12345;
-          expect(handler.produceValue(dto)).toBe(12345);
-
-          dto.value = true;
-          expect(handler.produceValue(dto)).toBe(true);
+          property = new Property('name', '', new PropertyDecoratorValue(true));
+          expect(handler.produceValue(property)).toBe(true);
         });
       });
 
-      describe('and the value is including { type } inside (multi class)', () => {
+      describe('and the decoratorValue is including { type } inside (multi class)', () => {
         test('then throw an error about type mismatch', () => {
-          dto.value = { type: String, count: 3 };
-          expect(() => handler.produceValue(dto)).toThrowError(Error);
+          const property = new Property('name', '', new PropertyDecoratorValue({ type: String, count: 3 }));
+          expect(() => handler.produceValue(property)).toThrowError(Error);
         });
       });
 
-      describe('and there is no value (empty value)', () => {
-        beforeEach(() => {
-          dto.value = undefined;
-        });
-
+      describe('and there is no decoratorValue (empty decoratorValue)', () => {
         describe('and the constructor is a String', () => {
           test('then generate a random string from faker', () => {
-            dto.constructorName = 'String';
-
-            handler.produceValue(dto);
+            const property = new Property('name', 'String', new PropertyDecoratorValue(undefined));
+            handler.produceValue(property);
 
             expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
           });
@@ -98,9 +82,8 @@ describe('PrimitiveValueInspector Unit', () => {
 
         describe('and the constructor is a Number', () => {
           test('then return a random number between 1 to 1000 from faker', () => {
-            dto.constructorName = 'Number';
-
-            handler.produceValue(dto);
+            const property = new Property('name', 'Number', new PropertyDecoratorValue(undefined));
+            handler.produceValue(property);
 
             expect(fakerMock.random.number).toHaveBeenCalledTimes(1);
             expect(fakerMock.random.number).toHaveBeenCalledWith(1000);
@@ -108,28 +91,25 @@ describe('PrimitiveValueInspector Unit', () => {
         });
 
         describe('and the constructor is a Boolean', () => {
-          test('then return random boolean value', () => {
-            dto.constructorName = 'Boolean';
-
-            handler.produceValue(dto);
+          test('then return random boolean decoratorValue', () => {
+            const property = new Property('name', 'Boolean', new PropertyDecoratorValue(undefined));
+            handler.produceValue(property);
             expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
           });
         });
 
         describe('and the constructor is a Date', () => {
           test('then return a random date', () => {
-            dto.constructorName = 'Date';
-
-            handler.produceValue(dto);
+            const property = new Property('name', 'Date', new PropertyDecoratorValue(undefined));
+            handler.produceValue(property);
             expect(fakerMock.date.recent).toHaveBeenCalledTimes(1);
           });
         });
 
         describe('and constructor is not a primitive one', () => {
           test('then return alpha numeric string', () => {
-            dto.constructorName = 'not-a-primitive';
-
-            handler.produceValue(dto);
+            const property = new Property('name', 'not-a-primitive', new PropertyDecoratorValue(undefined));
+            handler.produceValue(property);
             expect(fakerMock.random.alphaNumeric).toHaveBeenCalledTimes(1);
           });
         });

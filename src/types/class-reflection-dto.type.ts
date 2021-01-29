@@ -1,4 +1,4 @@
-import { PropertyDto } from './property-dto.interface';
+import { PropertyInterface } from './property.interface';
 import { FixtureOptions } from '../types/fixture-options.type';
 
-export type ClassReflectionDto = PropertyDto<FixtureOptions>[];
+export type ClassReflectionDto = PropertyInterface<FixtureOptions>[];

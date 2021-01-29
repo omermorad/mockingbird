@@ -6,7 +6,7 @@ import { FixtureOptions } from '../types/fixture-options.type';
 export const FIXTURE_DECORATOR_NAME = 'Fixture';
 
 /**
- * Using undefined (or nothing actually) will infer the value from the property type.
+ * Using undefined (or nothing actually) will infer the decoratorValue from the property type.
  * The types can be either 'string', 'number' or a 'boolean'
  *
  * @constructor
@@ -14,7 +14,7 @@ export const FIXTURE_DECORATOR_NAME = 'Fixture';
 export function Fixture(): PropertyDecorator;
 
 /**
- * Will invoke the callback and generate a value from 'faker' instance
+ * Will invoke the callback and generate a decoratorValue from 'faker' instance
  *
  * @example
  * Fixture(faker => faker.internet.email())
@@ -25,7 +25,7 @@ export function Fixture(): PropertyDecorator;
 export function Fixture(callback: Callback): PropertyDecorator;
 
 /**
- * Generate the exact given value
+ * Generate the exact given decoratorValue
  *
  * @example
  * Fixture(123)
@@ -50,7 +50,7 @@ export function Fixture(value: ExactValue): PropertyDecorator;
 export function Fixture(value: Class): PropertyDecorator;
 
 /**
- * Generate a random value from the given enum
+ * Generate a random decoratorValue from the given enum
  *
  * @example
  * enum Feeling { Happy, Sad, Numb }
@@ -71,7 +71,7 @@ export function Fixture(options: MultiClass): PropertyDecorator;
 
 /**
  * Fixture property decorator. This decorator will be parsed and will determine
- * the actual value of the decorated property.
+ * the actual decoratorValue of the decorated property.
  *
  * @param options
  * @default undefined

@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`Fixture Factory - Integration Test Given a decorated class when using the related decorator with no/empty values then infer the value from the type itself 1`] = `
+exports[`Fixture Factory - Integration Test Given a decorated class when using the related decorator with no/empty values then infer the decoratorValue from the type itself 1`] = `
 Object {
   "binary": Any<Boolean>,
   "date": Any<Date>,
