@@ -4,7 +4,7 @@
 [![CircleCI](https://circleci.com/gh/omermorad/faker.ts.svg?style=shield)](https://circleci.com/gh/circleci/circleci-docs)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
-![alt text](docs/faker.ts-logo.png "Faker.ts")
+![alt text](docs/logo.png "Faker.ts")
 
 <p align="center">
   <h1 align="center">Faker.ts (Alpha Release)</h1>
