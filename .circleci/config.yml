@@ -122,21 +122,21 @@ workflows:
           requires:
             - test
             - build
-          filters:
-            branches:
-              only:
-                - master
-                - alpha
-                - beta
-                - next
+#          filters:
+#            branches:
+#              only:
+#                - master
+#                - alpha
+#                - beta
+#                - next
 
       - release:
           requires:
             - approve
-          filters:
-            branches:
-              only:
-                - master
-                - alpha
-                - beta
-                - next
+#          filters:
+#            branches:
+#              only:
+#                - master
+#                - alpha
+#                - beta
+#                - next
