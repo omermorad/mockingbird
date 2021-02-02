@@ -96,7 +96,8 @@ jobs:
 
       - run:
           name: Semantic Release
-          command: npx semantic-release
+          # command: npx semantic-release
+          command: npm publish --access public
 
 workflows:
   version: 2.1
@@ -122,21 +123,21 @@ workflows:
           requires:
             - test
             - build
-#          filters:
-#            branches:
-#              only:
-#                - master
-#                - alpha
-#                - beta
-#                - next
+          filters:
+            branches:
+              only:
+                - master
+                - alpha
+                - beta
+                - next
 
       - release:
           requires:
             - approve
-#          filters:
-#            branches:
-#              only:
-#                - master
-#                - alpha
-#                - beta
-#                - next
+          filters:
+            branches:
+              only:
+                - master
+                - alpha
+                - beta
+                - next
