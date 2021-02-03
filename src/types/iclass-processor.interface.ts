@@ -1,4 +1,4 @@
-import { ClassLiteral, Class } from './fixture-options.type';
+import { ClassLiteral, Class } from './mock-options.type';
 
 // eslint-disable-next-line @typescript-eslint/interface-name-prefix
 export interface IClassProcessor<T> {

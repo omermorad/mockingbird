@@ -2,7 +2,7 @@ import { ArrayValueHandler } from './array-value-handler';
 import { EnumValueHandler } from './enum-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 import { PropertyDto } from '../types/property-dto.interface';
-import { EnumObject, MultiClass, ObjectLiteral } from '../types/fixture-options.type';
+import { EnumObject, MultiClass, ObjectLiteral } from '../types/mock-options.type';
 
 export class ObjectLiteralValueHandler<P extends ObjectLiteral> implements ValueHandler<P> {
   public shouldHandle(propertyDto: PropertyDto<P>): boolean {

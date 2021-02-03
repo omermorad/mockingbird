@@ -1,9 +1,9 @@
 import { PropertyDto } from '../types/property-dto.interface';
-import { ExactValue, FixtureOptions } from '../types/fixture-options.type';
+import { ExactValue, MockOptions } from '../types/mock-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 
-export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> {
+export abstract class PrimitiveHandlerAbstract<P extends MockOptions> {
   public static readonly PRIMITIVES = ['String', 'Boolean', 'Number', 'Date'];
 
   protected constructor(protected readonly faker: FakerStatic) {}

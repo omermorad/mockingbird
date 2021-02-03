@@ -5,9 +5,9 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <p align="center">
-  <img width="450" src="https://github.com/omermorad/faker.ts/blob/master/docs/logo.png" alt="Faker.ts Logo">
+  <img width="450" src="https://github.com/omermorad/faker.ts/blob/master/docs/logo.png" alt="Mock.ts Logo">
 
-  <h1 align="center">Faker.ts</h1>
+  <h1 align="center">Mock.ts</h1>
 
   <p align="center">
     <strong>Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper</strong>
@@ -20,55 +20,55 @@
 Install the package alongside `faker.js` and `@types/faker` peer dependencies:
 
 ```bash
-npm i -D @websolute/faker.ts@1.0.0-alpha.1 faker @types/faker
+npm i -D mock-ts faker @types/faker
 ```
 
 ## Playground 
-**We have create a [REPL Playground](https://repl.it/@omermorad/Fakerts-Playground) where you can see Faker.ts in action!**
+**We have create a [REPL Playground](https://repl.it/@omermorad/Fakerts-Playground) where you can see Mock.ts in action!**
 
 ## Usage
 
-**Here is the simplest usage of Faker.ts:**
+**Here is the simplest usage of Mock.ts:**
 
 ```typescript
-import { Fixture, FixtureFactory } from 'faker.ts';
+import { Mock, MockFactory } from 'mock-ts';
 
 class Dog {
-  @Fixture(faker => faker.name.firstName())
+  @Mock(faker => faker.name.firstName())
   readonly name: string;
   
-  @Fixture()
+  @Mock()
   readonly birthday: Date;
 
-  @Fixture()
+  @Mock()
   readonly goodPoints: number;
 }
 
-const result = FixtureFactory.create<Dog>(Dog);
+const result = MockFactory.create<Dog>(Dog);
 ```
 
 **A more complex example:**
 ```typescript
-import { Fixture, FixtureFactory } from 'faker.ts';
+import { Mock, MockFactory } from 'mock-ts';
 
 class Person {
-  @Fixture(faker => faker.name.firstName())
+  @Mock(faker => faker.name.firstName())
   readonly name: string;
   
-  @Fixture()
+  @Mock()
   readonly birthday: Date;
 
-  @Fixture(faker => faker.internet.email())
+  @Mock(faker => faker.internet.email())
   readonly email: string;
 
-  @Fixture({ type: Dog })
+  @Mock({ type: Dog })
   readonly dog: Dog;
 }
 
-const result = FixtureFactory.create<Person>(Person);
+const result = MockFactory.create<Person>(Person);
 ```
 
-**There are more options available to you in using `@Fixture` decorator and also the `FixtureFactory` as well**
+**There are more options available to you in using `@Mock` decorator and also the `MockFactory` as well**
 
 [Jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
 
@@ -83,8 +83,8 @@ To generate the data, use the faker library directly, such as: `faker.internet.e
 and that, of course, will generate a random email address from a pre-made database.
 
 To create full fake objects, you need to place them in a literal object and use `for` loop.
-`Faker.ts` provides an easy and simple solution to an annoying and inconvenient problem that
-allows you to set "fixtures" as metadata on the department itself.
+`Mock.ts` provides an easy and simple solution to an annoying and inconvenient problem that
+allows you to set "fixtures/mocks" as metadata on the department itself.
 This also allows the use of interfaces and, among other things, the enforcement of contracts.
 
 ## License

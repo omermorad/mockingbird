@@ -1,5 +1,5 @@
 import { TestClasses } from './common/test-classes';
-import { FixtureFactory } from '../../src/factories/fixture-factory';
+import { MockFactory } from '../../src/factories/mock-factory';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
@@ -8,13 +8,13 @@ import TestClassWithEnum = TestClasses.TestClassWithEnum;
 import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
 import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
 
-describe('Fixture Factory - Integration Test', () => {
+describe('Mock Factory - Integration Test', () => {
   let result;
 
   describe('Given a decorated class', () => {
     describe('when using the related decorator with absolute values', () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithAbsoluteValues);
+        result = MockFactory.create(TestClassWithAbsoluteValues);
       });
 
       test('then return the exact same values passed in the options', () => {
@@ -26,7 +26,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe('when using the related decorator with a callback (faker)', () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithCallback);
+        result = MockFactory.create(TestClassWithCallback);
       });
 
       test('then return random values from faker', () => {
@@ -39,7 +39,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe('when using the related decorator with an enum value', () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithEnum);
+        result = MockFactory.create(TestClassWithEnum);
       });
 
       test('then return one random value (not key)', () => {
@@ -49,7 +49,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe('when using the related decorator with no/empty values', () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithNoValues);
+        result = MockFactory.create(TestClassWithNoValues);
       });
 
       test('then infer the value from the type itself', () => {
@@ -64,7 +64,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe('when using the related decorator with a single class', () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithOtherClass);
+        result = MockFactory.create(TestClassWithOtherClass);
       });
 
       test('then return an object with the given class', () => {
@@ -74,7 +74,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe('when using the related decorator with a multi class', () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithMultiClass);
+        result = MockFactory.create(TestClassWithMultiClass);
       });
 
       test("then return contain a property 'dogs' which is array of Dog with length of 'count'", () => {
@@ -91,7 +91,7 @@ describe('Fixture Factory - Integration Test', () => {
 
     describe("when using the related decorator with 'count' option", () => {
       beforeAll(() => {
-        result = FixtureFactory.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
+        result = MockFactory.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
       });
 
       test("then return array with length of 'count'", () => {

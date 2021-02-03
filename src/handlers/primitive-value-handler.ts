@@ -1,7 +1,7 @@
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueHandler } from '../types/value-handler.interface';
 import { PropertyDto } from '../types/property-dto.interface';
-import { ExactValue, MultiClass } from '../types/fixture-options.type';
+import { ExactValue, MultiClass } from '../types/mock-options.type';
 import { ArrayValueHandler } from './array-value-handler';
 
 import FakerStatic = Faker.FakerStatic;
@@ -23,7 +23,7 @@ export class PrimitiveValueHandler<P extends ExactValue>
     if (typeof value !== 'undefined') {
       if (ArrayValueHandler.hasTypeKey((propertyDto as unknown) as PropertyDto<MultiClass>)) {
         throw new Error(
-          'Type mismatch. Properties decorated with @Fixture({ type: ClassType }) must be typed as array (e.g. prop: string[])'
+          'Type mismatch. Properties decorated with @Mock({ type: ClassType }) must be typed as array (e.g. prop: string[])'
         );
       }
 

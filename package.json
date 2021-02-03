@@ -1,19 +1,18 @@
 {
-  "name": "fixture.ts",
-  "version": "1.0.0-alpha.1",
+  "name": "mock-ts",
+  "version": "1.0.0-beta.1",
   "license": "MIT",
-  "description": "Easy to Use, Powered by Decorators, Faker TypeScript Wrapper",
+  "description": "Easy to Use TypeScript Mocking Decorator",
   "keywords": [
-    "faker",
-    "faker-typescript",
-    "typescript-faker",
+    "mock",
+    "mock-typescript",
+    "typescript-mock",
     "typescript",
-    "fixture",
-    "fixture.ts",
-    "fixturets",
-    "fixture-typescript",
-    "faker-factory",
-    "faker-fixture"
+    "mock",
+    "mockts",
+    "mock-typescript",
+    "mock-factory",
+    "mock-fixture"
   ],
   "contributors": [
     {
@@ -31,12 +30,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/omermorad/faker.ts.git"
+    "url": "https://github.com/omermorad/mock.ts.git"
   },
   "bugs": {
-    "url": "https://github.com/omermorad/faker.ts/issues"
+    "url": "https://github.com/omermorad/mock.ts/issues"
   },
-  "readme": "https://github.com/omermorad/faker.ts/README.md",
+  "readme": "https://github.com/omermorad/mock.ts/README.md",
   "scripts": {
     "prebuild": "./node_modules/.bin/rimraf dist",
     "build": "tsc -p tsconfig.build.json",

@@ -1,1 +1,1 @@
-export * from './fixture.decorator';
+export * from './mock.decorator';

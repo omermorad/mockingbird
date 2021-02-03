@@ -1,6 +1,6 @@
 import { PrimitiveValueHandler } from './primitive-value-handler';
 import { PropertyDto } from '../types/property-dto.interface';
-import { ExactValue } from '../types/fixture-options.type';
+import { ExactValue } from '../types/mock-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 

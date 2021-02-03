@@ -2,7 +2,7 @@ import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ClassProcessor } from '../class-processor';
 import { ValueHandler } from '../types/value-handler.interface';
 import { PropertyDto } from '../types/property-dto.interface';
-import { Class } from '../types/fixture-options.type';
+import { Class } from '../types/mock-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 

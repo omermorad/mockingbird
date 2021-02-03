@@ -1,1 +1,1 @@
-export * from './fixture-factory';
+export * from './mock-factory';

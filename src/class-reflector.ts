@@ -1,42 +1,42 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { Class } from './types/fixture-options.type';
-import { FixtureOptions } from './types/fixture-options.type';
-import { FIXTURE_DECORATOR_NAME } from './decorators/fixture.decorator';
+import { Class } from './types/mock-options.type';
+import { MockOptions } from './types/mock-options.type';
+import { FIXTURE_DECORATOR_NAME } from './decorators/mock.decorator';
 import { PropertyDto } from './types/property-dto.interface';
 import { ClassReflectionDto } from './types/class-reflection-dto.type';
 
 export class ClassReflector {
   public static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
 
-  private extractDecoratedProperties(classReflection: ClassReflection): PropertyDto<FixtureOptions>[] {
+  private extractDecoratedProperties(classReflection: ClassReflection): PropertyDto<MockOptions>[] {
     return classReflection.properties.map((property) => {
-      const value = ClassReflector.extractFixtureDecoratorValue(property);
+      const value = ClassReflector.extractMockDecoratorValue(property);
       return ClassReflector.createPropertyDto(property, value);
     });
   }
 
   private static createPropertyDto(
     property: PropertyReflection,
-    fixtureDecoratorValue: FixtureOptions | null
-  ): PropertyDto<FixtureOptions> {
+    mockDecoratorValue: MockOptions | null
+  ): PropertyDto<MockOptions> {
     const {
       name,
       type: { name: constructorName },
     } = property;
 
     return {
-      type: typeof fixtureDecoratorValue,
-      value: fixtureDecoratorValue,
+      type: typeof mockDecoratorValue,
+      value: mockDecoratorValue,
       name,
       constructorName,
     };
   }
 
-  private static extractFixtureDecoratorValue(property: PropertyReflection): FixtureOptions | undefined {
+  private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
     const { decorators } = property;
-    const fixtureDecorator = decorators.find((decorator) => decorator.type === FIXTURE_DECORATOR_NAME);
+    const mockDecorator = decorators.find((decorator) => decorator.type === FIXTURE_DECORATOR_NAME);
 
-    return fixtureDecorator.value;
+    return mockDecorator.value;
   }
 
   public reflectClass(target: Class<unknown>): ClassReflectionDto {

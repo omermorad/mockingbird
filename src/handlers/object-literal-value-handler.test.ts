@@ -1,5 +1,5 @@
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
-import { ObjectLiteral } from '../types/fixture-options.type';
+import { ObjectLiteral } from '../types/mock-options.type';
 
 describe('ObjectLiteralValueInspector Unit', () => {
   let dto, handler: ObjectLiteralValueHandler<ObjectLiteral>;

@@ -1,7 +1,7 @@
 import { PropertyDto } from '../types/property-dto.interface';
 import { ArrayValueHandler } from './array-value-handler';
 import { ClassProcessor } from '../class-processor';
-import { MultiClass } from '../types/fixture-options.type';
+import { MultiClass } from '../types/mock-options.type';
 
 import FakerStatic = Faker.FakerStatic;
 

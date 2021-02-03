@@ -1,5 +1,5 @@
 import { ClassReflector } from './class-reflector';
-import { Fixture } from './decorators/fixture.decorator';
+import { Mock } from './decorators/mock.decorator';
 import { ClassReflectionDto } from './types/class-reflection-dto.type';
 
 describe('ClassReflector', () => {
@@ -8,10 +8,10 @@ describe('ClassReflector', () => {
   class EmptyClass {}
 
   class TestClass {
-    @Fixture('Foo')
+    @Mock('Foo')
     fooer: string;
 
-    @Fixture('Bar')
+    @Mock('Bar')
     barer: string;
   }
 
