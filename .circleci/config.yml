@@ -96,8 +96,7 @@ jobs:
 
       - run:
           name: Semantic Release
-          # command: npx semantic-release
-          command: npm publish --access public
+          command: npx semantic-release
 
 workflows:
   version: 2.1
