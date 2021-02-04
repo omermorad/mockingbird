@@ -1,10 +1,10 @@
-import { PropertyInterface } from '../types/property.interface';
-import { ExactValue, FixtureOptions } from '../types/fixture-options.type';
+import { IProperty } from '../types/iproperty.interface';
+import { ExactValue, MockOptions } from '../types/mock-options.type';
 
 import { AbstractValueHandler } from './abstract-value-handler';
-import { isPrimitive } from '../utils/isPrimitive';
+import { isPrimitive } from '../common/is-primitive';
 
-export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> extends AbstractValueHandler {
+export abstract class PrimitiveHandlerAbstract<P extends MockOptions> extends AbstractValueHandler {
   protected generateRandomValueFromPrimitive(ctor: string): ExactValue {
     const { faker } = this;
 
@@ -21,7 +21,7 @@ export abstract class PrimitiveHandlerAbstract<P extends FixtureOptions> extends
     }
   }
 
-  public isPrimitive(propertyDto: PropertyInterface<P>): boolean {
+  public isPrimitive(propertyDto: IProperty<P>): boolean {
     return isPrimitive(propertyDto.constructorName) && !propertyDto.decoratorValue.isCallback();
   }
 }

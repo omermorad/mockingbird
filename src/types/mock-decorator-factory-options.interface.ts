@@ -1,6 +1,6 @@
 import FakerStatic = Faker.FakerStatic;
 
-export interface FixtureFactoryOptions {
+export interface MockDecoratorFactoryOptions {
   count: number;
   locale?: FakerStatic['locale'];
 }

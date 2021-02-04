@@ -1,4 +1,4 @@
-import { PropertyInterface } from '../types/property.interface';
+import { IProperty } from '../types/iproperty.interface';
 import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
 import { ClassProcessor } from '../class-processor';
 
@@ -11,7 +11,7 @@ describe('SingleClassValueInspector Unit', () => {
   let handler: SingleClassValueHandler<Class>;
   const DTO_CLASS_VALUE = class TestClass {};
 
-  const property: PropertyInterface<Class> = new Property(
+  const property: IProperty<Class> = new Property(
     'testPropertyName',
     'TestClass',
     new PropertyDecoratorValue(DTO_CLASS_VALUE)

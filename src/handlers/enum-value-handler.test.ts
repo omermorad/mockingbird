@@ -1,5 +1,5 @@
 import { EnumValueHandler } from '../handlers/enum-value-handler';
-import { EnumObject } from '../types/fixture-options.type';
+import { EnumObject } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';

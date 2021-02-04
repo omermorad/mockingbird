@@ -1,2 +1,2 @@
-export * from './fixture-options.type';
-export * from './fixture-factory-options.interface';
+export * from './mock-options.type';
+export * from './mock-decorator-factory-options.interface';

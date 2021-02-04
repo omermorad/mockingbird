@@ -1,5 +1,5 @@
 import { CallbackValueHandler } from '../handlers/callback-value-handler';
-import { Callback } from '../types/fixture-options.type';
+import { Callback } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';

@@ -1,4 +1,4 @@
-import { Class } from '../types/fixture-options.type';
+import { Class } from '../types/mock-options.type';
 import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;

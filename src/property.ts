@@ -1,19 +1,20 @@
 import { PropertyReflection } from '@plumier/reflect';
-import { FixtureOptions } from './types/fixture-options.type';
-import { PropertyInterface } from './types/property.interface';
+import { MockOptions } from './types/mock-options.type';
+import { IProperty } from './types/iproperty.interface';
 import { PropertyDecoratorValue } from './property-decorator-value';
 
-export class Property<T extends FixtureOptions> implements PropertyInterface<T> {
-  constructor(readonly name, readonly constructorName, readonly decoratorValue: PropertyDecoratorValue<T>) {}
-  public static create(
-    property: PropertyReflection,
-    fixtureDecoratorValue: FixtureOptions | null
-  ): Property<FixtureOptions> {
+export class Property<T extends MockOptions> implements IProperty<T> {
+  constructor(
+    public readonly name,
+    public readonly constructorName,
+    public readonly decoratorValue: PropertyDecoratorValue<T>
+  ) {}
+  public static create(property: PropertyReflection, mockDecoratorValue: MockOptions | null): Property<MockOptions> {
     const {
       name,
       type: { name: constructorName },
     } = property;
 
-    return new Property(name, constructorName, new PropertyDecoratorValue(fixtureDecoratorValue));
+    return new Property(name, constructorName, new PropertyDecoratorValue(mockDecoratorValue));
   }
 }

@@ -1,14 +1,13 @@
 import { ValueHandler } from '../types/value-handler.interface';
-import { PropertyInterface } from '../types/property.interface';
-import { ExactValue, Class } from '../types/fixture-options.type';
-import { MultiClass } from '../types/fixture-options.type';
+import { IProperty } from '../types/iproperty.interface';
+import { ExactValue, Class, MultiClass } from '../types/mock-options.type';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { Property } from '../property';
-import { isPrimitive } from '../utils/isPrimitive';
+import { isPrimitive } from '../common/is-primitive';
 
-// TODO: refactor (2nd phase). All other fixture options should be wrapped with 'multiple' functionality
+// TODO: refactor (2nd phase). All other mock options should be wrapped with 'multiple' functionality
 export class ArrayValueHandler<P extends MultiClass> extends PrimitiveHandlerAbstract<P> implements ValueHandler<P> {
-  public shouldHandle(property: PropertyInterface<P>): boolean {
+  public shouldHandle(property: IProperty<P>): boolean {
     return property.decoratorValue.isMultiClass();
   }
 

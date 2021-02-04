@@ -1,4 +1,4 @@
-import { PropertyInterface } from './property.interface';
-import { FixtureOptions } from '../types/fixture-options.type';
+import { IProperty } from '../types/iproperty.interface';
+import { MockOptions } from '../types/mock-options.type';
 
-export type ClassReflectionDto = PropertyInterface<FixtureOptions>[];
+export type ClassReflectionDto = IProperty<MockOptions>[];

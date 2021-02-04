@@ -1,29 +1,29 @@
-import { FixtureOptions, MultiClass } from './types/fixture-options.type';
+import { MockOptions, MultiClass } from './types/mock-options.type';
 
-export class PropertyDecoratorValue<T extends FixtureOptions> {
+export class PropertyDecoratorValue<T extends MockOptions> {
   private readonly type: string;
 
-  constructor(public readonly value: FixtureOptions) {
+  constructor(public readonly value: MockOptions) {
     this.type = typeof value;
   }
 
-  isObject(): boolean {
+  public isObject(): boolean {
     return this.type === 'object';
   }
 
-  isFunction(): boolean {
+  public isFunction(): boolean {
     return this.type === 'function';
   }
 
-  isMultiClass(): boolean {
+  public isMultiClass(): boolean {
     return this.isObject() && (this.value as MultiClass).hasOwnProperty('type');
   }
 
-  isCallback(): boolean {
+  public isCallback(): boolean {
     return typeof this.value === 'function';
   }
 
-  isEnum() {
+  public isEnum() {
     return this.isObject() && this.value.hasOwnProperty('enum');
   }
 }

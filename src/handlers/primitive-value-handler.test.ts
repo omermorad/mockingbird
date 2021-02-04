@@ -1,5 +1,5 @@
 import { PrimitiveValueHandler } from './primitive-value-handler';
-import { ExactValue } from '../types/fixture-options.type';
+import { ExactValue } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';

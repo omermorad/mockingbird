@@ -1,6 +1,6 @@
 import { ValueHandler } from '../types/value-handler.interface';
-import { PropertyInterface } from '../types/property.interface';
-import { EnumObject } from '../types/fixture-options.type';
+import { IProperty } from '../types/iproperty.interface';
+import { EnumObject } from '../types/mock-options.type';
 import { AbstractValueHandler } from './abstract-value-handler';
 
 export class EnumValueHandler<P extends EnumObject> extends AbstractValueHandler implements ValueHandler<P> {
@@ -20,11 +20,11 @@ export class EnumValueHandler<P extends EnumObject> extends AbstractValueHandler
     return valuesList;
   }
 
-  public shouldHandle(propertyDto: PropertyInterface<P>): boolean {
+  public shouldHandle(propertyDto: IProperty<P>): boolean {
     return propertyDto.decoratorValue.isEnum();
   }
 
-  public produceValue<T>(propertyDto: PropertyInterface<P>): any {
+  public produceValue<T>(propertyDto: IProperty<P>): any {
     const {
       decoratorValue: { value },
     } = propertyDto;

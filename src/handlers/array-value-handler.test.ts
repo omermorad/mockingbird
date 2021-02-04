@@ -1,7 +1,7 @@
-import { PropertyInterface } from '../types/property.interface';
+import { IProperty } from '../types/iproperty.interface';
 import { ArrayValueHandler } from './array-value-handler';
 import { ClassProcessor } from '../class-processor';
-import { MultiClass } from '../types/fixture-options.type';
+import { MultiClass } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';
@@ -12,8 +12,8 @@ describe('ArrayValueHandler Unit', () => {
 
   let handler: ArrayValueHandler<MultiClass>;
 
-  function createProperty(fixtureValue: MultiClass): PropertyInterface<MultiClass> {
-    return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue<MultiClass>(fixtureValue));
+  function createProperty(mockValue: MultiClass): IProperty<MultiClass> {
+    return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue<MultiClass>(mockValue));
   }
 
   const classProcessorMock = ({
