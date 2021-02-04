@@ -1,35 +1,28 @@
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueHandler } from '../types/value-handler.interface';
-import { PropertyDto } from '../types/property-dto.interface';
-import { ExactValue, MultiClass } from '../types/fixture-options.type';
-import { ArrayValueHandler } from './array-value-handler';
-
-import FakerStatic = Faker.FakerStatic;
+import { IProperty } from '../types/iproperty.interface';
+import { ExactValue } from '../types/mock-options.type';
 
 export class PrimitiveValueHandler<P extends ExactValue>
   extends PrimitiveHandlerAbstract<P>
   implements ValueHandler<P> {
-  public constructor(protected readonly faker: FakerStatic) {
-    super(faker);
+  public shouldHandle(property: IProperty<P>): boolean {
+    return this.isPrimitive(property);
   }
 
-  public shouldHandle(propertyDto: PropertyDto<P>): boolean {
-    return this.isPrimitive(propertyDto);
-  }
+  public produceValue<T>(property: IProperty<P>): any {
+    const { decoratorValue } = property;
 
-  public produceValue<T>(propertyDto: PropertyDto<P>): any {
-    const { value } = propertyDto;
-
-    if (typeof value !== 'undefined') {
-      if (ArrayValueHandler.hasTypeKey((propertyDto as unknown) as PropertyDto<MultiClass>)) {
+    if (typeof decoratorValue.value !== 'undefined') {
+      if (decoratorValue.isMultiClass()) {
         throw new Error(
-          'Type mismatch. Properties decorated with @Fixture({ type: ClassType }) must be typed as array (e.g. prop: string[])'
+          'Type mismatch. Properties decorated with @Mock({ type: ClassType }) must be typed as array (e.g. prop: string[])'
         );
       }
 
-      return value;
+      return decoratorValue.value;
     }
 
-    return super.generateRandomValueFromPrimitive(propertyDto.constructorName);
+    return super.generateRandomValueFromPrimitive(property.constructorName);
   }
 }

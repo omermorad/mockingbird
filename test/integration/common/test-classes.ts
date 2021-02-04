@@ -1,4 +1,4 @@
-import { Fixture } from '../../../src/decorators';
+import { Mock } from '../../../src';
 
 enum TestEnum {
   Foo = 'foo',
@@ -8,64 +8,64 @@ enum TestEnum {
 
 export namespace TestClasses {
   export class TestClassWithAbsoluteValues {
-    @Fixture('FooBar')
+    @Mock('FooBar')
     name: string;
 
-    @Fixture(1234)
+    @Mock(1234)
     num: number;
 
-    @Fixture(true)
+    @Mock(true)
     binary: boolean;
 
-    @Fixture(new Date())
+    @Mock(new Date())
     date: Date;
 
-    @Fixture({ thiss: 'is', an: 'object', literal: true })
+    @Mock({ thiss: 'is', an: 'object', literal: true })
     objectLiteral: object;
   }
 
   export class TestClassWithCallback {
-    @Fixture((faker) => faker.internet.email())
+    @Mock((faker) => faker.internet.email())
     email: string;
 
-    @Fixture((faker) => faker.name.firstName())
+    @Mock((faker) => faker.name.firstName())
     name: string;
   }
 
   export class TestClassWithNoValues {
-    @Fixture()
+    @Mock()
     name: string;
 
-    @Fixture()
+    @Mock()
     num: number;
 
-    @Fixture()
+    @Mock()
     binary: boolean;
 
-    @Fixture()
+    @Mock()
     date: Date;
   }
 
   export class TestClassWithEnum {
-    @Fixture({ enum: TestEnum })
+    @Mock({ enum: TestEnum })
     someEnumVal: string;
   }
 
   class Dog {
-    @Fixture()
+    @Mock()
     name: string;
 
-    @Fixture()
+    @Mock()
     points: number;
   }
 
   export class TestClassWithSingleClass {
-    @Fixture(Dog)
+    @Mock(Dog)
     dog: Dog;
   }
 
   export class TestClassWithMultiClass {
-    @Fixture({ type: Dog, count: 3 })
+    @Mock({ type: Dog, count: 3 })
     dogs: Dog[];
   }
 }

@@ -1,8 +1,8 @@
+import { mocked } from 'ts-jest';
 import * as reflectModule from '@plumier/reflect';
 import { ClassReflection } from '@plumier/reflect';
 import { ClassProcessor } from './class-processor';
-import { mocked } from 'ts-jest/utils';
-import { Fixture } from './decorators/fixture.decorator';
+import { Mock } from './decorators/mock.decorator';
 import { ClassReflector } from './class-reflector';
 import FakerStatic = Faker.FakerStatic;
 
@@ -17,10 +17,10 @@ describe('ClassProcessor', () => {
   let reflectionMock;
 
   class Dog {
-    @Fixture()
+    @Mock()
     readonly name: string;
 
-    @Fixture()
+    @Mock()
     readonly age: number;
   }
 
@@ -66,9 +66,9 @@ describe('ClassProcessor', () => {
   });
    */
 
-  test('Should return specific value passed from fixture', () => {
+  test('Should return specific decoratorValue passed from mock', () => {
     class AnotherDog {
-      @Fixture('doggo')
+      @Mock('doggo')
       name: string;
     }
 
@@ -81,7 +81,7 @@ describe('ClassProcessor', () => {
         },
         decorators: [
           {
-            type: 'Fixture',
+            type: 'Mock',
             value: 'doggo',
           },
         ],

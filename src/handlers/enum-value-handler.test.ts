@@ -1,7 +1,8 @@
 import { EnumValueHandler } from '../handlers/enum-value-handler';
-import { EnumObject } from '../types/fixture-options.type';
-
+import { EnumObject } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
+import { Property } from '../property';
+import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('EnumValueInspector Unit', () => {
   enum TestEnum {
@@ -16,29 +17,24 @@ describe('EnumValueInspector Unit', () => {
     },
   } as unknown) as FakerStatic;
 
-  let dto, handler: EnumValueHandler<EnumObject>;
+  let handler: EnumValueHandler<EnumObject>;
 
   describe('given a EnumValueInspector', () => {
     beforeAll(() => {
       handler = new EnumValueHandler(fakerMock);
-
-      dto = {
-        type: 'object',
-        value: { enum: TestEnum },
-        name: 'testPropertyName',
-      };
     });
 
     describe("when calling 'shouldHandle' method with type object and { type: enum }", () => {
       test('then return true', () => {
-        expect(handler.shouldHandle(dto)).toBeTruthy();
+        const property = new Property('testPropertyName', '', new PropertyDecoratorValue({ enum: TestEnum }));
+        expect(handler.shouldHandle(property)).toBeTruthy();
       });
     });
 
     describe("when calling 'produceValue' method", () => {
       test('then call faker random array element', () => {
-        dto.value = { enum: TestEnum };
-        handler.produceValue(dto);
+        const property = new Property('testPropertyName', '', new PropertyDecoratorValue({ enum: TestEnum }));
+        handler.produceValue(property);
 
         expect(fakerMock.random.arrayElement).toHaveBeenCalledTimes(1);
         expect(fakerMock.random.arrayElement).toHaveBeenCalledWith(['one', 'two', 'three']);

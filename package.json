@@ -1,18 +1,21 @@
 {
-  "name": "@websolute/faker.ts",
-  "version": "1.0.0",
+  "name": "mockingbird-ts",
+  "version": "1.0.0-beta.1",
   "license": "MIT",
-  "description": "Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper",
+  "description": "Super Simple, Yet Powerful, TypeScript Oriented Mocks Library",
   "keywords": [
     "faker",
     "faker-typescript",
     "typescript-faker",
-    "typescript",
     "fixture",
-    "fixture-factory",
+    "fixtures",
     "faker-factory",
     "faker-fixture",
-    "faker.ts"
+    "mockingbird-ts",
+    "unit-test",
+    "unit-test-mocks",
+    "testing-mocks",
+    "testing"
   ],
   "contributors": [
     {
@@ -30,12 +33,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/omermorad/faker.ts.git"
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/omermorad/faker.ts/issues"
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
   },
-  "readme": "https://github.com/omermorad/faker.ts/README.md",
+  "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
   "scripts": {
     "prebuild": "./node_modules/.bin/rimraf dist",
     "build": "tsc -p tsconfig.build.json",

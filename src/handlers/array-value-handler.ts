@@ -1,38 +1,26 @@
 import { ValueHandler } from '../types/value-handler.interface';
-import { PropertyDto } from '../types/property-dto.interface';
-import { ExactValue, Class } from '../types/fixture-options.type';
-import { MultiClass } from '../types/fixture-options.type';
-import { ClassProcessor } from '../class-processor';
+import { IProperty } from '../types/iproperty.interface';
+import { ExactValue, Class, MultiClass } from '../types/mock-options.type';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
+import { Property } from '../property';
+import { isPrimitive } from '../common/is-primitive';
 
-import FakerStatic = Faker.FakerStatic;
-
-// TODO: refactor (2nd phase). All other fixture options should be wrapped with 'multiple' functionality
+// TODO: refactor (2nd phase). All other mock options should be wrapped with 'multiple' functionality
 export class ArrayValueHandler<P extends MultiClass> extends PrimitiveHandlerAbstract<P> implements ValueHandler<P> {
-  public constructor(protected readonly faker: FakerStatic, protected readonly classProcessor: ClassProcessor<Class>) {
-    super(faker);
+  public shouldHandle(property: IProperty<P>): boolean {
+    return property.decoratorValue.isMultiClass();
   }
 
-  public static hasTypeKey(propertyDto: PropertyDto<MultiClass>): boolean {
-    const { value } = propertyDto;
+  public produceValue<T>(property: Property<P>): any {
+    const { decoratorValue } = property;
 
-    return Object.prototype.hasOwnProperty.call(value, 'type');
-  }
-
-  public shouldHandle(propertyDto: PropertyDto<P>): boolean {
-    return propertyDto.type === 'object' && ArrayValueHandler.hasTypeKey(propertyDto);
-  }
-
-  public produceValue<T>(propertyDto: PropertyDto<P>): any {
-    const { value } = propertyDto;
-
-    if (value === null) {
-      return value;
+    if (decoratorValue.value === null) {
+      return null;
     }
 
-    const { count, type } = value;
+    const { count, type } = decoratorValue.value as MultiClass;
 
-    if (PrimitiveHandlerAbstract.PRIMITIVES.includes(type.name)) {
+    if (isPrimitive(type.name)) {
       const instances = new Array<ExactValue>(count);
 
       for (let index = 0; index < count; index++) {

@@ -1,24 +1,13 @@
 import { CallbackValueHandler } from '../handlers/callback-value-handler';
-import { Callback } from '../types/fixture-options.type';
-
+import { Callback } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
-import { PropertyDto } from 'src/types/property-dto.interface';
+import { Property } from '../property';
+import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('CallbackValueInspector Unit', () => {
-  let dto: PropertyDto<Callback>, handler: CallbackValueHandler<Callback>;
+  let handler: CallbackValueHandler<Callback>;
 
   const fakerMock = ({ internet: { email: jest.fn() } } as unknown) as FakerStatic;
-
-  beforeEach(() => {
-    dto = {
-      type: 'function',
-      // eslint-disable-next-line @typescript-eslint/ban-ts-ignore
-      // @ts-ignore
-      value: { name: '' },
-      name: 'testPropertyName',
-      constructorName: '',
-    };
-  });
 
   describe('given a CallbackValueInspector', () => {
     beforeAll(() => {
@@ -27,7 +16,14 @@ describe('CallbackValueInspector Unit', () => {
 
     describe("when calling 'shouldHandle' method with type function name and empty constructor name", () => {
       test('then return true', () => {
-        const result = handler.shouldHandle(dto);
+        const property = new Property(
+          'testPropertyName',
+          '',
+          new PropertyDecoratorValue(() => {
+            return null;
+          })
+        );
+        const result = handler.shouldHandle(property);
 
         expect(result).toBeTruthy();
       });
@@ -35,11 +31,11 @@ describe('CallbackValueInspector Unit', () => {
 
     describe("when calling 'produceValue' ", () => {
       test('then call the callback function with same faker instance', () => {
-        dto.value = jest.fn();
-        handler.produceValue(dto);
+        const property = new Property('testPropertyName', '', new PropertyDecoratorValue(jest.fn()));
+        handler.produceValue(property);
 
-        expect(dto.value).toHaveBeenCalledTimes(1);
-        expect(dto.value).toHaveBeenCalledWith(fakerMock);
+        expect(property.decoratorValue.value).toHaveBeenCalledTimes(1);
+        expect(property.decoratorValue.value).toHaveBeenCalledWith(fakerMock);
       });
     });
   });

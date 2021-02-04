@@ -13,4 +13,4 @@ export interface Class<T = any> extends Function {
 
 export type ClassLiteral<T> = Partial<{ [K in keyof T]: T[K] }>;
 
-export type FixtureOptions = Callback | ExactValue | Class | EnumObject | MultiClass;
+export type MockOptions = Callback | ExactValue | Class | EnumObject | MultiClass;

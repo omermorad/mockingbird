@@ -1,91 +1,90 @@
 [![ISC license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![npm version](http://img.shields.io/npm/v/@websolute/faker.ts.svg?style=flat)](https://npmjs.org/package/faker.ts "View this project on npm")
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/faker.ts/master.svg?style=flat-square)](https://codecov.io/gh/omer-morad-ni/faker.ts)
-[![CircleCI](https://circleci.com/gh/omermorad/faker.ts.svg?style=shield)](https://circleci.com/gh/circleci/circleci-docs)
+[![npm version](http://img.shields.io/npm/v/mockingbird-ts.svg?style=flat)](https://npmjs.org/package/faker.ts "View this project on npm")
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird-ts/master.svg?style=flat-square)](https://codecov.io/gh/omer-morad-ni/faker.ts)
+[![CircleCI](https://circleci.com/gh/omermorad/mockingbird-ts.svg?style=shield)](https://circleci.com/gh/circleci/circleci-docs)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <p align="center">
-  <img width="450" src="https://github.com/omermorad/faker.ts/blob/master/docs/logo.png" alt="Faker.ts Logo">
+  <img width="450" src="https://github.com/omermorad/mockingbird-ts/blob/master/docs/logo.png" alt="Faker.ts Logo">
 
-  <h1 align="center">Faker.ts</h1>
+  <h1 align="center">Mockingbird</h1>
 
   <p align="center">
-    <strong>Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper</strong>
-    <br>
-    <small>Faker.ts is currently in it's alpha version</small>
+    <strong>Super Simple, Yet Powerful, TypeScript Oriented Mocks Library</strong>
   </p>
 </p>
 
 ## Installation
-Install the package alongside `faker.js` and `@types/faker` peer dependencies:
+Install the package alongside `faker` and `@types/faker` peer dependencies:
 
 ```bash
-npm i -D @websolute/faker.ts@1.0.0-alpha.1 faker @types/faker
+npm i -D mockingbird-ts faker @types/faker
 ```
 
 ## Playground 
-**We have create a [REPL Playground](https://repl.it/@omermorad/Fakerts-Playground) where you can see Faker.ts in action!**
+**We have create a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Faker.ts in action!**
 
 ## Usage
 
 **Here is the simplest usage of Faker.ts:**
 
 ```typescript
-import { Fixture, FixtureFactory } from 'faker.ts';
+import { Mock, MockFactory } from 'mockingbird-ts';
 
 class Dog {
-  @Fixture(faker => faker.name.firstName())
+  @Mock(faker => faker.name.firstName())
   readonly name: string;
   
-  @Fixture()
+  @Mock()
   readonly birthday: Date;
 
-  @Fixture()
+  @Mock()
   readonly goodPoints: number;
 }
 
-const result = FixtureFactory.create<Dog>(Dog);
+const result = MockFactory.create<Dog>(Dog);
 ```
 
 **A more complex example:**
 ```typescript
-import { Fixture, FixtureFactory } from 'faker.ts';
+import { Mock, MockFactory } from 'mockingbird-ts';
 
 class Person {
-  @Fixture(faker => faker.name.firstName())
+  @Mock(faker => faker.name.firstName())
   readonly name: string;
   
-  @Fixture()
+  @Mock()
   readonly birthday: Date;
 
-  @Fixture(faker => faker.internet.email())
+  @Mock(faker => faker.internet.email())
   readonly email: string;
 
-  @Fixture({ type: Dog })
+  @Mock({ type: Dog })
   readonly dog: Dog;
 }
 
-const result = FixtureFactory.create<Person>(Person);
+const result = MockFactory.create<Person>(Person);
 ```
 
-**There are more options available to you in using `@Fixture` decorator and also the `FixtureFactory` as well**
+**There are more options available to you in using `@Mock` decorator and also the `MockFactory` as well**
 
 [Jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
 
 
 ## Motivation
-For those of you who are unfamiliar with `faker.js`, it is an old library written with pure JavaScript (it also has types in `@types/faker`), which is used to
-"generate massive amounts of fake data in the browser and Node".
+When it comes to developing and especially writing unit tests of large projects
+containing different and diverse entities, mocks are widely used to simulate real data.
 
-Fake data is usually needed for testing purposes, to assist in the development process itself,
-and sometimes, also for the purpose of demonstrations and training.
-To generate the data, use the faker library directly, such as: `faker.internet.email()`
-and that, of course, will generate a random email address from a pre-made database.
+Creating mocks can be a tedious and cumbersome process and is usually created
+manually or by using libraries like Faker or Chance, which also do not offer a complete solution,
+especially not when deciding to develop in TypeScript and most of the code becomes object oriented.
 
-To create full fake objects, you need to place them in a literal object and use `for` loop.
-`Faker.ts` provides an easy and simple solution to an annoying and inconvenient problem that
-allows you to set "fixtures" as metadata on the department itself.
-This also allows the use of interfaces and, among other things, the enforcement of contracts.
+Therefore, we thought of a convenient and efficient solution that allows the use
+of only one decorator, Mock decorator that allows to create mocks by placing it above the properties of the class.
+
+Mockingbird offers several options for creating mocks, including the use of the
+well-known library Faker, which allows you to create information such as a fake email, a fake username,
+a fake address and more.
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.

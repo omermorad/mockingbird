@@ -1,9 +1,10 @@
-import { PropertyDto } from '../types/property-dto.interface';
+import { IProperty } from '../types/iproperty.interface';
 import { ArrayValueHandler } from './array-value-handler';
 import { ClassProcessor } from '../class-processor';
-import { MultiClass } from '../types/fixture-options.type';
-
+import { MultiClass } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
+import { Property } from '../property';
+import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('ArrayValueHandler Unit', () => {
   const DTO_CLASS_VALUE = class TestClass {};
@@ -11,12 +12,9 @@ describe('ArrayValueHandler Unit', () => {
 
   let handler: ArrayValueHandler<MultiClass>;
 
-  const dto: PropertyDto<MultiClass> = {
-    type: 'object',
-    value: { type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO },
-    name: 'testPropertyName',
-    constructorName: 'TestClass',
-  };
+  function createProperty(mockValue: MultiClass): IProperty<MultiClass> {
+    return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue<MultiClass>(mockValue));
+  }
 
   const classProcessorMock = ({
     process: jest.fn(),
@@ -39,27 +37,27 @@ describe('ArrayValueHandler Unit', () => {
       handler = new ArrayValueHandler(fakerMock, classProcessorMock);
     });
 
-    describe("when calling 'shouldHandle' with type 'object' and value of multi class ({ type: ClassType })", () => {
+    describe("when calling 'shouldHandle' with type 'object' and decoratorValue of multi class ({ type: ClassType })", () => {
       test('then return true', () => {
-        expect(handler.shouldHandle(dto)).toBeTruthy();
+        expect(
+          handler.shouldHandle(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }))
+        ).toBeTruthy();
       });
     });
 
     describe("when calling 'produceValue' method", () => {
-      describe('and the value is null', () => {
+      describe('and the decoratorValue is null', () => {
         test('return null', () => {
-          dto.value = null;
-          expect(handler.produceValue(dto)).toBeNull();
+          expect(handler.produceValue(createProperty(null))).toBeNull();
         });
       });
 
-      describe('and value.type (class type) is Primitive', () => {
-        describe('and the primitive value is String', () => {
+      describe('and decoratorValue.type (class type) is Primitive', () => {
+        describe('and the primitive decoratorValue is String', () => {
           let result;
 
           beforeAll(() => {
-            dto.value = { type: String, count: DEFAULT_COUNT_FOR_DTO };
-            result = handler.produceValue(dto);
+            result = handler.produceValue(createProperty({ type: String, count: DEFAULT_COUNT_FOR_DTO }));
           });
 
           test('then call random alpha string from faker', () => {
@@ -73,12 +71,11 @@ describe('ArrayValueHandler Unit', () => {
         });
       });
 
-      describe('and the primitive value is Number', () => {
+      describe('and the primitive decoratorValue is Number', () => {
         let result;
 
         beforeAll(() => {
-          dto.value = { type: Number, count: DEFAULT_COUNT_FOR_DTO };
-          result = handler.produceValue(dto);
+          result = handler.produceValue(createProperty({ type: Number, count: DEFAULT_COUNT_FOR_DTO }));
         });
 
         test('then call random alpha string from faker', () => {
@@ -92,30 +89,24 @@ describe('ArrayValueHandler Unit', () => {
         });
       });
 
-      describe('and the primitive value is Boolean', () => {
-        test('and the primitive value is Boolean', () => {
-          dto.value = { type: Boolean, count: DEFAULT_COUNT_FOR_DTO };
-
-          handler.produceValue(dto);
+      describe('and the primitive decoratorValue is Boolean', () => {
+        test('and the primitive decoratorValue is Boolean', () => {
+          handler.produceValue(createProperty({ type: Boolean, count: DEFAULT_COUNT_FOR_DTO }));
           expect(fakerMock.random.boolean).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
         });
       });
 
-      describe('and the primitive value is Date', () => {
-        test('and the primitive value is Date', () => {
-          dto.value = { type: Date, count: DEFAULT_COUNT_FOR_DTO };
-
-          handler.produceValue(dto);
+      describe('and the primitive decoratorValue is Date', () => {
+        test('and the primitive decoratorValue is Date', () => {
+          handler.produceValue(createProperty({ type: Date, count: DEFAULT_COUNT_FOR_DTO }));
           expect(fakerMock.date.recent).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
         });
       });
     });
 
-    describe('and value type is an actual class (none a primitive)', () => {
+    describe('and decoratorValue type is an actual class (none a primitive)', () => {
       test("then call 'process' with 'count' times", () => {
-        dto.value = { type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO };
-
-        handler.produceValue(dto);
+        handler.produceValue(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }));
         expect(classProcessorMock.process).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
       });
     });
