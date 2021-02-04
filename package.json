@@ -1,9 +1,11 @@
 {
-  "name": "mock-ts",
+  "name": "mockingbird-ts",
   "version": "1.0.0-beta.1",
   "license": "MIT",
-  "description": "Easy to Use TypeScript Mocking Decorator",
+  "description": "Easy to Use TypeScript Mock Decorator",
   "keywords": [
+    "mockingbird",
+    "mockingbird-typescript",
     "mock",
     "mock-typescript",
     "typescript-mock",
@@ -11,7 +13,6 @@
     "mock",
     "mockts",
     "mock-typescript",
-    "mock-factory",
     "mock-fixture"
   ],
   "contributors": [
