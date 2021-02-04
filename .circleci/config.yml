@@ -123,16 +123,20 @@ workflows:
             - test
             - build
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only:
+                - master
+                - alpha
+                - beta
+                - next
 
       - release:
           requires:
             - approve
           filters:
-            tags:
-              only: /^v.*/
             branches:
-              ignore: /.*/
+              only:
+                - master
+                - alpha
+                - beta
+                - next

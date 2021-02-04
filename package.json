@@ -1,6 +1,6 @@
 {
   "name": "@websolute/faker.ts",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper",
   "keywords": [
@@ -57,10 +57,13 @@
     "faker": "^5.0.0 || ^4.0.0",
     "reflect-metadata": "^0.1.13"
   },
+  "dependencies": {
+    "@plumier/reflect": "^1.0.0-rc.5",
+    "reflect-metadata": "^0.1.13"
+  },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
     "@commitlint/config-conventional": "^11.0.0",
-    "@plumier/reflect": "^1.0.0-rc.4",
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
     "@types/faker": "^5.1.5",
@@ -82,7 +85,6 @@
     "jest-junit": "12.0.0",
     "lint-staged": "^10.5.3",
     "prettier": "^2.2.1",
-    "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "semantic-release-cli": "^5.4.0",
     "ts-jest": "24.1.0",
