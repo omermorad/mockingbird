@@ -10,19 +10,19 @@
   <h1 align="center">Mockingbird</h1>
 
   <p align="center">
-    <strong>Easy to Use, Powered by Decorators, Faker.js TypeScript Wrapper</strong>
+    <strong>Super Simple, Yet Powerful, TypeScript Oriented Mocks Library</strong>
   </p>
 </p>
 
 ## Installation
-Install the package alongside `faker.js` and `@types/faker` peer dependencies:
+Install the package alongside `faker` and `@types/faker` peer dependencies:
 
 ```bash
 npm i -D mockingbird-ts faker @types/faker
 ```
 
 ## Playground 
-**We have create a [REPL Playground](https://repl.it/@omermorad/Fakerts-Playground) where you can see Faker.ts in action!**
+**We have create a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Faker.ts in action!**
 
 ## Usage
 
@@ -72,18 +72,19 @@ const result = MockFactory.create<Person>(Person);
 
 
 ## Motivation
-For those of you who are unfamiliar with `faker.js`, it is an old library written with pure JavaScript (it also has types in `@types/faker`), which is used to
-"generate massive amounts of fake data in the browser and Node".
+When it comes to developing and especially writing unit tests of large projects
+containing different and diverse entities, mocks are widely used to simulate real data.
 
-Fake data is usually needed for testing purposes, to assist in the development process itself,
-and sometimes, also for the purpose of demonstrations and training.
-To generate the data, use the faker library directly, such as: `faker.internet.email()`
-and that, of course, will generate a random email address from a pre-made database.
+Creating mocks can be a tedious and cumbersome process and is usually created
+manually or by using libraries like Faker or Chance, which also do not offer a complete solution,
+especially not when deciding to develop in TypeScript and most of the code becomes object oriented.
 
-To create full fake objects, you need to place them in a literal object and use `for` loop.
-`Faker.ts` provides an easy and simple solution to an annoying and inconvenient problem that
-allows you to set "fixtures" as metadata on the department itself.
-This also allows the use of interfaces and, among other things, the enforcement of contracts.
+Therefore, we thought of a convenient and efficient solution that allows the use
+of only one decorator, Mock decorator that allows to create mocks by placing it above the properties of the class.
+
+Mockingbird offers several options for creating mocks, including the use of the
+well-known library Faker, which allows you to create information such as a fake email, a fake username,
+a fake address and more.
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.

@@ -7,7 +7,7 @@
       "prerelease": true
     }
   ],
-  "repositoryUrl": "https://github.com/omermorad/faker.ts.git",
+  "repositoryUrl": "https://github.com/omermorad/mockingbird-ts.git",
   "debug": "true",
   "plugins": [
     "@semantic-release/commit-analyzer",
