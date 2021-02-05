@@ -9,6 +9,10 @@
     {
       "name": "beta",
       "prerelease": true
+    },
+    {
+      "name": "pre/rc",
+      "prerelease": "rc"
     }
   ],
   "repositoryUrl": "https://github.com/omermorad/mockingbird-ts.git",
