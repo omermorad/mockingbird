@@ -125,7 +125,6 @@ workflows:
           filters:
             branches:
               only:
-                - master
                 - alpha
                 - beta
                 - next
