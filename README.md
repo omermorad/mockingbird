@@ -5,13 +5,13 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <p align="center">
-  <img width="450" src="https://github.com/omermorad/mockingbird-ts/blob/master/docs/logo.png" alt="Faker.ts Logo">
+  <img width="450" src="https://github.com/omermorad/mockingbird-ts/blob/master/docs/logo.png" alt="Mockingbird Logo">
 
   <h1 align="center">Mockingbird</h1>
 
-  <p align="center">
-    <strong>Super Simple, Yet Powerful, TypeScript Oriented Mocks Library</strong>
-  </p>
+  <h3 align="center">
+    Super Simple, Yet Powerful, TypeScript Oriented Mocks Creation Library
+  </h3>
 </p>
 
 ## Installation
@@ -22,11 +22,11 @@ npm i -D mockingbird-ts faker @types/faker
 ```
 
 ## Playground 
-**We have create a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Faker.ts in action!**
+**We have created a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird in action!**
 
 ## Usage
 
-**Here is the simplest usage of Faker.ts:**
+**Here is the simplest usage of Mockingbird:**
 
 ```typescript
 import { Mock, MockFactory } from 'mockingbird-ts';
