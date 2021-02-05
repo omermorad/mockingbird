@@ -128,7 +128,7 @@ workflows:
                 - alpha
                 - beta
                 - next
-                - 'pre/cr'
+                - 'pre/rc'
 
       - release:
           requires:
@@ -138,6 +138,5 @@ workflows:
               only:
                 - alpha
                 - beta
-                - next
                 - next
                 - 'pre/rc'
