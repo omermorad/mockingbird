@@ -1,3 +1,26 @@
+# 1.0.0-beta.1 (2021-02-05)
+
+
+### Bug Fixes
+
+* **signatures:** remove redundant signature for Date type overload ([e4fbbc1](https://github.com/omermorad/mockingbird-ts/commit/e4fbbc18eb710bc181ef7a2d98490132cf4771df))
+
+
+### Continuous Integration
+
+* **release:** add beta as pre-release branch ([aed0c09](https://github.com/omermorad/mockingbird-ts/commit/aed0c0906f22096f7ecabe9b75aee04d410e5cef))
+
+
+### Features
+
+* alpha release ([#12](https://github.com/omermorad/mockingbird-ts/issues/12)) ([5682bb4](https://github.com/omermorad/mockingbird-ts/commit/5682bb4c21df4d546166c613f8ed7fff937dc3dc))
+* faker.ts initial ([#6](https://github.com/omermorad/mockingbird-ts/issues/6)) ([714fc05](https://github.com/omermorad/mockingbird-ts/commit/714fc05d1fdd93e1a709ebe183776dd28d0681bf)), closes [#4](https://github.com/omermorad/mockingbird-ts/issues/4) [#7](https://github.com/omermorad/mockingbird-ts/issues/7) [#8](https://github.com/omermorad/mockingbird-ts/issues/8)
+
+
+### BREAKING CHANGES
+
+* **release:** Add 'tslib' as dependency
+
 ### Features
 
 * alpha release ([#12](https://github.com/omermorad/mockingbird-ts/issues/12)) ([5682bb4](https://github.com/omermorad/faker.ts/commit/5682bb4c21df4d546166c613f8ed7fff937dc3dc))
