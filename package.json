@@ -62,7 +62,8 @@
   },
   "dependencies": {
     "@plumier/reflect": "^1.0.0-rc.5",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
