@@ -1,6 +1,6 @@
 {
   "name": "mockingbird-ts",
-  "version": "1.0.0-beta.1",
+  "version": "1.0.0-rc.1",
   "license": "MIT",
   "description": "Super Simple, Yet Powerful, TypeScript Oriented Mocks Library",
   "keywords": [
@@ -62,7 +62,8 @@
   },
   "dependencies": {
     "@plumier/reflect": "^1.0.0-rc.5",
-    "reflect-metadata": "^0.1.13"
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.1.0"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
@@ -74,7 +75,7 @@
     "@types/node": "^14.14.16",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
-    "commitizen": "^4.2.2",
+    "commitizen": "^4.2.3",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.15.0",
     "eslint-config-prettier": "^3.6.0",
