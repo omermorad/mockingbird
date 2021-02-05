@@ -140,4 +140,4 @@ workflows:
                 - beta
                 - next
                 - next
-                - 'pre/cr'
+                - 'pre/rc'
