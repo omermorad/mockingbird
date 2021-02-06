@@ -5,13 +5,19 @@
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <p align="center">
-  <img width="450" src="https://github.com/omermorad/mockingbird-ts/blob/master/docs/logo.png" alt="Mockingbird Logo">
+  <!-- <img width="450" src="https://github.com/omermorad/mockingbird-ts/blob/master/docs/logo.png" alt="Mockingbird Logo"> -->
 
   <h1 align="center">Mockingbird</h1>
 
   <h3 align="center">
-    Super Simple, Yet Powerful, TypeScript Oriented Mocks Creation Library
+    Super Simple, Yet Powerful, TypeScript Library for Creating Mocks
   </h3>
+
+  <h4 align="center">
+    With Mockingbird writing mocks for unit tests has never been easier.
+    <br />
+    It also enables to use faker.js (Faker) with TypeScript!
+  </h4>
 </p>
 
 ## Installation
@@ -36,34 +42,13 @@ class Dog {
   readonly name: string;
   
   @Mock()
-  readonly birthday: Date;
+  readonly birthday: Date; // Will generate a recent date
 
   @Mock()
-  readonly goodPoints: number;
+  readonly goodPoints: number; // Will generate a random number
 }
 
 const result = MockFactory.create<Dog>(Dog);
-```
-
-**A more complex example:**
-```typescript
-import { Mock, MockFactory } from 'mockingbird-ts';
-
-class Person {
-  @Mock(faker => faker.name.firstName())
-  readonly name: string;
-  
-  @Mock()
-  readonly birthday: Date;
-
-  @Mock(faker => faker.internet.email())
-  readonly email: string;
-
-  @Mock({ type: Dog })
-  readonly dog: Dog;
-}
-
-const result = MockFactory.create<Person>(Person);
 ```
 
 **There are more options available to you in using `@Mock` decorator and also the `MockFactory` as well**
@@ -72,8 +57,8 @@ const result = MockFactory.create<Person>(Person);
 
 
 ## Motivation
-When it comes to developing and especially writing unit tests of large projects
-containing different and diverse entities, mocks are widely used to simulate real data.
+When it comes to writing unit tests of large projects containing different and
+diverse entities, mocks are widely used to simulate real data.
 
 Creating mocks can be a tedious and cumbersome process and is usually created
 manually or by using libraries like Faker or Chance, which also do not offer a complete solution,
@@ -85,6 +70,18 @@ of only one decorator, Mock decorator that allows to create mocks by placing it 
 Mockingbird offers several options for creating mocks, including the use of the
 well-known library Faker, which allows you to create information such as a fake email, a fake username,
 a fake address and more.
+
+### What is faker.js (aka Faker)?
+For those of you who are unfamiliar with `faker.js`, it is an old library written
+with pure JavaScript, which is used to "generate massive amounts of fake data in
+the browser and Node".
+
+Fake data is usually needed for testing purposes, to assist in the development process itself,
+and sometimes, also for the purpose of demonstrations and training.
+
+Mockingbird uses Faker under the hood and making it possible to use faker.js in
+a "TypeScript" way, and thereby allows to create mocks that are meaningful like
+email, first name, address and many more.
 
 ## License
 Distributed under the MIT License. See `LICENSE` for more information.

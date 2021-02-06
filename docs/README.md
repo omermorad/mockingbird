@@ -4,7 +4,7 @@ Here is a detailed explanation of the different options for using the `Mock` dec
 
 | Identifier                                                    | Function                                                | Will Generate                           | Notes                                                  | 
 |---------------------------------------------------------------|---------------------------------------------------------|-----------------------------------------|--------------------------------------------------------| 
-| [Callback](#callback)                                         | `@Mock(callback: (faker: Faker.FakerStatic) => any)` | Value from the callback invocation      |                                                           | 
+| [Callback](#callback)                                         | `@Mock(callback: (faker: Faker.FakerStatic) => any)` | Value from the callback invocation      |    Uses the Faker library under the hood, Faker docs are [here](https://faker.readthedocs.io/en/master/) | 
 | [Inferred Value](#inferred-value)                             | `@Mock()`                                            | Random value inferred from the property type   |                                                    | 
 | [Class](#class)                                               | `@Mock(value: ClassType)`                            | Matching class type                     | Primitive constructors can be used as well                | 
 | [Absolute Value](#absolute-value)                             | `@Mock(value: string \| boolean \| number \| ObjectLiteral)`| The exact given value                   |                                                    | 
@@ -23,7 +23,8 @@ and represents a 'type' of actual class (not an instance)
 
 ## Callback
 
-The first option, probably the most common one, is to pass a callback function that uses the `faker` argument as the actual `faker` instance.
+The first option, probably the most common one, is to pass a callback function that
+uses the `faker` argument as the actual `faker` instance.
 
 So the result of the following code:
 
