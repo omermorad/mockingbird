@@ -1,1 +1,1 @@
-export * from './mock.decorator';
+export { Mock } from './mock.decorator';
