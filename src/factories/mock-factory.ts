@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { ClassProcessor } from '../class-processor';
-import { ClassLiteral, Class } from '../types/mock-options.type';
+import { MockedClass, Class } from '../types/mock-options.type';
 import { MockDecoratorFactoryOptions } from '../types';
 import { ClassReflector } from '../class-reflector';
 
@@ -14,7 +14,7 @@ export class MockFactory {
    *
    * @param target
    */
-  public static create<T = unknown>(target: Class<T>): ClassLiteral<T>;
+  public static create<T = unknown>(target: Class<T>): MockedClass<T>;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -32,7 +32,7 @@ export class MockFactory {
    * @param target
    * @param options
    */
-  public static create<T = unknown>(target: Class<T>, options: MockDecoratorFactoryOptions): ClassLiteral<T>[];
+  public static create<T = unknown>(target: Class<T>, options: MockDecoratorFactoryOptions): MockedClass<T>[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -44,16 +44,16 @@ export class MockFactory {
   public static create<T = unknown>(
     target: Class<T>,
     options?: MockDecoratorFactoryOptions
-  ): ClassLiteral<T> | ClassLiteral<T>[] {
+  ): MockedClass<T> | MockedClass<T>[] {
     const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
 
     const factory = new ClassProcessor<T>(faker, new ClassReflector(), locale);
 
     if (!count || count === 1) {
-      return factory.process(target) as ClassLiteral<T>;
+      return factory.process(target) as MockedClass<T>;
     }
 
-    const objects: ClassLiteral<T>[] = [];
+    const objects: MockedClass<T>[] = [];
 
     for (let i = 1; i <= count; i++) {
       objects.push(factory.process(target));

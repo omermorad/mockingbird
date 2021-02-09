@@ -11,6 +11,10 @@ export interface Class<T = any> extends Function {
   new (...args: any[]): T;
 }
 
-export type ClassLiteral<T> = Partial<{ [K in keyof T]: T[K] }>;
+export type ClassLiteral<T> = { [K in keyof T]: T[K] };
+
+export type PartialClassLiteral<T> = Partial<ClassLiteral<T>>;
+
+export type MockedClass<T> = ClassLiteral<T> | PartialClassLiteral<T>;
 
 export type MockOptions = Callback | ExactValue | Class | EnumObject | MultiClass;
