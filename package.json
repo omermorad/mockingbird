@@ -1,6 +1,6 @@
 {
   "name": "mockingbird-ts",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0",
   "license": "MIT",
   "description": "Super Simple, Yet Powerful, TypeScript Library for Creating Mocks",
   "keywords": [
