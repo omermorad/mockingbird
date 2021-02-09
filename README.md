@@ -10,13 +10,11 @@
   <h1 align="center">Mockingbird</h1>
 
   <h3 align="center">
-    Super Simple, Yet Powerful, TypeScript Library for Creating Mocks
+    Decorator Powered TypeScript Library for Creating Mocks
   </h3>
 
   <h4 align="center">
-    With Mockingbird writing mocks for unit tests has never been easier.
-    <br />
-    It also enables to use faker.js (Faker) with TypeScript!
+    Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator (including <a href="https://github.com/marak/Faker.js/">faker.js</a> support)
   </h4>
 </p>
 
