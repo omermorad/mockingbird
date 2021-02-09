@@ -6,7 +6,7 @@ import { MockOptions } from '../types/mock-options.type';
 export const MOCK_DECORATOR_NAME = 'Mock';
 
 /**
- * Using undefined (or nothing actually) will infer the decoratorValue from the property type.
+ * Using undefined (or nothing actually) will infer the value from the property type.
  * The types can be either 'string', 'number' or a 'boolean'
  *
  * @constructor
@@ -14,7 +14,7 @@ export const MOCK_DECORATOR_NAME = 'Mock';
 export function Mock(): PropertyDecorator;
 
 /**
- * Will invoke the callback and generate a decoratorValue from 'faker' instance
+ * Will invoke the callback and generate a value from 'faker' instance
  *
  * @example
  * Mock(faker => faker.internet.email())
@@ -38,7 +38,7 @@ export function Mock(callback: Callback): PropertyDecorator;
 export function Mock(value: ExactValue): PropertyDecorator;
 
 /**
- * Generate an object matching to the given class (assuming the class is decorated with Mock)
+ * Generate an object of the given class (who's properties can be decorated with Mock() as well)
  *
  * @example
  * class Dog { ... }
@@ -50,7 +50,7 @@ export function Mock(value: ExactValue): PropertyDecorator;
 export function Mock(value: Class): PropertyDecorator;
 
 /**
- * Generate a random decoratorValue from the given enum
+ * Generate a random value from the given enum
  *
  * @example
  * enum Feeling { Happy, Sad, Numb }
@@ -62,7 +62,7 @@ export function Mock(value: Class): PropertyDecorator;
 export function Mock(options: EnumObject): PropertyDecorator;
 
 /**
- * Generate multiple objects matching the given class (assuming the class is decorated with Mock)
+ * Generate multiple objects of the given class (who's properties can be decorated with Mock() as well)
  *
  * @param options: { type: ClassType; count: number }
  * @constructor
@@ -70,8 +70,7 @@ export function Mock(options: EnumObject): PropertyDecorator;
 export function Mock(options: MultiClass): PropertyDecorator;
 
 /**
- * Mock property decorator. This decorator will be parsed and will determine
- * the actual decoratorValue of the decorated property.
+ * Mock property decorator. The options passed will determine the decorated property's generated value
  *
  * @param options
  * @default undefined
