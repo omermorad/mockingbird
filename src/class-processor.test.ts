@@ -1,4 +1,4 @@
-import { mocked } from 'ts-jest';
+import { mocked } from 'ts-jest/utils';
 import * as reflectModule from '@plumier/reflect';
 import { ClassReflection } from '@plumier/reflect';
 import { ClassProcessor } from './class-processor';

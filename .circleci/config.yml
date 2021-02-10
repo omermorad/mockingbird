@@ -95,8 +95,8 @@ jobs:
           at: ~/repo
 
       - run:
-          name: Semantic Release
-          command: npx semantic-release
+          name: Release
+          command: npx semantic-release --dry-run
 
 workflows:
   version: 2.1
@@ -125,6 +125,7 @@ workflows:
           filters:
             branches:
               only:
+                - master
                 - alpha
                 - beta
                 - next
@@ -136,6 +137,7 @@ workflows:
           filters:
             branches:
               only:
+                - master
                 - alpha
                 - beta
                 - next
