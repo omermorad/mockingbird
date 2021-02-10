@@ -5,7 +5,7 @@ import { EnumValueHandler } from './handlers/enum-value-handler';
 import { ArrayValueHandler } from './handlers/array-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
-import { MockedClass, Class, MockOptions } from './types/mock-options.type';
+import { ClassLiteral, Class, MockOptions } from './types/mock-options.type';
 import { IProperty } from './types/iproperty.interface';
 import { ValueHandler } from './types/value-handler.interface';
 import { IClassProcessor } from './types/iclass-processor.interface';
@@ -44,7 +44,7 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
    *
    * @param target
    */
-  public process(target: Class<T>): MockedClass<T> {
+  public process(target: Class<T>): ClassLiteral<T> {
     if (!target) {
       throw new Error(`Target class '${target}' is 'undefined'`);
     }
@@ -53,6 +53,6 @@ export class ClassProcessor<T> implements IClassProcessor<T> {
 
     return classReflection.reduce((acc, val) => {
       return { ...acc, [val.name]: this.handlePropertyValue(val) };
-    }, {});
+    }, {}) as ClassLiteral<T>;
   }
 }

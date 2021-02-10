@@ -3,7 +3,7 @@ import { MockOptions, MultiClass } from './types/mock-options.type';
 export class PropertyDecoratorValue<T extends MockOptions> {
   private readonly type: string;
 
-  constructor(public readonly value: MockOptions) {
+  public constructor(public readonly value: MockOptions) {
     this.type = typeof value;
   }
 

@@ -1,5 +1,5 @@
 import { TestClasses } from './common/test-classes';
-import { MockedClass, MockFactory } from '../../src';
+import { ClassLiteral, MockFactory } from '../../src';
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
 import TestClassWithCallback = TestClasses.TestClassWithCallback;
@@ -8,7 +8,7 @@ import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
 import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
 
 describe('Mock Factory - Integration Test', () => {
-  let result: MockedClass<any>;
+  let result: ClassLiteral<any>;
 
   describe('Given a decorated class', () => {
     describe('when using the related decorator with absolute values', () => {

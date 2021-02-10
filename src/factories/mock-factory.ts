@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { ClassProcessor } from '../class-processor';
-import { MockedClass, Class } from '../types/mock-options.type';
+import { ClassLiteral, Class } from '../types/mock-options.type';
 import { MockDecoratorFactoryOptions } from '../types';
 import { ClassReflector } from '../class-reflector';
 
@@ -14,7 +14,7 @@ export class MockFactory {
    *
    * @param target
    */
-  public static create<T = unknown>(target: Class<T>): MockedClass<T>;
+  public static create<TClass extends any = any>(target: Class<TClass>): ClassLiteral<TClass>;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -32,7 +32,10 @@ export class MockFactory {
    * @param target
    * @param options
    */
-  public static create<T = unknown>(target: Class<T>, options: MockDecoratorFactoryOptions): MockedClass<T>[];
+  public static create<TClass extends any = any>(
+    target: Class<TClass>,
+    options: MockDecoratorFactoryOptions
+  ): ClassLiteral<TClass>[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -41,19 +44,19 @@ export class MockFactory {
    * @param target
    * @param options
    */
-  public static create<T = unknown>(
-    target: Class<T>,
+  public static create<TClass extends any = any>(
+    target: Class<TClass>,
     options?: MockDecoratorFactoryOptions
-  ): MockedClass<T> | MockedClass<T>[] {
+  ): ClassLiteral<TClass> | ClassLiteral<TClass>[] {
     const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
 
-    const factory = new ClassProcessor<T>(faker, new ClassReflector(), locale);
+    const factory = new ClassProcessor<TClass>(faker, new ClassReflector(), locale);
 
     if (!count || count === 1) {
-      return factory.process(target) as MockedClass<T>;
+      return factory.process(target) as ClassLiteral<TClass>;
     }
 
-    const objects: MockedClass<T>[] = [];
+    const objects: ClassLiteral<TClass>[] = [];
 
     for (let i = 1; i <= count; i++) {
       objects.push(factory.process(target));

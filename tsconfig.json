@@ -6,8 +6,9 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "sourceMap": true,
+    "sourceMap": false,
     "baseUrl": "./",
+    "rootDir": "./src",
     "outDir": "./dist",
     "incremental": false,
     "noImplicitAny": false,
@@ -30,6 +31,7 @@
     "index.ts",
     "node_modules",
     "dist",
+    "sample",
     "test",
     "coverage"
   ]
