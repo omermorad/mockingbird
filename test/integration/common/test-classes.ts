@@ -32,7 +32,14 @@ export namespace TestClasses {
     name: string;
   }
 
-  export class TestClassWithNoValues {
+  export interface TestClassWithNoValuesInterface {
+    name: string;
+    num: number;
+    binary: boolean;
+    date: Date;
+  }
+
+  export class TestClassWithNoValues implements TestClassWithNoValuesInterface {
     @Mock()
     name: string;
 

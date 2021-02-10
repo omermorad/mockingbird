@@ -1,10 +1,10 @@
 import supertest, { Response } from 'supertest';
 import { Application } from 'express';
 import { Database } from 'sqlite3';
-import { applicationFactory } from '../src/app';
-import { Connection } from 'typeorm';
-import { User } from '../src/interface/user.interface';
 import { MockFactory } from 'mockingbird-ts';
+import { Connection } from 'typeorm';
+import { applicationFactory } from '../src/app';
+import { User } from '../src/interface/user.interface';
 import { UserEntity } from '../src/entity/user.entity';
 import { connectionFactory } from '../src/common/connection-factory';
 
