@@ -14,6 +14,10 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Get NPM Cache Directory Path
+        id: npm-cache-dir
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
       - name: Lint Commit Message
         run: |
           npm i -D @commitlint/config-conventional
@@ -25,13 +29,28 @@ jobs:
           node-version: 14
 
       - name: NPM CI
-        run: npm ci
+        id: npm-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Build
         run: npm run build
 
       - name: Test
         run: npm run test:ci
+
+      - name: Upload Report to Codecov
+        uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./coverage
+          fail_ci_if_error: true
+          files: ./coverage/cobertura-coverage.xml
+          name: codecov-umbrella
 
       - name: Release
         run: npx semantic-release --dry-run
