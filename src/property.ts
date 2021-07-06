@@ -1,12 +1,17 @@
 import { PropertyReflection } from '@plumier/reflect';
 import { MockOptions } from './types/mock-options.type';
-import { IProperty } from './types/iproperty.interface';
 import { PropertyDecoratorValue } from './property-decorator-value';
 
-export class Property<T extends MockOptions> implements IProperty<T> {
+export interface Property<T extends MockOptions> {
+  readonly name: string;
+  readonly constructorName: string;
+  readonly decoratorValue: PropertyDecoratorValue<T>;
+}
+
+export class Property<T extends MockOptions> implements Property<T> {
   constructor(
-    public readonly name,
-    public readonly constructorName,
+    public readonly name: string,
+    public readonly constructorName: string,
     public readonly decoratorValue: PropertyDecoratorValue<T>
   ) {}
   public static create(property: PropertyReflection, mockDecoratorValue: MockOptions | null): Property<MockOptions> {

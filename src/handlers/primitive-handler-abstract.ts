@@ -1,4 +1,4 @@
-import { IProperty } from '../types/iproperty.interface';
+import { Property } from '../property';
 import { ExactValue, MockOptions } from '../types/mock-options.type';
 
 import { AbstractValueHandler } from './abstract-value-handler';
@@ -21,7 +21,7 @@ export abstract class PrimitiveHandlerAbstract<P extends MockOptions> extends Ab
     }
   }
 
-  public isPrimitive(propertyDto: IProperty<P>): boolean {
+  public isPrimitive(propertyDto: Property<P>): boolean {
     return isPrimitive(propertyDto.constructorName) && !propertyDto.decoratorValue.isCallback();
   }
 }
