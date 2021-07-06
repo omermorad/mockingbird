@@ -1,4 +1,4 @@
-import { IProperty } from '../types/iproperty.interface';
+import { Property } from '../property';
 import { MockOptions } from '../types/mock-options.type';
 
-export type ClassReflectionDto = IProperty<MockOptions>[];
+export type ClassReflectionDto = Property<MockOptions>[];
