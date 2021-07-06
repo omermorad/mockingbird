@@ -131,7 +131,6 @@ workflows:
             parameters:
               os: [linux]
               node-version: ["16.4.2", "12.22.3", "14.17.3"]
-
           requires:
             - install
 
