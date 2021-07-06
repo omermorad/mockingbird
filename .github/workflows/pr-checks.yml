@@ -54,4 +54,4 @@ jobs:
           fail_ci_if_error: false
           files: ./coverage/cobertura-coverage.xml
           name: codecov-umbrella
-          verbose: true
+          verbose: false
