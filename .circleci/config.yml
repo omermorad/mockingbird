@@ -3,6 +3,14 @@ version: 2.1
 orbs:
   codecov: codecov/codecov@1.0.2
 
+executors:
+  linux:
+    docker:
+      - image: cimg/base:2020.01
+  macos:
+    macos:
+      xcode: 11.4
+
 defaults: &defaults
   working_directory: ~/repo
 
@@ -47,10 +55,22 @@ jobs:
           command: echo "$COMMIT_MESSAGE" | npx commitlint
 
   test:
-    <<: *defaults
+    working_directory: ~/repo
+
+    parameters:
+      os:
+        type: executor
+      node-version:
+        type: string
+
+    executor: << parameters.os >>
+
     steps:
       - attach_workspace:
           at: ~/repo
+
+      - node/install:
+          node-version: << parameters.node-version >>
 
       - run:
           name: Test
@@ -110,6 +130,11 @@ workflows:
             - install
 
       - test:
+          matrix:
+            parameters:
+              os: [linux, macos]
+              node-version: ["16.4.2", "12.22.3", "14.17.3"]
+
           requires:
             - install
 
