@@ -8,9 +8,6 @@ executors:
   linux:
     docker:
       - image: cimg/base:2020.01
-  macos:
-    macos:
-      xcode: 11.4
 
 defaults: &defaults
   working_directory: ~/repo
@@ -78,6 +75,7 @@ jobs:
           command: npm run test:ci
           environment:
             JEST_JUNIT_OUTPUT_DIR: ./coverage
+            NODE_ENV: 'test'
 
       - store_test_results:
           path: ./coverage
@@ -102,8 +100,6 @@ jobs:
       - run:
           name: Build
           command: npm run build
-          environment:
-            NODE_ENV: 'test'
 
       - persist_to_workspace:
           root: ~/repo
