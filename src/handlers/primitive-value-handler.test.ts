@@ -7,7 +7,7 @@ import { PropertyDecoratorValue } from '../property-decorator-value';
 describe('PrimitiveValueInspector Unit', () => {
   let handler: PrimitiveValueHandler<ExactValue>;
 
-  const fakerMock = ({
+  const fakerMock = {
     random: {
       alpha: jest.fn(),
       number: jest.fn(),
@@ -18,7 +18,7 @@ describe('PrimitiveValueInspector Unit', () => {
       recent: jest.fn(),
     },
     setLocale: () => jest.fn(),
-  } as unknown) as FakerStatic;
+  } as unknown as FakerStatic;
 
   describe('given a PrimitiveValueInspector', () => {
     beforeAll(() => {

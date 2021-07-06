@@ -5,7 +5,8 @@ import { AbstractValueHandler } from './abstract-value-handler';
 
 export class ObjectLiteralValueHandler<P extends ObjectLiteral>
   extends AbstractValueHandler
-  implements ValueHandler<P> {
+  implements ValueHandler<P>
+{
   public shouldHandle(property: Property<P>): boolean {
     const { decoratorValue } = property;
     return decoratorValue.isObject() && !decoratorValue.isMultiClass() && !decoratorValue.isEnum();
