@@ -1,17 +1,16 @@
-import { IProperty } from '../types/iproperty.interface';
+import { Property } from '../property';
 import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
 import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;
 import { Class } from 'src/types';
-import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('SingleClassValueInspector Unit', () => {
   let handler: SingleClassValueHandler<Class>;
   const DTO_CLASS_VALUE = class TestClass {};
 
-  const property: IProperty<Class> = new Property(
+  const property: Property<Class> = new Property(
     'testPropertyName',
     'TestClass',
     new PropertyDecoratorValue(DTO_CLASS_VALUE)
