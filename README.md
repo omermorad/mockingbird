@@ -22,7 +22,7 @@
 Install the package alongside `faker` and `@types/faker` peer dependencies:
 
 ```bash
-npm i -D mockingbird-ts faker @types/faker
+npm i mockingbird-ts faker @types/faker
 ```
 
 ## Playground 
@@ -49,10 +49,10 @@ class Dog {
 const result = MockFactory.create<Dog>(Dog);
 ```
 
-**There are more options available to you in using `@Mock` decorator and also the `MockFactory` as well**
+## Documentation
 
-[Jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
-
+There are many more options that you can use with the `@Mock` decorator (and also the `MockFactory`). \
+[Click here to jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
 
 ## Motivation
 When it comes to writing unit tests of large projects containing different and
