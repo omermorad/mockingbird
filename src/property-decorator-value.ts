@@ -23,7 +23,7 @@ export class PropertyDecoratorValue<T extends MockOptions> {
     return typeof this.value === 'function';
   }
 
-  public isEnum() {
+  public isEnum(): boolean {
     return this.isObject() && this.value.hasOwnProperty('enum');
   }
 }

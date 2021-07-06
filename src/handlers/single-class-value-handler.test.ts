@@ -16,9 +16,9 @@ describe('SingleClassValueInspector Unit', () => {
     new PropertyDecoratorValue(DTO_CLASS_VALUE)
   );
 
-  const classProcessorMock = ({
+  const classProcessorMock = {
     process: jest.fn(),
-  } as unknown) as ClassProcessor<any>;
+  } as unknown as ClassProcessor<any>;
 
   describe('given a SingleClassValueInspector', () => {
     beforeAll(() => {

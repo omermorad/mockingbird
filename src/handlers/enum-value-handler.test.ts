@@ -11,11 +11,11 @@ describe('EnumValueInspector Unit', () => {
     StateThree = 'three',
   }
 
-  const fakerMock = ({
+  const fakerMock = {
     random: {
       arrayElement: jest.fn(),
     },
-  } as unknown) as FakerStatic;
+  } as unknown as FakerStatic;
 
   let handler: EnumValueHandler<EnumObject>;
 

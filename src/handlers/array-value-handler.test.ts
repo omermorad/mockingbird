@@ -15,11 +15,11 @@ describe('ArrayValueHandler Unit', () => {
     return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue<MultiClass>(mockValue));
   }
 
-  const classProcessorMock = ({
+  const classProcessorMock = {
     process: jest.fn(),
-  } as unknown) as ClassProcessor<any>;
+  } as unknown as ClassProcessor<any>;
 
-  const fakerMock = ({
+  const fakerMock = {
     random: {
       alpha: jest.fn(),
       number: jest.fn(),
@@ -29,7 +29,7 @@ describe('ArrayValueHandler Unit', () => {
     date: {
       recent: jest.fn(),
     },
-  } as unknown) as FakerStatic;
+  } as unknown as FakerStatic;
 
   describe('given a ArrayValueHandler', () => {
     beforeAll(() => {
