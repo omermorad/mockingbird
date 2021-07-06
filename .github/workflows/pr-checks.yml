@@ -32,7 +32,6 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: NPM CI
-        run: npm ci
         id: npm-cache
         uses: actions/cache@v2
         with:
