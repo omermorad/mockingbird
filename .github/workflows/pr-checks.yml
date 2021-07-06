@@ -17,6 +17,10 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Get NPM Cache Directory Path
+        id: npm-cache-dir
+        run: echo "::set-output name=dir::$(npm config get cache)"
+
       - name: Lint Commit Message
         run: |
           npm i -D @commitlint/config-conventional
@@ -29,6 +33,13 @@ jobs:
 
       - name: NPM CI
         run: npm ci
+        id: npm-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Build
         run: npm run build
