@@ -6,9 +6,9 @@ import { Mock } from './decorators/mock.decorator';
 import { ClassReflector } from './class-reflector';
 import FakerStatic = Faker.FakerStatic;
 
-const fakerMock = ({
+const fakerMock = {
   setLocale: jest.fn(),
-} as unknown) as FakerStatic;
+} as unknown as FakerStatic;
 
 const factory = new ClassProcessor(fakerMock, new ClassReflector(), 'en');
 const reflectSpy = jest.spyOn(reflectModule, 'default');

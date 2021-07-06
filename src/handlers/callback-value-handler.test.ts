@@ -7,7 +7,7 @@ import { PropertyDecoratorValue } from '../property-decorator-value';
 describe('CallbackValueInspector Unit', () => {
   let handler: CallbackValueHandler<Callback>;
 
-  const fakerMock = ({ internet: { email: jest.fn() } } as unknown) as FakerStatic;
+  const fakerMock = { internet: { email: jest.fn() } } as unknown as FakerStatic;
 
   describe('given a CallbackValueInspector', () => {
     beforeAll(() => {

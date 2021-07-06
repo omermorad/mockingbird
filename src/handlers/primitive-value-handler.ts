@@ -5,7 +5,8 @@ import { ExactValue } from '../types/mock-options.type';
 
 export class PrimitiveValueHandler<P extends ExactValue>
   extends PrimitiveHandlerAbstract<P>
-  implements ValueHandler<P> {
+  implements ValueHandler<P>
+{
   public shouldHandle(property: Property<P>): boolean {
     return this.isPrimitive(property);
   }
