@@ -1,5 +1,4 @@
 import { ValueHandler } from '../types/value-handler.interface';
-import { IProperty } from '../types/iproperty.interface';
 import { ExactValue, Class, MultiClass } from '../types/mock-options.type';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { Property } from '../property';
@@ -7,7 +6,7 @@ import { isPrimitive } from '../common/is-primitive';
 
 // TODO: refactor (2nd phase). All other mock options should be wrapped with 'multiple' functionality
 export class ArrayValueHandler<P extends MultiClass> extends PrimitiveHandlerAbstract<P> implements ValueHandler<P> {
-  public shouldHandle(property: IProperty<P>): boolean {
+  public shouldHandle(property: Property<P>): boolean {
     return property.decoratorValue.isMultiClass();
   }
 

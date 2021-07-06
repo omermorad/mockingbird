@@ -49,7 +49,6 @@ export class MockFactory {
     options?: MockDecoratorFactoryOptions
   ): ClassLiteral<TClass> | ClassLiteral<TClass>[] {
     const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
-
     const factory = new ClassProcessor<TClass>(faker, new ClassReflector(), locale);
 
     if (!count || count === 1) {

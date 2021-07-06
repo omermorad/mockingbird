@@ -1,4 +1,3 @@
-import { IProperty } from '../types/iproperty.interface';
 import { ArrayValueHandler } from './array-value-handler';
 import { ClassProcessor } from '../class-processor';
 import { MultiClass } from '../types/mock-options.type';
@@ -12,7 +11,7 @@ describe('ArrayValueHandler Unit', () => {
 
   let handler: ArrayValueHandler<MultiClass>;
 
-  function createProperty(mockValue: MultiClass): IProperty<MultiClass> {
+  function createProperty(mockValue: MultiClass): Property<MultiClass> {
     return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue<MultiClass>(mockValue));
   }
 
@@ -47,7 +46,7 @@ describe('ArrayValueHandler Unit', () => {
 
     describe("when calling 'produceValue' method", () => {
       describe('and the decoratorValue is null', () => {
-        test('return null', () => {
+        test('then return null', () => {
           expect(handler.produceValue(createProperty(null))).toBeNull();
         });
       });

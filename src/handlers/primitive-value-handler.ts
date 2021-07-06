@@ -1,16 +1,16 @@
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueHandler } from '../types/value-handler.interface';
-import { IProperty } from '../types/iproperty.interface';
+import { Property } from '../property';
 import { ExactValue } from '../types/mock-options.type';
 
 export class PrimitiveValueHandler<P extends ExactValue>
   extends PrimitiveHandlerAbstract<P>
   implements ValueHandler<P> {
-  public shouldHandle(property: IProperty<P>): boolean {
+  public shouldHandle(property: Property<P>): boolean {
     return this.isPrimitive(property);
   }
 
-  public produceValue<T>(property: IProperty<P>): any {
+  public produceValue<T>(property: Property<P>): any {
     const { decoratorValue } = property;
 
     if (typeof decoratorValue.value !== 'undefined') {
