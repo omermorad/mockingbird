@@ -25,9 +25,6 @@ Install the package alongside `faker` and `@types/faker` peer dependencies:
 npm i mockingbird-ts faker @types/faker
 ```
 
-## Playground 
-**We have created a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird in action!**
-
 ## Usage
 
 **Here is the simplest usage of Mockingbird:**
@@ -53,6 +50,13 @@ const result = MockFactory.create<Dog>(Dog);
 
 There are many more options that you can use with the `@Mock` decorator (and also the `MockFactory`). \
 [Click here to jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
+
+**Besides, we have also created a full working example for you; [you can find it under
+the sample folder](https://github.com/omermorad/mockingbird-ts/tree/master/sample)**
+
+
+## Playground
+**We have created a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird in action!**
 
 ## Motivation
 When it comes to writing unit tests of large projects containing different and
