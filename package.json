@@ -38,14 +38,14 @@
   },
   "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
   "scripts": {
-    "prebuild": "./node_modules/.bin/rimraf dist",
+    "prebuild": "npx rimraf dist",
+    "postinstall": "husky install",
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
-    "test": "npm run lint && jest --config jest.config.json --runInBand --verbose",
-    "test:ci": "npm run lint && jest --config jest.config.json --runInBand --coverage --collectCoverage=true --reporters=jest-junit --verbose",
-    "lint": "eslint 'src/**/*.ts'",
-    "lint:fix": "eslint 'src/**/*.ts' --fix",
-    "semantic-release": "semantic-release"
+    "test": "npm run lint && jest --runInBand --verbose",
+    "test:cov": "jest --runInBand --coverage --collectCoverage=true --reporters=jest-junit",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
   },
   "files": [
     "dist",
