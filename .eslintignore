@@ -5,3 +5,4 @@ dist/*
 *.js
 *.d.ts
 index.ts
+jest.config.js
