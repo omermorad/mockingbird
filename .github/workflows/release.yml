@@ -18,11 +18,6 @@ jobs:
         id: npm-cache-dir
         run: echo "::set-output name=dir::$(npm config get cache)"
 
-      - name: Lint Commit Message
-        run: |
-          npm i -D @commitlint/config-conventional
-          echo $(git log -1 --pretty=format:"%s") | npx commitlint
-
       - name: Setup NodeJS 14
         uses: actions/setup-node@master
         with:
@@ -37,11 +32,17 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Lint Commit Message
+        run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
+
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
 
       - name: Test
-        run: npm run test:ci
+        run: npm run test:cov
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
