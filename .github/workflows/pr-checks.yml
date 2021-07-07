@@ -57,6 +57,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: NPM Install
+        uses: actions/cache@v2
         with:
           path: ${{ steps.npm-cache-dir.outputs.dir }}
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
