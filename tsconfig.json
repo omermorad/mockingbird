@@ -32,7 +32,6 @@
     "node_modules",
     "dist",
     "sample",
-    "test",
-    "coverage"
+    "test"
   ]
 }
