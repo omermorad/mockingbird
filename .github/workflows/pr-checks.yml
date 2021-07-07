@@ -6,8 +6,10 @@ jobs:
     name: Lint Commit Message
     runs-on: ubuntu-latest
     steps:
-      - name: Lint Commit Message
+      - name: Checkout
         uses: actions/checkout@master
+
+      - name: Lint Commit Message
         run: |
           npm i -D @commitlint/config-conventional
           echo $(git log -1 --pretty=format:"%s") | npx commitlint
