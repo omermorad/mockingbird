@@ -1,31 +1,35 @@
 name: PR Inspection
-on: [ pull_request ]
+on: [pull_request]
 
 jobs:
-  setup:
+  lint-commit-msg:
+    name: Lint Commit Message
     runs-on: ubuntu-latest
+    steps:
+      - name: Lint Commit Message
+        uses: actions/checkout@master
+        run: |
+          npm i -D @commitlint/config-conventional
+          echo $(git log -1 --pretty=format:"%s") | npx commitlint
+
+  build-and-test:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [12.x, 14.x, 16.x]
     steps:
       - name: Checkout
         uses: actions/checkout@master
         with:
           ref: ${{ github.head_ref }}
 
-  build-and-test:
-    name: Build and Test
-    needs:
-      - setup
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [ 12.x, 14.x, 16.x ]
-
-    steps:
       - name: Get NPM Cache Directory Path
         id: npm-cache-dir
         run: echo "::set-output name=dir::$(npm config get cache)"
 
       - name: Use NodeJS ${{ matrix.node-version }}
-        uses: actions/setup-node@master
+        uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -38,18 +42,15 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
+      - name: Lint Source
+        run: npm run lint
+
       - name: Build
         run: npm run build
 
       - name: Test
         run: npm run test:cov
 
-  upload-coverage:
-    runs-on: ubuntu-latest
-    needs:
-      - setup
-      - build-and-test
-    steps:
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
         with:
@@ -59,20 +60,3 @@ jobs:
           files: ./coverage/cobertura-coverage.xml
           name: codecov-umbrella
           verbose: false
-
-  lint-commit-msg:
-    name: Lint Commit Message
-    runs-on: ubuntu-latest
-    needs:
-      - setup
-    steps:
-      - name: Get NPM Cache Directory Path
-        id: npm-cache-dir
-        run: echo "::set-output name=dir::$(npm config get cache)"
-
-      - name: Lint Source
-        run: npm run lint
-
-      - name: Lint Commit Message
-        run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
-
