@@ -4,12 +4,10 @@ on: [pull_request]
 jobs:
   build-and-test:
     name: Build and Test
-
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
-        node-version: [12.x, 14.x, 16.x]
+        node-version: [ 12.x, 14.x, 16.x ]
 
     steps:
       - name: Checkout
@@ -38,9 +36,6 @@ jobs:
       - name: Lint Commit Message
         run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
 
-      - name: Lint
-        run: npm run lint
-
       - name: Build
         run: npm run build
 
@@ -56,3 +51,20 @@ jobs:
           files: ./coverage/cobertura-coverage.xml
           name: codecov-umbrella
           verbose: false
+
+  lint-commit-msg:
+    name: Lint Commit Message
+    runs-on: ubuntu-latest
+    steps:
+      - name: NPM Install
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
+
+      - name: Lint Commit Message
+        run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
+
+      - name: Lint Source
+        run: npm run lint
