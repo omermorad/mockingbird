@@ -21,7 +21,7 @@ export namespace TestClasses {
     date: Date;
 
     @Mock({ thiss: 'is', an: 'object', literal: true })
-    objectLiteral: object;
+    objectLiteral: Record<string, unknown>;
   }
 
   export class TestClassWithCallback {

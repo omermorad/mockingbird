@@ -1,6 +1,6 @@
 import { MockOptions, MultiClass } from './types/mock-options.type';
 
-export class PropertyDecoratorValue<T extends MockOptions> {
+export class PropertyDecoratorValue {
   private readonly type: string;
 
   public constructor(public readonly value: MockOptions) {

@@ -9,10 +9,10 @@ describe('ArrayValueHandler Unit', () => {
   const DTO_CLASS_VALUE = class TestClass {};
   const DEFAULT_COUNT_FOR_DTO = 3;
 
-  let handler: ArrayValueHandler<MultiClass>;
+  let handler: ArrayValueHandler;
 
-  function createProperty(mockValue: MultiClass): Property<MultiClass> {
-    return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue<MultiClass>(mockValue));
+  function createProperty(mockValue: MultiClass): Property {
+    return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(mockValue));
   }
 
   const classProcessorMock = {

@@ -5,7 +5,7 @@ import { EnumValueHandler } from './handlers/enum-value-handler';
 import { ArrayValueHandler } from './handlers/array-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
-import { ClassLiteral, Class, MockOptions } from './types/mock-options.type';
+import { ClassLiteral, Class } from './types/mock-options.type';
 import { Property } from './property';
 import { ValueHandler } from './types/value-handler.interface';
 
@@ -15,8 +15,8 @@ export interface ClassProcessor<T> {
   process(target: Class<T>): ClassLiteral<T>;
 }
 
-export class ClassProcessor<T> implements ClassProcessor<T> {
-  private static readonly VALUE_INSPECTORS: Class<ValueHandler<MockOptions>>[] = [
+export class ClassProcessor<T> {
+  private static readonly VALUE_HANDLERS: Class<ValueHandler>[] = [
     EnumValueHandler,
     ArrayValueHandler,
     SingleClassValueHandler,
@@ -31,9 +31,9 @@ export class ClassProcessor<T> implements ClassProcessor<T> {
     this.faker.setLocale(locale);
   }
 
-  private handlePropertyValue(property: Property<MockOptions>): T | T[] {
-    for (const inspectorClass of ClassProcessor.VALUE_INSPECTORS) {
-      const inspector = new inspectorClass(this.faker, this) as ValueHandler<MockOptions>;
+  private handlePropertyValue(property: Property): T | T[] {
+    for (const inspectorClass of ClassProcessor.VALUE_HANDLERS) {
+      const inspector = new inspectorClass(this.faker, this);
 
       if (inspector.shouldHandle(property)) {
         return inspector.produceValue<T>(property);

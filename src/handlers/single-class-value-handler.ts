@@ -4,12 +4,12 @@ import { Class } from '../types/mock-options.type';
 import { isPrimitive } from '../common/is-primitive';
 import { AbstractValueHandler } from './abstract-value-handler';
 
-export class SingleClassValueHandler<P extends Class> extends AbstractValueHandler implements ValueHandler<P> {
-  public shouldHandle(property: Property<P>): boolean {
+export class SingleClassValueHandler extends AbstractValueHandler implements ValueHandler {
+  public shouldHandle(property: Property): boolean {
     return property.decoratorValue.isFunction() && !isPrimitive(property.constructorName);
   }
 
-  public produceValue<T>(propertyDto: Property<P>): any {
+  public produceValue(propertyDto: Property): any {
     return this.classProcessor.process(propertyDto.decoratorValue.value as Class);
   }
 }

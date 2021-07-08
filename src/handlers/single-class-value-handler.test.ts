@@ -3,18 +3,13 @@ import { SingleClassValueHandler } from '../handlers/single-class-value-handler'
 import { ClassProcessor } from '../class-processor';
 
 import FakerStatic = Faker.FakerStatic;
-import { Class } from 'src/types';
 import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('SingleClassValueInspector Unit', () => {
-  let handler: SingleClassValueHandler<Class>;
+  let handler: SingleClassValueHandler;
   const DTO_CLASS_VALUE = class TestClass {};
 
-  const property: Property<Class> = new Property(
-    'testPropertyName',
-    'TestClass',
-    new PropertyDecoratorValue(DTO_CLASS_VALUE)
-  );
+  const property: Property = new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(DTO_CLASS_VALUE));
 
   const classProcessorMock = {
     process: jest.fn(),

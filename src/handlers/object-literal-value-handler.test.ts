@@ -1,10 +1,9 @@
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
-import { ObjectLiteral } from '../types/mock-options.type';
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('ObjectLiteralValueInspector Unit', () => {
-  let property: Property<ObjectLiteral>, handler: ObjectLiteralValueHandler<ObjectLiteral>;
+  let property: Property, handler: ObjectLiteralValueHandler;
   const OBJECT_LITERAL_VALUE = { testArbitrary: 'and-arbitrary-decoratorValue' };
 
   describe('given a ObjectLiteralValueInspector', () => {
