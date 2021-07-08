@@ -43,7 +43,7 @@ will be
 ```
 
 ## Inferred Value
-When using the `Fixture` decorator without any value will generate a random value inffered from the property type.
+When using the `Mock` decorator without any value will generate a random value inffered from the property type.
 
 So the result of the following code:
 
@@ -75,7 +75,7 @@ Type `number` will generate a number between `1` to `100` \
 Type `boolean` will of course generate `true` or `false` 
 
 ## Class
-Passing a class will generate an object with the matching keys (decorated by the `Fixture` decorator)
+Passing a class will generate an object with the matching keys (decorated by the `Mock` decorator)
 
 So the result of the following code:
 
@@ -115,7 +115,7 @@ Will be:
 
 ## Absolute Value
 
-The "Absolute Value" option is pretty strait forward, the generated value from the `Fixture` decorator will the exact same value that has been passed
+The "Absolute Value" option is pretty strait forward, the generated value from the `Mock` decorator will the exact same value that has been passed
 
 So the result of the following code:
 
@@ -144,7 +144,7 @@ Will be:
 
 ## Enum
 
-Passing an enum object to the `Fixture` decorator will generate a random value from the given enum (not a key):
+Passing an enum object to the `Mock` decorator will generate a random value from the given enum (not a key):
 
 So the result of the following code:
 
@@ -165,9 +165,7 @@ Will be:
 
 ```typescript
 {
-  serial: 'John',
-  points: 78,
-  isLucky: true 
+  mood: 'happy'
 }
 ```
 
