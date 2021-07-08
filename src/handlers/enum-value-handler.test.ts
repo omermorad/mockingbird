@@ -1,5 +1,4 @@
 import { EnumValueHandler } from '../handlers/enum-value-handler';
-import { EnumObject } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';
@@ -17,7 +16,7 @@ describe('EnumValueInspector Unit', () => {
     },
   } as unknown as FakerStatic;
 
-  let handler: EnumValueHandler<EnumObject>;
+  let handler: EnumValueHandler;
 
   describe('given a EnumValueInspector', () => {
     beforeAll(() => {
