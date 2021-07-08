@@ -1,7 +1,7 @@
 [![ISC license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![npm version](http://img.shields.io/npm/v/mockingbird-ts.svg?style=flat)](https://npmjs.org/package/mockingbird-ts "View this project on npm")
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird-ts/master.svg?style=flat-square)](https://codecov.io/gh/omermorad/mockingbird-ts)
-[![ci](https://github.com/omermorad/mockingbird-ts/actions/workflows/release.yml/badge.svg?branch=master)](https://github.com/{userName}/{repoName}/actions)
+[![Master](https://github.com/omermorad/mockingbird-ts/actions/workflows/master.yml/badge.svg?branch=master)](https://github.com/{userName}/{repoName}/actions)
 [![semantic-release](https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg)](https://github.com/semantic-release/semantic-release)
 
 <p align="center">
