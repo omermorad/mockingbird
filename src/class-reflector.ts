@@ -8,7 +8,7 @@ import { ClassReflectionDto } from './types/class-reflection-dto.type';
 export class ClassReflector {
   public static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
 
-  private extractDecoratedProperties(classReflection: ClassReflection): Property<MockOptions>[] {
+  private extractDecoratedProperties(classReflection: ClassReflection): Property[] {
     return classReflection.properties.map((property) => {
       const value = ClassReflector.extractMockDecoratorValue(property);
 

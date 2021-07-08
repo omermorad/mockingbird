@@ -1,9 +1,8 @@
 import { ValueHandler } from '../types/value-handler.interface';
 import { Property } from '../property';
-import { EnumObject } from '../types/mock-options.type';
 import { AbstractValueHandler } from './abstract-value-handler';
 
-export class EnumValueHandler<P extends EnumObject> extends AbstractValueHandler implements ValueHandler<P> {
+export class EnumValueHandler extends AbstractValueHandler implements ValueHandler {
   private static getEnumValues(enumObj: Record<string, unknown>): any[] {
     const keysList = Object.getOwnPropertyNames(enumObj).filter(
       (key) => enumObj.propertyIsEnumerable(key) && key !== String(parseFloat(key))
@@ -20,11 +19,11 @@ export class EnumValueHandler<P extends EnumObject> extends AbstractValueHandler
     return valuesList;
   }
 
-  public shouldHandle(propertyDto: Property<P>): boolean {
+  public shouldHandle(propertyDto: Property): boolean {
     return propertyDto.decoratorValue.isEnum();
   }
 
-  public produceValue<T>(propertyDto: Property<P>): any {
+  public produceValue(propertyDto: Property): any {
     const {
       decoratorValue: { value },
     } = propertyDto;

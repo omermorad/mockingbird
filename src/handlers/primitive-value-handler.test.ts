@@ -1,11 +1,10 @@
 import { PrimitiveValueHandler } from './primitive-value-handler';
-import { ExactValue } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('PrimitiveValueInspector Unit', () => {
-  let handler: PrimitiveValueHandler<ExactValue>;
+  let handler: PrimitiveValueHandler;
 
   const fakerMock = {
     random: {

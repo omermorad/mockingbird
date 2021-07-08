@@ -1,10 +1,10 @@
 import { Property } from '../property';
-import { ExactValue, MockOptions } from '../types/mock-options.type';
+import { ExactValue } from '../types/mock-options.type';
 
 import { AbstractValueHandler } from './abstract-value-handler';
 import { isPrimitive } from '../common/is-primitive';
 
-export abstract class PrimitiveHandlerAbstract<P extends MockOptions> extends AbstractValueHandler {
+export abstract class PrimitiveHandlerAbstract extends AbstractValueHandler {
   protected generateRandomValueFromPrimitive(ctor: string): ExactValue {
     const { faker } = this;
 
@@ -21,7 +21,7 @@ export abstract class PrimitiveHandlerAbstract<P extends MockOptions> extends Ab
     }
   }
 
-  public isPrimitive(propertyDto: Property<P>): boolean {
+  public isPrimitive(propertyDto: Property): boolean {
     return isPrimitive(propertyDto.constructorName) && !propertyDto.decoratorValue.isCallback();
   }
 }

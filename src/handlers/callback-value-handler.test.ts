@@ -1,11 +1,10 @@
 import { CallbackValueHandler } from '../handlers/callback-value-handler';
-import { Callback } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../property';
 import { PropertyDecoratorValue } from '../property-decorator-value';
 
 describe('CallbackValueInspector Unit', () => {
-  let handler: CallbackValueHandler<Callback>;
+  let handler: CallbackValueHandler;
 
   const fakerMock = { internet: { email: jest.fn() } } as unknown as FakerStatic;
 
