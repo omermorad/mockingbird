@@ -1,3 +1,11 @@
+# [1.1.0](https://github.com/omermorad/mockingbird-ts/compare/v1.0.0...v1.1.0) (2021-07-08)
+
+
+### Features
+
+* add new types and sample ([acc1776](https://github.com/omermorad/mockingbird-ts/commit/acc1776b50360fe745983b266b7e9a5da1ee9f4f))
+* add typeorm sample, change types ([f801a59](https://github.com/omermorad/mockingbird-ts/commit/f801a59e0811e92f72a9c28069a809bfb9624564))
+
 # [1.1.0-next.1](https://github.com/omermorad/mockingbird-ts/compare/v1.0.0...v1.1.0-next.1) (2021-02-10)
 
 
