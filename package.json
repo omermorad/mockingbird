@@ -39,7 +39,7 @@
   "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
   "scripts": {
     "prebuild": "npx rimraf dist",
-    "postinstall": "husky install",
+    "prepare": "husky install",
     "build": "tsc -p tsconfig.build.json",
     "watch": "tsc -p tsconfig.build.json --watch",
     "test": "npm run lint && jest --runInBand --verbose",
