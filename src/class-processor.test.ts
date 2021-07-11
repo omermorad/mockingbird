@@ -55,17 +55,6 @@ describe('ClassProcessor', () => {
     expect(setLocaleMock[0][0]).toEqual('en');
   });
 
-  /*
-  test('Should throw an error if no target was passed', () => {
-    delete reflectionMock.properties;
-    reflectSpy.mockImplementationOnce(() => reflectionMock);
-
-    const res = factory.process(Dog);
-
-    expect(res).toEqual(undefined);
-  });
-   */
-
   test('Should return specific decoratorValue passed from mock', () => {
     class AnotherDog {
       @Mock('doggo')

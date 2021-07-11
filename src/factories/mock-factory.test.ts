@@ -17,12 +17,18 @@ describe('Mock Factory - Unit', () => {
     class TestClass {}
 
     describe("when calling 'create' method without options", () => {
+      // let instance: TestClass;
+
       test('then call process exactly once', () => {
         MockFactory.create(TestClass);
 
         expect(processMock).toHaveBeenCalledTimes(1);
         expect(processMock).toHaveBeenCalledWith(TestClass);
       });
+
+      // test('then return an instance of the target class', () => {
+      //   expect(instance).toBeInstanceOf(TestClass);
+      // });
     });
 
     describe("when calling 'create' method with count = 3", () => {

@@ -45,17 +45,24 @@ export class ClassProcessor<T> {
    * Return an object from the target class with all the properties
    * decorated by the 'Mock' Decorator
    *
-   * @param target
+   * @param targetClass
    */
-  public process(target: Class<T>): ClassLiteral<T> {
-    if (!target) {
-      throw new Error(`Target class '${target}' is 'undefined'`);
+  public process(targetClass: Class<T>): T {
+    if (!targetClass) {
+      throw new Error(`Target class '${targetClass}' is 'undefined'`);
     }
 
-    const classReflection = this.reflector.reflectClass(target);
+    const classReflection = this.reflector.reflectClass(targetClass);
+    const classInstance: T = new targetClass();
 
-    return classReflection.reduce((acc, val) => {
+    const props = classReflection.reduce((acc, val) => {
       return { ...acc, [val.name]: this.handlePropertyValue(val) };
     }, {}) as ClassLiteral<T>;
+
+    for (const [key, value] of Object.entries(props)) {
+      classInstance[key] = value;
+    }
+
+    return classInstance;
   }
 }

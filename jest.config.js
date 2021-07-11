@@ -7,7 +7,7 @@ module.exports = {
   rootDir: './',
   testRegex: '.test.ts$',
   transform: {
-    '^.+\\.(t|j)s$': 'ts-jest'
+    '^.+\\.ts$': 'ts-jest'
   },
   coverageDirectory: './coverage',
   coverageReporters: [
