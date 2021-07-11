@@ -4,10 +4,10 @@ module.exports = {
     'json',
     'ts'
   ],
-  rootDir: './',
+  rootDir: '.',
   testRegex: '.test.ts$',
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    '^.+\\.ts$': 'ts-jest',
   },
   coverageDirectory: './coverage',
   coverageReporters: [
@@ -15,5 +15,5 @@ module.exports = {
     'cobertura'
   ],
   testEnvironment: 'node',
-  modulePathIgnorePatterns: ['./sample', 'jest.config.js']
+  modulePathIgnorePatterns: ['./sample', 'jest.config.js'],
 };

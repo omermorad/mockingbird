@@ -6,7 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "sourceMap": false,
+    "sourceMap": true,
     "baseUrl": "./",
     "rootDir": "./src",
     "outDir": "./dist",
