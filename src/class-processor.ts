@@ -5,14 +5,14 @@ import { EnumValueHandler } from './handlers/enum-value-handler';
 import { ArrayValueHandler } from './handlers/array-value-handler';
 import { SingleClassValueHandler } from './handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
-import { ClassLiteral, Class } from './types/mock-options.type';
+import { Class } from './types/mock-options.type';
 import { Property } from './property';
 import { ValueHandler } from './types/value-handler.interface';
 
 import FakerStatic = Faker.FakerStatic;
 
 export interface ClassProcessor<T> {
-  process(target: Class<T>): ClassLiteral<T>;
+  process(target: Class<T>): T;
 }
 
 export class ClassProcessor<T> {
@@ -32,11 +32,11 @@ export class ClassProcessor<T> {
   }
 
   private handlePropertyValue(property: Property): T | T[] {
-    for (const inspectorClass of ClassProcessor.VALUE_HANDLERS) {
-      const inspector = new inspectorClass(this.faker, this);
+    for (const classHandler of ClassProcessor.VALUE_HANDLERS) {
+      const handler = new classHandler(this.faker, this);
 
-      if (inspector.shouldHandle(property)) {
-        return inspector.produceValue<T>(property);
+      if (handler.shouldHandle(property)) {
+        return handler.produceValue<T>(property);
       }
     }
   }
@@ -45,17 +45,24 @@ export class ClassProcessor<T> {
    * Return an object from the target class with all the properties
    * decorated by the 'Mock' Decorator
    *
-   * @param target
+   * @param targetClass
    */
-  public process(target: Class<T>): ClassLiteral<T> {
-    if (!target) {
-      throw new Error(`Target class '${target}' is 'undefined'`);
+  public process(targetClass: Class<T>): T {
+    if (!targetClass) {
+      throw new Error(`Target class is 'undefined'`);
     }
 
-    const classReflection = this.reflector.reflectClass(target);
+    const classReflection = this.reflector.reflectClass(targetClass);
+    const classInstance: T = new targetClass();
 
-    return classReflection.reduce((acc, val) => {
-      return { ...acc, [val.name]: this.handlePropertyValue(val) };
-    }, {}) as ClassLiteral<T>;
+    const props = classReflection.reduce((acc, property) => {
+      return { ...acc, [property.name]: this.handlePropertyValue(property) };
+    }, {});
+
+    for (const [key, value] of Object.entries(props)) {
+      classInstance[key] = value;
+    }
+
+    return classInstance;
   }
 }

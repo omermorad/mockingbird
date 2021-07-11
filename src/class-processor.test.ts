@@ -1,97 +1,39 @@
-import { mocked } from 'ts-jest/utils';
-import * as reflectModule from '@plumier/reflect';
-import { ClassReflection } from '@plumier/reflect';
+import faker from 'faker';
 import { ClassProcessor } from './class-processor';
-import { Mock } from './decorators/mock.decorator';
 import { ClassReflector } from './class-reflector';
-import FakerStatic = Faker.FakerStatic;
+import { Mock } from './decorators';
 
-const fakerMock = {
-  setLocale: jest.fn(),
-} as unknown as FakerStatic;
-
-const factory = new ClassProcessor(fakerMock, new ClassReflector(), 'en');
-const reflectSpy = jest.spyOn(reflectModule, 'default');
-
-describe('ClassProcessor', () => {
-  let reflectionMock;
-
-  class Dog {
-    @Mock()
-    readonly name: string;
-
-    @Mock()
-    readonly age: number;
+describe('ClassProcessor Integration Test', () => {
+  class Magician {
+    @Mock() name: string;
+    @Mock() isAwesome: boolean;
   }
 
-  const reflection: ClassReflection = {
-    kind: 'Class',
-    name: 'Dog',
-    decorators: [],
-    methods: [],
-    properties: [],
-    ctor: {
-      kind: 'Constructor',
-      name: 'constructor',
-      parameters: [],
-    },
-    typeClassification: 'Class',
-    super: Dog,
-    type: Dog,
-  };
+  describe('given a ClassProcessor instance', () => {
+    let processor: ClassProcessor<any>;
 
-  beforeEach(() => {
-    reflectionMock = JSON.parse(JSON.stringify(reflection));
-  });
+    beforeAll(() => {
+      processor = new ClassProcessor(faker, new ClassReflector(), 'en');
+    });
 
-  test('Should throw error if target parameter is not a class', () => {
-    expect(() => factory.process(undefined)).toThrow(`Target class 'undefined' is 'undefined'`);
-  });
+    describe("when calling 'process' method", () => {
+      describe('and there is no target class', () => {
+        test('then throw an error indicating that not target class has been passed', () => {
+          expect(() => processor.process(undefined)).toThrowError();
+        });
+      });
 
-  test('faker.setLocale should be called with the passed locale', () => {
-    const setLocaleMock = mocked(fakerMock.setLocale).mock.calls;
+      describe('and there is an actual target class', () => {
+        let returnValue;
 
-    expect(setLocaleMock).toHaveLength(1);
-    expect(setLocaleMock[0][0]).toEqual('en');
-  });
+        beforeAll(() => {
+          returnValue = processor.process(Magician);
+        });
 
-  /*
-  test('Should throw an error if no target was passed', () => {
-    delete reflectionMock.properties;
-    reflectSpy.mockImplementationOnce(() => reflectionMock);
-
-    const res = factory.process(Dog);
-
-    expect(res).toEqual(undefined);
-  });
-   */
-
-  test('Should return specific decoratorValue passed from mock', () => {
-    class AnotherDog {
-      @Mock('doggo')
-      name: string;
-    }
-
-    reflectionMock.properties = [
-      {
-        kind: 'Property',
-        name: 'name',
-        type: {
-          name: 'String',
-        },
-        decorators: [
-          {
-            type: 'Mock',
-            value: 'doggo',
-          },
-        ],
-        typeClassification: 'Primitive',
-      },
-    ];
-
-    reflectSpy.mockImplementationOnce(() => reflectionMock);
-    const result = factory.process(AnotherDog);
-
-    expect(result).toEqual({ name: 'doggo' });
+        test('then return an actual instance of the class', () => {
+          expect(returnValue).toBeInstanceOf(Magician);
+        });
+      });
+    });
   });
 });

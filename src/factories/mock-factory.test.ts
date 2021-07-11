@@ -8,7 +8,7 @@ jest.mock('../class-processor', () => ({
   }),
 }));
 
-describe('Mock Factory - Unit', () => {
+describe('MockFactory - Unit', () => {
   describe('given a Mock Factory', () => {
     afterEach(() => {
       processMock.mockClear();

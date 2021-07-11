@@ -1,6 +1,6 @@
 import faker from 'faker';
 import { ClassProcessor } from '../class-processor';
-import { ClassLiteral, Class } from '../types/mock-options.type';
+import { Class } from '../types/mock-options.type';
 import { MockDecoratorFactoryOptions } from '../types';
 import { ClassReflector } from '../class-reflector';
 
@@ -14,7 +14,7 @@ export class MockFactory {
    *
    * @param target
    */
-  public static create<TClass extends any = any>(target: Class<TClass>): ClassLiteral<TClass>;
+  public static create<TClass extends any = any>(target: Class<TClass>): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -32,35 +32,32 @@ export class MockFactory {
    * @param target
    * @param options
    */
-  public static create<TClass extends any = any>(
-    target: Class<TClass>,
-    options: MockDecoratorFactoryOptions
-  ): ClassLiteral<TClass>[];
+  public static create<TClass extends any = any>(target: Class<TClass>, options: MockDecoratorFactoryOptions): TClass[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
    * by the Mock decorator
    *
-   * @param target
+   * @param targetClass
    * @param options
    */
   public static create<TClass extends any = any>(
-    target: Class<TClass>,
+    targetClass: Class<TClass>,
     options?: MockDecoratorFactoryOptions
-  ): ClassLiteral<TClass> | ClassLiteral<TClass>[] {
+  ): TClass | TClass[] {
     const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
-    const factory = new ClassProcessor<TClass>(faker, new ClassReflector(), locale);
+    const processor = new ClassProcessor<TClass>(faker, new ClassReflector(), locale);
 
     if (!count || count === 1) {
-      return factory.process(target) as ClassLiteral<TClass>;
+      return processor.process(targetClass);
     }
 
-    const objects: ClassLiteral<TClass>[] = [];
+    const classInstances: TClass[] = [];
 
     for (let i = 1; i <= count; i++) {
-      objects.push(factory.process(target));
+      classInstances.push(processor.process(targetClass));
     }
 
-    return objects;
+    return classInstances;
   }
 }

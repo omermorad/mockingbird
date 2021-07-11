@@ -8,19 +8,19 @@ import { ClassReflectionDto } from './types/class-reflection-dto.type';
 export class ClassReflector {
   public static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
 
+  private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
+    const { decorators } = property;
+    const mockDecorator = decorators.find((decorator) => decorator.type === MOCK_DECORATOR_NAME);
+
+    return mockDecorator.value;
+  }
+
   private extractDecoratedProperties(classReflection: ClassReflection): Property[] {
     return classReflection.properties.map((property) => {
       const value = ClassReflector.extractMockDecoratorValue(property);
 
       return Property.create(property, value);
     });
-  }
-
-  private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
-    const { decorators } = property;
-    const mockDecorator = decorators.find((decorator) => decorator.type === MOCK_DECORATOR_NAME);
-
-    return mockDecorator.value;
   }
 
   public reflectClass(target: Class<unknown>): ClassReflectionDto {
