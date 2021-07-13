@@ -1,4 +1,4 @@
-import { MockOptions, MultiClass } from './types/mock-options.type';
+import { MockOptions, MultiClass } from '../types/mock-options.type';
 
 export class PropertyDecoratorValue {
   private readonly type: string;

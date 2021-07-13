@@ -1,5 +1,5 @@
 import { ValueHandler } from '../types/value-handler.interface';
-import { Property } from '../property';
+import { Property } from '../lib/property';
 import { Class } from '../types/mock-options.type';
 import { isPrimitive } from '../common/is-primitive';
 import { AbstractValueHandler } from './abstract-value-handler';

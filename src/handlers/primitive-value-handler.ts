@@ -1,6 +1,6 @@
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueHandler } from '../types/value-handler.interface';
-import { Property } from '../property';
+import { Property } from '../lib/property';
 
 export class PrimitiveValueHandler extends PrimitiveHandlerAbstract implements ValueHandler {
   public shouldHandle(property: Property): boolean {

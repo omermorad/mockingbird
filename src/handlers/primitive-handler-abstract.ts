@@ -1,4 +1,4 @@
-import { Property } from '../property';
+import { Property } from '../lib/property';
 import { ExactValue } from '../types/mock-options.type';
 
 import { AbstractValueHandler } from './abstract-value-handler';

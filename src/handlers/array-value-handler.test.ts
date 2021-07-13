@@ -1,9 +1,9 @@
 import { ArrayValueHandler } from './array-value-handler';
-import { ClassProcessor } from '../class-processor';
+import { ClassProcessor } from '../lib/class-processor';
 import { MultiClass } from '../types/mock-options.type';
 import FakerStatic = Faker.FakerStatic;
-import { Property } from '../property';
-import { PropertyDecoratorValue } from '../property-decorator-value';
+import { Property } from '../lib/property';
+import { PropertyDecoratorValue } from '../lib/property-decorator-value';
 
 describe('ArrayValueHandler Unit', () => {
   const DTO_CLASS_VALUE = class TestClass {};

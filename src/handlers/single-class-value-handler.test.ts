@@ -1,9 +1,9 @@
-import { Property } from '../property';
+import { Property } from '../lib/property';
 import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
-import { ClassProcessor } from '../class-processor';
+import { ClassProcessor } from '../lib/class-processor';
 
 import FakerStatic = Faker.FakerStatic;
-import { PropertyDecoratorValue } from '../property-decorator-value';
+import { PropertyDecoratorValue } from '../lib/property-decorator-value';
 
 describe('SingleClassValueInspector Unit', () => {
   let handler: SingleClassValueHandler;

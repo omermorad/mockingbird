@@ -1,7 +1,7 @@
 import { EnumValueHandler } from '../handlers/enum-value-handler';
 import FakerStatic = Faker.FakerStatic;
-import { Property } from '../property';
-import { PropertyDecoratorValue } from '../property-decorator-value';
+import { Property } from '../lib/property';
+import { PropertyDecoratorValue } from '../lib/property-decorator-value';
 
 describe('EnumValueInspector Unit', () => {
   enum TestEnum {

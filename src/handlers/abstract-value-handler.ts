@@ -1,5 +1,5 @@
 import { Class } from '../types/mock-options.type';
-import { ClassProcessor } from '../class-processor';
+import { ClassProcessor } from '../lib/class-processor';
 
 import FakerStatic = Faker.FakerStatic;
 

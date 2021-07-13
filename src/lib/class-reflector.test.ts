@@ -1,6 +1,6 @@
 import { ClassReflector } from './class-reflector';
-import { Mock } from './decorators/mock.decorator';
-import { ClassReflectionDto } from './types/class-reflection-dto.type';
+import { Mock } from '../decorators/mock.decorator';
+import { ClassReflectionDto } from '../types/class-reflection-dto.type';
 
 describe('ClassReflector', () => {
   let reflector: ClassReflector;

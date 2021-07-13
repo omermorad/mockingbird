@@ -1,13 +1,13 @@
-import { ClassReflector } from './class-reflector';
-import { CallbackValueHandler } from './handlers/callback-value-handler';
-import { ObjectLiteralValueHandler } from './handlers/object-literal-value-handler';
-import { EnumValueHandler } from './handlers/enum-value-handler';
-import { ArrayValueHandler } from './handlers/array-value-handler';
-import { SingleClassValueHandler } from './handlers/single-class-value-handler';
-import { PrimitiveValueHandler } from './handlers/primitive-value-handler';
-import { Class } from './types/mock-options.type';
 import { Property } from './property';
-import { ValueHandler } from './types/value-handler.interface';
+import { ClassReflector } from './class-reflector';
+import { CallbackValueHandler } from '../handlers/callback-value-handler';
+import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
+import { EnumValueHandler } from '../handlers/enum-value-handler';
+import { ArrayValueHandler } from '../handlers/array-value-handler';
+import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
+import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
+import { Class } from '../types/mock-options.type';
+import { ValueHandler } from '../types/value-handler.interface';
 
 import FakerStatic = Faker.FakerStatic;
 

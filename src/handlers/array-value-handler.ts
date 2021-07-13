@@ -1,7 +1,7 @@
 import { ValueHandler } from '../types/value-handler.interface';
 import { ExactValue, MultiClass } from '../types/mock-options.type';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
-import { Property } from '../property';
+import { Property } from '../lib/property';
 import { isPrimitive } from '../common/is-primitive';
 
 // TODO: refactor (2nd phase). All other mock options should be wrapped with 'multiple' functionality

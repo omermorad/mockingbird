@@ -1,5 +1,5 @@
 import { PropertyReflection } from '@plumier/reflect';
-import { MockOptions } from './types/mock-options.type';
+import { MockOptions } from '../types/mock-options.type';
 import { PropertyDecoratorValue } from './property-decorator-value';
 
 export interface Property {

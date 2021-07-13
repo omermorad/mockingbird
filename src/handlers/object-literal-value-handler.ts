@@ -1,5 +1,5 @@
 import { ValueHandler } from '../types/value-handler.interface';
-import { Property } from '../property';
+import { Property } from '../lib/property';
 import { AbstractValueHandler } from './abstract-value-handler';
 
 export class ObjectLiteralValueHandler extends AbstractValueHandler implements ValueHandler {

@@ -1,6 +1,6 @@
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
-import { Property } from '../property';
-import { PropertyDecoratorValue } from '../property-decorator-value';
+import { Property } from '../lib/property';
+import { PropertyDecoratorValue } from '../lib/property-decorator-value';
 
 describe('ObjectLiteralValueInspector Unit', () => {
   let property: Property, handler: ObjectLiteralValueHandler;

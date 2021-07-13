@@ -1,7 +1,7 @@
 import faker from 'faker';
 import { ClassProcessor } from './class-processor';
 import { ClassReflector } from './class-reflector';
-import { Mock } from './decorators';
+import { Mock } from '../decorators/mock.decorator';
 
 describe('ClassProcessor Integration Test', () => {
   class Magician {
