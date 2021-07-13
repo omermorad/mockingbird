@@ -14,7 +14,7 @@ export class MockGenerator {
    *
    * @param target
    */
-  public static create<TClass extends Class = any>(target: Class<TClass>): TClass;
+  public static create<TClass = any>(target: Class<TClass>): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
