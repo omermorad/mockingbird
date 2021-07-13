@@ -1,10 +1,10 @@
 import faker from 'faker';
-import { ClassProcessor } from '../class-processor';
+import { ClassProcessor } from '../lib/class-processor';
 import { Class } from '../types/mock-options.type';
 import { MockDecoratorFactoryOptions } from '../types';
-import { ClassReflector } from '../class-reflector';
+import { ClassReflector } from '../lib/class-reflector';
 
-export class MockFactory {
+export class MockGenerator {
   /**
    * Return an object with all the properties decorated by the 'Mock' Decorator
    *
@@ -14,7 +14,7 @@ export class MockFactory {
    *
    * @param target
    */
-  public static create<TClass extends any = any>(target: Class<TClass>): TClass;
+  public static create<TClass extends Class = any>(target: Class<TClass>): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -32,7 +32,7 @@ export class MockFactory {
    * @param target
    * @param options
    */
-  public static create<TClass extends any = any>(target: Class<TClass>, options: MockDecoratorFactoryOptions): TClass[];
+  public static create<TClass = any>(target: Class<TClass>, options: MockDecoratorFactoryOptions): TClass[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -41,7 +41,7 @@ export class MockFactory {
    * @param targetClass
    * @param options
    */
-  public static create<TClass extends any = any>(
+  public static create<TClass = any>(
     targetClass: Class<TClass>,
     options?: MockDecoratorFactoryOptions
   ): TClass | TClass[] {
