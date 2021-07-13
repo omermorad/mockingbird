@@ -31,7 +31,6 @@
     "index.ts",
     "node_modules",
     "dist",
-    "sample",
-    "test"
+    "sample"
   ]
 }

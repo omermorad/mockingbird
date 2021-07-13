@@ -1,5 +1,5 @@
 import { TestClasses } from './common/test-classes';
-import { ClassLiteral, MockFactory } from '../../src';
+import { MockGenerator } from '../../src';
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
 import TestClassWithCallback = TestClasses.TestClassWithCallback;
@@ -7,13 +7,13 @@ import TestClassWithEnum = TestClasses.TestClassWithEnum;
 import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
 import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
 
-describe('Mock Factory - Integration Test', () => {
-  let result: ClassLiteral<any>;
+describe('MockFactory - Integration Test', () => {
+  let result;
 
-  describe('Given a decorated class', () => {
-    describe('when using the related decorator with absolute values', () => {
+  describe('given a decorated class', () => {
+    describe('when using the @Mock decorator with absolute values', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithAbsoluteValues);
+        result = MockGenerator.create(TestClassWithAbsoluteValues);
       });
 
       test('then return the exact same values passed in the options', () => {
@@ -23,9 +23,9 @@ describe('Mock Factory - Integration Test', () => {
       });
     });
 
-    describe('when using the related decorator with a callback (faker)', () => {
+    describe('when using the @Mock decorator with a callback (faker)', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithCallback);
+        result = MockGenerator.create(TestClassWithCallback);
       });
 
       test('then return random values from faker', () => {
@@ -36,9 +36,9 @@ describe('Mock Factory - Integration Test', () => {
       });
     });
 
-    describe('when using the related decorator with an enum decoratorValue', () => {
+    describe('when using the @Mock decorator with an enum decoratorValue', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithEnum);
+        result = MockGenerator.create(TestClassWithEnum);
       });
 
       test('then return one random decoratorValue (not key)', () => {
@@ -46,9 +46,9 @@ describe('Mock Factory - Integration Test', () => {
       });
     });
 
-    describe('when using the related decorator with no/empty values', () => {
+    describe('when using the @Mock decorator with no/empty values', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithNoValues);
+        result = MockGenerator.create(TestClassWithNoValues);
       });
 
       test('then infer the decoratorValue from the type itself', () => {
@@ -61,9 +61,9 @@ describe('Mock Factory - Integration Test', () => {
       });
     });
 
-    describe('when using the related decorator with a single class', () => {
+    describe('when using the @Mock decorator with a single class', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithOtherClass);
+        result = MockGenerator.create(TestClassWithOtherClass);
       });
 
       test('then return an object with the given class', () => {
@@ -71,9 +71,9 @@ describe('Mock Factory - Integration Test', () => {
       });
     });
 
-    describe('when using the related decorator with a multi class', () => {
+    describe('when using the @Mock decorator with a multi class', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithMultiClass);
+        result = MockGenerator.create(TestClassWithMultiClass);
       });
 
       test("then return contain a property 'dogs' which is array of Dog with length of 'count'", () => {
@@ -88,9 +88,9 @@ describe('Mock Factory - Integration Test', () => {
       });
     });
 
-    describe("when using the related decorator with 'count' option", () => {
+    describe("when using the @Mock decorator with 'count' option", () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
+        result = MockGenerator.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
       });
 
       test("then return array with length of 'count'", () => {

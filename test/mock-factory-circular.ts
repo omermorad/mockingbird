@@ -1,5 +1,5 @@
 import { Mock } from '../src/decorators/mock.decorator';
-import { MockFactory } from '../src/factories/mock-factory';
+import { MockGenerator } from '../src/factories/mock-generator';
 
 describe('Mock Factory - circular class-type', () => {
   describe('with single class circular mock', () => {
@@ -9,7 +9,7 @@ describe('Mock Factory - circular class-type', () => {
     }
 
     test('when calling MockFactory.create it throws an exception', () => {
-      expect(() => MockFactory.create<Man>(Man)).toThrowError(
+      expect(() => MockGenerator.create<Man>(Man)).toThrowError(
         'Circular class-type mock detected! Target: Man; PropertyInterface: son'
       );
     });
@@ -22,7 +22,7 @@ describe('Mock Factory - circular class-type', () => {
     }
 
     test('When calling MockFactory.create it throws an exception', () => {
-      expect(() => MockFactory.create<AnotherMan>(AnotherMan)).toThrowError(
+      expect(() => MockGenerator.create<AnotherMan>(AnotherMan)).toThrowError(
         'Circular class-type mock detected! Target: AnotherMan; PropertyInterface: sons'
       );
     });
