@@ -1,4 +1,4 @@
-import { EnumValueHandler } from '../handlers/enum-value-handler';
+import { EnumValueHandler } from './enum-value-handler';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../lib/property';
 import { PropertyDecoratorValue } from '../lib/property-decorator-value';

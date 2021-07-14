@@ -7,9 +7,6 @@
     "experimentalDecorators": true,
     "target": "es5",
     "sourceMap": true,
-    "baseUrl": "./",
-    "rootDir": "./src",
-    "outDir": "./dist",
     "incremental": false,
     "noImplicitAny": false,
     "strictNullChecks": false,
@@ -28,7 +25,6 @@
     "allowSyntheticDefaultImports": true
   },
   "exclude": [
-    "index.ts",
     "node_modules",
     "dist",
     "sample"

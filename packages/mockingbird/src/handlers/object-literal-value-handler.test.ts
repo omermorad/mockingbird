@@ -1,4 +1,4 @@
-import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
+import { ObjectLiteralValueHandler } from './object-literal-value-handler';
 import { Property } from '../lib/property';
 import { PropertyDecoratorValue } from '../lib/property-decorator-value';
 

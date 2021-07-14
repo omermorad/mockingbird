@@ -60,6 +60,7 @@
     "lines-between-class-members": "off"
   },
   "env": {
+    "node": true,
     "jest": true
   }
 }

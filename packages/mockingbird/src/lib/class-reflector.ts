@@ -2,7 +2,7 @@ import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
 import { Class } from '../types/mock-options.type';
 import { MockOptions } from '../types/mock-options.type';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
-import { Property } from '../lib/property';
+import { Property } from './property';
 import { ClassReflectionDto } from '../types/class-reflection-dto.type';
 
 export class ClassReflector {

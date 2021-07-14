@@ -1,15 +1,12 @@
 {
-  "extends": "./tsconfig.json",
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "incremental": false,
-    "baseUrl": "./",
-    "rootDir": "./src",
-    "outDir": "./dist"
+    "incremental": false
   },
   "exclude": [
-    "sample",
+    "../sample",
     "node_modules",
-    "test",
+    "packages/mockingbird-ts/test",
     "dist",
     "**/*test.ts",
     "index.ts",

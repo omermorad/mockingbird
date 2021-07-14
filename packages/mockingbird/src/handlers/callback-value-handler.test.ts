@@ -1,4 +1,4 @@
-import { CallbackValueHandler } from '../handlers/callback-value-handler';
+import { CallbackValueHandler } from './callback-value-handler';
 import FakerStatic = Faker.FakerStatic;
 import { Property } from '../lib/property';
 import { PropertyDecoratorValue } from '../lib/property-decorator-value';

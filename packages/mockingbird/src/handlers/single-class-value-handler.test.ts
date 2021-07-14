@@ -1,5 +1,5 @@
 import { Property } from '../lib/property';
-import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
+import { SingleClassValueHandler } from './single-class-value-handler';
 import { ClassProcessor } from '../lib/class-processor';
 
 import FakerStatic = Faker.FakerStatic;
