@@ -2,7 +2,7 @@ import { MockGenerator } from './mock-generator';
 
 const processMock = jest.fn();
 
-jest.mock('../class-processor', () => ({
+jest.mock('../lib/class-processor', () => ({
   ClassProcessor: jest.fn().mockImplementation(() => {
     return { process: processMock };
   }),
