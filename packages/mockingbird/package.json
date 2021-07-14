@@ -37,7 +37,7 @@
     "prebuild": "npx rimraf dist",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "jest",
+    "test": "jest --runInBand --verbose",
     "lint": "eslint '{src,test}/**/*.ts'",
     "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
   },

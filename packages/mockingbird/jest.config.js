@@ -14,6 +14,5 @@ module.exports = {
     'text',
     'cobertura'
   ],
-  testEnvironment: 'node',
-  modulePathIgnorePatterns: ['./sample'],
+  testEnvironment: 'node'
 };

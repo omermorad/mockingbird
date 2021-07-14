@@ -38,7 +38,7 @@
     "prepare": "husky install",
     "build": "lerna run build --parallel",
     "watch": "lerna exec -- watch",
-    "test": "npm run lint && jest --runInBand --verbose",
+    "test": "lerna run test --stream",
     "test:cov": "jest --runInBand --coverage --collectCoverage=true --reporters=jest-junit",
     "lint": "lerna run lint --since HEAD",
     "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
