@@ -10,7 +10,3 @@ export function MockFactory<TClass extends Class = any>(target: Class): MockBuil
 
   return new MockBuilder<TClass>(target, persistent);
 }
-
-class Dog {}
-
-MockFactory(Dog).toPlain().persist('lots-of-dogs').many(3);
