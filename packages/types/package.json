@@ -1,0 +1,44 @@
+{
+  "name": "@mockinbird/types",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Mockingbird Parser Package",
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird-ts/blob/master/packages/core/README.md",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "exit 1;",
+    "lint": "eslint 'index.ts'",
+    "lint:fix": "eslint 'index.ts' --fix"
+  },
+  "files": [
+    "index.ts"
+  ],
+  "dependencies": {
+    "faker": "^5.5.3"
+  },
+  "devDependencies": {
+    "@types/faker": "^5.5.7",
+    "ts-loader": "^6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  }
+}
