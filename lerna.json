@@ -1,5 +1,11 @@
 {
   "version": "independent",
+  "command": {
+    "publish": {
+      "allowBranch": ["master"],
+      "conventionalCommits": true
+    }
+  },
   "useWorkspaces": true,
   "npmClient": "yarn",
   "packages": [
