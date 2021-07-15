@@ -7,3 +7,4 @@ coverage/*
 dist
 dist/*
 jest.config.js
+commitlint.config.js

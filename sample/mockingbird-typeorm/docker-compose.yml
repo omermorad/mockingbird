@@ -2,7 +2,7 @@ version: "3"
 services:
   mysql:
     image: "mysql:5.7.24"
-    container_name: "mockingbird-typeorm-example"
+    container_name: "generator-typeorm-example"
     ports:
       - "3306:3306"
     environment:
