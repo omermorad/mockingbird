@@ -5,6 +5,7 @@ on:
       - master
   pull_request:
     branches:
+      - v*
       - master
 
 jobs:
@@ -20,9 +21,9 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Get NPM Cache Directory Path
-        id: npm-cache-dir
-        run: echo "::set-output name=dir::$(npm config get cache)"
+      - name: Get Yarn Cache Directory Path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Lint Commit Message
         run: |
@@ -34,23 +35,26 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: NPM CI
-        id: npm-cache
+      - name: Yarn Install
+        id: yarn-cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
+
+      - name: Bootstrap
+        run: npx lerna bootstrap
 
       - name: Lint Source
-        run: npm run lint
+        run: yarn lint
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Test
-        run: npm run test:cov
+        run: yarn test:cov
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
