@@ -39,9 +39,8 @@
     "build": "lerna run build --stream",
     "watch": "lerna exec -- watch",
     "test": "jest",
-    "test:cov": "jest --runInBand --coverage --collectCoverage=true --reporters=jest-junit",
-    "lint": "lerna run lint --since HEAD",
-    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+    "test:cov": "jest --reporters=jest-junit",
+    "lint": "lerna run lint --since HEAD"
   },
   "files": [
     "dist",
