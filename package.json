@@ -36,7 +36,7 @@
   "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
   "scripts": {
     "prepare": "husky install",
-    "build": "lerna run build --parallel",
+    "build": "lerna run build --stream",
     "watch": "lerna exec -- watch",
     "test": "lerna run test --stream",
     "test:cov": "jest --runInBand --coverage --collectCoverage=true --reporters=jest-junit",
@@ -74,7 +74,7 @@
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.2",
-    "rimraf": "^3.0.0",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-loader": "^6.2.2",
     "ts-node": "8.10.2",
