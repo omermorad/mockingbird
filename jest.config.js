@@ -15,5 +15,10 @@ module.exports = {
     'cobertura'
   ],
   testEnvironment: 'node',
+  coveragePathIgnorePatterns: [
+    "/node_modules/",
+    "/index.js/",
+    "/dist/.*\\.(ts|js)$"
+  ],
   modulePathIgnorePatterns: ['./sample'],
 };

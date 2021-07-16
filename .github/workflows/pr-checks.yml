@@ -45,16 +45,16 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Bootstrap
-        run: npx lerna bootstrap
+        run: yarn lerna bootstrap
 
       - name: Lint Source
         run: yarn lint
 
-      - name: Build
-        run: yarn build
-
       - name: Test
         run: yarn test:cov
+
+      - name: Build
+        run: yarn build
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
