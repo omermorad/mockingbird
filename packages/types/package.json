@@ -24,7 +24,7 @@
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "exit 0;",
+    "test": "exit 1;",
     "lint": "eslint 'index.ts'",
     "lint:fix": "eslint 'index.ts' --fix"
   },
