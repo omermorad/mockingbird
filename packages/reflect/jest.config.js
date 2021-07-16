@@ -1,9 +1,8 @@
+const base = require('../../jest.config.base');
+const packageJson = require('./package');
+
 module.exports = {
-  moduleFileExtensions: ['js', 'json', 'ts'],
-  rootDir: '.',
-  testRegex: '.test.ts$',
-  transform: {
-    '^.+\\.ts$': 'ts-jest',
-  },
-  testEnvironment: 'node',
+  ...base,
+  name: packageJson.name,
+  displayName: packageJson.name,
 };

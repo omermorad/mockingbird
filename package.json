@@ -38,10 +38,9 @@
     "prepare": "husky install",
     "build": "lerna run build --stream",
     "watch": "lerna exec -- watch",
-    "test": "lerna run test --stream",
-    "test:cov": "jest --runInBand --coverage --collectCoverage=true --reporters=jest-junit",
-    "lint": "lerna run lint --since HEAD",
-    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+    "test": "jest",
+    "test:cov": "jest --reporters=jest-junit",
+    "lint": "lerna run lint --since HEAD"
   },
   "files": [
     "dist",
