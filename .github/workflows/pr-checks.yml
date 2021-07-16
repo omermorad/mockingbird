@@ -27,7 +27,7 @@ jobs:
 
       - name: Lint Commit Message
         run: |
-          yarn add @commitlint/config-conventional
+          yarn add -D -W @commitlint/config-conventional
           echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
       - name: Use NodeJS ${{ matrix.node-version }}
