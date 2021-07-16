@@ -51,7 +51,7 @@ export class MockBuilder<TClass extends Class> {
   }
 
   public one(): TClass {
-    const mock: TClass = MockGenerator.create<TClass>(this.targetClass); // TODO: Add locale
+    const mock: TClass = MockGenerator.create<TClass>(this.targetClass);
     return this.process(mock);
   }
 
