@@ -3,7 +3,7 @@ import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 
 import { EnumValueHandler } from './enum-value-handler';
 
-describe('EnumValueInspector Unit', () => {
+describe('EnumValueHandler Unit', () => {
   enum TestEnum {
     StateOne = 'one',
     StateTwo = 'two',
@@ -18,7 +18,7 @@ describe('EnumValueInspector Unit', () => {
 
   let handler: EnumValueHandler;
 
-  describe('given a EnumValueInspector', () => {
+  describe('given a EnumValueHandler', () => {
     beforeAll(() => {
       handler = new EnumValueHandler(fakerMock);
     });

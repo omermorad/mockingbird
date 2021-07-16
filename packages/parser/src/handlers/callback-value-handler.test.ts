@@ -2,12 +2,12 @@ import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { Faker } from '@mockinbird/types';
 import { CallbackValueHandler } from './callback-value-handler';
 
-describe('CallbackValueInspector Unit', () => {
+describe('CallbackValueHandler Unit', () => {
   let handler: CallbackValueHandler;
 
   const fakerMock = { internet: { email: jest.fn() } } as unknown as Faker;
 
-  describe('given a CallbackValueInspector', () => {
+  describe('given a CallbackValueHandler', () => {
     beforeAll(() => {
       handler = new CallbackValueHandler(fakerMock);
     });

@@ -1,5 +1,5 @@
 import { Class, Faker } from '@mockinbird/types';
-import { ClassProcessor } from '@mockinbird/parser';
+import { ClassParser } from '@mockinbird/parser';
 import { ClassReflector } from '@mockinbird/reflect';
 import { MockDecoratorFactoryOptions } from '../../types/mock-decorator-factory-options.interface';
 
@@ -44,17 +44,17 @@ export class MockGenerator {
     targetClass: Class<TClass>,
     options?: MockDecoratorFactoryOptions
   ): TClass | TClass[] {
-    const { count = 1, locale = ClassProcessor.DEFAULT_LOCALE } = options || {};
-    const processor = new ClassProcessor<TClass>(Faker, new ClassReflector(), locale);
+    const { count = 1, locale = ClassParser.DEFAULT_LOCALE } = options || {};
+    const processor = new ClassParser<TClass>(Faker, new ClassReflector(), locale);
 
     if (!count || count === 1) {
-      return processor.process(targetClass);
+      return processor.parse(targetClass);
     }
 
     const classInstances: TClass[] = [];
 
     for (let i = 1; i <= count; i++) {
-      classInstances.push(processor.process(targetClass));
+      classInstances.push(processor.parse(targetClass));
     }
 
     return classInstances;

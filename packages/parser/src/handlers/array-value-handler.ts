@@ -32,7 +32,7 @@ export class ArrayValueHandler extends PrimitiveHandlerAbstract implements Value
     const instances = new Array(count);
 
     for (let index = 0; index < count; index++) {
-      instances[index] = this.classProcessor.process(type);
+      instances[index] = this.classParser.parse(type);
     }
 
     return instances;
