@@ -20,8 +20,9 @@
   "bugs": {
     "url": "https://github.com/omermorad/mockingbird-ts/issues"
   },
-  "readme": "https://github.com/omermorad/mockingbird-ts/blob/master/packages/core/README.md",
+  "readme": "https://github.com/omermorad/mockingbird-ts/tree/refactor/master/packages/parser/README.md",
   "scripts": {
+    "prebuild": "npx rimraf dist",
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest --runInBand --verbose",
@@ -29,7 +30,10 @@
     "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
   },
   "files": [
-    "index.ts"
+    "index.d.ts",
+    "index.js",
+    "dist",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "@mockinbird/reflect": "^1.0.0"
@@ -37,6 +41,7 @@
   "devDependencies": {
     "@mockinbird/types": "^1.0.0",
     "jest": "27.0.6",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-loader": "^6.2.2",
     "ts-node": "8.10.2",

@@ -2,7 +2,7 @@
   "name": "@mockinbird/types",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "Mockingbird Parser Package",
+  "description": "Mockingbird Types Package",
   "contributors": [
     {
       "name": "Omer Morad",
@@ -20,7 +20,7 @@
   "bugs": {
     "url": "https://github.com/omermorad/mockingbird-ts/issues"
   },
-  "readme": "https://github.com/omermorad/mockingbird-ts/blob/master/packages/core/README.md",
+  "readme": "https://github.com/omermorad/mockingbird-ts/tree/refactor/master/packages/types/README.md",
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",

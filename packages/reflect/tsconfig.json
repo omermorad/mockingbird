@@ -1,10 +1,10 @@
 {
   "extends": "../tsconfig.build.json",
   "compilerOptions": {
-    "noEmit": true,
     "baseUrl": "./",
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "target": "es6"
   },
   "exclude": [
     "index.ts",
