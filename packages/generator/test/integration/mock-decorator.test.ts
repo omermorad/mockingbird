@@ -1,5 +1,6 @@
 import { TestClasses } from './common/test-classes';
 import { MockGenerator } from '../../src';
+
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
 import TestClassWithCallback = TestClasses.TestClassWithCallback;
