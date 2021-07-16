@@ -48,7 +48,8 @@
     "README.md"
   ],
   "dependencies": {
-    "@mockinbird/parser": "^1.0.0"
+    "@mockinbird/parser": "^1.0.0",
+    "@mockinbird/types": "^1.0.0"
   },
   "devDependencies": {
     "@mockinbird/reflect": "^1.0.0",
