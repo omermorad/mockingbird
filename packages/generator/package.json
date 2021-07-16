@@ -49,10 +49,10 @@
   ],
   "dependencies": {
     "@mockinbird/parser": "^1.0.0",
+    "@mockinbird/reflect": "^1.0.0",
     "@mockinbird/types": "^1.0.0"
   },
   "devDependencies": {
-    "@mockinbird/reflect": "^1.0.0",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
