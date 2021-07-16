@@ -1,24 +1,24 @@
 import { Mock, ClassReflector } from '@mockinbird/reflect';
 import faker from 'faker';
-import { ClassProcessor } from './class-processor';
+import { ClassParser } from './class-parser';
 
-describe('ClassProcessor Integration Test', () => {
+describe('ClassParser Integration Test', () => {
   class Magician {
     @Mock() name: string;
     @Mock() isAwesome: boolean;
   }
 
-  describe('given a ClassProcessor instance', () => {
-    let processor: ClassProcessor<any>;
+  describe('given a ClassParser instance', () => {
+    let processor: ClassParser<any>;
 
     beforeAll(() => {
-      processor = new ClassProcessor(faker, new ClassReflector(), 'en');
+      processor = new ClassParser(faker, new ClassReflector(), 'en');
     });
 
-    describe("when calling 'process' method", () => {
+    describe("when calling 'parse' method", () => {
       describe('and there is no target class', () => {
         test('then throw an error indicating that not target class has been passed', () => {
-          expect(() => processor.process(undefined)).toThrowError();
+          expect(() => processor.parse(undefined)).toThrowError();
         });
       });
 
@@ -26,7 +26,7 @@ describe('ClassProcessor Integration Test', () => {
         let returnValue;
 
         beforeAll(() => {
-          returnValue = processor.process(Magician);
+          returnValue = processor.parse(Magician);
         });
 
         test('then return an actual instance of the class', () => {

@@ -1,1 +1,1 @@
-export * from './lib/class-processor';
+export * from './lib/class-parser';

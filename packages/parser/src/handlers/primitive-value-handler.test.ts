@@ -2,7 +2,7 @@ import { Faker } from '@mockinbird/types';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { PrimitiveValueHandler } from './primitive-value-handler';
 
-describe('PrimitiveValueInspector Unit', () => {
+describe('PrimitiveValueHandler Unit', () => {
   let handler: PrimitiveValueHandler;
 
   const fakerMock = {
@@ -18,7 +18,7 @@ describe('PrimitiveValueInspector Unit', () => {
     setLocale: () => jest.fn(),
   } as unknown as Faker;
 
-  describe('given a PrimitiveValueInspector', () => {
+  describe('given a PrimitiveValueHandler', () => {
     beforeAll(() => {
       handler = new PrimitiveValueHandler(fakerMock);
     });

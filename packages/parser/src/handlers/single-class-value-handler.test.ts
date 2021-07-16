@@ -1,21 +1,22 @@
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { Faker } from '@mockinbird/types';
 import { SingleClassValueHandler } from './single-class-value-handler';
-import { ClassProcessor } from '../lib/class-processor';
+import { ClassParser } from '../lib/class-parser';
 
-describe('SingleClassValueInspector Unit', () => {
-  let handler: SingleClassValueHandler;
+describe('SingleClassValueHandler Unit', () => {
   const DTO_CLASS_VALUE = class TestClass {};
 
-  const property: Property = new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(DTO_CLASS_VALUE));
+  const property = new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(DTO_CLASS_VALUE));
 
-  const classProcessorMock = {
-    process: jest.fn(),
-  } as unknown as ClassProcessor<any>;
+  const classParserMock = {
+    parse: jest.fn(),
+  } as unknown as ClassParser<any>;
 
-  describe('given a SingleClassValueInspector', () => {
+  let handler: SingleClassValueHandler;
+
+  describe('given a SingleClassValueHandler', () => {
     beforeAll(() => {
-      handler = new SingleClassValueHandler({} as Faker, classProcessorMock);
+      handler = new SingleClassValueHandler({} as Faker, classParserMock);
     });
 
     describe("when calling 'shouldHandle' with a none-primitive, 'function' type", () => {
@@ -25,11 +26,11 @@ describe('SingleClassValueInspector Unit', () => {
     });
 
     describe("when calling 'produceValue' method", () => {
-      test("then call 'process' with the given class", () => {
+      test("then call 'parse' with the given class", () => {
         handler.produceValue(property);
 
-        expect(classProcessorMock.process).toHaveBeenCalledTimes(1);
-        expect(classProcessorMock.process).toHaveBeenCalledWith(DTO_CLASS_VALUE);
+        expect(classParserMock.parse).toHaveBeenCalledTimes(1);
+        expect(classParserMock.parse).toHaveBeenCalledWith(DTO_CLASS_VALUE);
       });
     });
   });

@@ -10,6 +10,6 @@ export class SingleClassValueHandler extends AbstractValueHandler implements Val
   }
 
   public produceValue(propertyDto: Property): any {
-    return this.classProcessor.process(propertyDto.decoratorValue.value as Class);
+    return this.classParser.parse(propertyDto.decoratorValue.value as Class);
   }
 }
