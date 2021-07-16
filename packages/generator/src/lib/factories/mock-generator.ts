@@ -4,6 +4,8 @@ import { ClassReflector } from '@mockinbird/reflect';
 import { MockDecoratorFactoryOptions } from '../../types/mock-decorator-factory-options.interface';
 
 export class MockGenerator {
+  private static readonly DEFAULT_LOCALE = 'en';
+
   /**
    * Return an object with all the properties decorated by the 'Mock' Decorator
    *
@@ -44,17 +46,20 @@ export class MockGenerator {
     targetClass: Class<TClass>,
     options?: MockDecoratorFactoryOptions
   ): TClass | TClass[] {
-    const { count = 1, locale = ClassParser.DEFAULT_LOCALE } = options || {};
-    const processor = new ClassParser<TClass>(Faker, new ClassReflector(), locale);
+    const { count = 1, locale = this.DEFAULT_LOCALE } = options || {};
+
+    Faker.setLocale(locale);
+
+    const parser = new ClassParser<TClass>(Faker, new ClassReflector());
 
     if (!count || count === 1) {
-      return processor.parse(targetClass);
+      return parser.parse(targetClass);
     }
 
     const classInstances: TClass[] = [];
 
     for (let i = 1; i <= count; i++) {
-      classInstances.push(processor.parse(targetClass));
+      classInstances.push(parser.parse(targetClass));
     }
 
     return classInstances;
