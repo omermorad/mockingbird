@@ -8,11 +8,11 @@ import { SingleClassValueHandler } from '../handlers/single-class-value-handler'
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 
-export interface ClassProcessor<T> {
-  process(target: Class<T>): T;
+export interface ClassParser<T> {
+  parse(target: Class<T>): T;
 }
 
-export class ClassProcessor<T> {
+export class ClassParser<T> {
   private static readonly VALUE_HANDLERS: Class<ValueHandler>[] = [
     EnumValueHandler,
     ArrayValueHandler,
@@ -29,7 +29,7 @@ export class ClassProcessor<T> {
   }
 
   private handlePropertyValue(property: Property): T | T[] {
-    for (const classHandler of ClassProcessor.VALUE_HANDLERS) {
+    for (const classHandler of ClassParser.VALUE_HANDLERS) {
       const handler = new classHandler(this.faker, this);
 
       if (handler.shouldHandle(property)) {
@@ -44,7 +44,7 @@ export class ClassProcessor<T> {
    *
    * @param targetClass
    */
-  public process(targetClass: Class<T>): T {
+  public parse(targetClass: Class<T>): T {
     if (!targetClass) {
       throw new Error(`Target class is 'undefined'`);
     }
