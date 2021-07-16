@@ -1,4 +1,4 @@
-import * as faker from 'faker';;
+import faker from 'faker';
 import FakerStatic = Faker.FakerStatic;
 
 export type Faker = FakerStatic;

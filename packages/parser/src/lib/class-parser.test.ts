@@ -1,5 +1,5 @@
 import { Mock, ClassReflector } from '@mockinbird/reflect';
-import faker from 'faker';
+import { Faker } from '@mockinbird/types';
 import { ClassParser } from './class-parser';
 
 describe('ClassParser Integration Test', () => {
@@ -12,7 +12,7 @@ describe('ClassParser Integration Test', () => {
     let processor: ClassParser<any>;
 
     beforeAll(() => {
-      processor = new ClassParser(faker, new ClassReflector(), 'en');
+      processor = new ClassParser(Faker, new ClassReflector());
     });
 
     describe("when calling 'parse' method", () => {
