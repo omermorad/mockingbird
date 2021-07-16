@@ -1,8 +1,9 @@
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
+import { Class, Faker, MultiClass } from '@mockinbird/types';
 import { ArrayValueHandler } from './array-value-handler';
-import { Faker, MultiClass } from '@mockinbird/types';
+import { ClassParser } from '../lib/class-parser';
 
-describe('ArrayValueHandler Unit', () => {
+describe('ArrayValueHandler Unit Test', () => {
   const DTO_CLASS_VALUE = class TestClass {};
   const DEFAULT_COUNT_FOR_DTO = 3;
 
@@ -14,7 +15,7 @@ describe('ArrayValueHandler Unit', () => {
 
   const fakerMock = {
     random: {
-      alpha: jest.fn(),
+      alpha: jest.fn().mockReturnValue('random-string'),
       number: jest.fn(),
       boolean: jest.fn(),
       alphaNumeric: jest.fn(),
@@ -24,9 +25,13 @@ describe('ArrayValueHandler Unit', () => {
     },
   } as unknown as Faker;
 
-  describe('given a ArrayValueHandler', () => {
+  const classProcessorMock = {
+    process: jest.fn(),
+  } as unknown as ClassParser<any>;
+
+  describe('given an ArrayValueHandler', () => {
     beforeAll(() => {
-      handler = new ArrayValueHandler();
+      handler = new ArrayValueHandler(fakerMock, classProcessorMock);
     });
 
     describe("when calling 'shouldHandle' with type 'object' and decoratorValue of multi class ({ type: ClassType })", () => {
@@ -40,26 +45,31 @@ describe('ArrayValueHandler Unit', () => {
     describe("when calling 'produceValue' method", () => {
       describe('and the decoratorValue is null', () => {
         test('then return null', () => {
-          expect(handler.produceValue(createProperty(null))).toBeNull();
+          const producedValue = handler.produceValue(createProperty(null));
+          expect(producedValue).toBeNull();
         });
       });
 
-      describe('and decoratorValue.type (class type) is Primitive', () => {
-        describe('and the primitive decoratorValue is String', () => {
-          let result;
+      describe('and the decoratorValue.type (class type) is primitive, of type String', () => {
+        let result: [];
 
-          beforeAll(() => {
-            result = handler.produceValue(createProperty({ type: String, count: DEFAULT_COUNT_FOR_DTO }));
-          });
+        beforeAll(() => {
+          const property = createProperty({ type: String, count: DEFAULT_COUNT_FOR_DTO });
+          result = handler.produceValue(property);
+        });
 
-          test('then call random alpha string from faker', () => {
-            expect(fakerMock.random.alpha).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
-          });
+        test('then call random alpha string from faker multiple times', () => {
+          expect(fakerMock.random.alpha).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
+        });
 
-          test("then return an array of 'count' strings", () => {
-            expect(result).toBeInstanceOf(Array);
-            expect(result).toHaveLength(DEFAULT_COUNT_FOR_DTO);
-          });
+        test("then return an array of 'count' Strings", () => {
+          expect(result).toBeInstanceOf(Array);
+          expect(result).toHaveLength(DEFAULT_COUNT_FOR_DTO);
+        });
+
+        test('then return an array of String(s) only', () => {
+          const constructorIsString = (item) => (item as Class<string>).constructor.name === 'String';
+          expect(result.every(constructorIsString)).toBeTruthy();
         });
       });
 
