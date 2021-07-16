@@ -48,7 +48,7 @@ jobs:
         run: yarn lerna bootstrap
 
       - name: Lint Source
-        run: yarn lint
+        run: yarn lerna run lint
 
       - name: Test
         run: yarn test:cov
