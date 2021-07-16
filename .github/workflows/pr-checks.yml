@@ -40,7 +40,9 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Lint Commit Message
-        run: echo $(git log -1 --pretty=format:"%s") | yarn commitlint
+        run: |
+          yarn add -D -W @commitlint/config-conventional
+          echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
       - name: Bootstrap
         run: yarn lerna bootstrap
