@@ -1,6 +1,6 @@
 {
   "name": "@mockinbird/reflect",
-  "version": "1.0.0",
+  "version": "1.0.1-alpha.0",
   "license": "MIT",
   "description": "Mockingbird Reflect Package",
   "contributors": [
@@ -41,7 +41,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@mockinbird/types": "^1.0.0",
+    "@mockinbird/types": "^1.0.1-alpha.0",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
