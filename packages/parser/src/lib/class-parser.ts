@@ -22,11 +22,7 @@ export class ClassParser<T> {
     PrimitiveValueHandler,
   ];
 
-  public static readonly DEFAULT_LOCALE = 'en';
-
-  public constructor(private readonly faker: Faker, private readonly reflector: ClassReflector, locale: string) {
-    this.faker.setLocale(locale);
-  }
+  public constructor(private readonly faker: Faker, private readonly reflector: ClassReflector) {}
 
   private handlePropertyValue(property: Property): T | T[] {
     for (const classHandler of ClassParser.VALUE_HANDLERS) {
