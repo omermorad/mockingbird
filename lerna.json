@@ -2,7 +2,11 @@
   "version": "independent",
   "command": {
     "publish": {
-      "allowBranch": ["master"],
+      "allowBranch": ["master", "release"],
+      "conventionalCommits": true
+    },
+    "version": {
+      "message": "chore(release): publish",
       "conventionalCommits": true
     }
   },
