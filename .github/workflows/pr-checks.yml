@@ -5,7 +5,9 @@ on:
       - master
   pull_request:
     branches:
+      - v*
       - master
+      - release
 
 jobs:
   build-and-test:
@@ -20,37 +22,40 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Get NPM Cache Directory Path
-        id: npm-cache-dir
-        run: echo "::set-output name=dir::$(npm config get cache)"
-
-      - name: Lint Commit Message
-        run: |
-          npm i -D @commitlint/config-conventional
-          echo $(git log -1 --pretty=format:"%s") | npx commitlint
+      - name: Get Yarn Cache Directory Path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
 
       - name: Use NodeJS ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: NPM CI
-        id: npm-cache
+      - name: Yarn Install
+        id: yarn-cache
         uses: actions/cache@v2
         with:
-          path: ${{ steps.npm-cache-dir.outputs.dir }}
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-node-
+            ${{ runner.os }}-yarn-
+
+      - name: Lint Commit Message
+        run: |
+          yarn add -D -W @commitlint/config-conventional
+          echo $(git log -1 --pretty=format:"%s") | yarn commitlint
+
+      - name: Bootstrap
+        run: yarn lerna bootstrap
 
       - name: Lint Source
-        run: npm run lint
+        run: yarn lint
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Test
-        run: npm run test:cov
+        run: yarn test:cov
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1

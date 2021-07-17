@@ -1,8 +1,9 @@
 {
-  "name": "mockingbird-ts",
-  "version": "1.1.1",
+  "name": "mockingbird",
+  "private": true,
+  "version": "0.0.0",
   "license": "MIT",
-  "description": "Super Simple, Yet Powerful, TypeScript Library for Creating Mocks. Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator",
+  "description": "Mockingbird Monorepo",
   "keywords": [
     "faker",
     "faker-typescript",
@@ -23,10 +24,6 @@
     {
       "name": "Idan Ptichi",
       "email": "idanpt@gmail.com"
-    },
-    {
-      "name": "Amit Wagner",
-      "email": "wagner.amit@gmail.com"
     }
   ],
   "repository": {
@@ -38,14 +35,12 @@
   },
   "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
   "scripts": {
-    "prebuild": "npx rimraf dist",
     "prepare": "husky install",
-    "build": "tsc -p tsconfig.build.json",
-    "watch": "tsc -p tsconfig.build.json --watch",
-    "test": "npm run lint && jest --runInBand --verbose",
-    "test:cov": "jest --runInBand --coverage --collectCoverage=true --reporters=jest-junit",
-    "lint": "eslint '{src,test}/**/*.ts'",
-    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+    "build": "lerna run build --stream",
+    "watch": "lerna exec -- watch",
+    "test": "jest",
+    "test:cov": "jest --reporters=jest-junit",
+    "lint": "lerna run lint --since HEAD"
   },
   "files": [
     "dist",
@@ -53,24 +48,12 @@
     "index.js",
     "README.md"
   ],
-  "peerDependencies": {
-    "@types/faker": "^5.0.0 || ^4.0.0",
-    "faker": "^5.0.0 || ^4.0.0",
-    "reflect-metadata": "^0.1.13"
-  },
   "dependencies": {
-    "@plumier/reflect": "^1.0.0-rc.5",
-    "reflect-metadata": "^0.1.13",
-    "tslib": "^2.3.0"
-  },
-  "devDependencies": {
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
-    "@semantic-release/changelog": "^5.0.1",
-    "@semantic-release/git": "^9.0.0",
-    "@semantic-release/github": "^7.2.3",
-    "@semantic-release/npm": "^7.1.3",
-    "@types/faker": "^5.5.6",
+    "@commitlint/config-lerna-scopes": "^12.1.4",
+    "@manypkg/cli": "^0.18.0",
+    "@types/faker": "^5.5.7",
     "@types/jest": "26.0.24",
     "@types/node": "^12.20.15",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
@@ -87,11 +70,10 @@
     "husky": "^7.0.1",
     "jest": "27.0.6",
     "jest-junit": "12.2.0",
+    "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",
     "prettier": "^2.3.2",
-    "rimraf": "^3.0.0",
-    "semantic-release": "^17.4.4",
-    "semantic-release-cli": "^5.4.3",
+    "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
     "ts-loader": "^6.2.2",
     "ts-node": "8.10.2",
@@ -108,21 +90,12 @@
       "eslint --ext .ts --fix"
     ]
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
-    }
-  },
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
     }
   },
-  "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ]
-  }
+  "workspaces": [
+    "packages/*"
+  ]
 }

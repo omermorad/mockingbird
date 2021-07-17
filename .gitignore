@@ -14,7 +14,7 @@ lerna-debug.log*
 .DS_Store
 
 # Tests
-/coverage
+coverage
 /sample/coverage
 /.nyc_output
 
@@ -38,3 +38,4 @@ lerna-debug.log*
 junit.xml
 .gitconfig
 .circleci
+!.husky

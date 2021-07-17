@@ -22,7 +22,7 @@
 Install the package alongside `faker` and `@types/faker` peer dependencies:
 
 ```bash
-npm i mockingbird-ts faker @types/faker
+npm i generator faker @types/faker
 ```
 
 ## Usage

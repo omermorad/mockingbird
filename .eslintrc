@@ -1,7 +1,9 @@
 {
+  "root": true,
   "parser": "@typescript-eslint/parser",
   "plugins": [
     "prettier"
+//    "prettier/@typescript-eslint"
   ],
   "parserOptions": {
     "ecmaVersion": 8
@@ -38,7 +40,6 @@
         "trailingComma": "es5"
       }
     ],
-    "react/forbid-prop-types": 0,
     "no-unused-expressions": 0,
     "one-var": 0,
     "no-underscore-dangle": [
@@ -60,6 +61,7 @@
     "lines-between-class-members": "off"
   },
   "env": {
+    "node": true,
     "jest": true
   }
 }

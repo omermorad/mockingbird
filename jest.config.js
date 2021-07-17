@@ -1,19 +1,7 @@
+const base = require('./jest.config.base');
+
 module.exports = {
-  moduleFileExtensions: [
-    'js',
-    'json',
-    'ts'
-  ],
-  rootDir: './',
-  testRegex: '.test.ts$',
-  transform: {
-    '^.+\\.(t|j)s$': 'ts-jest'
-  },
-  coverageDirectory: './coverage',
-  coverageReporters: [
-    'text',
-    'cobertura'
-  ],
-  testEnvironment: 'node',
-  modulePathIgnorePatterns: ['./sample', 'jest.config.js']
+  ...base,
+  roots: ['<rootDir>'],
+  projects: ['<rootDir>/packages/generator', '<rootDir>/packages/reflect', '<rootDir>/packages/parser'],
 };

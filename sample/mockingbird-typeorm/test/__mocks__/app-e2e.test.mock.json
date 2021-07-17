@@ -1,0 +1,14 @@
+{
+  "Dog": {
+    "this-is-a-slug": [
+      {
+        "name": "Rexy",
+        "point": 10,
+      },
+      {
+        "name": "Rexy",
+        "point": 10
+      }
+    ]
+  }
+}

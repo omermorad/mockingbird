@@ -1,0 +1,18 @@
+{
+  "version": "independent",
+  "command": {
+    "publish": {
+      "allowBranch": ["master", "release"],
+      "message": "chore(release): release packages",
+      "conventionalCommits": true
+    },
+    "version": {
+      "conventionalCommits": true
+    }
+  },
+  "useWorkspaces": true,
+  "npmClient": "yarn",
+  "packages": [
+    "packages/*"
+  ]
+}
