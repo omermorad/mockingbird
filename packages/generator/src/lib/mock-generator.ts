@@ -3,7 +3,7 @@ import { ClassParser } from '@mockinbird/parser';
 import { ClassReflector } from '@mockinbird/reflect';
 import { MockDecoratorFactoryOptions } from '../types/mock-decorator-factory-options.interface';
 
-export class MockFactory {
+export class MockGenerator {
   private static readonly DEFAULT_LOCALE = 'en';
 
   /**
@@ -11,7 +11,7 @@ export class MockFactory {
    *
    * @example
    * class Person { @Mock() name: string }
-   * MockFactory.create(Person) will return an object { name: <random-string> }
+   * MockGenerator.create(Person) will return an object { name: <random-string> }
    *
    * @param target
    */
@@ -23,7 +23,7 @@ export class MockFactory {
    *
    * @example
    * class Person { @Mock() name: string }
-   * MockFactory.create(Person, { count: 3, locale: 'es' }) will return an
+   * MockGenerator.create(Person, { count: 3, locale: 'es' }) will return an
    * array of objects [{ name: <random-string> }, { name: <random-string> },
    * { name: <random-string> }]
    *

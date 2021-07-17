@@ -1,5 +1,5 @@
 import { TestClasses } from './common/test-classes';
-import { MockFactory } from '../../src';
+import { MockGenerator } from '../../src';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
@@ -8,13 +8,13 @@ import TestClassWithEnum = TestClasses.TestClassWithEnum;
 import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
 import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
 
-describe('MockFactory - Integration Test', () => {
+describe('MockGenerator - Integration Test', () => {
   let result;
 
   describe('given a decorated class', () => {
     describe('when using the @Mock decorator with absolute values', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithAbsoluteValues);
+        result = MockGenerator.create(TestClassWithAbsoluteValues);
       });
 
       test('then return the exact same values passed in the options', () => {
@@ -26,7 +26,7 @@ describe('MockFactory - Integration Test', () => {
 
     describe('when using the @Mock decorator with a callback (faker)', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithCallback);
+        result = MockGenerator.create(TestClassWithCallback);
       });
 
       test('then return random values from faker', () => {
@@ -39,7 +39,7 @@ describe('MockFactory - Integration Test', () => {
 
     describe('when using the @Mock decorator with an enum decoratorValue', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithEnum);
+        result = MockGenerator.create(TestClassWithEnum);
       });
 
       test('then return one random decoratorValue (not key)', () => {
@@ -49,7 +49,7 @@ describe('MockFactory - Integration Test', () => {
 
     describe('when using the @Mock decorator with no/empty values', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithNoValues);
+        result = MockGenerator.create(TestClassWithNoValues);
       });
 
       test('then infer the decoratorValue from the type itself', () => {
@@ -64,7 +64,7 @@ describe('MockFactory - Integration Test', () => {
 
     describe('when using the @Mock decorator with a single class', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithOtherClass);
+        result = MockGenerator.create(TestClassWithOtherClass);
       });
 
       test('then return an object with the given class', () => {
@@ -74,7 +74,7 @@ describe('MockFactory - Integration Test', () => {
 
     describe('when using the @Mock decorator with a multi class', () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithMultiClass);
+        result = MockGenerator.create(TestClassWithMultiClass);
       });
 
       test("then return contain a property 'dogs' which is array of Dog with length of 'count'", () => {
@@ -91,7 +91,7 @@ describe('MockFactory - Integration Test', () => {
 
     describe("when using the @Mock decorator with 'count' option", () => {
       beforeAll(() => {
-        result = MockFactory.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
+        result = MockGenerator.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
       });
 
       test("then return array with length of 'count'", () => {
