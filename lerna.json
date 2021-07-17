@@ -3,10 +3,10 @@
   "command": {
     "publish": {
       "allowBranch": ["master", "release"],
+      "message": "chore(release): release packages",
       "conventionalCommits": true
     },
     "version": {
-      "message": "chore(release): publish",
       "conventionalCommits": true
     }
   },
