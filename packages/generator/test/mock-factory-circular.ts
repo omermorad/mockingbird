@@ -1,5 +1,5 @@
 import { Mock } from '@mockinbird/reflect';
-import { MockGenerator } from '../src/lib/factories/mock-generator';
+import { MockFactory } from '../src';
 
 describe('Mock Factory - circular class-type', () => {
   describe('with single class circular mock', () => {
@@ -9,7 +9,7 @@ describe('Mock Factory - circular class-type', () => {
     }
 
     test('when calling MockFactory.create it throws an exception', () => {
-      expect(() => MockGenerator.create<Man>(Man)).toThrowError(
+      expect(() => MockFactory.create<Man>(Man)).toThrowError(
         'Circular class-type mock detected! Target: Man; PropertyInterface: son'
       );
     });
@@ -22,7 +22,7 @@ describe('Mock Factory - circular class-type', () => {
     }
 
     test('When calling MockFactory.create it throws an exception', () => {
-      expect(() => MockGenerator.create<AnotherMan>(AnotherMan)).toThrowError(
+      expect(() => MockFactory.create<AnotherMan>(AnotherMan)).toThrowError(
         'Circular class-type mock detected! Target: AnotherMan; PropertyInterface: sons'
       );
     });

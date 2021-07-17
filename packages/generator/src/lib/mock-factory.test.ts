@@ -1,4 +1,4 @@
-import { MockGenerator } from './mock-generator';
+import { MockFactory } from './mock-factory';
 
 const processMock = jest.fn();
 
@@ -8,7 +8,7 @@ jest.mock('@mockinbird/parser', () => ({
   }),
 }));
 
-describe('MockGenerator - Unit', () => {
+describe('MockFactory - Unit', () => {
   describe('given a Mock Factory', () => {
     afterEach(() => {
       processMock.mockClear();
@@ -18,7 +18,7 @@ describe('MockGenerator - Unit', () => {
 
     describe("when calling 'create' method without options", () => {
       test('then call process exactly once', () => {
-        MockGenerator.create(TestClass);
+        MockFactory.create(TestClass);
 
         expect(processMock).toHaveBeenCalledTimes(1);
         expect(processMock).toHaveBeenCalledWith(TestClass);
@@ -29,7 +29,7 @@ describe('MockGenerator - Unit', () => {
       const count = 3;
 
       test('then call process 3 times ', () => {
-        MockGenerator.create(TestClass, { count });
+        MockFactory.create(TestClass, { count });
 
         expect(processMock).toHaveBeenCalledTimes(count);
       });
