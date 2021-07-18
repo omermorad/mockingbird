@@ -1,5 +1,5 @@
 import { Property, ClassReflector } from '@mockinbird/reflect';
-import { Class, Faker } from '@mockinbird/types';
+import { Type, Faker } from '@mockinbird/types';
 import { CallbackValueHandler } from '../handlers/callback-value-handler';
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
 import { EnumValueHandler } from '../handlers/enum-value-handler';
@@ -8,12 +8,13 @@ import { SingleClassValueHandler } from '../handlers/single-class-value-handler'
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 
-export interface ClassParser<T> {
-  parse(target: Class<T>): T;
+export interface ClassParser<TClass> {
+  parse(target: Type<TClass>): TClass;
+  setFakerLocale(locale: Faker['locale']): void;
 }
 
-export class ClassParser<T> {
-  private static readonly VALUE_HANDLERS: Class<ValueHandler>[] = [
+export class ClassParser<TClass> {
+  private readonly valueHandlers: Type<ValueHandler>[] = [
     EnumValueHandler,
     ArrayValueHandler,
     SingleClassValueHandler,
@@ -24,14 +25,18 @@ export class ClassParser<T> {
 
   public constructor(private readonly faker: Faker, private readonly reflector: ClassReflector) {}
 
-  private handlePropertyValue(property: Property): T | T[] {
-    for (const classHandler of ClassParser.VALUE_HANDLERS) {
+  private handlePropertyValue(property: Property): TClass | TClass[] {
+    for (const classHandler of this.valueHandlers) {
       const handler = new classHandler(this.faker, this);
 
       if (handler.shouldHandle(property)) {
-        return handler.produceValue<T>(property);
+        return handler.produceValue<TClass>(property);
       }
     }
+  }
+
+  public setFakerLocale(locale: Faker['locale']): void {
+    this.faker.setLocale(locale);
   }
 
   /**
@@ -40,13 +45,13 @@ export class ClassParser<T> {
    *
    * @param targetClass
    */
-  public parse(targetClass: Class<T>): T {
+  public parse(targetClass: Type<TClass>): TClass {
     if (!targetClass) {
       throw new Error(`Target class is 'undefined'`);
     }
 
     const classReflection = this.reflector.reflectClass(targetClass);
-    const classInstance: T = new targetClass();
+    const classInstance: TClass = new targetClass();
 
     const props = classReflection.reduce((acc, property) => {
       return { ...acc, [property.name]: this.handlePropertyValue(property) };
