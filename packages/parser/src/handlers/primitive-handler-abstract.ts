@@ -10,9 +10,9 @@ export abstract class PrimitiveHandlerAbstract extends AbstractValueHandler {
     if (ctor === 'String') {
       return faker.random.alpha({ count: 10 });
     } else if (ctor === 'Number') {
-      return faker.random.number(1000);
+      return faker.datatype.number(1000);
     } else if (ctor === 'Boolean') {
-      return faker.random.boolean();
+      return faker.datatype.boolean();
     } else if (ctor === 'Date') {
       return faker.date.recent();
     } else {

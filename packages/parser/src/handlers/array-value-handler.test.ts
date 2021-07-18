@@ -16,9 +16,11 @@ describe('ArrayValueHandler Unit Test', () => {
   const fakerMock = {
     random: {
       alpha: jest.fn().mockReturnValue('random-string'),
+      alphaNumeric: jest.fn(),
+    },
+    datatype: {
       number: jest.fn(),
       boolean: jest.fn(),
-      alphaNumeric: jest.fn(),
     },
     date: {
       recent: jest.fn(),
@@ -81,8 +83,8 @@ describe('ArrayValueHandler Unit Test', () => {
         });
 
         test('then call random alpha string from faker', () => {
-          expect(fakerMock.random.number).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
-          expect(fakerMock.random.number).toHaveBeenCalledWith(1000);
+          expect(fakerMock.datatype.number).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
+          expect(fakerMock.datatype.number).toHaveBeenCalledWith(1000);
         });
 
         test("then return an array of 'count' numbers", () => {
@@ -94,7 +96,7 @@ describe('ArrayValueHandler Unit Test', () => {
       describe('and the primitive decoratorValue is Boolean', () => {
         test('and the primitive decoratorValue is Boolean', () => {
           handler.produceValue(createProperty({ type: Boolean, count: DEFAULT_COUNT_FOR_DTO }));
-          expect(fakerMock.random.boolean).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
+          expect(fakerMock.datatype.boolean).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
         });
       });
 

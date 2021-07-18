@@ -8,9 +8,11 @@ describe('PrimitiveValueHandler Unit', () => {
   const fakerMock = {
     random: {
       alpha: jest.fn(),
+      alphaNumeric: jest.fn(),
+    },
+    datatype: {
       number: jest.fn(),
       boolean: jest.fn(),
-      alphaNumeric: jest.fn(),
     },
     date: {
       recent: jest.fn(),
@@ -83,8 +85,8 @@ describe('PrimitiveValueHandler Unit', () => {
             const property = new Property('name', 'Number', new PropertyDecoratorValue(undefined));
             handler.produceValue(property);
 
-            expect(fakerMock.random.number).toHaveBeenCalledTimes(1);
-            expect(fakerMock.random.number).toHaveBeenCalledWith(1000);
+            expect(fakerMock.datatype.number).toHaveBeenCalledTimes(1);
+            expect(fakerMock.datatype.number).toHaveBeenCalledWith(1000);
           });
         });
 
@@ -92,7 +94,7 @@ describe('PrimitiveValueHandler Unit', () => {
           test('then return random boolean decoratorValue', () => {
             const property = new Property('name', 'Boolean', new PropertyDecoratorValue(undefined));
             handler.produceValue(property);
-            expect(fakerMock.random.boolean).toHaveBeenCalledTimes(1);
+            expect(fakerMock.datatype.boolean).toHaveBeenCalledTimes(1);
           });
         });
 
