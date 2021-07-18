@@ -1,5 +1,5 @@
-import { Callback, Class, ClassLiteral, EnumObject, ExactValue, MultiClass } from '@mockinbird/types';
+import { Callback, Type, ClassLiteral, EnumObject, ExactValue, MultiClass } from '@mockinbird/types';
 
-export type MockOptions = Callback | ExactValue | Class | EnumObject | MultiClass;
+export type MockOptions = Callback | ExactValue | Type | EnumObject | MultiClass;
 
-export type GeneratedMock<TClass extends Class = any> = Class<TClass> | ClassLiteral<TClass>;
+export type GeneratedMock<TClass extends Type = any> = Type<TClass> | ClassLiteral<TClass>;
