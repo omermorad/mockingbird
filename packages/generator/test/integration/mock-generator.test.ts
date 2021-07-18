@@ -1,7 +1,8 @@
+import { ClassParser } from '@mockinbird/parser';
 import { ClassReflector } from '@mockinbird/reflect';
 import { Faker } from '@mockinbird/types';
 import { TestClasses } from './common/test-classes';
-import { MockGenerator } from '../../src/lib/mock-generator';
+import { MockGenerator } from '../../src';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
@@ -9,7 +10,6 @@ import TestClassWithCallback = TestClasses.TestClassWithCallback;
 import TestClassWithEnum = TestClasses.TestClassWithEnum;
 import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
 import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
-import { ClassParser } from '@mockinbird/parser';
 
 describe('MockGenerator - Integration Test', () => {
   let result;
