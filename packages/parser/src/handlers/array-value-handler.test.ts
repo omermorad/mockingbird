@@ -27,13 +27,13 @@ describe('ArrayValueHandler Unit Test', () => {
     },
   } as unknown as Faker;
 
-  const classProcessorMock = {
-    process: jest.fn(),
+  const classParserMock = {
+    parse: jest.fn(),
   } as unknown as ClassParser<any>;
 
   describe('given an ArrayValueHandler', () => {
     beforeAll(() => {
-      handler = new ArrayValueHandler(fakerMock, classProcessorMock);
+      handler = new ArrayValueHandler(fakerMock, classParserMock);
     });
 
     describe("when calling 'shouldHandle' with type 'object' and decoratorValue of multi class ({ type: ClassType })", () => {
@@ -53,7 +53,7 @@ describe('ArrayValueHandler Unit Test', () => {
       });
 
       describe('and the decoratorValue.type (class type) is primitive, of type String', () => {
-        let result: [];
+        let result: any[];
 
         beforeAll(() => {
           const property = createProperty({ type: String, count: DEFAULT_COUNT_FOR_DTO });
@@ -107,12 +107,12 @@ describe('ArrayValueHandler Unit Test', () => {
         });
       });
     });
-    //
-    // describe('and decoratorValue type is an actual class (not a primitive)', () => {
-    //   test("then call 'process' with 'count' times", () => {
-    //     handler.produceValue(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }));
-    //     expect(classProcessorMock.process).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
-    //   });
-    // });
+
+    describe('and decoratorValue type is an actual class (not a primitive)', () => {
+      test("then call 'process' with 'count' times", () => {
+        handler.produceValue(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }));
+        expect(classParserMock.parse).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
+      });
+    });
   });
 });

@@ -10,7 +10,7 @@ export class ArrayValueHandler extends PrimitiveHandlerAbstract implements Value
     return property.decoratorValue.isMultiClass();
   }
 
-  public produceValue(property: Property): any {
+  public produceValue(property: Property): any[] {
     const { decoratorValue } = property;
 
     if (decoratorValue.value === null) {
