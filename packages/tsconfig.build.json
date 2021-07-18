@@ -1,19 +1,16 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "incremental": false
+    "incremental": false,
+    "sourceMap": true
   },
   "exclude": [
-    "../sample",
     "node_modules",
-    "packages/mockingbird-ts/test",
     "dist",
-    "**/*test.ts",
+    "*.test.ts",
     "index.ts",
     "index.js",
     "index.d.ts",
-    "coverage",
-    "jest.config.js",
-    "commitlint.config.js"
+    "coverage"
   ]
 }
