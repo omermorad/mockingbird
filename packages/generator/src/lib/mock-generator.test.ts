@@ -1,3 +1,4 @@
+import { ClassParser } from '@mockinbird/parser';
 import { MockGenerator } from './mock-generator';
 
 /**
