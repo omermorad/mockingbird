@@ -8,6 +8,8 @@ describe('ClassParser Integration Test', () => {
     @Mock() isAwesome: boolean;
   }
 
+  const setLocale = jest.spyOn(Faker, 'setLocale');
+
   describe('given a ClassParser instance', () => {
     let processor: ClassParser<any>;
 
@@ -32,6 +34,14 @@ describe('ClassParser Integration Test', () => {
         test('then return an actual instance of the class', () => {
           expect(returnValue).toBeInstanceOf(Magician);
         });
+      });
+    });
+
+    describe("when calling 'setFakerLocale'", () => {
+      beforeAll(() => processor.setFakerLocale('jp'));
+
+      test('then call faker locale function', () => {
+        expect(setLocale).toHaveBeenCalledWith('jp');
       });
     });
   });
