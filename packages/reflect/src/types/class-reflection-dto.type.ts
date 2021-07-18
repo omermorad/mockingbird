@@ -1,3 +1,3 @@
-import { Property } from '../lib/property';
+import { Property } from '../lib';
 
 export type ClassReflectionDto = Property[];
