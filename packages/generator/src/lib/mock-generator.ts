@@ -1,10 +1,11 @@
-import { Class, Faker } from '@mockinbird/types';
+import { Type } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
-import { ClassReflector } from '@mockinbird/reflect';
 import { MockDecoratorFactoryOptions } from '../types/mock-decorator-factory-options.interface';
 
-export class MockGenerator {
+export class MockGenerator<TClass = any> {
   private static readonly DEFAULT_LOCALE = 'en';
+
+  public constructor(private readonly classParser: ClassParser<TClass>) {}
 
   /**
    * Return an object with all the properties decorated by the 'Mock' Decorator
@@ -13,9 +14,10 @@ export class MockGenerator {
    * class Person { @Mock() name: string }
    * MockGenerator.create(Person) will return an object { name: <random-string> }
    *
-   * @param target
+   * @param targetClass
+   * @param locale
    */
-  public static create<TClass = any>(target: Class<TClass>): TClass;
+  public create(targetClass: Type<TClass>, locale?: string): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -30,10 +32,10 @@ export class MockGenerator {
    * Passing a 'locale' property will set a different locale for faker calls
    * The default locale is 'en' (english)
    *
-   * @param target
+   * @param targetClass
    * @param options
    */
-  public static create<TClass = any>(target: Class<TClass>, options: MockDecoratorFactoryOptions): TClass[];
+  public create(targetClass: Type<TClass>, options: MockDecoratorFactoryOptions): TClass[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -42,24 +44,28 @@ export class MockGenerator {
    * @param targetClass
    * @param options
    */
-  public static create<TClass = any>(
-    targetClass: Class<TClass>,
-    options?: MockDecoratorFactoryOptions
-  ): TClass | TClass[] {
-    const { count = 1, locale = this.DEFAULT_LOCALE } = options || {};
+  public create(targetClass: Type<TClass>, options?: MockDecoratorFactoryOptions | string): TClass | TClass[] {
+    let locale: string;
 
-    Faker.setLocale(locale);
+    if (typeof options === 'string') {
+      locale = options;
+    } else {
+      locale = options?.locale || MockGenerator.DEFAULT_LOCALE;
+    }
 
-    const parser = new ClassParser<TClass>(Faker, new ClassReflector());
+    this.classParser.setFakerLocale(locale);
+
+    const { count = 1 } = (options || {}) as MockDecoratorFactoryOptions;
 
     if (!count || count === 1) {
-      return parser.parse(targetClass);
+      return this.classParser.parse(targetClass);
     }
 
     const classInstances: TClass[] = [];
 
     for (let i = 1; i <= count; i++) {
-      classInstances.push(parser.parse(targetClass));
+      const parsedClass = this.classParser.parse(targetClass);
+      classInstances.push(parsedClass);
     }
 
     return classInstances;
