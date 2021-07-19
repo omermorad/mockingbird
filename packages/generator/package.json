@@ -1,6 +1,6 @@
 {
   "name": "mockingbird-ts",
-  "version": "1.1.1",
+  "version": "2.0.0",
   "license": "MIT",
   "description": "Super Simple, Yet Powerful, TypeScript Library for Creating Mocks. Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator",
   "keywords": [
@@ -48,9 +48,9 @@
     "README.md"
   ],
   "dependencies": {
-    "@mockinbird/parser": "^1.0.1-alpha.0",
-    "@mockinbird/reflect": "^1.0.1-alpha.0",
-    "@mockinbird/types": "^1.0.1-alpha.0"
+    "@mockinbird/parser": "^2.0.0",
+    "@mockinbird/reflect": "^2.0.0",
+    "@mockinbird/types": "^2.0.0"
   },
   "devDependencies": {
     "jest": "27.0.6",
