@@ -1,4 +1,4 @@
-import { Type } from '@mockinbird/types';
+import { Class } from '@mockinbird/types';
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
 import { MockOptions } from '../types';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
@@ -23,7 +23,7 @@ export class ClassReflector {
     });
   }
 
-  public reflectClass(target: Type<unknown>): ClassReflectionDto {
+  public reflectClass<TClass = any>(target: Class<TClass>): ClassReflectionDto {
     if (!ClassReflector.REFLECTED_CLASSES.hasOwnProperty(target.name)) {
       ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflect(target));
     }

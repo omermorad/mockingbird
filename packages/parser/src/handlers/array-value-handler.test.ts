@@ -1,5 +1,5 @@
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Type, Faker, MultiClass } from '@mockinbird/types';
+import { Class, Faker, MultiClass } from '@mockinbird/types';
 import { ArrayValueHandler } from './array-value-handler';
 import { ClassParser } from '../lib/class-parser';
 
@@ -29,7 +29,7 @@ describe('ArrayValueHandler Unit Test', () => {
 
   const classParserMock = {
     parse: jest.fn(),
-  } as unknown as ClassParser<any>;
+  } as unknown as ClassParser;
 
   describe('given an ArrayValueHandler', () => {
     beforeAll(() => {
@@ -70,7 +70,7 @@ describe('ArrayValueHandler Unit Test', () => {
         });
 
         test('then return an array of String(s) only', () => {
-          const constructorIsString = (item) => (item as Type<string>).constructor.name === 'String';
+          const constructorIsString = (item) => (item as Class<string>).constructor.name === 'String';
           expect(result.every(constructorIsString)).toBeTruthy();
         });
       });

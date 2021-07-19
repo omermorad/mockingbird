@@ -11,7 +11,7 @@ describe('ClassParser Integration Test', () => {
   const setLocale = jest.spyOn(Faker, 'setLocale');
 
   describe('given a ClassParser instance', () => {
-    let processor: ClassParser<any>;
+    let processor: ClassParser;
 
     beforeAll(() => {
       processor = new ClassParser(Faker, new ClassReflector());

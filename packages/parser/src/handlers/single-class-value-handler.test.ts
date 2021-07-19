@@ -10,7 +10,7 @@ describe('SingleClassValueHandler Unit', () => {
 
   const classParserMock = {
     parse: jest.fn(),
-  } as unknown as ClassParser<any>;
+  } as unknown as ClassParser;
 
   let handler: SingleClassValueHandler;
 

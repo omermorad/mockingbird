@@ -12,7 +12,7 @@ describe('MockGenerator', () => {
     const parserMock = {
       setFakerLocale: jest.fn(),
       parse: jest.fn(),
-    } as unknown as ClassParser<any>;
+    } as unknown as ClassParser;
 
     beforeAll(() => {
       generator = new MockGenerator(parserMock);

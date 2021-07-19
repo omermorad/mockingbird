@@ -1,11 +1,11 @@
-import { Type } from '@mockinbird/types';
+import { Class } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
 import { MockDecoratorFactoryOptions } from '../types/mock-decorator-factory-options.interface';
 
-export class MockGenerator<TClass = any> {
+export class MockGenerator {
   private static readonly DEFAULT_LOCALE = 'en';
 
-  public constructor(private readonly classParser: ClassParser<TClass>) {}
+  public constructor(private readonly classParser: ClassParser) {}
 
   /**
    * Return an object with all the properties decorated by the 'Mock' Decorator
@@ -17,7 +17,7 @@ export class MockGenerator<TClass = any> {
    * @param targetClass
    * @param locale
    */
-  public create(targetClass: Type<TClass>, locale?: string): TClass;
+  public create<TClass = any>(targetClass: Class<TClass>, locale?: string): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -35,7 +35,7 @@ export class MockGenerator<TClass = any> {
    * @param targetClass
    * @param options
    */
-  public create(targetClass: Type<TClass>, options: MockDecoratorFactoryOptions): TClass[];
+  public create<TClass = any>(targetClass: Class<TClass>, options: MockDecoratorFactoryOptions): TClass[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -44,7 +44,10 @@ export class MockGenerator<TClass = any> {
    * @param targetClass
    * @param options
    */
-  public create(targetClass: Type<TClass>, options?: MockDecoratorFactoryOptions | string): TClass | TClass[] {
+  public create<TClass = any>(
+    targetClass: Class<TClass>,
+    options?: MockDecoratorFactoryOptions | string
+  ): TClass | TClass[] {
     let locale: string;
 
     if (typeof options === 'string') {
@@ -64,7 +67,7 @@ export class MockGenerator<TClass = any> {
     const classInstances: TClass[] = [];
 
     for (let i = 1; i <= count; i++) {
-      const parsedClass = this.classParser.parse(targetClass);
+      const parsedClass = this.classParser.parse<TClass>(targetClass);
       classInstances.push(parsedClass);
     }
 
