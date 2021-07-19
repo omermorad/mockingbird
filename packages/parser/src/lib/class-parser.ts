@@ -1,5 +1,5 @@
 import { Property, ClassReflector } from '@mockinbird/reflect';
-import { Type, Faker } from '@mockinbird/types';
+import { Faker, Class } from '@mockinbird/types';
 import { CallbackValueHandler } from '../handlers/callback-value-handler';
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
 import { EnumValueHandler } from '../handlers/enum-value-handler';
@@ -8,13 +8,13 @@ import { SingleClassValueHandler } from '../handlers/single-class-value-handler'
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 
-export interface ClassParser<TClass> {
-  parse(target: Type<TClass>): TClass;
+export interface ClassParser {
+  parse<TClass = any>(target: Class<TClass>): TClass;
   setFakerLocale(locale: Faker['locale']): void;
 }
 
-export class ClassParser<TClass> {
-  private readonly valueHandlers: Type<ValueHandler>[] = [
+export class ClassParser {
+  private readonly valueHandlers: Class<ValueHandler>[] = [
     EnumValueHandler,
     ArrayValueHandler,
     SingleClassValueHandler,
@@ -25,7 +25,7 @@ export class ClassParser<TClass> {
 
   public constructor(private readonly faker: Faker, private readonly reflector: ClassReflector) {}
 
-  private handlePropertyValue(property: Property): TClass | TClass[] {
+  private handlePropertyValue<TClass = any>(property: Property): TClass | TClass[] {
     for (const classHandler of this.valueHandlers) {
       const handler = new classHandler(this.faker, this);
 
@@ -45,7 +45,7 @@ export class ClassParser<TClass> {
    *
    * @param targetClass
    */
-  public parse(targetClass: Type<TClass>): TClass {
+  public parse<TClass = any>(targetClass: Class<TClass>): TClass {
     if (!targetClass) {
       throw new Error(`Target class is 'undefined'`);
     }
@@ -54,7 +54,7 @@ export class ClassParser<TClass> {
     const classInstance: TClass = new targetClass();
 
     const props = classReflection.reduce((acc, property) => {
-      return { ...acc, [property.name]: this.handlePropertyValue(property) };
+      return { ...acc, [property.name]: this.handlePropertyValue<TClass>(property) };
     }, {});
 
     for (const [key, value] of Object.entries(props)) {
