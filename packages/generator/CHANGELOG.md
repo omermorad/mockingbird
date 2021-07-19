@@ -1,18 +1,5 @@
 # Change Log
 
-All notable changes to this project will be documented in this file.
-See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
-
-# 2.0.0 (2021-07-19)
-
-**Note:** Version bump only for package mockingbird-ts
-
-
-
-
-
-# Change Log
-
 ### Bug Fixes
 
 * Fixes v1.1.0 package installation failure & dep updates ([#36](https://github.com/omermorad/mockingbird-ts/issues/36)) ([7302e9b](https://github.com/omermorad/mockingbird-ts/commit/7302e9bc9a4a006e8f8898ffbf215748782634ce)), closes [#35](https://github.com/omermorad/mockingbird-ts/issues/35)
