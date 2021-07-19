@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Callback, EnumObject, ExactValue, MultiClass } from '@mockinbird/types';
 import { Class, decorateProperty } from '@plumier/reflect';
-import { MockOptions } from '../types/mock-options.type';
+import { MockOptions } from '../types';
 
 export const MOCK_DECORATOR_NAME = 'Mock';
 
