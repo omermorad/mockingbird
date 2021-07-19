@@ -6,7 +6,7 @@ import { isPrimitive } from '../common/is-primitive';
 
 export class SingleClassValueHandler extends AbstractValueHandler implements ValueHandler {
   public shouldHandle(property: Property): boolean {
-    return property.decoratorValue.isFunction() && !isPrimitive(property.constructorName);
+    return property.decoratorValue.isCallback() && !isPrimitive(property.constructorName);
   }
 
   public produceValue(propertyDto: Property): any {
