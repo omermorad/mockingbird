@@ -12,16 +12,12 @@ export class PropertyDecoratorValue {
     return this.type === 'object';
   }
 
-  public isFunction(): boolean {
-    return this.type === 'function';
-  }
-
   public isMultiClass(): boolean {
     return this.isObject() && (this.value as MultiClass).hasOwnProperty('type');
   }
 
   public isCallback(): boolean {
-    return typeof this.value === 'function';
+    return this.type === 'function';
   }
 
   public isEnum(): boolean {
