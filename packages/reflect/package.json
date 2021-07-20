@@ -3,6 +3,8 @@
   "version": "1.0.1-alpha.0",
   "license": "MIT",
   "description": "Mockingbird Reflect Package",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "contributors": [
     {
       "name": "Omer Morad",

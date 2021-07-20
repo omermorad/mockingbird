@@ -2,6 +2,8 @@
   "name": "mockingbird-ts",
   "version": "1.1.1",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "Super Simple, Yet Powerful, TypeScript Library for Creating Mocks. Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator",
   "keywords": [
     "faker",
@@ -43,8 +45,7 @@
   },
   "files": [
     "dist",
-    "index.d.ts",
-    "index.js",
+    "CHANGELOG.md",
     "README.md"
   ],
   "dependencies": {
