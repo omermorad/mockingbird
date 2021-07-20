@@ -2,6 +2,8 @@
   "name": "@mockinbird/parser",
   "version": "1.0.1-alpha.0",
   "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "description": "Mockingbird Parser Package",
   "contributors": [
     {
@@ -30,9 +32,10 @@
     "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
   },
   "files": [
-    "index.d.ts",
-    "index.js",
     "dist",
+    "index.js",
+    "index.d.ts",
+    "README.md",
     "CHANGELOG.md"
   ],
   "dependencies": {
