@@ -1,4 +1,4 @@
-import { Mock } from '@mockinbird/reflect';
+import { Mock } from '../../../src';
 
 enum TestEnum {
   Foo = 'foo',

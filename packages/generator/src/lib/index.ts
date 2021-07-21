@@ -1,1 +1,2 @@
-export * from './mock-generator';
+export * from './mock-factory';
+export * from './mock-builder';

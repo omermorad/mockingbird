@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MockFactory e2e Test when calling 'many' method with a given class then return 3 instances of the given class 1`] = `
+Array [
+  Dog {
+    "name": "doggy dog",
+  },
+  Dog {
+    "name": "doggy dog",
+  },
+  Dog {
+    "name": "doggy dog",
+  },
+]
+`;

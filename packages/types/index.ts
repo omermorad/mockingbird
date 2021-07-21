@@ -15,6 +15,6 @@ export type MultiClass = { type: Class; count: number };
 
 export type EnumObject = { enum: Record<string, unknown> };
 
-export type Callback = (faker: FakerStatic) => any;
+export type Callback = (faker: Faker) => any;
 
 export type ClassLiteral<TClass = any> = { [K in keyof TClass]: TClass[K] };
