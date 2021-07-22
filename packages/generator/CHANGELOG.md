@@ -1,8 +1,16 @@
 # Change Log
 
-### Bug Fixes
+# [2.0.0-alpha.0](https://github.com/omermorad/mockingbird-ts/compare/mockingbird-ts@2.0.0...mockingbird-ts@2.0.0-alpha.0) (2021-07-22)
 
-* Fixes v1.1.0 package installation failure & dep updates ([#36](https://github.com/omermorad/mockingbird-ts/issues/36)) ([7302e9b](https://github.com/omermorad/mockingbird-ts/commit/7302e9bc9a4a006e8f8898ffbf215748782634ce)), closes [#35](https://github.com/omermorad/mockingbird-ts/issues/35)
+
+### Features
+
+* **mockingbird-ts:** add mock factory fluent/builder api ([#60](https://github.com/omermorad/mockingbird-ts/issues/60)) ([cc5710d](https://github.com/omermorad/mockingbird-ts/commit/cc5710ded33401cae25782bb8e87efe1355024aa)), closes [#42](https://github.com/omermorad/mockingbird-ts/issues/42)
+
+### BREAKING CHANGES
+
+* **mockingbird-ts:** `MockFactory` is no longer a class, but a function returning a builder API
+
 
 # [1.1.0](https://github.com/omermorad/mockingbird-ts/compare/v1.0.0...v1.1.0) (2021-07-08)
 

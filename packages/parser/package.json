@@ -1,6 +1,6 @@
 {
   "name": "@mockinbird/parser",
-  "version": "1.0.1-alpha.0",
+  "version": "1.0.1-alpha.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -39,10 +39,10 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@mockinbird/reflect": "^1.0.1-alpha.0"
+    "@mockinbird/reflect": "^1.0.1-alpha.1"
   },
   "devDependencies": {
-    "@mockinbird/types": "^1.0.1-alpha.0",
+    "@mockinbird/types": "^2.0.0-alpha.0",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
