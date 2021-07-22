@@ -1,10 +1,15 @@
 {
   "extends": "../tsconfig.build.json",
   "compilerOptions": {
-    "noEmit": true,
-    "rootDir": "./"
+    "baseUrl": "./",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "target": "es5"
   },
   "exclude": [
-    "node_modules"
-  ]
+    "node_modules",
+    "test",
+    "src/**/*.test.ts"
+  ],
+  "include": ["src/"]
 }
