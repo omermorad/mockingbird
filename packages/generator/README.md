@@ -18,6 +18,7 @@
 </p>
 
 ## Installation
+
 ```bash
 npm i -D mockingbird-ts
 ```
@@ -32,7 +33,7 @@ import { Mock, MockFactory } from 'mockingbird-ts';
 class Dog {
   @Mock(faker => faker.name.firstName())
   readonly name: string;
-  
+
   @Mock()
   readonly birthday: Date; // Will generate a recent date
 
@@ -49,42 +50,115 @@ const lotsOfDogs = MockFactory(Dog).many(3);
 There are many more options that you can use with the `@Mock` decorator (and also the `MockFactory`). \
 [Click here to jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
 
-**Besides, we have also created a full working example for you; [you can find it under
-the sample folder](https://github.com/omermorad/mockingbird-ts/tree/master/sample)**
-
+**Besides, we have also created a full working example for
+you; [you can find it under the sample folder](https://github.com/omermorad/mockingbird-ts/tree/master/sample)**
 
 ## Playground
-**We have created a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird in action!**
+
+**We have created a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird
+in action!**
+
+## Use Cases
+ - Generate fake (but reasonable) data for your integration tests
+ - Generate fake (but reasonable) data for your seeding a database
+ - Prepare as many unique fixtures as you need for your tests
+
+#### How can Mockingbird help me?
+Consider the following snippets:
+
+**`dog-model.ts`**
+
+```typescript
+import { Mock, MockFactory } from 'mockingbird-ts';
+
+export interface DogModel {
+  name: string;
+  birthday: Date;
+  goodPoints: number;
+}
+
+export class DogModel {
+  @Mock(faker => faker.name.firstName())
+  name: string;
+
+  // Will generate a recent date
+  @Mock()
+  birthday: Date;
+
+  // Will generate a random number
+  @Mock()
+  goodPoints: number;
+}
+```
+
+**`dogs-integration.test.ts`**
+
+```typescript
+import { DogsApiService } from './dogs-service';
+import { DogModel } from './dog-model';
+
+describe('Dogs API Integration Test', () => {
+  // Assume we have dogs-service.ts that fetches from some API
+  const apiService: jest.Mocked<DogsApiService> = {
+    fetch: jest.fn(),
+  };
+
+  let dogs: DogModel[];
+  
+  beforeAll(() => {
+    // Persist will return the same dogs every time
+    dogsMockRef = MockFactory<DogModel>(DogModel).persist();
+  });
+
+  test('Test something you want', async () => {
+    dogs = dogsMockRef.many(3); // Generate 3 different dogs
+    apiService.fetch.mockResolvedValue(dogs);
+
+    const resultFromApi = await apiService.fetch();
+    expect(resultFromApi).toEqual(dogs);
+  });
+
+  test('Test something else you want', async () => {
+    dogsWithZeroPoints = dogsMockRef.stub({ goodPoints: 0 }).many(3);
+    apiService.fetch.mockResolvedValue(dogsWithZeroPoints);
+
+    const resultFromApi = await apiService.fetch();
+    
+    expect(resultFromApi).toEqual(dogsWithZeroPoints);
+    expect(dogsWithZeroPoints[0].goodPoints).toBe(0);
+  });
+});
+```
+
 
 ## Motivation
-When it comes to writing unit tests of large projects containing different and
-diverse entities, mocks are widely used to simulate real data.
 
-Creating mocks can be a tedious and cumbersome process and is usually created
-manually or by using libraries like Faker or Chance, which also do not offer a complete solution,
-especially not when deciding to develop in TypeScript and most of the code becomes object oriented.
+When it comes to writing tests of large projects containing different and diverse entities, mocks (sometimes called "
+fixtures") are widely used to simulate real data.
 
-Therefore, we thought of a convenient and efficient solution that allows the use
-of only one decorator, Mock decorator that allows to create mocks by placing it above the properties of the class.
+Creating mocks (or fixtures) can be a tedious and cumbersome process and is usually created manually or by using
+libraries like Faker or Chance, which also do not offer a complete solution, especially not when you write TypeScript
+only, and most of the code is object-oriented and arranged with classes.
 
-Mockingbird offers several options for creating mocks, including the use of the
-well-known library Faker, which allows you to create information such as a fake email, a fake username,
-a fake address and more.
+We came up with a simple (and efficient) yet super convenient solution: all you have to do to get fixtures out of the
+box is to decorate your classes (whether it's an entity, or a model representing the database layer) and generate simple
+or complex fixtures.
 
-### What is faker.js (aka Faker)?
-For those of you who are unfamiliar with `faker.js`, it is an old library written
-with pure JavaScript, which is used to "generate massive amounts of fake data in
-the browser and Node".
+Mockingbird offers several options for creating mocks, including the use of the well-known library Faker, which allows
+you to create data such as a fake email, a fake username, a fake address and more.u to create information such as a fake
+email, a fake username, a fake address and more.
 
-Fake data is usually needed for testing purposes, to assist in the development process itself,
-and sometimes, also for the purpose of demonstrations and training.
+### What is `faker.js` (aka Faker)?
 
-Mockingbird uses Faker under the hood and making it possible to use faker.js in
-a "TypeScript" way, and thereby allows to create mocks that are meaningful like
-email, first name, address and many more.
+For those of you who are unfamiliar with `faker.js`, it is a library which is used to "generate massive amounts of fake data in the browser and Node".
+
+Mockingbird uses `faker.js` under the hood, making it possible to use Faker in it's "TypeScript" way, and thereby allows
+to create mocks that are meaningful like email, first name, address and many more.
 
 ## License
+
 Distributed under the MIT License. See `LICENSE` for more information.
 
 ## Acknowledgements
+
 [faker.js](https://github.com/marak/Faker.js)

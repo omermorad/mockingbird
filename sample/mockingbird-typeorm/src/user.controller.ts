@@ -19,7 +19,7 @@ export function UserController(router: Router, repository: Repository<User>): Ro
   });
 
   router.get('/users/random', async (req: Request, res: Response) => {
-    const newUser = MockFactory.create(UserEntity);
+    const newUser = MockFactory(UserEntity).one();
     const user = await repository.create(newUser);
     const result = await repository.save(user);
 
