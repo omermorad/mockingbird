@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.2](https://github.com/omermorad/mockingbird-ts/compare/mockingbird-ts@2.0.0-alpha.1...mockingbird-ts@2.0.0-alpha.2) (2021-07-23)
+
+**Note:** Version bump only for package mockingbird-ts
+
+
+
+
+
 # [2.0.0-alpha.1](https://github.com/omermorad/mockingbird-ts/compare/mockingbird-ts@2.0.0...mockingbird-ts@2.0.0-alpha.1) (2021-07-23)
 
 

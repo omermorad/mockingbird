@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@1.0.1-alpha.2...@mockinbird/parser@1.0.1-alpha.3) (2021-07-23)
+
+**Note:** Version bump only for package @mockinbird/parser
+
+
+
+
+
 ## 1.0.1-alpha.2 (2021-07-23)
 
 

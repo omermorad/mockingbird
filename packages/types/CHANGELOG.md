@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0-alpha.2](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0-alpha.1...@mockinbird/types@2.0.0-alpha.2) (2021-07-23)
+
+
+### Bug Fixes
+
+* **types:** change the values inside 'files' array in package.json ([a858cb4](https://github.com/omermorad/mockingbird-ts/commit/a858cb47ef8e80d87686724d4125bd213a77ecad))
+
+
+
+
+
 # 2.0.0-alpha.1 (2021-07-23)
 
 
