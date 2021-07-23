@@ -7,9 +7,10 @@ import { ArrayValueHandler } from '../handlers/array-value-handler';
 import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
+import { ParserConfigDto } from '../types/parser-config-dto';
 
 export interface ClassParser {
-  parse<TClass = any>(target: Class<TClass>): TClass;
+  parse<TClass = any>(target: Class<TClass>, config?: ParserConfigDto<TClass>): TClass;
   setFakerLocale(locale: Faker['locale']): void;
 }
 
@@ -39,25 +40,41 @@ export class ClassParser {
     this.faker.setLocale(locale);
   }
 
+  private analyzeProps<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass> = {}) {
+    const classReflection = this.reflector.reflectClass(targetClass);
+    const { overrides = {}, ignore = [] } = config;
+
+    const handleProps = (acc, property) => {
+      if (ignore.includes(property.name)) {
+        return acc;
+      }
+
+      if (overrides.hasOwnProperty(property.name)) {
+        return { ...acc, [property.name]: overrides[property.name] };
+      }
+
+      return { ...acc, [property.name]: this.handlePropertyValue<TClass>(property) };
+    };
+
+    return classReflection.reduce(handleProps, {});
+  }
+
   /**
    * Return an object from the target class with all the properties
    * decorated by the 'Mock' Decorator
    *
    * @param targetClass
+   * @param config
    */
-  public parse<TClass = any>(targetClass: Class<TClass>): TClass {
+  public parse<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass> = {}): TClass {
     if (!targetClass) {
       throw new Error(`Target class is 'undefined'`);
     }
 
-    const classReflection = this.reflector.reflectClass(targetClass);
     const classInstance: TClass = new targetClass();
+    const properties = this.analyzeProps(targetClass, config);
 
-    const props = classReflection.reduce((acc, property) => {
-      return { ...acc, [property.name]: this.handlePropertyValue<TClass>(property) };
-    }, {});
-
-    for (const [key, value] of Object.entries(props)) {
+    for (const [key, value] of Object.entries(properties)) {
       classInstance[key] = value;
     }
 
