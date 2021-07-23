@@ -3,11 +3,13 @@
   "compilerOptions": {
     "baseUrl": "./",
     "rootDir": "./src",
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "target": "es6"
   },
   "exclude": [
-    "index.ts",
-    "node_modules"
+    "node_modules",
+    "test",
+    "src/**/*.test.ts"
   ],
   "include": ["src/"]
 }
