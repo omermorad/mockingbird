@@ -32,7 +32,9 @@
     "lint:fix": "eslint 'src/index.ts' --fix"
   },
   "files": [
-    "src/index.ts"
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
   ],
   "dependencies": {
     "faker": "^5.5.3"
