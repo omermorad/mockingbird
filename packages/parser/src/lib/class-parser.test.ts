@@ -1,21 +1,25 @@
 import { Mock, ClassReflector } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/types';
 import { ClassParser } from './class-parser';
+import { Faker } from '@mockinbird/types';
 
-describe('ClassParser Integration Test', () => {
+describe('ClassParser Unit Test', () => {
   class Magician {
     @Mock() name = 'default-name';
     @Mock() isAwesome: boolean;
     @Mock() rating: number;
   }
 
-  const setLocale = jest.spyOn(Faker, 'setLocale');
+  const fakerMock: jest.Mocked<Partial<Faker>> = {
+    setLocale: jest.fn(),
+    datatype: { boolean: () => true, number: () => 12345 } as jest.Mocked<Faker['datatype']>,
+    random: { alpha: jest.fn() } as unknown as jest.Mocked<Faker['random']>,
+  };
 
   describe('given a ClassParser instance', () => {
     let parser: ClassParser;
 
     beforeAll(() => {
-      parser = new ClassParser(Faker, new ClassReflector());
+      parser = new ClassParser(fakerMock as Faker, new ClassReflector());
     });
 
     describe("when calling 'parse' method", () => {
@@ -40,6 +44,16 @@ describe('ClassParser Integration Test', () => {
           test("then return an instance which 'name' property is always 'Houdini'", () => {
             expect(returnValue.name).toBe('Houdini');
           });
+
+          describe('and the key-value pairs including a callback', () => {
+            beforeAll(() => {
+              returnValue = parser.parse(Magician, { overrides: { name: (faker) => faker.random.alpha() } });
+            });
+
+            test('then invoke the callback function with instance of faker', () => {
+              expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
+            });
+          });
         });
 
         describe('and config is including ignore key-value pairs', () => {
@@ -62,7 +76,7 @@ describe('ClassParser Integration Test', () => {
       beforeAll(() => parser.setFakerLocale('jp'));
 
       test('then call faker locale function', () => {
-        expect(setLocale).toHaveBeenCalledWith('jp');
+        expect(fakerMock.setLocale).toHaveBeenCalledWith('jp');
       });
     });
   });

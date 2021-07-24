@@ -51,7 +51,13 @@ export class ClassParser {
       }
 
       if (overrides.hasOwnProperty(property.name)) {
-        return { ...acc, [property.name]: overrides[property.name] };
+        const value = overrides[property.name];
+
+        if (typeof value === 'function') {
+          value(this.faker);
+        }
+
+        return { ...acc, [property.name]: value };
       }
 
       return { ...acc, [property.name]: this.handlePropertyValue<TClass>(property) };
