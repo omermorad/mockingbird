@@ -10,6 +10,7 @@ import { ValueHandler } from '../types/value-handler.interface';
 import { ParserConfigDto } from '../types/parser-config-dto';
 
 export interface ClassParser {
+  parse<TClass = any>(target: Class<TClass>): TClass;
   parse<TClass = any>(target: Class<TClass>, config?: ParserConfigDto<TClass>): TClass;
   setFakerLocale(locale: Faker['locale']): void;
 }
@@ -58,6 +59,25 @@ export class ClassParser {
 
     return classReflection.reduce(handleProps, {});
   }
+
+  /**
+   * Return an object from the target class with all the properties
+   * decorated by the 'Mock' Decorator
+   *
+   * @param targetClass
+   */
+  public parse<TClass = any>(targetClass: Class<TClass>): TClass;
+
+  /**
+   * Return an object from the target class with all the properties
+   * decorated by the 'Mock' Decorator
+   *
+   * Receive some extra configurations
+   *
+   * @param targetClass
+   * @param config
+   */
+  public parse<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass>): TClass;
 
   /**
    * Return an object from the target class with all the properties
