@@ -42,12 +42,12 @@ export class MockBuilder<TClass = any> {
   }
 
   public many(count: number): TClass[] {
-    const mock: TClass[] = this.mockGenerator.create(this.targetClass, { locale: this.locale, count });
+    const mock = this.mockGenerator.create(this.targetClass, { locale: this.locale, count }) as unknown as TClass[];
     return this.process(mock);
   }
 
   public one(): TClass {
-    const mock: TClass = this.mockGenerator.create(this.targetClass, this.locale);
+    const mock = this.mockGenerator.create(this.targetClass, { locale: this.locale }) as unknown as TClass;
     return this.process(mock);
   }
 }

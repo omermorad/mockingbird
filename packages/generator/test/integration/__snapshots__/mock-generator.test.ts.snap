@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MockGenerator - Integration Test given a decorated class when using the @Mock decorator with absolute values then return the exact same values passed in the options 1`] = `
+exports[`MockGenerator - Integration Test given a decorated class when using the mock decorator with absolute values then return the exact same values passed in the options of the mock decorator 1`] = `
 Object {
   "binary": true,
   "date": Any<Date>,
@@ -14,7 +14,7 @@ Object {
 }
 `;
 
-exports[`MockGenerator - Integration Test given a decorated class when using the @Mock decorator with no/empty values then infer the decoratorValue from the type itself 1`] = `
+exports[`MockGenerator - Integration Test given a decorated class when using the mock decorator with absolute values when using the mock decorator with no/empty values then infer the decoratorValue from the type itself 1`] = `
 Object {
   "binary": Any<Boolean>,
   "date": Any<Date>,

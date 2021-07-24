@@ -1,26 +1,31 @@
 import { Mock, ClassReflector } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/types';
 import { ClassParser } from './class-parser';
+import { Faker } from '@mockinbird/types';
 
-describe('ClassParser Integration Test', () => {
+describe('ClassParser Unit Test', () => {
   class Magician {
-    @Mock() name: string;
+    @Mock() name = 'default-name';
     @Mock() isAwesome: boolean;
+    @Mock() rating: number;
   }
 
-  const setLocale = jest.spyOn(Faker, 'setLocale');
+  const fakerMock: jest.Mocked<Partial<Faker>> = {
+    setLocale: jest.fn(),
+    datatype: { boolean: () => true, number: () => 12345 } as jest.Mocked<Faker['datatype']>,
+    random: { alpha: jest.fn() } as unknown as jest.Mocked<Faker['random']>,
+  };
 
   describe('given a ClassParser instance', () => {
-    let processor: ClassParser;
+    let parser: ClassParser;
 
     beforeAll(() => {
-      processor = new ClassParser(Faker, new ClassReflector());
+      parser = new ClassParser(fakerMock as Faker, new ClassReflector());
     });
 
     describe("when calling 'parse' method", () => {
       describe('and there is no target class', () => {
         test('then throw an error indicating that not target class has been passed', () => {
-          expect(() => processor.parse(undefined)).toThrowError();
+          expect(() => parser.parse(undefined)).toThrowError();
         });
       });
 
@@ -28,7 +33,37 @@ describe('ClassParser Integration Test', () => {
         let returnValue;
 
         beforeAll(() => {
-          returnValue = processor.parse(Magician);
+          returnValue = parser.parse(Magician);
+        });
+
+        describe('and config is including overrides key-value pairs', () => {
+          beforeAll(() => {
+            returnValue = parser.parse(Magician, { overrides: { name: 'Houdini' } });
+          });
+
+          test("then return an instance which 'name' property is always 'Houdini'", () => {
+            expect(returnValue.name).toBe('Houdini');
+          });
+
+          describe('and the key-value pairs including a callback', () => {
+            beforeAll(() => {
+              returnValue = parser.parse(Magician, { overrides: { name: (faker) => faker.random.alpha() } });
+            });
+
+            test('then invoke the callback function with instance of faker', () => {
+              expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
+            });
+          });
+        });
+
+        describe('and config is including ignore key-value pairs', () => {
+          beforeAll(() => {
+            returnValue = parser.parse(Magician, { ignore: ['name'] });
+          });
+
+          test('then return the default value of the instance', () => {
+            expect(returnValue.name).toBe('default-name');
+          });
         });
 
         test('then return an actual instance of the class', () => {
@@ -38,10 +73,10 @@ describe('ClassParser Integration Test', () => {
     });
 
     describe("when calling 'setFakerLocale'", () => {
-      beforeAll(() => processor.setFakerLocale('jp'));
+      beforeAll(() => parser.setFakerLocale('jp'));
 
       test('then call faker locale function', () => {
-        expect(setLocale).toHaveBeenCalledWith('jp');
+        expect(fakerMock.setLocale).toHaveBeenCalledWith('jp');
       });
     });
   });

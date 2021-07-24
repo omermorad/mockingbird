@@ -18,3 +18,5 @@ export type EnumObject = { enum: Record<string, unknown> };
 export type Callback = (faker: Faker) => any;
 
 export type ClassLiteral<TClass = any> = { [K in keyof TClass]: TClass[K] };
+
+export type ClassKeysWithFaker<TClass> = Partial<Record<keyof TClass, TClass[keyof TClass] | Callback>>;

@@ -1,5 +1,6 @@
 import { ClassParser } from '@mockinbird/parser';
 import { MockGenerator } from './mock-generator';
+import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
 
 /**
  * The full test of MockGenerator can be found under the 'test' folder,
@@ -20,32 +21,42 @@ describe('MockGenerator', () => {
 
     describe("when calling 'create' method", () => {
       describe('with no options at all', () => {
+        beforeAll(() => generator.create(class TestClass {}));
+
         test('then setup parser with the default locale', () => {
-          generator.create(class TestClass {});
           expect(parserMock.setFakerLocale).toHaveBeenCalledWith('en');
         });
+
+        test('then use/call parse one time only', () => {
+          expect(parserMock.parse).toHaveBeenCalledTimes(1);
+        });
       });
 
-      describe('with a given locale (as argument)', () => {
-        test('then setup the parser with the given locale', () => {
-          generator.create(class TestClass {}, 'arbitrary-locale');
+      describe('with an object argument containing the config/options (with all the properties)', () => {
+        class TestClass {}
+
+        const options: MockGeneratorOptions = {
+          count: 3,
+          locale: 'arbitrary-locale',
+          overrides: { prop: 'value' },
+          ignore: ['test'],
+        };
+
+        beforeAll(() => {
+          jest.resetAllMocks();
+          generator.create(TestClass, options);
+        });
+
+        test('then setup the parser with the locale from the options', () => {
           expect(parserMock.setFakerLocale).toHaveBeenCalledWith('arbitrary-locale');
         });
-      });
 
-      describe('with an object including options', () => {
-        describe("and the options including only 'count'", function () {
-          test("then call the parser 'count' times", () => {
-            generator.create(class TestClass {}, { count: 3 });
-            expect(parserMock.setFakerLocale).toHaveBeenCalledTimes(3);
-          });
+        test('then call parse exactly 3 times', () => {
+          expect(parserMock.parse).toHaveBeenCalledTimes(3);
         });
 
-        describe("and the options including both 'count' and 'locale", function () {
-          test('then setup the parser with the locale from the options', () => {
-            generator.create(class TestClass {}, { count: 1, locale: 'arbitrary-locale' });
-            expect(parserMock.setFakerLocale).toHaveBeenCalledWith('arbitrary-locale');
-          });
+        test('then call parse with the rest of the options', () => {
+          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { overrides: { prop: 'value' }, ignore: ['test'] });
         });
       });
     });
