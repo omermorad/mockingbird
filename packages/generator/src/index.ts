@@ -4,4 +4,4 @@ export * from '@mockinbird/types';
 export { Mock, MockOptions } from '@mockinbird/reflect';
 
 export * from './lib';
-export * from './types/mock-decorator-factory-options.interface';
+export * from './types/mock-generator-options.interface';

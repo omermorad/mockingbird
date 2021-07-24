@@ -1,6 +1,6 @@
 import { Class } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
-import { MockDecoratorFactoryOptions } from '../types/mock-decorator-factory-options.interface';
+import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
 
 export class MockGenerator {
   private static readonly DEFAULT_LOCALE = 'en';
@@ -15,9 +15,8 @@ export class MockGenerator {
    * MockGenerator.create(Person) will return an object { name: <random-string> }
    *
    * @param targetClass
-   * @param locale
    */
-  public create<TClass = any>(targetClass: Class<TClass>, locale?: string): TClass;
+  public create<TClass = any>(targetClass: Class<TClass>): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -35,7 +34,8 @@ export class MockGenerator {
    * @param targetClass
    * @param options
    */
-  public create<TClass = any>(targetClass: Class<TClass>, options: MockDecoratorFactoryOptions): TClass[];
+  public create<TClass = any>(targetClass: Class<TClass>, options: MockGeneratorOptions<TClass>): TClass;
+  public create<TClass = any>(targetClass: Class<TClass>, options: MockGeneratorOptions<TClass>): TClass[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -46,28 +46,20 @@ export class MockGenerator {
    */
   public create<TClass = any>(
     targetClass: Class<TClass>,
-    options?: MockDecoratorFactoryOptions | string
+    options: MockGeneratorOptions<TClass> = {}
   ): TClass | TClass[] {
-    let locale: string;
-
-    if (typeof options === 'string') {
-      locale = options;
-    } else {
-      locale = options?.locale || MockGenerator.DEFAULT_LOCALE;
-    }
+    const { count = 1, locale = MockGenerator.DEFAULT_LOCALE, ...config } = options || {};
 
     this.classParser.setFakerLocale(locale);
 
-    const { count = 1 } = (options || {}) as MockDecoratorFactoryOptions;
-
-    if (!count || count === 1) {
-      return this.classParser.parse(targetClass);
+    if (count === 1) {
+      return this.classParser.parse(targetClass, config);
     }
 
     const classInstances: TClass[] = [];
 
     for (let i = 1; i <= count; i++) {
-      const parsedClass = this.classParser.parse<TClass>(targetClass);
+      const parsedClass = this.classParser.parse<TClass>(targetClass, config);
       classInstances.push(parsedClass);
     }
 

@@ -1,7 +1,7 @@
 import { ClassParser } from '@mockinbird/parser';
 import { ClassReflector } from '@mockinbird/reflect';
-import { Faker } from '../../src';
 import { TestClasses } from './common/test-classes';
+import { Faker } from '../../src';
 import { MockGenerator } from '../../src/lib/mock-generator';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;

@@ -27,7 +27,7 @@ describe('MockBuilder Test', () => {
         });
 
         test('then call create with the same target class and the default locale', () => {
-          expect(mockGeneratorMock.create).toHaveBeenCalledWith(Dog, 'en');
+          expect(mockGeneratorMock.create).toHaveBeenCalledWith(Dog, { locale: 'en' });
         });
 
         describe('and it was not ask for a plain object', () => {
@@ -40,7 +40,7 @@ describe('MockBuilder Test', () => {
       describe('and there was a previous call for setting a locale', () => {
         test('then call create with the same target class and the preset locale', () => {
           builder.setLocale('test').one();
-          expect(mockGeneratorMock.create).toHaveBeenCalledWith(Dog, 'test');
+          expect(mockGeneratorMock.create).toHaveBeenCalledWith(Dog, { locale: 'test' });
         });
       });
 
