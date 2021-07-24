@@ -4,17 +4,13 @@ import { MockGenerator } from './mock-generator';
 export interface MockBuilder<TClass = any> {
   setLocale(locale: string): this;
   toPlain(): this;
-  override(obj: ClassLiteral<TClass>): this;
   many(count: number): TClass[];
   one(): TClass;
 }
 
 export class MockBuilder<TClass = any> {
   private isPlain = false;
-  private stub = null;
   private locale = 'en';
-
-  private readonly storage: Record<string, TClass | TClass[]> = {};
 
   public constructor(private readonly targetClass: Class<TClass>, private readonly mockGenerator: MockGenerator) {}
 
@@ -37,11 +33,6 @@ export class MockBuilder<TClass = any> {
 
   public setLocale(locale: string): this {
     this.locale = locale;
-    return this;
-  }
-
-  public override(obj: ClassLiteral<TClass>): this {
-    this.stub = obj;
     return this;
   }
 
