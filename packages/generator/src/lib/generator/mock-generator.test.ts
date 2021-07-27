@@ -1,6 +1,6 @@
 import { ClassParser } from '@mockinbird/parser';
 import { MockGenerator } from './mock-generator';
-import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
+import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
 
 /**
  * The full test of MockGenerator can be found under the 'test' folder,
