@@ -16,6 +16,6 @@ module.exports = {
   modulePathIgnorePatterns: ['./sample'],
   verbose: true,
   setupFiles: [
-    'jest-gherkin/setup',
+    'jest-gherkin',
   ],
 };
