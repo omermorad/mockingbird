@@ -1,8 +1,8 @@
 import { Faker, Class } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
 import { ClassReflector } from '@mockinbird/reflect';
-import { MockBuilder } from './mock-builder';
-import { MockGenerator } from './mock-generator';
+import { MockBuilder } from './builder/mock-builder';
+import { MockGenerator } from './generator/mock-generator';
 
 export function MockFactory<TClass>(target: Class<TClass>): MockBuilder<TClass> {
   const reflector = new ClassReflector();
