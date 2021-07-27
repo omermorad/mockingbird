@@ -6,14 +6,18 @@
 <p align="center">
   <img width="450" src="https://raw.githubusercontent.com/omermorad/mockingbird-ts/master/docs/logo.png" alt="Mockingbird Logo" />
 
-  <h1 align="center">Mockingbird</h1>
+  <h1 align="center">Mockingbird (TS)</h1>
 
   <h3 align="center">
     The First TypeScript Mocking Framework
   </h3>
 
-  <h4 align="center">
-    Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator (including <a href="https://github.com/marak/Faker.js/">faker.js</a> support)
+  <h4>
+    Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator (including <a href="https://github.com/marak/Faker.js/">faker.js</a> support).
+  </h4>
+
+  <h4>
+    Simply put - Mockingbird gives you a full control on your own fixtures; You can stub them and mock the actual value, replace values, and ignore them as well.
   </h4>
 </p>
 
@@ -107,11 +111,11 @@ describe('Dogs API Integration Test', () => {
   
   beforeAll(() => {
     // Persist will return the same dogs every time
-    dogsMockRef = MockFactory<DogModel>(DogModel).persist();
+    factory = MockFactory<DogModel>(DogModel).persist();
   });
 
   test('Test something you want', async () => {
-    dogs = dogsMockRef.many(3); // Generate 3 different dogs
+    dogs = factory.many(3); // Generate 3 different dogs
     apiService.fetch.mockResolvedValue(dogs);
 
     const resultFromApi = await apiService.fetch();
@@ -119,7 +123,7 @@ describe('Dogs API Integration Test', () => {
   });
 
   test('Test something else you want', async () => {
-    dogsWithZeroPoints = dogsMockRef.stub({ goodPoints: 0 }).many(3);
+    dogsWithZeroPoints = factory.mock('goodPoints', 0).many(3);
     apiService.fetch.mockResolvedValue(dogsWithZeroPoints);
 
     const resultFromApi = await apiService.fetch();
@@ -129,7 +133,6 @@ describe('Dogs API Integration Test', () => {
   });
 });
 ```
-
 
 ## Motivation
 
