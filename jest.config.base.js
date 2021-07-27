@@ -10,9 +10,12 @@ module.exports = {
   ],
   coverageReporters: [
     'text',
-    'cobertura'
+    'cobertura',
   ],
   coverageDirectory: '<rootDir>/coverage/',
   modulePathIgnorePatterns: ['./sample'],
-  verbose: true
+  verbose: true,
+  setupFiles: [
+    'jest-gherkin/setup',
+  ],
 };

@@ -5095,6 +5095,11 @@ jest-get-type@^27.0.6:
   resolved "https://registry.yarnpkg.com/jest-get-type/-/jest-get-type-27.0.6.tgz#0eb5c7f755854279ce9b68a9f1a4122f69047cfe"
   integrity sha512-XTkK5exIeUbbveehcSR8w0bhH+c0yloW/Wpl+9vZrjzztCPWrxhHwkIFpZzCt71oRBsgxmuUfxEqOYoZI2macg==
 
+jest-gherkin@^0.0.0-alpha.0:
+  version "0.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/jest-gherkin/-/jest-gherkin-0.0.0-alpha.0.tgz#9b517156bf392eed6a77121dd59d8cc30e567af0"
+  integrity sha512-kF/2nxJ9nM9Or5KoF92w7EGKspOp2xIM+b8Ts1zHnD51NkUMlTKVM0nzCXkWjpL249jqedEcmwkaxtKryQBeMA==
+
 jest-haste-map@^27.0.6:
   version "27.0.6"
   resolved "https://registry.yarnpkg.com/jest-haste-map/-/jest-haste-map-27.0.6.tgz#4683a4e68f6ecaa74231679dca237279562c8dc7"
