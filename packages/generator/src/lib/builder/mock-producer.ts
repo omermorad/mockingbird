@@ -10,13 +10,16 @@ export class MockProducer<TClass = any> {
 
   protected locale = 'en';
 
-  protected constructor(private readonly targetClass: Class<TClass>, private readonly mockGenerator: MockGenerator) {}
+  protected constructor(
+    protected readonly targetClass: Class<TClass>,
+    protected readonly mockGenerator: MockGenerator
+  ) {}
 
   public setLocale(locale: string): void {
     this.locale = locale;
   }
 
-  public createMany(count: number, combine?: ExtraKeys<TClass>): TClass[] {
+  protected createMany(count: number, combine?: ExtraKeys<TClass>): TClass[] {
     const { locale, overrides, ignoreKeys } = this;
 
     return this.mockGenerator.create(this.targetClass, {
@@ -27,7 +30,7 @@ export class MockProducer<TClass = any> {
     }) as unknown as TClass[];
   }
 
-  public createOne(combine?: ExtraKeys<TClass>): TClass {
+  protected createOne(combine?: ExtraKeys<TClass>): TClass {
     const { locale, overrides, ignoreKeys } = this;
 
     return this.mockGenerator.create(this.targetClass, {
@@ -37,11 +40,11 @@ export class MockProducer<TClass = any> {
     }) as unknown as TClass;
   }
 
-  public permanentOverrides(overrides: OverrideKeys<TClass>): void {
+  protected permanentOverrides(overrides: OverrideKeys<TClass>): void {
     this.overrides = overrides;
   }
 
-  public permanentIgnoreKeys(...keys: IgnoreKeys<TClass>): void {
+  protected permanentIgnoreKeys(...keys: IgnoreKeys<TClass>): void {
     this.ignoreKeys = keys;
   }
 }
