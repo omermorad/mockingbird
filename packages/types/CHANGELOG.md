@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [2.0.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0-alpha.2...@mockinbird/types@2.0.0) (2021-07-31)
+
+
+### Features
+
+* **mockingbird-ts,parser:** add ability to pass an object for extra configuartion ([#64](https://github.com/omermorad/mockingbird-ts/issues/64)) ([c80a064](https://github.com/omermorad/mockingbird-ts/commit/c80a064664ec19c7a49630eda06b94292494d63e)), closes [#63](https://github.com/omermorad/mockingbird-ts/issues/63)
+* **mockingbird-ts:** extend builder abilities  ([#68](https://github.com/omermorad/mockingbird-ts/issues/68)) ([eba46e8](https://github.com/omermorad/mockingbird-ts/commit/eba46e8332485133c174f4f4292f1dac2d4fa0ac))
+
+
+
+
+
 # [2.0.0-alpha.2](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0-alpha.1...@mockinbird/types@2.0.0-alpha.2) (2021-07-23)
 
 

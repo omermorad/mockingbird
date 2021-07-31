@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.1.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@1.0.1-alpha.3...@mockinbird/parser@1.1.0) (2021-07-31)
+
+
+### Features
+
+* **mockingbird-ts,parser:** add ability to pass an object for extra configuartion ([#64](https://github.com/omermorad/mockingbird-ts/issues/64)) ([c80a064](https://github.com/omermorad/mockingbird-ts/commit/c80a064664ec19c7a49630eda06b94292494d63e)), closes [#63](https://github.com/omermorad/mockingbird-ts/issues/63)
+* **mockingbird-ts:** extend builder abilities  ([#68](https://github.com/omermorad/mockingbird-ts/issues/68)) ([eba46e8](https://github.com/omermorad/mockingbird-ts/commit/eba46e8332485133c174f4f4292f1dac2d4fa0ac))
+
+
+
+
+
 ## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@1.0.1-alpha.2...@mockinbird/parser@1.0.1-alpha.3) (2021-07-23)
 
 **Note:** Version bump only for package @mockinbird/parser
