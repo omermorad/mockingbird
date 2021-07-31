@@ -38,8 +38,8 @@
     "prepare": "husky install",
     "build": "lerna run build --stream",
     "watch": "lerna exec -- watch",
-    "test": "jest",
-    "test:cov": "jest --reporters=jest-junit",
+    "test": "jest --runInBand",
+    "test:cov": "jest --coverage --runInBand --reporters=jest-junit",
     "lint": "lerna run lint --since HEAD"
   },
   "files": [
@@ -69,6 +69,7 @@
     "faker": "^5.5.3",
     "husky": "^7.0.1",
     "jest": "27.0.6",
+    "jest-gherkin": "^0.0.0",
     "jest-junit": "12.2.0",
     "lerna": "^4.0.0",
     "lint-staged": "^11.0.0",

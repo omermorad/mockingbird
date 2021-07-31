@@ -5,7 +5,6 @@ on:
       - master
   pull_request:
     branches:
-      - v*
       - master
       - release
 
@@ -31,7 +30,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Yarn Install
+      - name: Yarn Init
         id: yarn-cache
         uses: actions/cache@v2
         with:
@@ -45,11 +44,8 @@ jobs:
           yarn add -D -W @commitlint/config-conventional
           echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
-      - name: Bootstrap
-        run: yarn lerna bootstrap
-
       - name: Lint Source
-        run: yarn lint
+        run: yarn lint-staged
 
       - name: Build
         run: yarn build

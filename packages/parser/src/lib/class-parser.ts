@@ -43,19 +43,15 @@ export class ClassParser {
 
   private analyzeProps<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass> = {}) {
     const classReflection = this.reflector.reflectClass(targetClass);
-    const { overrides = {}, ignore = [] } = config;
+    const { override = {}, ignore = [] } = config;
 
     const handleProps = (acc, property) => {
       if (ignore.includes(property.name)) {
         return acc;
       }
 
-      if (overrides.hasOwnProperty(property.name)) {
-        const value = overrides[property.name];
-
-        if (typeof value === 'function') {
-          value(this.faker);
-        }
+      if (override.hasOwnProperty(property.name)) {
+        const value = override[property.name];
 
         return { ...acc, [property.name]: value };
       }

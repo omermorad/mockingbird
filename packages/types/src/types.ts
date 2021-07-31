@@ -19,4 +19,4 @@ export type Callback = (faker: Faker) => any;
 
 export type ClassLiteral<TClass = any> = { [K in keyof TClass]: TClass[K] };
 
-export type ClassKeysWithFaker<TClass> = Partial<Record<keyof TClass, TClass[keyof TClass] | Callback>>;
+export type OptionalClassValues<TClass> = Partial<ClassLiteral<TClass>>;

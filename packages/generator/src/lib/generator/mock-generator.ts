@@ -1,6 +1,6 @@
 import { Class } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
-import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
+import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
 
 export class MockGenerator {
   private static readonly DEFAULT_LOCALE = 'en';

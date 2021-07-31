@@ -1,6 +1,6 @@
 import { ClassParser } from '@mockinbird/parser';
 import { MockGenerator } from './mock-generator';
-import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
+import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
 
 /**
  * The full test of MockGenerator can be found under the 'test' folder,
@@ -38,7 +38,7 @@ describe('MockGenerator', () => {
         const options: MockGeneratorOptions = {
           count: 3,
           locale: 'arbitrary-locale',
-          overrides: { prop: 'value' },
+          override: { prop: 'value' },
           ignore: ['test'],
         };
 
@@ -56,7 +56,7 @@ describe('MockGenerator', () => {
         });
 
         test('then call parse with the rest of the options', () => {
-          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { overrides: { prop: 'value' }, ignore: ['test'] });
+          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { override: { prop: 'value' }, ignore: ['test'] });
         });
       });
     });

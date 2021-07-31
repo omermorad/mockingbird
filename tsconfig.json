@@ -15,7 +15,8 @@
     "resolveJsonModule": true,
     "types": [
       "node",
-      "jest"
+      "jest",
+      "jest-gherkin",
     ],
     "allowJs": true,
     "lib": [

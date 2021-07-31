@@ -1,6 +1,6 @@
-import { ClassKeysWithFaker } from '@mockinbird/types';
+import { OptionalClassValues } from '@mockinbird/types';
 
 export interface ParserConfigDto<TClass> {
-  overrides?: ClassKeysWithFaker<TClass>;
+  override?: OptionalClassValues<TClass>;
   ignore?: (keyof TClass)[];
 }

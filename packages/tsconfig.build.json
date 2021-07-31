@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "incremental": false,
-    "sourceMap": false
+    "sourceMap": true
   },
   "exclude": [
     "node_modules",

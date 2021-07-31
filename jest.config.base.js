@@ -2,7 +2,7 @@ module.exports = {
   preset: 'ts-jest',
   roots: ['<rootDir>/src'],
   testEnvironment: 'node',
-  collectCoverage: true,
+  collectCoverage: false,
   coveragePathIgnorePatterns: [
     '<rootDir>/dist/',
     '<rootDir>/node_modules/',
@@ -10,9 +10,12 @@ module.exports = {
   ],
   coverageReporters: [
     'text',
-    'cobertura'
+    'cobertura',
   ],
   coverageDirectory: '<rootDir>/coverage/',
   modulePathIgnorePatterns: ['./sample'],
-  verbose: true
+  verbose: true,
+  setupFiles: [
+    'jest-gherkin',
+  ],
 };

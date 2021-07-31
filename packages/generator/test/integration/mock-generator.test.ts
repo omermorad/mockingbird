@@ -2,7 +2,7 @@ import { ClassParser } from '@mockinbird/parser';
 import { ClassReflector } from '@mockinbird/reflect';
 import { TestClasses } from './common/test-classes';
 import { Faker } from '../../src';
-import { MockGenerator } from '../../src/lib/mock-generator';
+import { MockGenerator } from '../../src/lib/generator/mock-generator';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
@@ -32,7 +32,7 @@ describe('MockGenerator - Integration Test', () => {
 
       describe('and adding some overrides properties', () => {
         beforeAll(() => {
-          result = generator.create(TestClassWithAbsoluteValues, { overrides: { name: 'Override Name' } });
+          result = generator.create(TestClassWithAbsoluteValues, { override: { name: 'Override Name' } });
         });
 
         test('then return the same absolute value expect the constant name added from overrides', () => {
