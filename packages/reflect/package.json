@@ -1,0 +1,58 @@
+{
+  "name": "@mockinbird/reflect",
+  "version": "1.0.1-alpha.3",
+  "license": "MIT",
+  "description": "Mockingbird Reflect Package",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird-ts/tree/refactor/master/packages/reflect/README.md",
+  "scripts": {
+    "prebuild": "npx rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest --runInBand --verbose",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+  },
+  "files": [
+    "index.d.ts",
+    "index.js",
+    "dist",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "@plumier/reflect": "^1.0.3",
+    "reflect-metadata": "^0.1.13",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@mockinbird/types": "^2.0.0-alpha.2",
+    "jest": "27.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

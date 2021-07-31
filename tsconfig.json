@@ -6,10 +6,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es5",
-    "sourceMap": false,
-    "baseUrl": "./",
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "sourceMap": true,
     "incremental": false,
     "noImplicitAny": false,
     "strictNullChecks": false,
@@ -18,7 +15,8 @@
     "resolveJsonModule": true,
     "types": [
       "node",
-      "jest"
+      "jest",
+      "jest-gherkin",
     ],
     "allowJs": true,
     "lib": [
@@ -28,10 +26,22 @@
     "allowSyntheticDefaultImports": true
   },
   "exclude": [
-    "index.ts",
     "node_modules",
     "dist",
-    "sample",
-    "test"
+    "sample"
+  ],
+  "references": [
+    {
+      "path": "packages/reflect"
+    },
+    {
+      "path": "packages/types"
+    },
+    {
+      "path": "packages/parser"
+    },
+    {
+      "path": "packages/generator"
+    }
   ]
 }

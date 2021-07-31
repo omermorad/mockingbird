@@ -2,9 +2,8 @@ name: Release
 on:
   push:
     branches:
-      - release
-      - alpha
-      - beta
+      - master
+
 jobs:
   main:
     name: Main
@@ -21,32 +20,28 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install Dependecies
-        run: npm install
+      - name: Yarn Install Dependecies
+        run: yarn
 
       - name: Lint Commit Message
-        run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
+        run: |
+          yarn add -D -W @commitlint/config-conventional
+          echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
       - name: Lint Source
-        run: npm run lint
+        run: yarn lint
 
       - name: Build
-        run: npm run build
+        run: yarn build
 
       - name: Test
-        run: npm run test:cov
+        run: yarn test:cov
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ./coverage
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           files: ./coverage/cobertura-coverage.xml
           name: codecov-umbrella
-
-      - name: Release
-        run: npx semantic-release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}

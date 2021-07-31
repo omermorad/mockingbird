@@ -20,7 +20,7 @@ describe('Users App e2e Test', () => {
     })) as Connection;
 
     app = await applicationFactory(connection);
-    seededData = MockFactory.create<User>(UserEntity, { count: 3 });
+    seededData = MockFactory<User>(UserEntity).toPlain().many(3);
 
     await connection.getRepository(UserEntity).insert(seededData);
   });

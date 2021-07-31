@@ -1,0 +1,57 @@
+{
+  "name": "@mockinbird/parser",
+  "version": "1.0.1-alpha.3",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "Mockingbird Parser Package",
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird-ts/tree/refactor/master/packages/parser/README.md",
+  "scripts": {
+    "prebuild": "npx rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest --runInBand --verbose",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+  },
+  "files": [
+    "dist",
+    "index.js",
+    "index.d.ts",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "@mockinbird/reflect": "^1.0.1-alpha.3"
+  },
+  "devDependencies": {
+    "@mockinbird/types": "^2.0.0-alpha.2",
+    "jest": "27.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

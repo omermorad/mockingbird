@@ -1,0 +1,52 @@
+{
+  "name": "@mockinbird/types",
+  "version": "2.0.0-alpha.2",
+  "license": "MIT",
+  "description": "Mockingbird Types Package",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird-ts/tree/refactor/master/packages/types/README.md",
+  "scripts": {
+    "prebuild": "npx rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "exit 0;",
+    "lint": "eslint 'src/index.ts'",
+    "lint:fix": "eslint 'src/index.ts' --fix"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "CHANGELOG.md"
+  ],
+  "dependencies": {
+    "faker": "^5.5.3"
+  },
+  "devDependencies": {
+    "@types/faker": "^5.5.7",
+    "ts-loader": "^6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

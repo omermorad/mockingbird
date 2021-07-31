@@ -1,0 +1,68 @@
+{
+  "name": "mockingbird-ts",
+  "version": "2.0.0-alpha.2",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "description": "Super Simple, Yet Powerful, TypeScript Library for Creating Mocks. Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator",
+  "keywords": [
+    "faker",
+    "faker-typescript",
+    "typescript-faker",
+    "typescript-mocks",
+    "faker-unit-tests",
+    "mockingbird-ts",
+    "unit-test",
+    "unit-test-mocks",
+    "testing-mocks",
+    "testing"
+  ],
+  "contributors": [
+    {
+      "name": "Omer Morad",
+      "email": "omer.moradd@gmail.com"
+    },
+    {
+      "name": "Idan Ptichi",
+      "email": "idanpt@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
+  },
+  "bugs": {
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+  },
+  "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
+  "scripts": {
+    "prebuild": "npx rimraf dist",
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "test": "jest --runInBand --verbose",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "dependencies": {
+    "@mockinbird/parser": "^1.0.1-alpha.3",
+    "@mockinbird/reflect": "^1.0.1-alpha.3",
+    "@mockinbird/types": "^2.0.0-alpha.2"
+  },
+  "devDependencies": {
+    "jest": "27.0.6",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^27.0.3",
+    "ts-loader": "^6.2.2",
+    "ts-node": "8.10.2",
+    "tsconfig-paths": "^3.9.0",
+    "typescript": "^3.9.7"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
