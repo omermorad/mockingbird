@@ -1,23 +1,22 @@
 import { ClassLiteral, Class } from '@mockinbird/types';
-import { Always, GeneratedMock, IgnoreKeys, KeyOf, OverrideKeys, ToBe } from './types';
+import { GeneratedMock, IgnoreKeys, OverrideKeys } from './types';
 import { MockProducer } from './mock-producer';
 import { MockGenerator } from '../generator/mock-generator';
 
 export interface MockBuilder<TClass = any> {
-  always: Always<TClass>;
   setLocale(locale: string): this;
   plain(): this;
-  mutateOnce(key: keyof TClass, value: TClass[keyof TClass]): this;
-  ignoreOnce(...keys: IgnoreKeys<TClass>): this;
-  many(count: number): TClass[];
+  mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
+  ignore(...keys: IgnoreKeys<TClass>): this;
   one(): TClass;
+  many(count: number): TClass[];
 }
 
 export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private isPlain = false;
 
-  private oneTimeOverrides: OverrideKeys<TClass> = {};
-  private oneTimeIgnoreKeys: IgnoreKeys<TClass> = [];
+  private mutations: OverrideKeys<TClass> = {};
+  private ignoreKeys: IgnoreKeys<TClass> = [];
 
   public constructor(targetClass: Class<TClass>, mockGenerator: MockGenerator) {
     super(targetClass, mockGenerator);
@@ -38,59 +37,36 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
     }
 
     this.isPlain = false;
-    this.oneTimeOverrides = {};
-    this.oneTimeIgnoreKeys = [];
+    this.mutations = {};
+    this.ignoreKeys = [];
 
     return newMock;
   }
-
-  public mutate: Always<TClass> = {
-    setValues: (overrides: OverrideKeys<TClass>): void => {
-      super.permanentOverrides(overrides);
-    },
-    ignore: (...keys: IgnoreKeys<TClass>): this => {
-      super.permanentIgnoreKeys(...keys);
-      return this;
-    },
-    setValueOf: (key: keyof TClass): ToBe => {
-      return {
-        toBe: (value: any): void => {
-          this.oneTimeOverrides[key] = value;
-        },
-      };
-    },
-  };
 
   public plain(): this {
     this.isPlain = true;
     return this;
   }
 
-  public mockOnce(key: KeyOf<TClass>, value: TClass[KeyOf<TClass>]): this {
-    this.oneTimeOverrides[key] = value;
+  public mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'> {
+    this.mutations = overrides;
     return this;
   }
 
-  public ignoreOnce(...keys: IgnoreKeys<TClass>): this {
-    this.oneTimeIgnoreKeys.push(...keys);
+  public ignore(...keys: IgnoreKeys<TClass>): this {
+    this.ignoreKeys = keys;
     return this;
   }
 
-  many(count: number): TClass[] | ClassLiteral<TClass>[] {
-    const instances = super.createMany(count, {
-      overrides: this.oneTimeOverrides,
-      ignore: this.oneTimeIgnoreKeys,
-    });
+  public one(): TClass | ClassLiteral<TClass> {
+    const {} = this;
 
-    return this.process(instances);
-  }
-
-  one(): TClass | ClassLiteral<TClass> {
-    const instance: TClass = super.createOne({
-      overrides: this.oneTimeOverrides,
-      ignore: this.oneTimeIgnoreKeys,
-    });
-
+    const instance: TClass = super.createOne({ mutations: this.mutations, ignore: this.ignoreKeys });
     return this.process(instance);
+  }
+
+  public many(count: number): TClass[] | ClassLiteral<TClass>[] {
+    const instances = super.createMany(count, { mutations: this.mutations, ignore: this.ignoreKeys });
+    return this.process(instances);
   }
 }

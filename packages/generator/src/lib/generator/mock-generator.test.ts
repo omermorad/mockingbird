@@ -38,7 +38,7 @@ describe('MockGenerator', () => {
         const options: MockGeneratorOptions = {
           count: 3,
           locale: 'arbitrary-locale',
-          overrides: { prop: 'value' },
+          override: { prop: 'value' },
           ignore: ['test'],
         };
 
@@ -56,7 +56,7 @@ describe('MockGenerator', () => {
         });
 
         test('then call parse with the rest of the options', () => {
-          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { overrides: { prop: 'value' }, ignore: ['test'] });
+          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { override: { prop: 'value' }, ignore: ['test'] });
         });
       });
     });

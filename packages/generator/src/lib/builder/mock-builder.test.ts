@@ -24,9 +24,9 @@ const itemIsDefinedInKey = (key) => (item) => typeof item[key] !== 'undefined';
  * This test is written with strict BDD using jest-gherkin
  * the word prop stands for a 'property', as well as 'props' which stands for 'properties'
  */
-
 describe('MockBuilder Integration Test', () => {
   let createNewBuilder: () => MockBuilder<Dog>;
+  let builder: MockBuilder<Dog>;
 
   beforeAll(() => {
     const parser = new ClassParser(Faker, new ClassReflector());
@@ -35,85 +35,57 @@ describe('MockBuilder Integration Test', () => {
     createNewBuilder = (): MockBuilder<Dog> => new MockBuilder<Dog>(Dog, generator);
   });
 
-  let builder: MockBuilder<Dog>;
-
-  scenario('override/mock some values permanently and spontaneously', () => {
+  scenario('mutating some values', () => {
     beforeAll(() => {
       builder = createNewBuilder();
     });
 
-    given('a builder which is configured to override/mock some values permanently', () => {
-      beforeAll(() => builder.mutate.setValues({ points: 10, isAwesome: 'blabla' }));
+    given('a builder which is configured to mutate some values', () => {
+      let mock;
 
-      when('I create a single mock of Dog, and I repeat a few times', () => {
-        let mock;
+      beforeAll(() => (mock = builder.mutate({ name: 'mutated-name' }).one()));
 
-        beforeAll(() => {
-          for (let i = 1; i <= 3; i++) {
-            mock = builder.one();
-          }
+      when('I create a single/one mock of Dog with mutation', () => {
+        then('return a mock where the mutated values are actually changed', () => {
+          expect(mock.name).toBe('mutated-name');
         });
 
-        then("return a mock with the permanent values that I've asked before", () => {
-          expect(mock.points).toBe(10);
-          expect(mock.isAwesome).toBe('blabla');
-        });
+        describe('and when I repeat again', () => {
+          beforeAll(() => (mock = builder.one()));
 
-        and('I want to create a new mock but to override a value only once', () => {
-          beforeAll(() => (mock = builder.mutateOnce('name', 'from-mock-once').one()));
-
-          then('override/mock the permanent values alongside the spontaneous value', () => {
-            expect(mock.name).toBe('from-mock-once');
-          });
-
-          describe('and when I repeat again', () => {
-            beforeAll(() => (mock = builder.one()));
-
-            then("do not apply the spontaneous mocking I've set before", () => {
-              expect(mock.name).not.toBe('from-mock-once');
-            });
+          then("do not apply the mutation I've set before", () => {
+            expect(mock.name).not.toBe('mutated-name');
           });
         });
       });
 
-      when('I create many mocks of Dog, and I repeat a few times', () => {
+      when('I create many mocks of Dog', () => {
         let mocks;
 
-        beforeAll(() => {
-          for (let i = 1; i <= 3; i++) {
-            mocks = builder.many(3);
-          }
+        beforeAll(() => (mocks = builder.mutate({ points: 10, isAwesome: 'yes' }).many(3)));
+
+        then('return an array where each item has been mutated in the above keys (points, isAwesome)', () => {
+          const itemHasSameValue = (key, value) => (item) => item[key] === value;
+
+          expect(mocks.every(itemHasSameValue('points', 10))).toBeTruthy();
+          expect(mocks.every(itemHasSameValue('isAwesome', 'yes'))).toBeTruthy();
         });
-
-        then(
-          "mutate return an array, where each item has the same permanent values of the props I've asked to override",
-          () => {
-            const itemHasSameValue = (key, value) => (item) => item[key] === value;
-
-            expect(mocks.every(itemHasSameValue('points', 10))).toBeTruthy();
-            expect(mocks.every(itemHasSameValue('isAwesome', 'blabla'))).toBeTruthy();
-          }
-        );
       });
     });
   });
 
-  scenario('ignore some values permanently and spontaneously', () => {
+  scenario('ignore values', () => {
     beforeAll(() => {
       builder = createNewBuilder();
     });
 
-    given("I've created a builder and ask to ignore some values permanently", () => {
-      beforeAll(() => builder.mutate.ignore('isAwesome', 'points'));
+    given("I've created a builder and ask to ignore some values", () => {
+      beforeAll(() => builder.ignore('isAwesome', 'points'));
 
-      when('I create a single mock of Dog, repeating a few times', () => {
+      when('I create a single mock of Dog', () => {
         let mock;
 
-        beforeAll(() => {
-          for (let i = 1; i <= 3; i++) {
-            mock = builder.one();
-          }
-        });
+        beforeAll(() => (mock = builder.one()));
 
         then("mutate return a mock without no values on props I've asked to ignore", () => {
           expect(mock.points).toBeUndefined();
@@ -125,9 +97,8 @@ describe('MockBuilder Integration Test', () => {
         let mocks;
 
         beforeAll(() => {
-          for (let i = 1; i <= 3; i++) {
-            mocks = builder.many(3);
-          }
+          builder = createNewBuilder();
+          mocks = builder.ignore('isAwesome', 'points').many(3);
         });
 
         then("mutate return an array where the prop I've asked to ignore has no value", () => {
@@ -140,7 +111,7 @@ describe('MockBuilder Integration Test', () => {
         let mock;
 
         when('I create a new single mock of Dog', () => {
-          beforeAll(() => (mock = builder.ignoreOnce('name').one()));
+          beforeAll(() => (mock = builder.ignore('name').one()));
 
           then("ignore the permanent keys as well as the key I've asked to ignore once", () => {
             expect(mock.name).toBeUndefined();
@@ -157,7 +128,7 @@ describe('MockBuilder Integration Test', () => {
         when('I create many mocks of the same class, Dog', () => {
           let mocks;
 
-          beforeAll(() => (mocks = builder.ignoreOnce('name').many(3)));
+          beforeAll(() => (mocks = builder.ignore('name').many(3)));
 
           then("return an array where each item has no value in the prop 'name'", () => {
             expect(mocks.every(itemIsUndefinedInKey('name'))).toBeTruthy();
@@ -175,12 +146,10 @@ describe('MockBuilder Integration Test', () => {
     });
   });
 
-  scenario('ask for plain object', () => {
-    beforeAll(() => {
-      builder = createNewBuilder();
-    });
+  scenario('plain object', () => {
+    beforeAll(() => (builder = createNewBuilder()));
 
-    given('I have created a builder (with no settings)', () => {
+    given('a new ;builder', () => {
       beforeAll(() => (builder = createNewBuilder()));
 
       when('I ask for a plain object', () => {

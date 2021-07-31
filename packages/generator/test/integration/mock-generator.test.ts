@@ -32,7 +32,7 @@ describe('MockGenerator - Integration Test', () => {
 
       describe('and adding some overrides properties', () => {
         beforeAll(() => {
-          result = generator.create(TestClassWithAbsoluteValues, { overrides: { name: 'Override Name' } });
+          result = generator.create(TestClassWithAbsoluteValues, { override: { name: 'Override Name' } });
         });
 
         test('then return the same absolute value expect the constant name added from overrides', () => {
