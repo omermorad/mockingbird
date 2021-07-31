@@ -45,9 +45,3 @@ jobs:
           fail_ci_if_error: false
           files: ./coverage/cobertura-coverage.xml
           name: codecov-umbrella
-
-      - name: Release
-        run: npx lerna publish from-package --yes --dist-tag alpha
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
