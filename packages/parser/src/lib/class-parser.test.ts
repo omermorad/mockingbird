@@ -24,7 +24,7 @@ describe('ClassParser Unit Test', () => {
 
     describe("when calling 'parse' method", () => {
       describe('and there is no target class', () => {
-        test('then throw an error indicating that not target class has been passed', () => {
+        test('then throw an error indicating that no target class has been passed', () => {
           expect(() => parser.parse(undefined)).toThrowError();
         });
       });
@@ -38,21 +38,11 @@ describe('ClassParser Unit Test', () => {
 
         describe('and config is including overrides key-value pairs', () => {
           beforeAll(() => {
-            returnValue = parser.parse(Magician, { overrides: { name: 'Houdini' } });
+            returnValue = parser.parse(Magician, { override: { name: 'Houdini' } });
           });
 
           test("then return an instance which 'name' property is always 'Houdini'", () => {
             expect(returnValue.name).toBe('Houdini');
-          });
-
-          describe('and the key-value pairs including a callback', () => {
-            beforeAll(() => {
-              returnValue = parser.parse(Magician, { overrides: { name: (faker) => faker.random.alpha() } });
-            });
-
-            test('then invoke the callback function with instance of faker', () => {
-              expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
-            });
           });
         });
 
