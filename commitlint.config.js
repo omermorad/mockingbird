@@ -12,6 +12,7 @@ module.exports = {
         ...(await getPackages(ctx)),
         'release',
         'repo',
+        'sample'
       ],
     ],
   },
