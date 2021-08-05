@@ -1,4 +1,4 @@
-name: PR Inspection
+name: Continues Integration
 on:
   push:
     branches:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: Build & Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
