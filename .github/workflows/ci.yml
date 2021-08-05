@@ -1,4 +1,4 @@
-name: Continues Integration
+name: CI
 on:
   push:
     branches:
