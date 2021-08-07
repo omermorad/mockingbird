@@ -12,6 +12,7 @@
     "typescript-mocks",
     "faker-unit-tests",
     "mockingbird-ts",
+    "mockingbird",
     "unit-test",
     "unit-test-mocks",
     "testing-mocks",

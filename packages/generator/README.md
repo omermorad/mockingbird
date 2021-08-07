@@ -24,7 +24,7 @@
 ## Installation
 
 ```bash
-npm i -D mockingbird-ts
+npm i mockingbird-ts
 ```
 
 ## Usage
@@ -63,9 +63,8 @@ you; [you can find it under the sample folder](https://github.com/omermorad/mock
 in action!**
 
 ## Use Cases
- - Generate fake (but reasonable) data for your integration tests
- - Generate fake (but reasonable) data for your seeding a database
- - Prepare as many unique fixtures as you need for your tests
+- Prepare as many unique fixtures as you need for your tests
+ - Generate fake (but reasonable) data database seeding 
 
 #### How can Mockingbird help me?
 Consider the following snippets:
@@ -110,8 +109,7 @@ describe('Dogs API Integration Test', () => {
   let dogs: DogModel[];
   
   beforeAll(() => {
-    // Persist will return the same dogs every time
-    factory = MockFactory<DogModel>(DogModel).persist();
+    factory = MockFactory<DogModel>(DogModel);
   });
 
   test('Test something you want', async () => {
@@ -123,7 +121,7 @@ describe('Dogs API Integration Test', () => {
   });
 
   test('Test something else you want', async () => {
-    dogsWithZeroPoints = factory.mock('goodPoints', 0).many(3);
+    dogsWithZeroPoints = factory.mutate({ goodPoints: 0 }).many(3);
     apiService.fetch.mockResolvedValue(dogsWithZeroPoints);
 
     const resultFromApi = await apiService.fetch();

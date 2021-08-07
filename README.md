@@ -1,26 +1,31 @@
 [![ISC license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![npm version](http://img.shields.io/npm/v/mockingbird-ts.svg?style=flat)](https://npmjs.org/package/mockingbird-ts "View this project on npm")
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird-ts/master.svg?style=flat-square)](https://codecov.io/gh/omermorad/mockingbird-ts)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird/master.svg?style=flat-square)](https://codecov.io/gh/omermorad/mockingbird-ts)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
+[![ci](https://github.com/omermorad/mockingbird-ts/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/omermorad/mockingbird/actions)
 
 <p align="center">
   <img width="450" src="https://raw.githubusercontent.com/omermorad/mockingbird-ts/master/docs/logo.png" alt="Mockingbird Logo" />
 
-  <h1 align="center">Mockingbird</h1>
+  <h1 align="center">Mockingbird (TS)</h1>
 
   <h3 align="center">
     The First TypeScript Mocking Framework
   </h3>
 
-  <h4 align="center">
-    Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator (including <a href="https://github.com/marak/Faker.js/">faker.js</a> support)
+  <h4>
+    Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator (including <a href="https://github.com/marak/Faker.js/">faker.js</a> support).
+  </h4>
+
+  <h4>
+    Simply put - Mockingbird gives you a full control on your own fixtures; You can mock the actual value, replace values, and ignore them as well.
   </h4>
 </p>
 
 ## Installation
 
 ```bash
-npm i -D mockingbird-ts
+npm i mockingbird-ts
 ```
 
 ## Usage
@@ -59,9 +64,74 @@ you; [you can find it under the sample folder](https://github.com/omermorad/mock
 in action!**
 
 ## Use Cases
- - Generate fake (but reasonable) data for your integration tests
- - Prepare as many of different fixtures for your tests
- - Persist the 
+- Prepare as many unique fixtures as you need for your tests
+- Generate fake (but reasonable) data database seeding
+
+#### How can Mockingbird help me?
+Consider the following snippets:
+
+**`dog-model.ts`**
+
+```typescript
+import { Mock, MockFactory } from 'mockingbird-ts';
+
+export interface DogModel {
+  name: string;
+  birthday: Date;
+  goodPoints: number;
+}
+
+export class DogModel {
+  @Mock(faker => faker.name.firstName())
+  name: string;
+
+  // Will generate a recent date
+  @Mock()
+  birthday: Date;
+
+  // Will generate a random number
+  @Mock()
+  goodPoints: number;
+}
+```
+
+**`dogs-integration.test.ts`**
+
+```typescript
+import { DogsApiService } from './dogs-service';
+import { DogModel } from './dog-model';
+
+describe('Dogs API Integration Test', () => {
+  // Assume we have dogs-service.ts that fetches from some API
+  const apiService: jest.Mocked<DogsApiService> = {
+    fetch: jest.fn(),
+  };
+
+  let dogs: DogModel[];
+
+  beforeAll(() => {
+    factory = MockFactory<DogModel>(DogModel);
+  });
+
+  test('Test something you want', async () => {
+    dogs = factory.many(3); // Generate 3 different dogs
+    apiService.fetch.mockResolvedValue(dogs);
+
+    const resultFromApi = await apiService.fetch();
+    expect(resultFromApi).toEqual(dogs);
+  });
+
+  test('Test something else you want', async () => {
+    dogsWithZeroPoints = factory.mutate({ goodPoints: 0 }).many(3);
+    apiService.fetch.mockResolvedValue(dogsWithZeroPoints);
+
+    const resultFromApi = await apiService.fetch();
+
+    expect(resultFromApi).toEqual(dogsWithZeroPoints);
+    expect(dogsWithZeroPoints[0].goodPoints).toBe(0);
+  });
+});
+```
 
 ## Motivation
 
