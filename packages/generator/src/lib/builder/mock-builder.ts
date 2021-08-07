@@ -26,21 +26,11 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private process(mock: TClass): TClass | ClassLiteral<TClass>;
 
   private process(mock: TClass[] | TClass): GeneratedMock<TClass> {
-    let newMock = mock;
-
-    if (this.isPlain) {
-      if ((mock as TClass[]).length > 1) {
-        newMock = (mock as TClass[]).map((mock) => Object.assign({}, mock));
-      } else {
-        newMock = Object.assign({}, mock);
-      }
-    }
-
     this.isPlain = false;
     this.mutations = {};
     this.ignoreKeys = [];
 
-    return newMock;
+    return mock;
   }
 
   public plain(): this {
@@ -59,14 +49,16 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   }
 
   public one(): TClass | ClassLiteral<TClass> {
-    const {} = this;
+    const { mutations, ignoreKeys, isPlain } = this;
 
-    const instance: TClass = super.createOne({ mutations: this.mutations, ignore: this.ignoreKeys });
+    const instance: TClass = super.createOne({ mutations, ignore: ignoreKeys, plain: isPlain });
     return this.process(instance);
   }
 
   public many(count: number): TClass[] | ClassLiteral<TClass>[] {
-    const instances = super.createMany(count, { mutations: this.mutations, ignore: this.ignoreKeys });
+    const { mutations, ignoreKeys, isPlain } = this;
+
+    const instances = super.createMany(count, { mutations, ignore: ignoreKeys, plain: isPlain });
     return this.process(instances);
   }
 }
