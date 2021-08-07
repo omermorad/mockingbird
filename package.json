@@ -11,7 +11,6 @@
     "typescript-mocks",
     "faker-unit-tests",
     "mockingbird-ts",
-    "mockingbird",
     "unit-test",
     "unit-test-mocks",
     "testing-mocks",
@@ -29,12 +28,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/omermorad/mockingbird.git"
+    "url": "https://github.com/omermorad/mockingbird-ts.git"
   },
   "bugs": {
-    "url": "https://github.com/omermorad/mockingbird/issues"
+    "url": "https://github.com/omermorad/mockingbird-ts/issues"
   },
-  "readme": "https://github.com/omermorad/mockingbird/README.md",
+  "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
   "scripts": {
     "prepare": "husky install",
     "build": "lerna run build --stream",
