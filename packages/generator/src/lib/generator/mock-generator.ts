@@ -7,7 +7,7 @@ export class MockGenerator {
 
   public constructor(private readonly classParser: ClassParser) {}
 
-  public static classToPlain<TClass>(targetClass: TClass): ClassLiteral<TClass> {
+  private static classToPlain<TClass>(targetClass: TClass): ClassLiteral<TClass> {
     const toPlain = (target: ClassLiteral<TClass>): ClassLiteral<TClass> => {
       for (const key of Object.keys(target)) {
         if (target[key] instanceof Object) {
@@ -75,7 +75,7 @@ export class MockGenerator {
 
     if (count === 1) {
       const parsedClass = this.classParser.parse(targetClass, config);
-      return plain ? { ...parsedClass } : parsedClass;
+      return plain ? MockGenerator.classToPlain<TClass>(parsedClass) : parsedClass;
     }
 
     const classInstances: TClass[] = [];
