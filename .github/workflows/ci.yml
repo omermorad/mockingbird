@@ -1,20 +1,16 @@
-name: PR Inspection
-on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-      - release
+name: CI
+on: [pull_request]
 
 jobs:
   build-and-test:
-    name: Build and Test
+    name: Build & Test
+
     runs-on: ubuntu-latest
+
     strategy:
       matrix:
         node-version: [ 12.x, 14.x, 16.x ]
+
     steps:
       - name: Checkout
         uses: actions/checkout@master
