@@ -89,7 +89,10 @@ jobs:
         run: yarn build
 
       - name: Next Version
-        run: lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
+        run: |
+          lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
+          echo github.head_ref
+          echo contains(github.event.head_commit.message, '[release]')
 
       - name: Prerelease
         if: |
