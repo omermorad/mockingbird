@@ -81,8 +81,6 @@ jobs:
         run: |
           git config --global user.email "omer.moradd@gmail.com"
           git config --global user.name "$GITHUB_ACTOR"
-          echo ${{ github.ref == 'refs/heads/ci/refactor-ci-workflow' }}
-          echo ${{ contains(github.event.head_commit.message, '[release]') }}
 
       - name: Lerna Init
         run: lerna bootstrap
@@ -94,8 +92,7 @@ jobs:
         run: lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
 
       - name: Prerelease
-        if: |
-          contains(github.event.head_commit.message, '[release]') && github.head_ref == 'ci/refactor-ci-workflow'
+        if: contains(github.event.head_commit.message, '[release]') && github.ref == 'refs/heads/ci/refactor-ci-workflow'
         run: |
           lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
 
