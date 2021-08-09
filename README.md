@@ -1,8 +1,8 @@
 [![ISC license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
 [![npm version](http://img.shields.io/npm/v/mockingbird-ts.svg?style=flat)](https://npmjs.org/package/mockingbird-ts "View this project on npm")
-[![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird/master.svg?style=flat-square)](https://codecov.io/gh/omermorad/mockingbird-ts)
+[![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird/master.svg?style=flat-square)](https://codecov.io/gh/omermorad/mockingbird)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
-[![ci](https://github.com/omermorad/mockingbird-ts/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/omermorad/mockingbird/actions)
+[![ci](https://github.com/omermorad/mockingbird/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/omermorad/mockingbird/actions)
 
 <p align="center">
   <img width="450" src="https://raw.githubusercontent.com/omermorad/mockingbird-ts/master/docs/logo.png" alt="Mockingbird Logo" />
