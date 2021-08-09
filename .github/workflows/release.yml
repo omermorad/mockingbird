@@ -77,6 +77,11 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
+      - name: Configure Git
+        run: |
+          git config --global user.email "omer.moradd@gmail.com"
+          git config --global user.name "$GITHUB_ACTOR"
+
       - name: Lerna Init
         run: lerna bootstrap
 
