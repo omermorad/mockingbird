@@ -95,6 +95,8 @@ jobs:
         if: |
           contains(github.event.head_commit.message, '[release]') && github.head_ref == 'ci/refactor-ci-workflow'
         run: |
+          echo github.head_ref
+          echo contains(github.event.head_commit.message, '[release]')
           lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
 
       - name: Release
