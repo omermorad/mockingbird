@@ -3,25 +3,41 @@ on:
   push:
     branches:
       - master
+      - release
 
 jobs:
-  main:
-    name: Main
+  build-and-test:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    name: Build & Test
     runs-on: ubuntu-latest
-    if: "!contains(github.event.head_commit.message, 'skip ci')"
+
+    strategy:
+      matrix:
+        node-version: [ 12.x, 14.x, 16.x ]
+
     steps:
       - name: Checkout
         uses: actions/checkout@master
         with:
-          fetch-depth: 0
+          ref: ${{ github.head_ref }}
 
-      - name: Setup NodeJS 14
-        uses: actions/setup-node@master
+      - name: Get Yarn Cache Directory Path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - name: Use NodeJS ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
         with:
-          node-version: 14
+          node-version: ${{ matrix.node-version }}
 
-      - name: Yarn Install Dependecies
-        run: yarn
+      - name: Yarn Init
+        id: yarn-cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Lint Commit Message
         run: |
@@ -29,7 +45,7 @@ jobs:
           echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
       - name: Lint Source
-        run: yarn lint
+        run: yarn lint-staged
 
       - name: Build
         run: yarn build
@@ -45,3 +61,45 @@ jobs:
           fail_ci_if_error: false
           files: ./coverage/cobertura-coverage.xml
           name: codecov-umbrella
+          verbose: false
+
+  release:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+    name: Release
+    needs: build-and-test
+    steps:
+      - name: Checkout
+        uses: actions/checkout@master
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "omer.moradd@gmail.com"
+          git config --global user.name "$GITHUB_ACTOR"
+
+      - name: Lerna Init
+        run: lerna bootstrap
+
+      - name: Build
+        run: yarn build
+
+      - name: Next Version
+        if: "!contains(github.event.head_commit.message, '[release]')"
+        run: lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
+
+      - name: Prerelease
+        if: "contains(github.event.head_commit.message, '[release]') && github.ref == 'refs/heads/ci/refactor-ci-workflow'"
+        run: |
+          lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
+
+      - name: Release
+        if: github.ref == 'refs/heads/master'
+        run: |
+          lerna version --conventional-commits --conventional-graduate --create-release github --yes
+          lerna publish from-package --yes
