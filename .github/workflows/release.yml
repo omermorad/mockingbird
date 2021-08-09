@@ -81,7 +81,7 @@ jobs:
         run: |
           git config --global user.email "omer.moradd@gmail.com"
           git config --global user.name "$GITHUB_ACTOR"
-          echo ${{ github.head_ref }}
+          echo ${{ github.ref == 'refs/heads/ci/refactor-ci-workflow' }}
           echo ${{ contains(github.event.head_commit.message, '[release]') }}
 
       - name: Lerna Init
