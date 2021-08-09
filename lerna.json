@@ -7,7 +7,7 @@
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": ["master", "release", "ci/refactor-ci-workflow"],
+      "allowBranch": ["master", "release"],
       "message": "chore(packages): version packages [skip ci]",
       "conventionalCommits": true
     }
