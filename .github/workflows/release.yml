@@ -81,8 +81,8 @@ jobs:
         run: |
           git config --global user.email "omer.moradd@gmail.com"
           git config --global user.name "$GITHUB_ACTOR"
-          echo "github.head_ref"
-          echo "contains(github.event.head_commit.message, '[release]')"
+          echo ${{ github.head_ref" }}
+          echo ${{ contains(github.event.head_commit.message, '[release]') }}
 
       - name: Lerna Init
         run: lerna bootstrap
