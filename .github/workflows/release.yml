@@ -65,8 +65,12 @@ jobs:
 
   release:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+
     name: Release
-    needs: build-and-test
+#    needs: build-and-test
     steps:
       - name: Checkout
         uses: actions/checkout@master
