@@ -82,7 +82,7 @@ jobs:
         run: lerna version --conventional-commits --conventional-prerelease --yes --preid alpha --no-push
 
       - name: Prerelease
-        if: !contains(github.event.head_commit.message, '[release]') & github.ref == 'refs/heads/release'
+        if: "!contains(github.event.head_commit.message, '[release]') && github.ref == 'refs/heads/release'"
         run: |
           lerna version --conventional-commits --conventional-prerelease --yes --create-release github --preid alpha
           lerna publish from-package --yes
