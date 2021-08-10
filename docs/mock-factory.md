@@ -38,23 +38,20 @@ export class Bird {
 }
 ```
 
-<details>
-  <summary><b>MockBuilder Interface</b></summary>
+<details><summary>**🕵️‍ Discover more about MockBuilder interface**</summary><p>
 
-<p>
-    ```typescript
-    export interface MockBuilder<TClass = any> {
-      setLocale(locale: string): this;
-      plain(): this;
-      mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
-      ignore(...keys: IgnoreKeys<TClass>): this;
-      one(): TClass;
-      many(count: number): TClass[];
-    }
-    ```
-</p>
+```typescript
+export interface MockBuilder<TClass = any> {
+  setLocale(locale: string): this;
+  plain(): this;
+  mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
+  ignore(...keys: IgnoreKeys<TClass>): this;
+  one(): TClass;
+  many(count: number): TClass[];
+}
+```
+</p></details>
 
-</details>
 
 ## Methods
 
@@ -64,10 +61,17 @@ Simply creates (and return) a new mock from the class (`Bird`); here is an examp
 ```typescript
 const birdMock = MockFactory<Bird>(Bird).one();
 ```
-\
-```Hint: it returns a builder you can create mocks from```
 
-<hr />
+<details><summary>💡 `Hint`</summary><p>
+
+```
+The .one() method can not be chained,
+it just return an instance of the class
+```
+</p></details>
+
+
+<br />
 
 ### `.many(count: number)`
 Creates (and return) the required `count` mocks from the class; \
