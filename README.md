@@ -7,7 +7,7 @@
 <p align="center">
   <img width="450" src="https://raw.githubusercontent.com/omermorad/mockingbird-ts/master/docs/logo.png" alt="Mockingbird Logo" />
 
-  <h1 align="center">Mockingbird (TS)</h1>
+  <h1 align="center">Mockingbird</h1>
 
   <h3 align="center">
     The First TypeScript Mocking Framework

@@ -3,7 +3,6 @@
 
 # Mockingbird API Docs
 
-* [Mockingbird Recipes 🧾](recipes.md)
 * [Mock Decorator 🐦](mock-decorator.md)
 * [Creating Mocks with MockFactory 👨‍🔬](mock-factory.md)
-
+* [Mockingbird Recipes 🧾](recipes.md)

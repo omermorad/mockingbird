@@ -38,25 +38,59 @@ export class Bird {
 }
 ```
 
+<details>
+  <summary><b>MockBuilder Interface</b></summary>
+
+<p>
+    ```typescript
+    export interface MockBuilder<TClass = any> {
+      setLocale(locale: string): this;
+      plain(): this;
+      mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
+      ignore(...keys: IgnoreKeys<TClass>): this;
+      one(): TClass;
+      many(count: number): TClass[];
+    }
+    ```
+</p>
+
+</details>
+
 ## Methods
 
 ### `.one()`
-
-#### Example
+Simply creates (and return) a new mock from the class (`Bird`); here is an example:
 
 ```typescript
 const birdMock = MockFactory<Bird>(Bird).one();
 ```
+\
+```Hint: it returns a builder you can create mocks from```
 
-### `.setLocale()`
+<hr />
 
-#### Example
+### `.many(count: number)`
+Creates (and return) the required `count` mocks from the class; \
+here is an example:
 
 ```typescript
-const birdMock = MockFactory<Bird>(Bird).setLocale('es').one();
+const birdMock = MockFactory<Bird>(Bird).many(3);
 ```
 
-### `.many()`
+Will create (and return) an array with 3 mocks of `Bird`.
+
+```Hint: it returns a builder you can create mocks from```
+
+<hr />
+
+### `.setLocale(locale: string)`
+Sets the locale of the demo data (only apply when you use `faker`)
+
+```typescript
+const birdMock = MockFactory<Bird>(Bird).setLocale('es');
+```
+
+```Hint: it returns a builder you can create mocks from```
 
 #### Example
 
