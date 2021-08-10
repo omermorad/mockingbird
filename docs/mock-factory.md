@@ -55,7 +55,7 @@ export interface MockBuilder<TClass = any> {
 </p></details>
 
 
-## Methods
+## API
 
 ### `.one()`
 Simply creates (and return) a new mock from the class (`Bird`); here is an example:
@@ -72,7 +72,6 @@ it just return an instance of the class
 ```
 </p></details>
 
-
 <br />
 
 ### `.many(count: number)`
@@ -83,26 +82,45 @@ here is an example:
 const birdMock = MockFactory<Bird>(Bird).many(3);
 ```
 
-Will create (and return) an array with 3 mocks of `Bird`.
+<details><summary><code>💡Hint</code></summary><p>
 
-```Hint: it returns a builder you can create mocks from```
+```
+The .one() method can not be chained,
+it just return an instance of the class
+```
+</p></details>
 
-<hr />
+<br />
 
 ### `.setLocale(locale: string)`
-Sets the locale of the demo data (only apply when you use `faker`)
+Sets the locale of the fake data (only apply when you use `faker`):
 
 ```typescript
-const birdMock = MockFactory<Bird>(Bird).setLocale('es');
+const builder = MockFactory<Bird>(Bird).setLocale('es');
 ```
 
-```Hint: it returns a builder you can create mocks from```
+<details><summary><code>💡Hint</code></summary><p>
 
-#### Example
+```
+The method is relevant only when using faker in the mock decorator 
+```
 
 ```typescript
-const birdMock = MockFactory<Bird>(Bird).many();
+export class Bird {
+  @Mock((faker) => faker.random.name())
+  name: string;
+}
+
+const bird = MockFactory<Bird>(Bird).setLocale('es').one();
 ```
+
+```
+bird.name will be translated into Spanish
+```
+
+</p></details>
+
+<br />
 
 ### `.plain()`
 
