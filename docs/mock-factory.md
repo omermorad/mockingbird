@@ -19,6 +19,8 @@ function MockFactory<TClass>(target: Class<TClass>): MockBuilder<TClass>;
 Where `Class<TClass>` is an actual JavaScript class. \
 Returns `MockBuilder` when invoked.
 
+<br>
+
 ## `MockBuilder`
 
 Consider the following class (we will use it in the following examples of each method):
@@ -38,7 +40,7 @@ export class Bird {
 }
 ```
 
-<details><summary>**🕵️‍ Discover more about MockBuilder interface**</summary><p>
+<details><summary><b>🕵️‍ Discover more about MockBuilder interface</b></summary><p>
 
 ```typescript
 export interface MockBuilder<TClass = any> {
@@ -62,7 +64,7 @@ Simply creates (and return) a new mock from the class (`Bird`); here is an examp
 const birdMock = MockFactory<Bird>(Bird).one();
 ```
 
-<details><summary>💡 `Hint`</summary><p>
+<details><summary><code>💡Hint</code></summary><p>
 
 ```
 The .one() method can not be chained,
