@@ -86,12 +86,18 @@ jobs:
       - name: Lerna Init
         run: lerna bootstrap
 
+      - name: Lint
+        run: lerna exec --parallel -- yarn lint
+
       - name: Build
         run: yarn build
 
       - name: Next Version
         if: "!contains(github.event.head_commit.message, '[release]')"
         run: lerna version --conventional-commits --conventional-prerelease --yes --preid rc --no-push
+
+      - name: Expected Changelog
+        run: yarn conventional-changelog --preset angular
 
       - name: Prerelease
         if: "contains(github.event.head_commit.message, '[release]') && github.ref == 'refs/heads/release'"
