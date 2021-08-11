@@ -63,7 +63,7 @@ Simply creates (and return) a new mock from the class (`Bird`); here is an examp
 const birdMock = MockFactory<Bird>(Bird).one();
 ```
 
-<details><summary><code>💡Hint</code></summary><p>
+<details><summary><code>💡 Hint</code></summary><p>
 
 ```
 This method can not be chained,
@@ -81,7 +81,7 @@ here is an example:
 const birdMock = MockFactory<Bird>(Bird).many(3);
 ```
 
-<details><summary><code>💡Hint</code></summary><p>
+<details><summary><code>💡 Hint</code></summary><p>
 
 ```
 The .one() method can not be chained,
@@ -98,7 +98,7 @@ Sets the locale of the fake data (only apply when you use `faker`):
 const builder = MockFactory<Bird>(Bird).setLocale('es');
 ```
 
-<details><summary><code>💡Hint</code></summary><p>
+<details><summary><code>💡 Hint</code></summary><p>
 
 ```
 The method is relevant only when using faker in the @Mock() decorator 
@@ -132,7 +132,7 @@ and not an instance of the class `Bird`
 const birdMock = MockFactory<Bird>(Bird).plain().one();
 ```
 
-<details><summary><code>💡Hint</code></summary><p>
+<details><summary><code>💡 Hint</code></summary><p>
 
 ```
 Calling .one() and .many() will return an actual instance of the class (Bird).
@@ -154,7 +154,7 @@ Simply ignore some keys in the generated mock.
 const birdMock = MockFactory<Bird>(Bird).ignore('canFly').one();
 ```
 
-<details><summary><code>💡Hint</code></summary><p>
+<details><summary><code>💡 Hint</code></summary><p>
 
 ```
 .ignore() takes as many arguments as you want as long as they are strings
@@ -176,7 +176,7 @@ and overrides the values in the given keys
 const birdMock = MockFactory<Bird>(Bird).mutate({ name: 'Birdy Bird' }).one();
 ```
 
-<details><summary><code>💡Hint</code></summary><p>
+<details><summary><code>💡 Hint</code></summary><p>
 
 Here is a detailed example:
 
