@@ -40,8 +40,8 @@ jobs:
           yarn add -D -W @commitlint/config-conventional
           echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
-      - name: Lint Source
-        run: yarn lint-staged
+      - name: Lint
+        run: lerna exec --parallel -- yarn lint
 
       - name: Build
         run: yarn build
