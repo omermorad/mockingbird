@@ -2,7 +2,11 @@ import { Class } from '@mockinbird/types';
 import { MockGenerator } from '../generator/mock-generator';
 import { IgnoreKeys, OverrideKeys } from './types';
 
-type ExtraKeys<TClass> = { ignore?: IgnoreKeys<TClass>; mutations?: OverrideKeys<TClass> };
+interface ExtraKeys<TClass> {
+  ignore?: IgnoreKeys<TClass>;
+  mutations?: OverrideKeys<TClass>;
+  plain?: boolean;
+}
 
 export class MockProducer<TClass = any> {
   protected locale = 'en';
@@ -24,6 +28,7 @@ export class MockProducer<TClass = any> {
       count,
       override: config?.mutations || {},
       ignore: config?.ignore || [],
+      plain: config?.plain,
     }) as unknown as TClass[];
   }
 
@@ -34,6 +39,7 @@ export class MockProducer<TClass = any> {
       locale,
       override: config?.mutations || {},
       ignore: config?.ignore || [],
+      plain: config?.plain,
     }) as unknown as TClass;
   }
 }

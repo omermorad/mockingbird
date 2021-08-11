@@ -1,4 +1,4 @@
-import { Class } from '@mockinbird/types';
+import { Class, ClassLiteral } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
 import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
 
@@ -6,6 +6,20 @@ export class MockGenerator {
   private static readonly DEFAULT_LOCALE = 'en';
 
   public constructor(private readonly classParser: ClassParser) {}
+
+  private static classToPlain<TClass>(targetClass: TClass): ClassLiteral<TClass> {
+    const toPlain = (target: ClassLiteral<TClass>): ClassLiteral<TClass> => {
+      for (const key of Object.keys(target)) {
+        if (target[key] instanceof Object) {
+          target[key] = toPlain({ ...target[key] });
+        }
+      }
+
+      return target;
+    };
+
+    return toPlain({ ...targetClass });
+  }
 
   /**
    * Return an object with all the properties decorated by the 'Mock' Decorator
@@ -34,8 +48,15 @@ export class MockGenerator {
    * @param targetClass
    * @param options
    */
-  public create<TClass = any>(targetClass: Class<TClass>, options: MockGeneratorOptions<TClass>): TClass;
-  public create<TClass = any>(targetClass: Class<TClass>, options: MockGeneratorOptions<TClass>): TClass[];
+  public create<TClass = any>(
+    targetClass: Class<TClass>,
+    options: MockGeneratorOptions<TClass>
+  ): TClass | ClassLiteral<TClass>;
+
+  public create<TClass = any>(
+    targetClass: Class<TClass>,
+    options: MockGeneratorOptions<TClass>
+  ): TClass[] | ClassLiteral<TClass>[];
 
   /**
    * Return one or many objects (array) with all the properties decorated
@@ -47,20 +68,22 @@ export class MockGenerator {
   public create<TClass = any>(
     targetClass: Class<TClass>,
     options: MockGeneratorOptions<TClass> = {}
-  ): TClass | TClass[] {
-    const { count = 1, locale = MockGenerator.DEFAULT_LOCALE, ...config } = options || {};
+  ): TClass | TClass[] | ClassLiteral<TClass> | ClassLiteral<TClass>[] {
+    const { count = 1, locale = MockGenerator.DEFAULT_LOCALE, plain = false, ...config } = options || {};
 
     this.classParser.setFakerLocale(locale);
 
     if (count === 1) {
-      return this.classParser.parse(targetClass, config);
+      const parsedClass = this.classParser.parse(targetClass, config);
+      return plain ? MockGenerator.classToPlain<TClass>(parsedClass) : parsedClass;
     }
 
     const classInstances: TClass[] = [];
+    let parsedClass: TClass | ClassLiteral<TClass>;
 
     for (let i = 1; i <= count; i++) {
-      const parsedClass = this.classParser.parse<TClass>(targetClass, config);
-      classInstances.push(parsedClass);
+      parsedClass = this.classParser.parse<TClass>(targetClass, config);
+      classInstances.push(plain ? MockGenerator.classToPlain<TClass>(parsedClass) : parsedClass);
     }
 
     return classInstances;

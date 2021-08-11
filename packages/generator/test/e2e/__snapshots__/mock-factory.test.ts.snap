@@ -1,15 +1,65 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MockFactory e2e Test using a plain object when I create 3 dogs and covert them into a plain object then return a nested plain object 1`] = `
+Array [
+  Object {
+    "name": "doggy dog",
+    "owner": Object {
+      "car": Object {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+  Object {
+    "name": "doggy dog",
+    "owner": Object {
+      "car": Object {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+  Object {
+    "name": "doggy dog",
+    "owner": Object {
+      "car": Object {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+]
+`;
+
 exports[`MockFactory e2e Test when calling 'many' method with a given class then return 3 instances of the given class 1`] = `
 Array [
   Dog {
     "name": "doggy dog",
+    "owner": Person {
+      "car": Car {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
   },
   Dog {
     "name": "doggy dog",
+    "owner": Person {
+      "car": Car {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
   },
   Dog {
     "name": "doggy dog",
+    "owner": Person {
+      "car": Car {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
   },
 ]
 `;
