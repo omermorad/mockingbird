@@ -3,12 +3,13 @@
   "command": {
     "publish": {
       "allowBranch": ["master", "release"],
-      "message": "chore(repo): release packages",
+      "message": "chore(packages): release packages [skip ci]",
       "conventionalCommits": true
     },
     "version": {
-      "conventionalCommits": true,
-      "message": "chore(repo): version packages"
+      "allowBranch": ["master", "release"],
+      "message": "chore(packages): version packages [skip ci]",
+      "conventionalCommits": true
     }
   },
   "useWorkspaces": true,
