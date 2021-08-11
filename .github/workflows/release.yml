@@ -44,8 +44,8 @@ jobs:
           yarn add -D -W @commitlint/config-conventional
           echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
-      - name: Lint Source
-        run: yarn lint-staged
+      - name: Lint
+        run: lerna exec --parallel -- yarn lint
 
       - name: Build
         run: yarn build
@@ -86,18 +86,16 @@ jobs:
       - name: Lerna Init
         run: lerna bootstrap
 
-      - name: Lint
-        run: lerna exec --parallel -- yarn lint
-
       - name: Build
+        if: "contains(github.event.head_commit.message, '[release]') || github.ref == 'refs/heads/master'"
         run: yarn build
+
+      - name: Expected Changelog
+        run: yarn conventional-changelog --preset angular
 
       - name: Next Version
         if: "!contains(github.event.head_commit.message, '[release]')"
         run: lerna version --conventional-commits --conventional-prerelease --yes --preid rc --no-push
-
-      - name: Expected Changelog
-        run: yarn conventional-changelog --preset angular
 
       - name: Prerelease
         if: "contains(github.event.head_commit.message, '[release]') && github.ref == 'refs/heads/release'"
