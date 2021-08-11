@@ -1,4 +1,4 @@
-# Mockingbird API
+# Mockingbird API 🐦
 
 ## Introduction
 Mockingbird provides a simple way to create mocks (sometimes called fixtures)
