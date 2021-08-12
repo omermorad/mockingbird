@@ -1,12 +1,12 @@
 import { ClassLiteral, Class } from '@mockinbird/types';
-import { GeneratedMock, IgnoreKeys, OverrideKeys } from './types';
+import { GeneratedMock, IgnoreKeys, Mutations } from './types';
 import { MockProducer } from './mock-producer';
 import { MockGenerator } from '../generator/mock-generator';
 
 export interface MockBuilder<TClass = any> {
   setLocale(locale: string): this;
   plain(): this;
-  mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
+  mutate(overrides: Mutations<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
   ignore(...keys: IgnoreKeys<TClass>): this;
   one(): TClass;
   many(count: number): TClass[];
@@ -15,7 +15,7 @@ export interface MockBuilder<TClass = any> {
 export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private isPlain = false;
 
-  private mutations: OverrideKeys<TClass> = {};
+  private mutations: Mutations<TClass> = {};
   private ignoreKeys: IgnoreKeys<TClass> = [];
 
   public constructor(targetClass: Class<TClass>, mockGenerator: MockGenerator) {
@@ -38,7 +38,7 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
     return this;
   }
 
-  public mutate(overrides: OverrideKeys<TClass>): Omit<MockBuilder<TClass>, 'mutate'> {
+  public mutate(overrides: Mutations<TClass>): Omit<MockBuilder<TClass>, 'mutate'> {
     this.mutations = overrides;
     return this;
   }
