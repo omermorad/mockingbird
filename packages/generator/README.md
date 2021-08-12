@@ -1,11 +1,11 @@
 [![ISC license](http://img.shields.io/badge/license-MIT-brightgreen.svg)](http://opensource.org/licenses/MIT)
-[![npm version](http://img.shields.io/npm/v/mockingbird.svg?style=flat)](https://npmjs.org/package/mockingbird "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/mockingbird-ts.svg?style=flat)](https://npmjs.org/package/mockingbird-ts "View this project on npm")
 [![Codecov Coverage](https://img.shields.io/codecov/c/github/omermorad/mockingbird/master.svg?style=flat-square)](https://codecov.io/gh/omermorad/mockingbird)
 [![lerna](https://img.shields.io/badge/maintained%20with-lerna-cc00ff.svg)](https://lerna.js.org/)
 [![ci](https://github.com/omermorad/mockingbird/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/omermorad/mockingbird/actions)
 
 <p align="center">
-  <img width="450" src="https://raw.githubusercontent.com/omermorad/mockingbird/master/docs/logo.png" alt="Mockingbird Logo" />
+  <img width="450" src="https://raw.githubusercontent.com/omermorad/mockingbird-ts/master/docs/logo.png" alt="Mockingbird Logo" />
 
   <h1 align="center">Mockingbird</h1>
 
@@ -25,7 +25,7 @@
 ## Installation
 
 ```bash
-npm i mockingbird
+npm i mockingbird-ts
 ```
 
 ## Usage
@@ -33,7 +33,7 @@ npm i mockingbird
 **Here is the simplest usage of Mockingbird:**
 
 ```typescript
-import { Mock, MockFactory } from 'mockingbird';
+import { Mock, MockFactory } from 'mockingbird-ts';
 
 class Dog {
   @Mock(faker => faker.name.firstName())
@@ -53,10 +53,10 @@ const lotsOfDogs = MockFactory(Dog).many(3);
 ## Documentation
 
 There are many more options that you can use with the `@Mock` decorator (and also the `MockFactory`). \
-[Click here to jump to the full documentation and explore the full API](https://github.com/omermorad/mockingbird/blob/master/docs/README.md)
+[Click here to jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
 
 **Besides, we have also created a full working example for
-you; [you can find it under the sample folder](https://github.com/omermorad/mockingbird/tree/master/sample)**
+you; [you can find it under the sample folder](https://github.com/omermorad/mockingbird-ts/tree/master/sample)**
 
 ## Playground
 
@@ -73,7 +73,7 @@ Consider the following snippets:
 **`dog-model.ts`**
 
 ```typescript
-import { Mock, MockFactory } from 'mockingbird';
+import { Mock, MockFactory } from 'mockingbird-ts';
 
 export interface DogModel {
   name: string;
