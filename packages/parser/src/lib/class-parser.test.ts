@@ -38,7 +38,7 @@ describe('ClassParser Unit Test', () => {
 
         describe('and config is including overrides key-value pairs', () => {
           beforeAll(() => {
-            returnValue = parser.parse(Magician, { override: { name: 'Houdini' } });
+            returnValue = parser.parse(Magician, { mutations: { name: 'Houdini' } });
           });
 
           test("then return an instance which 'name' property is always 'Houdini'", () => {

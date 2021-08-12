@@ -1,6 +1,6 @@
 import { OptionalClassValues } from '@mockinbird/types';
 
-export interface ParserConfigDto<TClass> {
-  override?: OptionalClassValues<TClass>;
+export interface ParserConfig<TClass> {
+  mutations?: OptionalClassValues<TClass>;
   ignore?: (keyof TClass)[];
 }

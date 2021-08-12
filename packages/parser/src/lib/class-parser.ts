@@ -7,11 +7,11 @@ import { ArrayValueHandler } from '../handlers/array-value-handler';
 import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
-import { ParserConfigDto } from '../types/parser-config-dto';
+import { ParserConfig } from '../types/parser-config';
 
 export interface ClassParser {
   parse<TClass = any>(target: Class<TClass>): TClass;
-  parse<TClass = any>(target: Class<TClass>, config?: ParserConfigDto<TClass>): TClass;
+  parse<TClass = any>(target: Class<TClass>, config?: ParserConfig<TClass>): TClass;
   setFakerLocale(locale: Faker['locale']): void;
 }
 
@@ -41,17 +41,17 @@ export class ClassParser {
     this.faker.setLocale(locale);
   }
 
-  private analyzeProps<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass> = {}) {
+  private analyzeProps<TClass = any>(targetClass: Class<TClass>, config: ParserConfig<TClass> = {}) {
     const classReflection = this.reflector.reflectClass(targetClass);
-    const { override = {}, ignore = [] } = config;
+    const { mutations = {}, ignore = [] } = config;
 
     const handleProps = (acc, property) => {
       if (ignore.includes(property.name)) {
         return acc;
       }
 
-      if (override.hasOwnProperty(property.name)) {
-        const value = override[property.name];
+      if (mutations.hasOwnProperty(property.name)) {
+        const value = mutations[property.name];
 
         return { ...acc, [property.name]: value };
       }
@@ -79,7 +79,7 @@ export class ClassParser {
    * @param targetClass
    * @param config
    */
-  public parse<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass>): TClass;
+  public parse<TClass = any>(targetClass: Class<TClass>, config: ParserConfig<TClass>): TClass;
 
   /**
    * Return an object from the target class with all the properties
@@ -88,7 +88,7 @@ export class ClassParser {
    * @param targetClass
    * @param config
    */
-  public parse<TClass = any>(targetClass: Class<TClass>, config: ParserConfigDto<TClass> = {}): TClass {
+  public parse<TClass = any>(targetClass: Class<TClass>, config: ParserConfig<TClass> = {}): TClass {
     if (!targetClass) {
       throw new Error(`Target class is 'undefined'`);
     }

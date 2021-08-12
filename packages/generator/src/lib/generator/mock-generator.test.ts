@@ -1,5 +1,5 @@
-import { MockGenerator } from './mock-generator';
 import { ClassParser } from '@mockinbird/parser';
+import { MockGenerator } from './mock-generator';
 
 /**
  * The full test of MockGenerator can be found under the 'test' folder,
@@ -49,12 +49,12 @@ describe('MockGenerator Unit Test', () => {
       });
     });
 
-    given('I want to generate a mock and override different values', () => {
+    given('I want to generate a mock and mutate different values', () => {
       when('creating a new mock from generator passing the proper param', () => {
-        beforeAll(() => generator.create(TestClass, { override: { test: 'value' } }));
+        beforeAll(() => generator.create(TestClass, { mutations: { test: 'value' } }));
 
         then('call parse with the valid options', () => {
-          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { override: { test: 'value' } });
+          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { mutations: { test: 'value' } });
         });
       });
     });
