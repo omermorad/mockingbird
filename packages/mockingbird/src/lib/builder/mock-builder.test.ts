@@ -74,6 +74,32 @@ describe('MockBuilder Integration Test', () => {
     });
   });
 
+  scenario('using ignore to omit values', () => {
+    let builder;
+
+    describe('given a builder', () => {
+      beforeAll(() => {
+        builder = createNewBuilder();
+        builder.omit = jest.fn();
+      });
+
+      when('I call ignore method', () => {
+        const OMIT_RETURN_VALUE = 'arbitrary-value';
+        let ignoreReturnValue;
+
+        beforeAll(() => {
+          builder.omit.mockReturnValue(OMIT_RETURN_VALUE);
+          ignoreReturnValue = builder.ignore();
+        });
+
+        then('call and return omit instead', () => {
+          expect(builder.omit).toHaveBeenCalled();
+          expect(ignoreReturnValue).toBe(OMIT_RETURN_VALUE);
+        });
+      });
+    });
+  });
+
   scenario('omit values', () => {
     beforeAll(() => {
       builder = createNewBuilder();

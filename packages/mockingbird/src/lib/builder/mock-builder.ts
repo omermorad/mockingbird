@@ -51,7 +51,7 @@ export interface MockBuilder<TClass = any> {
    * @returns {MockBuilder}
    * @deprecated use .omit() instead
    */
-  ignore(...keys: OmitKeys<TClass>): this;
+  ignore(...keys: OmitKeys<TClass>): ReturnType<MockBuilder<TClass>['omit']>;
 
   /**
    * Ignore/Omit some properties when from the generated mock(s).
@@ -112,12 +112,10 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   }
 
   /**
-   *
    * @deprecated use .omit() instead
    */
-  public ignore(...keys: IgnoreKeys<TClass>): this {
-    this.omitKeys = keys;
-    return this;
+  public ignore(...keys: IgnoreKeys<TClass>): ReturnType<MockBuilder<TClass>['omit']> {
+    return this.omit(...keys);
   }
 
   public omit(...keys: OmitKeys<TClass>): this {
