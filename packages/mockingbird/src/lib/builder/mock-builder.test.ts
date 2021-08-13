@@ -149,7 +149,7 @@ describe('MockBuilder Integration Test', () => {
   scenario('plain object', () => {
     beforeAll(() => (builder = createNewBuilder()));
 
-    given('a new ;builder', () => {
+    given('a new builder', () => {
       beforeAll(() => (builder = createNewBuilder()));
 
       when('I ask for a plain object', () => {
@@ -172,7 +172,7 @@ describe('MockBuilder Integration Test', () => {
 
         and('I want to create many mocks', () => {
           let mocks;
-          const itemIsInstanceOfDog = (item) => item.constructor.name === 'Dog';
+          const itemIsInstanceOfDog = (item) => item.constructor.name === 'Bird';
 
           then('return array of plain objects (and not an actual instances)', () => {
             mocks = builder.plain().many(3);

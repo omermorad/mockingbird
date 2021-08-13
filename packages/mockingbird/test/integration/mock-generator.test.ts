@@ -42,7 +42,7 @@ describe('MockGenerator - Integration Test', () => {
 
       describe('and adding some ignorance properties', () => {
         beforeAll(() => {
-          result = generator.create(TestClassWithAbsoluteValues, { ignore: ['name'] });
+          result = generator.create(TestClassWithAbsoluteValues, { omit: ['name'] });
         });
 
         test('then return the same absolute value expect the constant name added from overrides', () => {
