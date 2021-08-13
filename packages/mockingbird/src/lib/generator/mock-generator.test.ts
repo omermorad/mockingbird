@@ -59,12 +59,12 @@ describe('MockGenerator Unit Test', () => {
       });
     });
 
-    given('I want to generate a mock and ignore different values', () => {
+    given('I want to generate a mock and omit different values', () => {
       when('creating a new mock from generator passing the proper param', () => {
-        beforeAll(() => generator.create(TestClass, { ignore: ['test'] }));
+        beforeAll(() => generator.create(TestClass, { omit: ['test'] }));
 
         then('call parse with the valid options', () => {
-          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { ignore: ['test'] });
+          expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { omit: ['test'] });
         });
       });
     });

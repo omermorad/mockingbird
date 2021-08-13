@@ -3,7 +3,7 @@ import { MockBuilder } from './mock-builder';
 import { Faker, ClassParser, Mock } from '../../';
 import { MockGenerator } from '../generator/mock-generator';
 
-class Dog {
+class Bird {
   @Mock()
   name: string;
 
@@ -25,14 +25,14 @@ const itemIsDefinedInKey = (key) => (item) => typeof item[key] !== 'undefined';
  * the word prop stands for a 'property', as well as 'props' which stands for 'properties'
  */
 describe('MockBuilder Integration Test', () => {
-  let createNewBuilder: () => MockBuilder<Dog>;
-  let builder: MockBuilder<Dog>;
+  let createNewBuilder: () => MockBuilder<Bird>;
+  let builder: MockBuilder<Bird>;
 
   beforeAll(() => {
     const parser = new ClassParser(Faker, new ClassReflector());
     const generator = new MockGenerator(parser);
 
-    createNewBuilder = (): MockBuilder<Dog> => new MockBuilder<Dog>(Dog, generator);
+    createNewBuilder = (): MockBuilder<Bird> => new MockBuilder<Bird>(Bird, generator);
   });
 
   scenario('mutating some values', () => {
@@ -74,20 +74,20 @@ describe('MockBuilder Integration Test', () => {
     });
   });
 
-  scenario('ignore values', () => {
+  scenario('omit values', () => {
     beforeAll(() => {
       builder = createNewBuilder();
     });
 
-    given("I've created a builder and ask to ignore some values", () => {
-      beforeAll(() => builder.ignore('isAwesome', 'points'));
+    given("I've created a builder and ask to omit some values", () => {
+      beforeAll(() => builder.omit('isAwesome', 'points'));
 
       when('I create a single mock of Dog', () => {
         let mock;
 
         beforeAll(() => (mock = builder.one()));
 
-        then("mutate return a mock without no values on props I've asked to ignore", () => {
+        then("mutate return a mock without no values on props I've asked to omit", () => {
           expect(mock.points).toBeUndefined();
           expect(mock.isAwesome).toBeUndefined();
         });
@@ -98,27 +98,27 @@ describe('MockBuilder Integration Test', () => {
 
         beforeAll(() => {
           builder = createNewBuilder();
-          mocks = builder.ignore('isAwesome', 'points').many(3);
+          mocks = builder.omit('isAwesome', 'points').many(3);
         });
 
-        then("mutate return an array where the prop I've asked to ignore has no value", () => {
+        then("mutate return an array where the prop I've asked to omit has no value", () => {
           expect(mocks.every(itemIsUndefinedInKey('points'))).toBeTruthy();
           expect(mocks.every(itemIsUndefinedInKey('isAwesome'))).toBeTruthy();
         });
       });
 
-      when('I want to ignore a prop only once (alongside the permanent props)', () => {
+      when('I want to omit a prop only once (alongside the permanent props)', () => {
         let mock;
 
         when('I create a new single mock of Dog', () => {
-          beforeAll(() => (mock = builder.ignore('name').one()));
+          beforeAll(() => (mock = builder.omit('name').one()));
 
-          then("ignore the permanent keys as well as the key I've asked to ignore once", () => {
+          then("omit the permanent keys as well as the key I've asked to omit once", () => {
             expect(mock.name).toBeUndefined();
           });
 
           describe('and when I ask to create a mock again', () => {
-            then("do not ignore the key I've asked to ignore only once", () => {
+            then("do not omit the key I've asked to omit only once", () => {
               mock = builder.one();
               expect(mock.name).not.toBeUndefined();
             });
@@ -128,7 +128,7 @@ describe('MockBuilder Integration Test', () => {
         when('I create many mocks of the same class, Dog', () => {
           let mocks;
 
-          beforeAll(() => (mocks = builder.ignore('name').many(3)));
+          beforeAll(() => (mocks = builder.omit('name').many(3)));
 
           then("return an array where each item has no value in the prop 'name'", () => {
             expect(mocks.every(itemIsUndefinedInKey('name'))).toBeTruthy();
@@ -137,7 +137,7 @@ describe('MockBuilder Integration Test', () => {
           describe('and now I want to create some more mocks again', () => {
             beforeAll(() => (mocks = builder.many(3)));
 
-            then("do not ignore the key I've asked to ignore only once", () => {
+            then("do not omit the key I've asked to omit only once", () => {
               expect(mocks.every(itemIsDefinedInKey('name'))).toBeTruthy();
             });
           });
@@ -149,7 +149,7 @@ describe('MockBuilder Integration Test', () => {
   scenario('plain object', () => {
     beforeAll(() => (builder = createNewBuilder()));
 
-    given('a new ;builder', () => {
+    given('a new builder', () => {
       beforeAll(() => (builder = createNewBuilder()));
 
       when('I ask for a plain object', () => {
@@ -159,20 +159,20 @@ describe('MockBuilder Integration Test', () => {
           then('return a plain object (and not an actual instance)', () => {
             mock = builder.plain().one();
 
-            expect(mock).not.toBeInstanceOf(Dog);
+            expect(mock).not.toBeInstanceOf(Bird);
             expect(mock).toBeInstanceOf(Object);
           });
 
           then('return an instance of Dog again', () => {
             mock = builder.one();
 
-            expect(mock).toBeInstanceOf(Dog);
+            expect(mock).toBeInstanceOf(Bird);
           });
         });
 
         and('I want to create many mocks', () => {
           let mocks;
-          const itemIsInstanceOfDog = (item) => item.constructor.name === 'Dog';
+          const itemIsInstanceOfDog = (item) => item.constructor.name === 'Bird';
 
           then('return array of plain objects (and not an actual instances)', () => {
             mocks = builder.plain().many(3);

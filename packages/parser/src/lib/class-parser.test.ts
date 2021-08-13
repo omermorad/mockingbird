@@ -48,7 +48,7 @@ describe('ClassParser Unit Test', () => {
 
         describe('and config is including ignore key-value pairs', () => {
           beforeAll(() => {
-            returnValue = parser.parse(Magician, { ignore: ['name'] });
+            returnValue = parser.parse(Magician, { omit: ['name'] });
           });
 
           test('then return the default value of the instance', () => {

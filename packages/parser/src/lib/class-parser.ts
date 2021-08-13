@@ -43,10 +43,10 @@ export class ClassParser {
 
   private analyzeProps<TClass = any>(targetClass: Class<TClass>, config: ParserConfig<TClass> = {}) {
     const classReflection = this.reflector.reflectClass(targetClass);
-    const { mutations = {}, ignore = [] } = config;
+    const { mutations = {}, omit = [] } = config;
 
     const handleProps = (acc, property) => {
-      if (ignore.includes(property.name)) {
+      if (omit.includes(property.name)) {
         return acc;
       }
 
