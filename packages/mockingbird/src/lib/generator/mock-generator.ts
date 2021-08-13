@@ -28,7 +28,8 @@ export class MockGenerator {
    * class Person { @Mock() name: string }
    * MockGenerator.create(Person) will return an object { name: <random-string> }
    *
-   * @param targetClass
+   * @param targetClass {Class<TClass>}
+   * @returns {TClass}
    */
   public create<TClass = any>(targetClass: Class<TClass>): TClass;
 
