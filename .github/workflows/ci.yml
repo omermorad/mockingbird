@@ -1,9 +1,5 @@
 name: CI
-on:
-  pull_request:
-    branches-ignore:
-      - master
-      - release
+on: [pull_request]
 
 jobs:
   build-and-test:
