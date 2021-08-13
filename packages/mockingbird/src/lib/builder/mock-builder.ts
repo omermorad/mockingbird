@@ -1,5 +1,5 @@
 import { ClassLiteral, Class } from '@mockinbird/types';
-import { GeneratedMock, IgnoreKeys, Mutations } from './types';
+import { GeneratedMock, OmitKeys, Mutations, IgnoreKeys } from './types';
 import { MockProducer } from './mock-producer';
 import { MockGenerator } from '../generator/mock-generator';
 
@@ -49,8 +49,21 @@ export interface MockBuilder<TClass = any> {
    *
    * @param keys
    * @returns {MockBuilder}
+   * @deprecated use .omit() instead
    */
-  ignore(...keys: IgnoreKeys<TClass>): this;
+  ignore(...keys: OmitKeys<TClass>): this;
+
+  /**
+   * Ignore/Omit some properties when from the generated mock(s).
+   * Using this method will simply omit the given keys
+   *
+   * @example
+   * MockFactory(Bird).ignore('name').one()
+   *
+   * @param keys
+   * @returns {MockBuilder}
+   */
+  omit(...keys: OmitKeys<TClass>): this;
 
   /**
    * Creates exactly one mock from the target class
@@ -71,7 +84,7 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private isPlain = false;
 
   private mutations: Mutations<TClass> = {};
-  private ignoreKeys: IgnoreKeys<TClass> = [];
+  private omitKeys: OmitKeys<TClass> = [];
 
   public constructor(targetClass: Class<TClass>, mockGenerator: MockGenerator) {
     super(targetClass, mockGenerator);
@@ -83,7 +96,7 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private process(mock: TClass[] | TClass): GeneratedMock<TClass> {
     this.isPlain = false;
     this.mutations = {};
-    this.ignoreKeys = [];
+    this.omitKeys = [];
 
     return mock;
   }
@@ -98,22 +111,31 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
     return this;
   }
 
+  /**
+   *
+   * @deprecated use .omit() instead
+   */
   public ignore(...keys: IgnoreKeys<TClass>): this {
-    this.ignoreKeys = keys;
+    this.omitKeys = keys;
+    return this;
+  }
+
+  public omit(...keys: OmitKeys<TClass>): this {
+    this.omitKeys = keys;
     return this;
   }
 
   public one(): TClass | ClassLiteral<TClass> {
-    const { mutations, ignoreKeys, isPlain } = this;
+    const { mutations, omitKeys, isPlain } = this;
 
-    const instance: TClass = super.createOne({ mutations, ignore: ignoreKeys, plain: isPlain });
+    const instance: TClass = super.createOne({ mutations, ignore: omitKeys, plain: isPlain });
     return this.process(instance);
   }
 
   public many(count: number): TClass[] | ClassLiteral<TClass>[] {
-    const { mutations, ignoreKeys, isPlain } = this;
+    const { mutations, omitKeys, isPlain } = this;
 
-    const instances = super.createMany(count, { mutations, ignore: ignoreKeys, plain: isPlain });
+    const instances = super.createMany(count, { mutations, ignore: omitKeys, plain: isPlain });
     return this.process(instances);
   }
 }
