@@ -6,7 +6,11 @@ import { Property } from './property';
 import { ClassPropsReflection } from '../types/class-reflection.type';
 
 export class ClassReflector {
+  private static instance: ClassReflector;
   public static readonly REFLECTED_CLASSES: Record<string, ClassPropsReflection> = {};
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private constructor() {}
 
   private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
     const { decorators } = property;
@@ -29,5 +33,13 @@ export class ClassReflector {
     }
 
     return ClassReflector.REFLECTED_CLASSES[target.name];
+  }
+
+  public static getInstance(): ClassReflector {
+    if (!ClassReflector.instance) {
+      ClassReflector.instance = new ClassReflector();
+    }
+
+    return ClassReflector.instance;
   }
 }
