@@ -1,9 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`MockFactory e2e Test using a plain object when I create 3 dogs and covert them into a plain object then return a nested plain object 1`] = `
+exports[`MockFactory e2e Test Scenario:  using a plain object when I create 3 dogs and covert them into a plain object then return a nested plain object 1`] = `
 Array [
   Object {
-    "name": "doggy dog",
+    "name": "BirdyBird",
     "owner": Object {
       "car": Object {
         "model": "BMW",
@@ -12,7 +12,7 @@ Array [
     },
   },
   Object {
-    "name": "doggy dog",
+    "name": "BirdyBird",
     "owner": Object {
       "car": Object {
         "model": "BMW",
@@ -21,7 +21,7 @@ Array [
     },
   },
   Object {
-    "name": "doggy dog",
+    "name": "BirdyBird",
     "owner": Object {
       "car": Object {
         "model": "BMW",
@@ -32,10 +32,22 @@ Array [
 ]
 `;
 
+exports[`MockFactory e2e Test using mutations when I use mutation with the mock factory return a mock where the name is 'Mutated Name' 1`] = `
+Bird {
+  "name": "Mutated Name",
+  "owner": Person {
+    "car": Car {
+      "model": "BMW",
+    },
+    "gender": "male",
+  },
+}
+`;
+
 exports[`MockFactory e2e Test when calling 'many' method with a given class then return 3 instances of the given class 1`] = `
 Array [
-  Dog {
-    "name": "doggy dog",
+  Bird {
+    "name": "BirdyBird",
     "owner": Person {
       "car": Car {
         "model": "BMW",
@@ -43,8 +55,8 @@ Array [
       "gender": "male",
     },
   },
-  Dog {
-    "name": "doggy dog",
+  Bird {
+    "name": "BirdyBird",
     "owner": Person {
       "car": Car {
         "model": "BMW",
@@ -52,8 +64,8 @@ Array [
       "gender": "male",
     },
   },
-  Dog {
-    "name": "doggy dog",
+  Bird {
+    "name": "BirdyBird",
     "owner": Person {
       "car": Car {
         "model": "BMW",
