@@ -18,8 +18,8 @@ export namespace TestClassesE2E {
     car: Car;
   }
 
-  export class Dog {
-    @Mock('doggy dog')
+  export class Bird {
+    @Mock('BirdyBird')
     name: string;
 
     @Mock(Person)
