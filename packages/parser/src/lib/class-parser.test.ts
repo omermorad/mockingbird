@@ -13,6 +13,7 @@ describe('ClassParser Unit Test', () => {
     setLocale: jest.fn(),
     datatype: { boolean: () => true, number: () => 12345 } as jest.Mocked<Faker['datatype']>,
     random: { alpha: jest.fn() } as unknown as jest.Mocked<Faker['random']>,
+    name: { firstName: jest.fn().mockReturnValueOnce('FIRST_NAME') } as any,
   };
 
   describe('given a ClassParser instance', () => {
@@ -36,17 +37,33 @@ describe('ClassParser Unit Test', () => {
           returnValue = parser.parse(Magician);
         });
 
-        describe('and config is including overrides key-value pairs', () => {
+        describe('and config is including mutations of key-value pairs', () => {
           beforeAll(() => {
             returnValue = parser.parse(Magician, { mutations: { name: 'Houdini' } });
           });
 
-          test("then return an instance which 'name' property is always 'Houdini'", () => {
+          test("then return an instance where the 'name' property is 'Houdini'", () => {
             expect(returnValue.name).toBe('Houdini');
           });
         });
 
-        describe('and config is including ignore key-value pairs', () => {
+        describe('and config is including mutations callback', () => {
+          beforeAll(() => {
+            returnValue = parser.parse(Magician, {
+              mutations: (faker) => ({ name: faker.name.firstName() }),
+            });
+          });
+
+          test('then call faker firstName method', () => {
+            expect(fakerMock.name.firstName).toHaveBeenCalledTimes(1);
+          });
+
+          test("then set the value of prop 'name' to be faker firstName return value", () => {
+            expect(returnValue.name).toBe('FIRST_NAME');
+          });
+        });
+
+        describe('and config is including omit key-value pairs', () => {
           beforeAll(() => {
             returnValue = parser.parse(Magician, { omit: ['name'] });
           });

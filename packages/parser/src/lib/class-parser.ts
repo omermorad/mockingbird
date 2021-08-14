@@ -1,5 +1,5 @@
 import { Property, ClassReflector } from '@mockinbird/reflect';
-import { Faker, Class } from '@mockinbird/types';
+import { Faker, Class, OptionalClassValues } from '@mockinbird/types';
 import { CallbackValueHandler } from '../handlers/callback-value-handler';
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
 import { EnumValueHandler } from '../handlers/enum-value-handler';
@@ -7,7 +7,7 @@ import { ArrayValueHandler } from '../handlers/array-value-handler';
 import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
-import { ParserConfig } from '../types/parser-config';
+import { MutationsCallback, ParserConfig } from '../types/parser-config';
 
 export interface ClassParser {
   parse<TClass = any>(target: Class<TClass>): TClass;
@@ -37,13 +37,15 @@ export class ClassParser {
     }
   }
 
-  public setFakerLocale(locale: Faker['locale']): void {
-    this.faker.setLocale(locale);
-  }
-
   private analyzeProps<TClass = any>(targetClass: Class<TClass>, config: ParserConfig<TClass> = {}) {
     const classReflection = this.reflector.reflectClass(targetClass);
-    const { mutations = {}, omit = [] } = config;
+    const { omit = [] } = config;
+
+    let { mutations = {} } = config;
+
+    if (typeof mutations === 'function') {
+      mutations = (mutations as MutationsCallback<TClass>)(this.faker);
+    }
 
     const handleProps = (acc, property) => {
       if (omit.includes(property.name)) {
@@ -60,6 +62,10 @@ export class ClassParser {
     };
 
     return classReflection.reduce(handleProps, {});
+  }
+
+  public setFakerLocale(locale: Faker['locale']): void {
+    this.faker.setLocale(locale);
   }
 
   /**
