@@ -3,23 +3,6 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# 2.1.0-rc.0 (2021-08-18)
-
-
-### Bug Fixes
-
-* **mockingbird-ts:**  add some missing documentation to mock builder and factory ([#85](https://github.com/omermorad/mockingbird-ts/issues/85)) ([45caa62](https://github.com/omermorad/mockingbird-ts/commit/45caa62283c2fa43c36c0ad77d59629722610edf))
-* **mockingbird-ts:** change ignore term to omit (deprecation) ([#86](https://github.com/omermorad/mockingbird-ts/issues/86)) ([f3b3ab9](https://github.com/omermorad/mockingbird-ts/commit/f3b3ab9c53baa3c9a114775f64961ddfa59124e6))
-
-
-### Features
-
-* **mockingbird-ts:** add pick funtionality to mock builder ([9b955f3](https://github.com/omermorad/mockingbird-ts/commit/9b955f3b2327ba0d9eab7bbf17fad304dd00ed05))
-
-
-
-
-
 # 2.0.0 (2021-07-31)
 
 
