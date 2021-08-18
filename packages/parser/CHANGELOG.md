@@ -3,6 +3,32 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-rc.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@2.0.0...@mockinbird/parser@3.0.0-rc.0) (2021-08-18)
+
+
+### Bug Fixes
+
+* **mockingbird-ts:** change ignore term to omit (deprecation) ([#86](https://github.com/omermorad/mockingbird-ts/issues/86)) ([f3b3ab9](https://github.com/omermorad/mockingbird-ts/commit/f3b3ab9c53baa3c9a114775f64961ddfa59124e6))
+
+
+### Code Refactoring
+
+* **parser:** add ability to pick properties, change dependecies, add class analyzer ([1312ea9](https://github.com/omermorad/mockingbird-ts/commit/1312ea98af94ba0b0ce62f4160f646e9c2075514)), closes [#84](https://github.com/omermorad/mockingbird-ts/issues/84)
+
+
+### Features
+
+* **parser:** add faker as part of mutations (with callback) + test case ([59dfde7](https://github.com/omermorad/mockingbird-ts/commit/59dfde7174e3d820506a6243f226278ce9558908))
+
+
+### BREAKING CHANGES
+
+* **parser:** The reflector dependency is no longer injected to ClassParser
+
+
+
+
+
 # 2.0.0 (2021-07-31)
 
 
