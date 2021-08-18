@@ -13,9 +13,7 @@ import { MockGenerator } from '../generator/mock-generator';
  * @returns {MockBuilder<TClass>} new builder to compose a mock
  */
 export function MockFactory<TClass>(target: Class<TClass>): MockBuilder<TClass> {
-  const reflector = new ClassReflector();
-  const parser = new ClassParser(Faker, reflector);
-
+  const parser = new ClassParser(Faker);
   const generator = new MockGenerator(parser);
 
   return new MockBuilder<TClass>(target, generator);

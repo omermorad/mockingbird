@@ -80,10 +80,9 @@ export class MockGenerator {
     }
 
     const classInstances: TClass[] = [];
-    let parsedClass: TClass | ClassLiteral<TClass>;
 
     for (let i = 1; i <= count; i++) {
-      parsedClass = this.classParser.parse<TClass>(targetClass, config);
+      const parsedClass = this.classParser.parse(targetClass, config);
       classInstances.push(plain ? MockGenerator.classToPlain<TClass>(parsedClass) : parsedClass);
     }
 

@@ -1,5 +1,4 @@
 import { ClassParser } from '@mockinbird/parser';
-import { ClassReflector } from '@mockinbird/reflect';
 import { TestClasses } from './common/test-classes';
 import { Faker } from '../../src';
 import { MockGenerator } from '../../src/lib/generator/mock-generator';
@@ -14,8 +13,7 @@ import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
 describe('MockGenerator - Integration Test', () => {
   let result;
 
-  const reflector = new ClassReflector();
-  const parser = new ClassParser(Faker, reflector);
+  const parser = new ClassParser(Faker);
   const generator = new MockGenerator(parser);
 
   describe('given a decorated class', () => {
