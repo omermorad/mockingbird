@@ -1,8 +1,14 @@
 name: CI
-on: [pull_request]
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - release
 
 jobs:
   build-and-test:
+    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     name: Build & Test
 
     runs-on: ubuntu-latest
