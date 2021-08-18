@@ -1,7 +1,6 @@
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { Class, Faker, MultiClass } from '@mockinbird/types';
 import { ArrayValueHandler } from './array-value-handler';
-import { ClassParser } from '../lib/class-parser';
 
 describe('ArrayValueHandler Unit Test', () => {
   const DTO_CLASS_VALUE = class TestClass {};
@@ -27,13 +26,9 @@ describe('ArrayValueHandler Unit Test', () => {
     },
   } as unknown as Faker;
 
-  const classParserMock = {
-    parse: jest.fn(),
-  } as unknown as ClassParser;
-
   describe('given an ArrayValueHandler', () => {
     beforeAll(() => {
-      handler = new ArrayValueHandler(fakerMock, classParserMock);
+      handler = new ArrayValueHandler(fakerMock);
     });
 
     describe("when calling 'shouldHandle' with type 'object' and decoratorValue of multi class ({ type: ClassType })", () => {
@@ -64,7 +59,7 @@ describe('ArrayValueHandler Unit Test', () => {
           expect(fakerMock.random.alpha).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
         });
 
-        test("then return an array of 'count' Strings", () => {
+        test("then return an array of 'count' String(s)", () => {
           expect(result).toBeInstanceOf(Array);
           expect(result).toHaveLength(DEFAULT_COUNT_FOR_DTO);
         });
@@ -109,9 +104,19 @@ describe('ArrayValueHandler Unit Test', () => {
     });
 
     describe('and decoratorValue type is an actual class (not a primitive)', () => {
-      test("then call 'process' with 'count' times", () => {
-        handler.produceValue(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }));
-        expect(classParserMock.parse).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
+      let value;
+
+      beforeAll(() => {
+        value = handler.produceValue(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }));
+      });
+
+      test('then return an array with length of 3', () => {
+        expect(value).toBeInstanceOf(Array);
+        expect(value).toHaveLength(3);
+      });
+
+      test.each(value, 'then return an array with 3 instances', (property) => {
+        expect(property).toBeInstanceOf(DTO_CLASS_VALUE);
       });
     });
   });

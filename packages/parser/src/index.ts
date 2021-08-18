@@ -1,2 +1,2 @@
-export * from './lib/class-parser';
-export * from './types/parser-config';
+export * from './lib/parser/class-parser';
+export * from './types/types';
