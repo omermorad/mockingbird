@@ -1,4 +1,4 @@
-name: Release Stable
+name: Release Candidate
 on: [workflow_dispatch]
 
 jobs:
@@ -26,7 +26,7 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Release
+      - name: Prerelease
         run: |
-          lerna version --conventional-commits --conventional-graduate --create-release github --yes
+          lerna version --conventional-commits --conventional-prerelease --yes --preid rc
           lerna publish from-package --yes
