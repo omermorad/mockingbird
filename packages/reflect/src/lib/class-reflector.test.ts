@@ -17,7 +17,7 @@ describe('ClassReflector', () => {
 
   describe('given a ClassReflector', () => {
     beforeAll(() => {
-      reflector = new ClassReflector();
+      reflector = ClassReflector.getInstance();
     });
 
     describe("when calling 'reflectClass'", () => {
