@@ -10,15 +10,11 @@
   <h1 align="center">Mockingbird</h1>
 
   <h3 align="center">
-    The First TypeScript Mocking Framework
+    Simple Yet Powerful TypeScript Mocking Library
   </h3>
 
-  <h4>
-    Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator (including <a href="https://github.com/marak/Faker.js/">faker.js</a> support).
-  </h4>
-
-  <h4>
-    Simply put - Mockingbird gives you a full control on your own fixtures; You can stub them and mock the actual value, replace values, and ignore them as well.
+  <h4 align="center">
+    Manage and create your test mocks easily, and focus on your tests logic instead
   </h4>
 </p>
 
@@ -28,133 +24,85 @@
 npm i mockingbird-ts
 ```
 
+## What is "Mocking Library"?
+A lot of times you find yourself “preparing” some dummy data for your tests that
+has to make sense for a specific test case(s) and is manipulated often.
+Some developers are preparing JSON files, others create a long verbose object in
+the test file itself, but the outcome always contains some fake data inside
+(or even a snapshot from an external API).
+
+This is what Mockingbird aims to solve!
+It suggests two ways of creating mocks for your entities/models classes, thus,
+creating one uniform way to manage mocks (whether you are working alone or with your team),
+your dev experience will improve, and you won’t have to deal with this messy setup at all!
+
+## Features
+- Prepare as many unique mocks/fixtures as you need for your tests
+- Generate dummy (but reasonable) data for database seeding
+- Manage your mocks from one place, forget about the messy work
+- Full TypeScript compatibility
+- Convenient and simple API
+
 ## Usage
 
 **Here is the simplest usage of Mockingbird:**
 
 ```typescript
+// Could be interface as well
+class BirdEntity {
+  name: string;
+  birthday: Date;
+  goodPoints: number;
+}
+```
+
+```typescript
 import { Mock, MockFactory } from 'mockingbird-ts';
 
-class Dog {
+// BirdEntity could be an interface or a class
+class BirdEntityMock implements BirdEntity {
   @Mock(faker => faker.name.firstName())
-  readonly name: string;
+  name!: string;
 
   @Mock()
-  readonly birthday: Date; // Will generate a recent date
+  birthday!: Date; // Will generate a recent date
 
   @Mock()
-  readonly goodPoints: number; // Will generate a random number
+  goodPoints!: number; // Will generate a random number
 }
 
-const oneDog = MockFactory(Dog).one();
-const lotsOfDogs = MockFactory(Dog).many(3);
+const oneBird = MockFactory(BirdEntityMock).one();
+const lotsOfBirds = MockFactory(BirdEntityMock).many(3);
 ```
 
 ## Documentation
+**[Jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)**
 
-There are many more options that you can use with the `@Mock` decorator (and also the `MockFactory`). \
-[Click here to jump to the full documentation and explore the full API](https://github.com/omermorad/faker.ts/blob/master/docs/README.md)
-
-**Besides, we have also created a full working example for
-you; [you can find it under the sample folder](https://github.com/omermorad/mockingbird-ts/tree/master/sample)**
+**There's also an example, [you can find it under the sample folder](https://github.com/omermorad/mockingbird-ts/tree/master/sample)**
 
 ## Playground
 
-**We have created a [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird
-in action!**
-
-## Use Cases
-- Prepare as many unique fixtures as you need for your tests
- - Generate fake (but reasonable) data database seeding 
-
-#### How can Mockingbird help me?
-Consider the following snippets:
-
-**`dog-model.ts`**
-
-```typescript
-import { Mock, MockFactory } from 'mockingbird-ts';
-
-export interface DogModel {
-  name: string;
-  birthday: Date;
-  goodPoints: number;
-}
-
-export class DogModel {
-  @Mock(faker => faker.name.firstName())
-  name: string;
-
-  // Will generate a recent date
-  @Mock()
-  birthday: Date;
-
-  // Will generate a random number
-  @Mock()
-  goodPoints: number;
-}
-```
-
-**`dogs-integration.test.ts`**
-
-```typescript
-import { DogsApiService } from './dogs-service';
-import { DogModel } from './dog-model';
-
-describe('Dogs API Integration Test', () => {
-  // Assume we have dogs-service.ts that fetches from some API
-  const apiService: jest.Mocked<DogsApiService> = {
-    fetch: jest.fn(),
-  };
-
-  let dogs: DogModel[];
-  
-  beforeAll(() => {
-    factory = MockFactory<DogModel>(DogModel);
-  });
-
-  test('Test something you want', async () => {
-    dogs = factory.many(3); // Generate 3 different dogs
-    apiService.fetch.mockResolvedValue(dogs);
-
-    const resultFromApi = await apiService.fetch();
-    expect(resultFromApi).toEqual(dogs);
-  });
-
-  test('Test something else you want', async () => {
-    dogsWithZeroPoints = factory.mutate({ goodPoints: 0 }).many(3);
-    apiService.fetch.mockResolvedValue(dogsWithZeroPoints);
-
-    const resultFromApi = await apiService.fetch();
-    
-    expect(resultFromApi).toEqual(dogsWithZeroPoints);
-    expect(dogsWithZeroPoints[0].goodPoints).toBe(0);
-  });
-});
-```
+**Jump to the [REPL Playground](https://repl.it/@omermorad/Mockingbird-Playground) where you can see Mockingbird in action!**
 
 ## Motivation
 
-When it comes to writing tests of large projects containing different and diverse entities, mocks (sometimes called "
-fixtures") are widely used to simulate real data.
+Creating mocks for your tests (sometimes called "fixtures") can be a tedious and
+cumbersome process usually done manually.
 
-Creating mocks (or fixtures) can be a tedious and cumbersome process and is usually created manually or by using
-libraries like Faker or Chance, which also do not offer a complete solution, especially not when you write TypeScript
-only, and most of the code is object-oriented and arranged with classes.
+We came up with a simple yet super convenient solution: all you have to do to get mocks out of the
+box is to decorate your classes (whether it's an entity, or a model representing the database layer)
+and generate simple or complex mocks.
 
-We came up with a simple (and efficient) yet super convenient solution: all you have to do to get fixtures out of the
-box is to decorate your classes (whether it's an entity, or a model representing the database layer) and generate simple
-or complex fixtures.
+Mockingbird offers two different ways for preparing mocks; The first one (as we call it), is the TypeScript
+way which requires decorating existing (or duplicate) classes.
+The second way is to use Mockingbird's functionality directly
 
-Mockingbird offers several options for creating mocks, including the use of the well-known library Faker, which allows
-you to create data such as a fake email, a fake username, a fake address and more.u to create information such as a fake
-email, a fake username, a fake address and more.
 
-### What is `faker.js` (aka Faker)?
+### What is `faker.js`?
 
-For those of you who are unfamiliar with `faker.js`, it is a library which is used to "generate massive amounts of fake data in the browser and Node".
+`faker.js` it's a library which is used to "generate massive amounts of fake data in the browser and Node".
 
-Mockingbird uses `faker.js` under the hood, making it possible to use Faker in it's "TypeScript" way, and thereby allows
+Mockingbird uses `faker.js` under the hood, making it possible to enjoy its rich database, and thereby allows
 to create mocks that are meaningful like email, first name, address and many more.
 
 ## License
