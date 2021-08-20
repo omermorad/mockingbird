@@ -10,7 +10,7 @@
   <h1 align="center">Mockingbird</h1>
 
   <h3 align="center">
-    Simple Yet Powerful TypeScript Mocking Framework
+    Simple Yet Powerful TypeScript Mocking Library
   </h3>
 
   <h4 align="center">
@@ -24,7 +24,7 @@
 npm i mockingbird-ts
 ```
 
-## What is "Mocking Framework"?
+## What is "Mocking Library"?
 A lot of times you find yourself “preparing” some dummy data for your tests that
 has to make sense for a specific test case(s) and is manipulated often.
 Some developers are preparing JSON files, others create a long verbose object in
@@ -62,29 +62,17 @@ import { Mock, MockFactory } from 'mockingbird-ts';
 // BirdEntity could be an interface or a class
 class BirdEntityMock implements BirdEntity {
   @Mock(faker => faker.name.firstName())
-  name: string;
+  name!: string;
 
   @Mock()
-  birthday: Date; // Will generate a recent date
+  birthday!: Date; // Will generate a recent date
 
   @Mock()
-  goodPoints: number; // Will generate a random number
+  goodPoints!: number; // Will generate a random number
 }
 
 const oneBird = MockFactory(BirdEntityMock).one();
 const lotsOfBirds = MockFactory(BirdEntityMock).many(3);
-```
-
-or with no decorators at all:
-
-```typescript
-import { Mock, MockFactory } from 'mockingbird-ts';
-
-const oneBird = Mimic(BirdEntity).like((faker) => ({
-  name: faker.name.firstName(),
-  birthday: Date,
-  goodPoints: Number,
-}));
 ```
 
 ## Documentation
