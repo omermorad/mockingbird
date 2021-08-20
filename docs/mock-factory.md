@@ -91,6 +91,114 @@ it just return an instance of the class
 
 <br />
 
+### `.omit(...keys: string[])`
+Simply ignore some keys in the generated mock.
+
+```typescript
+const birdMock = MockFactory<Bird>(Bird).omit('canFly').one();
+```
+
+<details><summary><code>💡 Hint</code></summary><p>
+
+```
+.ignore() takes as many arguments as you want as long as they are strings
+and they are part of the class properties
+
+Bird class has 3 properties: 'name', 'isAwesome' and 'canFly';
+In the example above will get a mock without the property 'canFly'.
+```
+</p></details>
+
+<br />
+
+### `.pick(...keys: string[])`
+Pick specific properties from the class.
+
+```typescript
+const birdMock = MockFactory<Bird>(Bird).pick('canFly').one();
+```
+
+<details><summary><code>💡 Hint</code></summary><p>
+
+```
+.ignore() takes as many arguments as you want as long as they are strings
+and they are part of the class properties
+
+Bird class has 3 properties: 'name', 'isAwesome' and 'canFly';
+In the example above will get a mock without the property 'canFly'.
+```
+</p></details>
+
+<br />
+
+### `.mutate()`
+
+Takes an object as an argument which contains keys and values; \
+It can also take a callback with faker and return an object, look at the hint \
+to see an example.
+
+```typescript
+const birdMock = MockFactory<Bird>(Bird).mutate({ name: 'Birdy Bird' }).one();
+```
+
+<details><summary><code>💡 Hint</code></summary><p>
+
+Here is a detailed example:
+
+```typescript
+const builder = MockFactory<Bird>(Bird).mutate({ name: 'Birdy Bird' });
+
+const oneBird = builder.one();
+const manyBirds = builder.many(3);
+```
+
+```
+The result will be a mock where the value at the property 'name' will be equal to 'Birdy Bird'
+assert.equal(oneBird.name, 'Birdy Bird')
+
+When using 'many', the outcome will be an array of objects with the given mutations
+```
+</p></details>
+
+<br />
+
+<details><summary><code>💡 Hint (using faker)</code></summary><p>
+
+Here is another example using `faker` and a callback:
+
+```typescript
+const builder = MockFactory<Bird>(Bird).mutate((faker) => ({ name: faker.name.firstName() }));
+const oneBird = builder.one();
+```
+</p></details>
+
+<br />
+
+### `.plain()`
+
+Sets the builder to return only plain objects (object literal),
+and not an instance of the class `Bird`
+
+```typescript
+// Will return a plain object and NOT an instance of the class Bird
+const birdMock = MockFactory<Bird>(Bird).plain().one();
+```
+
+<details><summary><code>💡 Hint</code></summary><p>
+
+```
+Calling .one() and .many() will return an actual instance of the class (Bird).
+When using .plain() you will get an object which is instance of Object
+```
+
+```
+Using .plain() with .many() will convery all the objects in the array
+into plain objects
+```
+</p></details>
+
+<br />
+
 ### `.setLocale(locale: string)`
 Sets the locale of the fake data (only apply when you use `faker`):
 
@@ -121,77 +229,3 @@ bird.name will be translated into Spanish
 </p></details>
 
 <br />
-
-### `.plain()`
-
-Sets the builder to return only plain objects (object literal),
-and not an instance of the class `Bird`
-
-```typescript
-// Will return a plain object and NOT an instance of the class Bird
-const birdMock = MockFactory<Bird>(Bird).plain().one();
-```
-
-<details><summary><code>💡 Hint</code></summary><p>
-
-```
-Calling .one() and .many() will return an actual instance of the class (Bird).
-When using .plain() you will get an object which is instance of Object
-```
-
-```
-Using .plain() with .many() will convery all the objects in the array
-into plain objects
-```
-</p></details>
-
-<br />
-
-### `.ignore()`
-Simply ignore some keys in the generated mock.
-
-```typescript
-const birdMock = MockFactory<Bird>(Bird).ignore('canFly').one();
-```
-
-<details><summary><code>💡 Hint</code></summary><p>
-
-```
-.ignore() takes as many arguments as you want as long as they are strings
-and they are part of the class properties
-
-Bird class has 3 properties: 'name', 'isAwesome' and 'canFly';
-In the example above will get a mock without the property 'canFly'.
-```
-</p></details>
-
-<br />
-
-### `.mutate()`
-
-`mutate()` takes an object as an argument which contains keys and values \
-and overrides the values in the given keys
-
-```typescript
-const birdMock = MockFactory<Bird>(Bird).mutate({ name: 'Birdy Bird' }).one();
-```
-
-<details><summary><code>💡 Hint</code></summary><p>
-
-Here is a detailed example:
-
-```typescript
-const builder = MockFactory<Bird>(Bird).mutate({ name: 'Birdy Bird' });
-
-const oneBird = builder.one();
-const manyBirds = builder.many(3);
-```
-
-```
-oneBird variable is a mock where the value at the property name always equals to 'Birdy Bird'
-assert.equal(oneBird.name, 'Birdy Bird') (always true)
-
-When using in array of mocks, all of the objects will contain the new value
-at the same property
-```
-</p></details>
