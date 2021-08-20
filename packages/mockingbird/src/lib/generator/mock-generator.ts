@@ -1,4 +1,4 @@
-import { Class, ClassLiteral } from '@mockinbird/types';
+import { Class, ClassLiteral, isPrimitive } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
 import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
 
@@ -10,8 +10,14 @@ export class MockGenerator {
   private static classToPlain<TClass>(targetClass: TClass): ClassLiteral<TClass> {
     const toPlain = (target: ClassLiteral<TClass>): ClassLiteral<TClass> => {
       for (const key of Object.keys(target)) {
-        if (target[key] instanceof Object) {
-          target[key] = toPlain({ ...target[key] });
+        const value = target[key];
+
+        if (value instanceof Object) {
+          if (isPrimitive(value.constructor.name)) {
+            toPlain(value);
+          } else {
+            target[key] = toPlain({ ...value });
+          }
         }
       }
 
