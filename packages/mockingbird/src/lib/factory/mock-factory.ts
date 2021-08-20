@@ -1,6 +1,5 @@
 import { Faker, Class } from '@mockinbird/types';
 import { ClassParser } from '@mockinbird/parser';
-import { ClassReflector } from '@mockinbird/reflect';
 import { MockBuilder } from '../builder';
 import { MockGenerator } from '../generator/mock-generator';
 
