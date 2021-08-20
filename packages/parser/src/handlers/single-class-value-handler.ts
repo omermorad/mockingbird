@@ -1,8 +1,7 @@
 import { Property } from '@mockinbird/reflect';
-import { Class } from '@mockinbird/types';
+import { Class, isPrimitive } from '@mockinbird/types';
 import { AbstractValueHandler } from './abstract-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
-import { isPrimitive } from '../common/is-primitive';
 import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';
 
 export class SingleClassValueHandler extends AbstractValueHandler implements ValueHandler {
