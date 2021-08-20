@@ -1,9 +1,10 @@
 import { Class } from '@mockinbird/types';
 import { MockGenerator } from '../generator/mock-generator';
-import { OmitKeys, Mutations } from './types';
+import { Keys, Mutations } from './types';
 
 interface ExtraKeys<TClass> {
-  ignore?: OmitKeys<TClass>;
+  omit?: Keys<TClass>;
+  pick?: Keys<TClass>;
   mutations?: Mutations<TClass>;
   plain?: boolean;
 }
@@ -20,26 +21,30 @@ export class MockProducer<TClass = any> {
     this.locale = locale;
   }
 
-  protected createMany(count: number, config?: ExtraKeys<TClass>): TClass[] {
+  protected createMany(count: number, config: ExtraKeys<TClass> = {}): TClass[] {
     const { locale } = this;
+    const { mutations = {}, plain = false, pick = [], omit = [] } = config;
 
     return this.mockGenerator.create(this.targetClass, {
       locale,
+      mutations,
+      pick,
+      omit,
+      plain,
       count,
-      mutations: config?.mutations || {},
-      omit: config?.ignore || [],
-      plain: config?.plain,
     }) as unknown as TClass[];
   }
 
-  protected createOne(config?: ExtraKeys<TClass>): TClass {
+  protected createOne(config: ExtraKeys<TClass> = {}): TClass {
     const { locale } = this;
+    const { mutations = {}, plain = false, pick = [], omit = [] } = config;
 
     return this.mockGenerator.create(this.targetClass, {
       locale,
-      mutations: config?.mutations || {},
-      omit: config?.ignore || [],
-      plain: config?.plain,
+      mutations,
+      pick,
+      omit,
+      plain,
     }) as unknown as TClass;
   }
 }

@@ -1,5 +1,5 @@
 import { ClassLiteral, Class } from '@mockinbird/types';
-import { GeneratedMock, OmitKeys, Mutations, IgnoreKeys } from './types';
+import { GeneratedMock, Keys, Mutations } from './types';
 import { MockProducer } from './mock-producer';
 import { MockGenerator } from '../generator/mock-generator';
 
@@ -18,20 +18,22 @@ export interface MockBuilder<TClass = any> {
   setLocale(locale: string): this;
 
   /**
-   * Convert the result into plain object. If the result will be array
-   * (using .many()), then all of items in the array will be converted
-   * into plain objects
+   * Converts the generated mock into a plain object.
+   * When creating multiple mocks (using .many()), then
+   * all the items in the array will be converted
+   * into plain objects.
    *
    * @example
    * MockFactory(Bird).plain().one()
    *
-   * @returns {this} the same builder
+   * @returns {MockBuilder}
    */
   plain(): this;
 
   /**
    * Mutates the generated mock(s).
-   * .mutate() method enables to set another value for a specific property
+   * .mutate() method enables to set another value for a specific
+   * property.
    *
    * @example
    * MockFactory(Bird).mutate({ name: 'some-permanent-name' }).one()
@@ -41,21 +43,18 @@ export interface MockBuilder<TClass = any> {
   mutate(mutations: Mutations<TClass>): Omit<MockBuilder<TClass>, 'mutate'>;
 
   /**
-   * Ignore/Omit some properties when from the generated mock(s).
-   * Using this method will simply omit the given keys
-   *
-   * @example
-   * MockFactory(Bird).ignore('name').one()
-   *
+   * @alias omit
    * @param keys
    * @returns {MockBuilder}
    * @deprecated use .omit() instead
    */
-  ignore(...keys: OmitKeys<TClass>): ReturnType<MockBuilder<TClass>['omit']>;
+  ignore(...keys: Keys<TClass>): ReturnType<MockBuilder<TClass>['omit']>;
 
   /**
-   * Ignore/Omit some properties when from the generated mock(s).
-   * Using this method will simply omit the given keys
+   * Omits properties from the generated mock(s); all the
+   * rest of the properties will remain the same.
+   * Notice that omitting a property that contains a default
+   * value will only ignore the decorator generation.
    *
    * @example
    * MockFactory(Bird).ignore('name').one()
@@ -63,7 +62,21 @@ export interface MockBuilder<TClass = any> {
    * @param keys
    * @returns {MockBuilder}
    */
-  omit(...keys: OmitKeys<TClass>): this;
+  omit(...keys: Keys<TClass>): this;
+
+  /**
+   * Picks specific properties to generate a mock from.
+   * Notice that properties that contain default values
+   * in the class will remain there but the decorator won't
+   * apply to those properties.
+   *
+   * @example
+   * MockFactory(Bird).pick('name').one()
+   *
+   * @param keys
+   * @returns {MockBuilder}
+   */
+  pick(...keys: Keys<TClass>): this;
 
   /**
    * Creates exactly one mock from the target class
@@ -76,6 +89,7 @@ export interface MockBuilder<TClass = any> {
    * Creates many mocks from the target class.
    *
    * @param count {number} How many mocks to create
+   * @returns {TClass[] | Object[]} An array of instances of plain objects
    */
   many(count: number): TClass[];
 }
@@ -84,21 +98,18 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   private isPlain = false;
 
   private mutations: Mutations<TClass> = {};
-  private omitKeys: OmitKeys<TClass> = [];
+  private omitKeys: Keys<TClass> = [];
+  private pickKeys: Keys<TClass> = [];
 
   public constructor(targetClass: Class<TClass>, mockGenerator: MockGenerator) {
     super(targetClass, mockGenerator);
   }
 
-  private process(mock: TClass[]): TClass[] | ClassLiteral<TClass>[];
-  private process(mock: TClass): TClass | ClassLiteral<TClass>;
-
-  private process(mock: TClass[] | TClass): GeneratedMock<TClass> {
+  private clean(): void {
     this.isPlain = false;
     this.mutations = {};
     this.omitKeys = [];
-
-    return mock;
+    this.pickKeys = [];
   }
 
   public plain(): this {
@@ -114,26 +125,35 @@ export class MockBuilder<TClass = any> extends MockProducer<TClass> {
   /**
    * @deprecated use .omit() instead
    */
-  public ignore(...keys: IgnoreKeys<TClass>): ReturnType<MockBuilder<TClass>['omit']> {
+  public ignore(...keys: Keys<TClass>): ReturnType<MockBuilder<TClass>['omit']> {
     return this.omit(...keys);
   }
 
-  public omit(...keys: OmitKeys<TClass>): this {
+  public omit(...keys: Keys<TClass>): this {
     this.omitKeys = keys;
     return this;
   }
 
-  public one(): TClass | ClassLiteral<TClass> {
-    const { mutations, omitKeys, isPlain } = this;
+  public pick(...keys: Keys<TClass>): this {
+    this.pickKeys = keys;
+    return this;
+  }
 
-    const instance: TClass = super.createOne({ mutations, ignore: omitKeys, plain: isPlain });
-    return this.process(instance);
+  public one(): TClass | ClassLiteral<TClass> {
+    const { mutations, omitKeys, pickKeys, isPlain } = this;
+
+    const instance: TClass = super.createOne({ mutations, omit: omitKeys, plain: isPlain, pick: pickKeys });
+    this.clean();
+
+    return instance;
   }
 
   public many(count: number): TClass[] | ClassLiteral<TClass>[] {
-    const { mutations, omitKeys, isPlain } = this;
+    const { mutations, omitKeys, pickKeys, isPlain } = this;
 
-    const instances = super.createMany(count, { mutations, ignore: omitKeys, plain: isPlain });
-    return this.process(instances);
+    const instances = super.createMany(count, { mutations, omit: omitKeys, plain: isPlain, pick: pickKeys });
+    this.clean();
+
+    return instances;
   }
 }
