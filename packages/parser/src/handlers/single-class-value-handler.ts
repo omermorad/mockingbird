@@ -1,5 +1,5 @@
 import { Property } from '@mockinbird/reflect';
-import { Class, isPrimitive } from '@mockinbird/types';
+import { Class, isPrimitive } from '@mockinbird/common';
 import { AbstractValueHandler } from './abstract-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';

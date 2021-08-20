@@ -1,4 +1,4 @@
-import { Faker } from '@mockinbird/types';
+import { Faker } from '@mockinbird/common';
 
 export class AbstractValueHandler {
   public constructor();
