@@ -1,5 +1,5 @@
 import { Property } from '@mockinbird/reflect';
-import { ExactValue, isPrimitive } from '@mockinbird/types';
+import { ExactValue, isPrimitive } from '@mockinbird/common';
 import { AbstractValueHandler } from './abstract-value-handler';
 
 export abstract class PrimitiveHandlerAbstract extends AbstractValueHandler {

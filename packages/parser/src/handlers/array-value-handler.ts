@@ -1,4 +1,4 @@
-import { isPrimitive } from '@mockinbird/types';
+import { isPrimitive } from '@mockinbird/common';
 import { Property } from '@mockinbird/reflect';
 import { ExactValue, MultiClass } from '@mockinbird/types';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
