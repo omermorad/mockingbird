@@ -28,5 +28,5 @@ jobs:
 
       - name: Prerelease
         run: |
-          lerna version --conventional-commits --conventional-prerelease --yes --preid rc
+          lerna version --conventional-commits --conventional-prerelease --yes --preid rc --dist-tag rc
           lerna publish from-package --yes
