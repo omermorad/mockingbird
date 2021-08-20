@@ -1,4 +1,4 @@
-import { Class, ClassLiteral, isPrimitive } from '@mockinbird/types';
+import { Class, ClassLiteral, isPrimitive } from '@mockinbird/common';
 import { ClassParser } from '@mockinbird/parser';
 import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
 
