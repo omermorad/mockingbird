@@ -1,6 +1,6 @@
 {
   "name": "mockingbird-ts",
-  "version": "2.1.0-rc.0",
+  "version": "2.1.0-rc.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
