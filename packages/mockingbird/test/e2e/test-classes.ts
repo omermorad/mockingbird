@@ -24,5 +24,8 @@ export namespace TestClassesE2E {
 
     @Mock(Person)
     owner: Person;
+
+    @Mock()
+    birthday: Date;
   }
 }
