@@ -30,12 +30,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/omermorad/mockingbird-ts.git"
+    "url": "https://github.com/omermorad/mockingbird.git"
   },
   "bugs": {
-    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+    "url": "https://github.com/omermorad/mockingbird/issues"
   },
-  "readme": "https://github.com/omermorad/mockingbird-ts/README.md",
+  "readme": "https://github.com/omermorad/mockingbird/README.md",
   "scripts": {
     "prebuild": "npx rimraf dist",
     "build": "tsc",
@@ -50,9 +50,9 @@
     "README.md"
   ],
   "dependencies": {
-    "@mockinbird/parser": "^3.0.0-rc.0",
-    "@mockinbird/reflect": "^3.0.0-rc.0",
-    "@mockinbird/types": "^2.0.0"
+    "@mockinbird/parser": "^3.0.0-rc.1",
+    "@mockinbird/reflect": "^3.0.0-rc.1",
+    "@mockinbird/common": "^2.0.1-rc.0"
   },
   "devDependencies": {
     "jest": "27.0.6",
