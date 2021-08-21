@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Callback, EnumObject, ExactValue, MultiClass } from '@mockinbird/types';
+import { Callback, EnumObject, ExactValue, MultiClass } from '@mockinbird/common';
 import { Class, decorateProperty } from '@plumier/reflect';
 import { MockOptions } from '../types';
 
