@@ -490,24 +490,24 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@mockinbird/common@^2.0.1-rc.1":
-  version "2.0.1-rc.1"
-  resolved "https://registry.yarnpkg.com/@mockinbird/common/-/common-2.0.1-rc.1.tgz#5ed7e62a32a4ffc32716a1271406d341babc5d89"
-  integrity sha512-PwgZXl2ZC/mHAM6RUc4MKT+qdUnwowx2GklNI6gFVH48ZmdzCXiuSqAhycmPODFfNf+haQ3pGp5hWvIZFN4zGA==
+"@mockinbird/common@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@mockinbird/common/-/common-2.0.2.tgz#6fd72844b53c228023009e9ee9a0668c6f824d64"
+  integrity sha512-AxZ/+a5faKnw6lyY/ddUA/CPC+KgoRdLHlj3YuqbzQBeGEmEiDE1FLa7F4b8sdryhN2UxmOiAmpABSCDLBDmdw==
   dependencies:
     faker "^5.5.3"
 
-"@mockinbird/parser@^3.0.0-rc.2":
-  version "3.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@mockinbird/parser/-/parser-3.0.0-rc.2.tgz#48a9ec842ed201f5dbc81094cf94706c04370ff9"
-  integrity sha512-BC+d4cQ6J6YnkgcuHBVyazvfNDxofoZRObKfcXDtXKbt2mm1r/AVuosJroAoIrTXNkzMFRw4xPCYVVg1uDGHvw==
+"@mockinbird/parser@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@mockinbird/parser/-/parser-3.0.1.tgz#671835d7c21adc3577409e7d3d8de56bc89be224"
+  integrity sha512-x6YPs8oEa15ppLZPWDrzM/w8iu9puF/djHTUx/XEdcSiNz+a1y88WxNFhjAgPhndWH37/lJAK1Btks1sGuXOSw==
   dependencies:
-    "@mockinbird/reflect" "^3.0.0-rc.2"
+    "@mockinbird/reflect" "^3.0.1"
 
-"@mockinbird/reflect@^3.0.0-rc.2":
-  version "3.0.0-rc.2"
-  resolved "https://registry.yarnpkg.com/@mockinbird/reflect/-/reflect-3.0.0-rc.2.tgz#cea5534196f9753d58005fdf5e5623e5ec7ac03c"
-  integrity sha512-43C1CoojlPE3PtE9FU+33jD+GSeTLLkb6tRh35C00oQBIWH+bk4dNPtAfqFarWJB/mAqpsgblCJpIIJoEF6CpQ==
+"@mockinbird/reflect@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@mockinbird/reflect/-/reflect-3.0.1.tgz#28b9e6a7c2daf16859e1a41a26ccfc9b099720e0"
+  integrity sha512-K6rO8p1F87ZUx7JXTgfJSOJgyekQHML5H9ScJg2gAL02I/2nW2qHIp9I7O8JqXR7ai2OMhW1ImAzfgZJ7R/F4A==
   dependencies:
     "@plumier/reflect" "^1.0.3"
     reflect-metadata "^0.1.13"
@@ -3254,14 +3254,14 @@ mkdirp@1.x, mkdirp@^1.0.4:
   dependencies:
     minimist "^1.2.5"
 
-mockingbird-ts@^2.1.0-rc.2:
-  version "2.1.0-rc.2"
-  resolved "https://registry.yarnpkg.com/mockingbird-ts/-/mockingbird-ts-2.1.0-rc.2.tgz#eb7e8ee762f7f56eb189d51bf1d52c35934d91b6"
-  integrity sha512-lAsJpDu9chvaSal4gIZ4JSi3GZ0Qb4speW7pMosZXJF7a6TVt4CQlYo02dOu99/GE2hq1NKUpmcSnoys0bTfww==
+mockingbird-ts@2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/mockingbird-ts/-/mockingbird-ts-2.1.1.tgz#9dad86b7358f9ba79292a5f9233dd764ce4f12de"
+  integrity sha512-vHFQ4nvAnY2xyf01yOW8w/nUGSNIZS1kIfvLanBsA+4XUgY8pML9gnhG7826eP9ZVcYE2Jd47gflJDQOQkE+2g==
   dependencies:
-    "@mockinbird/common" "^2.0.1-rc.1"
-    "@mockinbird/parser" "^3.0.0-rc.2"
-    "@mockinbird/reflect" "^3.0.0-rc.2"
+    "@mockinbird/common" "^2.0.2"
+    "@mockinbird/parser" "^3.0.1"
+    "@mockinbird/reflect" "^3.0.1"
 
 ms@2.0.0:
   version "2.0.0"
