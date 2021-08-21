@@ -3,6 +3,30 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 2.1.0 (2021-08-21)
+
+
+### Bug Fixes
+
+* **mockingbird-ts:**  add some missing documentation to mock builder and factory ([#85](https://github.com/omermorad/mockingbird/issues/85)) ([45caa62](https://github.com/omermorad/mockingbird/commit/45caa62283c2fa43c36c0ad77d59629722610edf))
+* **mockingbird-ts:** change ignore term to omit (deprecation) ([#86](https://github.com/omermorad/mockingbird/issues/86)) ([f3b3ab9](https://github.com/omermorad/mockingbird/commit/f3b3ab9c53baa3c9a114775f64961ddfa59124e6))
+* **mockingbird-ts:** change types package into common ([a857a66](https://github.com/omermorad/mockingbird/commit/a857a66cd72e539c5fd3b183bd324d0ab10042a2))
+* **mockingbird-ts:** fix plain functionality to work with primitives ([4fb5dcc](https://github.com/omermorad/mockingbird/commit/4fb5dccf9ba37363f201cf4525cd796269b5d004))
+
+
+### Features
+
+* **mockingbird-ts:** add pick funtionality to mock builder ([9b955f3](https://github.com/omermorad/mockingbird/commit/9b955f3b2327ba0d9eab7bbf17fad304dd00ed05))
+
+
+### Reverts
+
+* Revert "chore(packages): version packages [skip ci]" ([5cbc7d6](https://github.com/omermorad/mockingbird/commit/5cbc7d67c5a62343c65fb1401e73df505cbadf52))
+
+
+
+
+
 # 2.0.0 (2021-07-31)
 
 
