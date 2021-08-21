@@ -1,6 +1,6 @@
 {
   "name": "mockingbird-ts",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -50,9 +50,9 @@
     "README.md"
   ],
   "dependencies": {
-    "@mockinbird/common": "^2.0.1",
-    "@mockinbird/parser": "^3.0.0",
-    "@mockinbird/reflect": "^3.0.0"
+    "@mockinbird/common": "^2.0.2",
+    "@mockinbird/parser": "^3.0.1",
+    "@mockinbird/reflect": "^3.0.1"
   },
   "devDependencies": {
     "jest": "27.0.6",

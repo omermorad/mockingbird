@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.1](https://github.com/omermorad/mockingbird/compare/@mockinbird/reflect@3.0.0...@mockinbird/reflect@3.0.1) (2021-08-21)
+
+
+### Bug Fixes
+
+* fix broken packages because of 'types' (instead common) ([#94](https://github.com/omermorad/mockingbird/issues/94)) ([fca274a](https://github.com/omermorad/mockingbird/commit/fca274aca495251b9b74a51f99f4e15c6fae5a4c))
+
+
+
+
+
 # 3.0.0 (2021-08-21)
 
 
