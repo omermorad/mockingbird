@@ -1,4 +1,4 @@
-import { Class } from '@mockinbird/types';
+import { Class } from '@mockinbird/common';
 import { MockGenerator } from '../generator/mock-generator';
 import { Keys, Mutations } from './types';
 
