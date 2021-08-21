@@ -1430,6 +1430,13 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
+"@mockinbird/types@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@mockinbird/types/-/types-2.0.0.tgz#584fcdd606cde49f22c3b12602f17e8a7a7d1d8d"
+  integrity sha512-Oil1wcxj8qcoZLC8q7eFZnPJ0pdd+rg+W4q1KryqdFiqFaJ0DPFbhRDrjLz2+4hmp3A61pCqzUEno3eeWRAlSQ==
+  dependencies:
+    faker "^5.5.3"
+
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

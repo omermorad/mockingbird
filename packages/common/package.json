@@ -1,8 +1,8 @@
 {
-  "name": "@mockinbird/reflect",
-  "version": "3.0.0",
+  "name": "@mockinbird/common",
+  "version": "2.0.1",
   "license": "MIT",
-  "description": "Mockingbird Reflect Package",
+  "description": "Mockingbird Common Package",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "contributors": [
@@ -22,31 +22,25 @@
   "bugs": {
     "url": "https://github.com/omermorad/mockingbird/issues"
   },
-  "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/reflect/README.md",
+  "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/common/README.md",
   "scripts": {
     "prebuild": "npx rimraf dist",
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "jest --runInBand --verbose",
-    "lint": "eslint '{src,test}/**/*.ts'",
-    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
+    "test": "exit 0;",
+    "lint": "eslint 'src/index.ts'",
+    "lint:fix": "eslint 'src/index.ts' --fix"
   },
   "files": [
-    "index.d.ts",
-    "index.js",
     "dist",
+    "README.md",
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@plumier/reflect": "^1.0.3",
-    "reflect-metadata": "^0.1.13",
-    "tslib": "^2.3.0"
+    "faker": "^5.5.3"
   },
   "devDependencies": {
-    "@mockinbird/types": "^2.0.0",
-    "jest": "27.0.6",
-    "rimraf": "^3.0.2",
-    "ts-jest": "^27.0.3",
+    "@types/faker": "^5.5.7",
     "ts-loader": "^6.2.2",
     "ts-node": "8.10.2",
     "tsconfig-paths": "^3.9.0",

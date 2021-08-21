@@ -1,6 +1,14 @@
 import { MultiClass } from '@mockinbird/types';
 import { MockOptions } from '../types/mock-options.type';
 
+export interface PropertyDecoratorValue {
+  readonly value: MockOptions;
+  sObject(): boolean;
+  isMultiClass(): boolean;
+  isCallback(): boolean;
+  isEnum(): boolean;
+}
+
 export class PropertyDecoratorValue {
   private readonly type: string;
 

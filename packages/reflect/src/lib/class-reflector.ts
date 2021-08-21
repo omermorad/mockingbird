@@ -1,12 +1,16 @@
-import { Class } from '@mockinbird/types';
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
+import { Class } from '@mockinbird/types';
 import { MockOptions } from '../types';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
 import { Property } from './property';
-import { ClassReflectionDto } from '../types/class-reflection-dto.type';
+import { ClassPropsReflection } from '../types/class-reflection.type';
 
 export class ClassReflector {
-  public static readonly REFLECTED_CLASSES: Record<string, ClassReflectionDto> = {};
+  private static instance: ClassReflector;
+  public static readonly REFLECTED_CLASSES: Record<string, ClassPropsReflection> = {};
+
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  private constructor() {}
 
   private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
     const { decorators } = property;
@@ -23,11 +27,19 @@ export class ClassReflector {
     });
   }
 
-  public reflectClass<TClass = any>(target: Class<TClass>): ClassReflectionDto {
+  public reflectClass<TClass = any>(target: Class<TClass>): ClassPropsReflection {
     if (!ClassReflector.REFLECTED_CLASSES.hasOwnProperty(target.name)) {
       ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflect(target));
     }
 
     return ClassReflector.REFLECTED_CLASSES[target.name];
+  }
+
+  public static getInstance(): ClassReflector {
+    if (!ClassReflector.instance) {
+      ClassReflector.instance = new ClassReflector();
+    }
+
+    return ClassReflector.instance;
   }
 }

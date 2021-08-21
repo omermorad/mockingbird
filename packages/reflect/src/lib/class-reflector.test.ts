@@ -1,6 +1,6 @@
 import { ClassReflector } from './class-reflector';
 import { Mock } from '../decorators';
-import { ClassReflectionDto } from '../types/class-reflection-dto.type';
+import { ClassPropsReflection } from '../types/class-reflection.type';
 
 describe('ClassReflector', () => {
   let reflector: ClassReflector;
@@ -17,7 +17,7 @@ describe('ClassReflector', () => {
 
   describe('given a ClassReflector', () => {
     beforeAll(() => {
-      reflector = new ClassReflector();
+      reflector = ClassReflector.getInstance();
     });
 
     describe("when calling 'reflectClass'", () => {
@@ -28,7 +28,7 @@ describe('ClassReflector', () => {
       });
 
       describe('and the some of the properties in the class are decorated with mock decorator', () => {
-        let classReflection: ClassReflectionDto;
+        let classReflection: ClassPropsReflection;
 
         beforeAll(() => {
           classReflection = reflector.reflectClass(TestClass);

@@ -3,10 +3,11 @@ import { Application } from 'express';
 import { Database } from 'sqlite3';
 import { MockFactory } from 'mockingbird-ts';
 import { Connection } from 'typeorm';
+import { UserEntityMock } from './mocks/user-entity.mock';
 import { applicationFactory } from '../src/app';
 import { User } from '../src/interface/user.interface';
-import { UserEntity } from '../src/entity/user.entity';
 import { connectionFactory } from '../src/common/connection-factory';
+import { UserEntity } from '../src/entity/user.entity';
 
 describe('Users App e2e Test', () => {
   let app: Application;
@@ -20,7 +21,7 @@ describe('Users App e2e Test', () => {
     })) as Connection;
 
     app = await applicationFactory(connection);
-    seededData = MockFactory<User>(UserEntity).plain().many(3);
+    seededData = MockFactory<User>(UserEntityMock).plain().many(3);
 
     await connection.getRepository(UserEntity).insert(seededData);
   });
@@ -36,7 +37,7 @@ describe('Users App e2e Test', () => {
       test('then return the exact seeded data', async () => {
         response.body.forEach((item) => (item.birthday = new Date(item.birthday)));
 
-        expect(response.body).toEqual(seededData);
+        expect(response.body).toStrictEqual(seededData);
       });
     });
   });

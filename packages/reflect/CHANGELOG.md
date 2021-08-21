@@ -3,6 +3,52 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 3.0.0 (2021-08-21)
+
+
+### Reverts
+
+* Revert "chore(packages): version packages [skip ci]" ([5cbc7d6](https://github.com/omermorad/mockingbird/commit/5cbc7d67c5a62343c65fb1401e73df505cbadf52))
+
+
+
+# 2.0.0 (2021-07-31)
+
+
+### chore
+
+* **release:** release version v2.0.0 ([#53](https://github.com/omermorad/mockingbird/issues/53)) ([f598ef3](https://github.com/omermorad/mockingbird/commit/f598ef35d5b9111f66202f119b8961314483f4fb)), closes [#51](https://github.com/omermorad/mockingbird/issues/51) [#40](https://github.com/omermorad/mockingbird/issues/40) [#42](https://github.com/omermorad/mockingbird/issues/42) [#37](https://github.com/omermorad/mockingbird/issues/37) [#46](https://github.com/omermorad/mockingbird/issues/46) [#47](https://github.com/omermorad/mockingbird/issues/47) [#49](https://github.com/omermorad/mockingbird/issues/49) [#50](https://github.com/omermorad/mockingbird/issues/50) [#52](https://github.com/omermorad/mockingbird/issues/52) [#54](https://github.com/omermorad/mockingbird/issues/54) [#42](https://github.com/omermorad/mockingbird/issues/42) [#55](https://github.com/omermorad/mockingbird/issues/55) [#42](https://github.com/omermorad/mockingbird/issues/42) [#56](https://github.com/omermorad/mockingbird/issues/56) [#57](https://github.com/omermorad/mockingbird/issues/57) [#58](https://github.com/omermorad/mockingbird/issues/58) [#59](https://github.com/omermorad/mockingbird/issues/59) [#60](https://github.com/omermorad/mockingbird/issues/60) [#42](https://github.com/omermorad/mockingbird/issues/42) [#61](https://github.com/omermorad/mockingbird/issues/61) [#62](https://github.com/omermorad/mockingbird/issues/62) [#64](https://github.com/omermorad/mockingbird/issues/64) [#63](https://github.com/omermorad/mockingbird/issues/63) [#67](https://github.com/omermorad/mockingbird/issues/67) [#68](https://github.com/omermorad/mockingbird/issues/68)
+
+
+### BREAKING CHANGES
+
+* **release:** MockFactory is now an instance (TClass) and not ClassLiteral<TClass>
+
+* chore: fix typo in the test name
+
+* chore: change methods order
+
+* chore: added source map and some jest configs
+
+* refactor: change some var names and error
+
+* test(class-processor): refactor test turning into integration instead of unit
+
+* chore(lib): move files into lib folder and change imports
+
+* feat(fluent-api): add fluent api (builder) functionality and persistence
+
+Add fluent API to enable methods chaining with ability to persist the mock
+* **release:** MockFactory is now a function and not a class, changed the original to
+MockGenerator. Add fluent API and ability to persist mock data
+* **release:** MockFactory changed to be MockGenerator
+* **release:** MockFactory changed to be MockGenerator
+* **release:** MockGenerator is not exported anymore, use MockFactory instead
+
+
+
+
+
 # 2.0.0 (2021-07-31)
 
 

@@ -12,7 +12,7 @@ export function UserController(router: Router, repository: Repository<User>): Ro
   });
 
   router.post('/users', async (req: Request, res: Response) => {
-    const user = await repository.create(req.body);
+    const user = repository.create(req.body);
     const result = await repository.save(user);
 
     return res.json(result);

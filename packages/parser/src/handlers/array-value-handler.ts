@@ -1,16 +1,16 @@
+import { isPrimitive } from '@mockinbird/common';
 import { Property } from '@mockinbird/reflect';
 import { ExactValue, MultiClass } from '@mockinbird/types';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueHandler } from '../types/value-handler.interface';
-import { isPrimitive } from '../common/is-primitive';
+import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';
 
-// TODO: refactor (2nd phase). All other mock options should be wrapped with 'multiple' functionality
-export class ArrayValueHandler<TClass = any> extends PrimitiveHandlerAbstract implements ValueHandler {
+export class ArrayValueHandler extends PrimitiveHandlerAbstract implements ValueHandler {
   public shouldHandle(property: Property): boolean {
     return property.decoratorValue.isMultiClass();
   }
 
-  public produceValue(property: Property): any[] {
+  public produceValue<TClass = any>(property: Property): any[] {
     const { decoratorValue } = property;
 
     if (decoratorValue.value === null) {
@@ -29,10 +29,11 @@ export class ArrayValueHandler<TClass = any> extends PrimitiveHandlerAbstract im
       return instances;
     }
 
-    const instances = new Array(count);
+    const instances = new Array<TClass>(count);
+    const analyzer = ClassAnalyzer.create<TClass>(type, this.faker);
 
     for (let index = 0; index < count; index++) {
-      instances[index] = this.classParser.parse<TClass>(type);
+      instances[index] = analyzer.analyzeProps();
     }
 
     return instances;

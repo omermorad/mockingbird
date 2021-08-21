@@ -1,0 +1,90 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MockFactory e2e Test Scenario:  using a plain object when I create 3 birds and covert them into a plain object then return a nested plain object 1`] = `
+Array [
+  Object {
+    "birthday": 2000-01-01T00:00:00.000Z,
+    "name": "BirdyBird",
+    "owner": Object {
+      "car": Object {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+  Object {
+    "birthday": 2000-01-01T00:00:00.000Z,
+    "name": "BirdyBird",
+    "owner": Object {
+      "car": Object {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+  Object {
+    "birthday": 2000-01-01T00:00:00.000Z,
+    "name": "BirdyBird",
+    "owner": Object {
+      "car": Object {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+]
+`;
+
+exports[`MockFactory e2e Test Scenario:  using mutations when I use mutation with the mock factory return a mock where the name is 'Mutated Name' 1`] = `
+Bird {
+  "birthday": 2000-01-01T00:00:00.000Z,
+  "name": "Mutated Name",
+  "owner": Person {
+    "car": Car {
+      "model": "BMW",
+    },
+    "gender": "male",
+  },
+}
+`;
+
+exports[`MockFactory e2e Test Scenario:  using pick when I use pick with MockBuilder then match the given result object (snapshot) 1`] = `
+Bird {
+  "name": "BirdyBird",
+}
+`;
+
+exports[`MockFactory e2e Test when calling 'many' method with a given class then return 3 instances of the given class 1`] = `
+Array [
+  Bird {
+    "birthday": 2000-01-01T00:00:00.000Z,
+    "name": "BirdyBird",
+    "owner": Person {
+      "car": Car {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+  Bird {
+    "birthday": 2000-01-01T00:00:00.000Z,
+    "name": "BirdyBird",
+    "owner": Person {
+      "car": Car {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+  Bird {
+    "birthday": 2000-01-01T00:00:00.000Z,
+    "name": "BirdyBird",
+    "owner": Person {
+      "car": Car {
+        "model": "BMW",
+      },
+      "gender": "male",
+    },
+  },
+]
+`;

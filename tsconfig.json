@@ -35,13 +35,13 @@
       "path": "packages/reflect"
     },
     {
-      "path": "packages/types"
+      "path": "packages/common"
     },
     {
       "path": "packages/parser"
     },
     {
-      "path": "packages/generator"
+      "path": "packages/mockingbird"
     }
   ]
 }

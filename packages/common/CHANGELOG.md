@@ -3,33 +3,9 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [3.0.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@2.0.0...@mockinbird/parser@3.0.0) (2021-08-21)
+## 2.0.1 (2021-08-21)
 
-
-### Bug Fixes
-
-* **mockingbird-ts:** change ignore term to omit (deprecation) ([#86](https://github.com/omermorad/mockingbird-ts/issues/86)) ([f3b3ab9](https://github.com/omermorad/mockingbird-ts/commit/f3b3ab9c53baa3c9a114775f64961ddfa59124e6))
-
-
-### Code Refactoring
-
-* **parser:** add ability to pick properties, change dependecies, add class analyzer ([1312ea9](https://github.com/omermorad/mockingbird-ts/commit/1312ea98af94ba0b0ce62f4160f646e9c2075514)), closes [#84](https://github.com/omermorad/mockingbird-ts/issues/84)
-
-
-### Features
-
-* **parser:** add faker as part of mutations (with callback) + test case ([59dfde7](https://github.com/omermorad/mockingbird-ts/commit/59dfde7174e3d820506a6243f226278ce9558908))
-* **types:** add exported function is-primitive ([24a4a56](https://github.com/omermorad/mockingbird-ts/commit/24a4a5644dadc050758db2040bd0519fe2d7c8e2))
-
-
-### Reverts
-
-* Revert "chore(packages): version packages [skip ci]" ([5cbc7d6](https://github.com/omermorad/mockingbird-ts/commit/5cbc7d67c5a62343c65fb1401e73df505cbadf52))
-
-
-### BREAKING CHANGES
-
-* **parser:** The reflector dependency is no longer injected to ClassParser
+**Note:** Version bump only for package @mockinbird/common
 
 
 
@@ -72,15 +48,18 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 
-## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@1.0.1-alpha.2...@mockinbird/parser@1.0.1-alpha.3) (2021-07-23)
-
-**Note:** Version bump only for package @mockinbird/parser
+# [2.0.0-alpha.2](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0-alpha.1...@mockinbird/types@2.0.0-alpha.2) (2021-07-23)
 
 
+### Bug Fixes
+
+* **types:** change the values inside 'files' array in package.json ([a858cb4](https://github.com/omermorad/mockingbird-ts/commit/a858cb47ef8e80d87686724d4125bd213a77ecad))
 
 
 
-## 1.0.1-alpha.2 (2021-07-23)
+
+
+# 2.0.0-alpha.1 (2021-07-23)
 
 
 ### Bug Fixes
@@ -88,17 +67,37 @@ MockGenerator. Add fluent API and ability to persist mock data
 * **types:** add build to export a js file to include the faker instance (for runtime) ([#61](https://github.com/omermorad/mockingbird-ts/issues/61)) ([f4e3092](https://github.com/omermorad/mockingbird-ts/commit/f4e3092e683eb9c288d4e879113e71f74ec5038a))
 
 
-### Reverts
+### Features
 
-* **repo:** release packages ([7f9390d](https://github.com/omermorad/mockingbird-ts/commit/7f9390d051f9c9c9c3eb172f4db8a9fe533b03c4))
-
-
-
-
-
-## [1.0.1-alpha.1](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@2.0.0...@mockinbird/parser@1.0.1-alpha.1) (2021-07-22)
+* **mockingbird-ts:** add mock factory fluent/builder api ([#60](https://github.com/omermorad/mockingbird-ts/issues/60)) ([cc5710d](https://github.com/omermorad/mockingbird-ts/commit/cc5710ded33401cae25782bb8e87efe1355024aa)), closes [#42](https://github.com/omermorad/mockingbird-ts/issues/42)
 
 
 ### Reverts
 
 * **repo:** release packages ([7f9390d](https://github.com/omermorad/mockingbird-ts/commit/7f9390d051f9c9c9c3eb172f4db8a9fe533b03c4))
+
+
+### BREAKING CHANGES
+
+* **mockingbird-ts:** MockGenerator is not exported anymore, use MockFactory instead
+
+
+
+
+
+# Change Log
+# [2.0.0-alpha.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0...@mockinbird/types@2.0.0-alpha.0) (2021-07-22)
+
+### Features
+
+* **mockingbird-ts:** add mock factory fluent/builder api ([#60](https://github.com/omermorad/mockingbird-ts/issues/60)) ([cc5710d](https://github.com/omermorad/mockingbird-ts/commit/cc5710ded33401cae25782bb8e87efe1355024aa)), closes [#42](https://github.com/omermorad/mockingbird-ts/issues/42)
+
+
+### Reverts
+
+* **repo:** release packages ([7f9390d](https://github.com/omermorad/mockingbird-ts/commit/7f9390d051f9c9c9c3eb172f4db8a9fe533b03c4))
+
+
+### BREAKING CHANGES
+
+* **mockingbird-ts:** MockGenerator is not exported anymore, use MockFactory instead
