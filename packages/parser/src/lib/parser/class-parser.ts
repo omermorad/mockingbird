@@ -1,4 +1,4 @@
-import { Faker, Class } from '@mockinbird/types';
+import { Faker, Class } from '@mockinbird/common';
 import { ParserConfig } from '../../types/types';
 import { ClassAnalyzer } from '../analyzer/class-analyzer';
 

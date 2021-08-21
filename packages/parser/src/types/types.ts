@@ -1,4 +1,4 @@
-import { Faker, OptionalClassValues } from '@mockinbird/types';
+import { Faker, OptionalClassValues } from '@mockinbird/common';
 
 export type MutationsCallback<TClass> = (faker: Faker) => OptionalClassValues<TClass>;
 

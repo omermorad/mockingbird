@@ -1,5 +1,5 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
-import { Class } from '@mockinbird/types';
+import { Class } from '@mockinbird/common';
 import { MockOptions } from '../types';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
 import { Property } from './property';
