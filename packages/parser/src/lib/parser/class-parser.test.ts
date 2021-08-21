@@ -1,6 +1,6 @@
 import { Mock } from '@mockinbird/reflect';
 import { ClassParser } from './class-parser';
-import { Faker } from '@mockinbird/types';
+import { Faker } from '@mockinbird/common';
 
 describe('ClassParser Integration Test', () => {
   class Child {

@@ -1,5 +1,5 @@
 import { Property } from '@mockinbird/reflect';
-import { Callback } from '@mockinbird/types';
+import { Callback } from '@mockinbird/common';
 import { AbstractValueHandler } from './abstract-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 

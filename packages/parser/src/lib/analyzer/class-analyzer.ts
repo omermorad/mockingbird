@@ -1,5 +1,5 @@
 import { ClassPropsReflection, ClassReflector, Property } from '@mockinbird/reflect';
-import { Class, Faker } from '@mockinbird/types';
+import { Class, Faker } from '@mockinbird/common';
 import { MutationsCallback, ParserConfig, ParsingStrategy } from '../../types/types';
 import { ValueHandler } from '../../types/value-handler.interface';
 import { EnumValueHandler } from '../../handlers/enum-value-handler';

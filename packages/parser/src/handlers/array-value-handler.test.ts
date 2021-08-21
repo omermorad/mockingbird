@@ -1,5 +1,5 @@
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Class, Faker, MultiClass } from '@mockinbird/types';
+import { Class, Faker, MultiClass } from '@mockinbird/common';
 import { ArrayValueHandler } from './array-value-handler';
 
 describe('ArrayValueHandler Unit Test', () => {
