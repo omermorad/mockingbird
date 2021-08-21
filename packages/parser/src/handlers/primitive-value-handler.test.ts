@@ -1,4 +1,4 @@
-import { Faker } from '@mockinbird/types';
+import { Faker } from '@mockinbird/common';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { PrimitiveValueHandler } from './primitive-value-handler';
 

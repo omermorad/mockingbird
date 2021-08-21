@@ -1,6 +1,6 @@
 import { isPrimitive } from '@mockinbird/common';
 import { Property } from '@mockinbird/reflect';
-import { ExactValue, MultiClass } from '@mockinbird/types';
+import { ExactValue, MultiClass } from '@mockinbird/common';
 import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
 import { ValueHandler } from '../types/value-handler.interface';
 import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';

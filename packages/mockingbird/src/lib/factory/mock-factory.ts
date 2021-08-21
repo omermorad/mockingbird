@@ -1,4 +1,4 @@
-import { Faker, Class } from '@mockinbird/types';
+import { Faker, Class } from '@mockinbird/common';
 import { ClassParser } from '@mockinbird/parser';
 import { MockBuilder } from '../builder';
 import { MockGenerator } from '../generator/mock-generator';

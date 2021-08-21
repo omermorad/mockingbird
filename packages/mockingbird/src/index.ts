@@ -1,5 +1,5 @@
 export * from '@mockinbird/parser';
-export * from '@mockinbird/types';
+export * from '@mockinbird/common';
 
 export { Mock, MockOptions } from '@mockinbird/reflect';
 

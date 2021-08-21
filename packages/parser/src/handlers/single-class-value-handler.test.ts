@@ -1,5 +1,5 @@
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/types';
+import { Faker } from '@mockinbird/common';
 import { SingleClassValueHandler } from './single-class-value-handler';
 
 describe('SingleClassValueHandler Unit', () => {

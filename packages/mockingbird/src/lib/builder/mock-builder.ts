@@ -1,5 +1,5 @@
-import { ClassLiteral, Class } from '@mockinbird/types';
-import { GeneratedMock, Keys, Mutations } from './types';
+import { ClassLiteral, Class } from '@mockinbird/common';
+import { Keys, Mutations } from './types';
 import { MockProducer } from './mock-producer';
 import { MockGenerator } from '../generator/mock-generator';
 
