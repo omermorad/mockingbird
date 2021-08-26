@@ -1,3 +1,4 @@
+import { Container } from 'typedi';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { ObjectLiteralValueHandler } from './object-literal-value-handler';
 
@@ -5,9 +6,12 @@ describe('ObjectLiteralValueHandler Unit', () => {
   let property: Property, handler: ObjectLiteralValueHandler;
   const OBJECT_LITERAL_VALUE = { testArbitrary: 'and-arbitrary-decoratorValue' };
 
+  beforeAll(() => {
+    handler = Container.get<ObjectLiteralValueHandler>(ObjectLiteralValueHandler);
+  });
+
   describe('given a ObjectLiteralValueHandler', () => {
     beforeAll(() => {
-      handler = new ObjectLiteralValueHandler();
       property = new Property('testPropertyName', '', new PropertyDecoratorValue(OBJECT_LITERAL_VALUE));
     });
 

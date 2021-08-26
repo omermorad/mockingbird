@@ -1,3 +1,4 @@
+import { Container } from 'typedi';
 import { Mock } from '@mockinbird/reflect';
 import { ClassParser } from './class-parser';
 import { Faker } from '@mockinbird/common';
@@ -24,7 +25,8 @@ describe('ClassParser Integration Test', () => {
   let parser: ClassParser;
 
   beforeAll(() => {
-    parser = new ClassParser(fakerMock as Faker);
+    Container.set('Faker', fakerMock);
+    parser = Container.get(ClassParser);
   });
 
   describe('creating a new mock', () => {

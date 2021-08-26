@@ -1,18 +1,18 @@
+import { Container } from 'typedi';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/common';
 import { SingleClassValueHandler } from './single-class-value-handler';
 
 describe('SingleClassValueHandler Unit', () => {
+  let handler: SingleClassValueHandler;
+
   const DTO_CLASS_VALUE = class TestClass {};
   const property = new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(DTO_CLASS_VALUE));
 
-  let handler: SingleClassValueHandler;
+  beforeAll(() => {
+    handler = Container.get<SingleClassValueHandler>(SingleClassValueHandler);
+  });
 
   describe('given a SingleClassValueHandler', () => {
-    beforeAll(() => {
-      handler = new SingleClassValueHandler({} as Faker);
-    });
-
     describe("when calling 'shouldHandle' with a none-primitive, 'function' type", () => {
       test('then return true', () => {
         expect(handler.shouldHandle(property)).toBeTruthy();

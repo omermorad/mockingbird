@@ -1,9 +1,12 @@
+import { Inject, Service } from 'typedi';
 import { Property } from '@mockinbird/reflect';
-import { ExactValue, isPrimitive } from '@mockinbird/common';
-import { AbstractValueHandler } from './abstract-value-handler';
+import { ExactValue, Faker, isPrimitive } from '@mockinbird/common';
 
-export abstract class PrimitiveHandlerAbstract extends AbstractValueHandler {
-  protected generateRandomValueFromPrimitive(ctor: string): ExactValue {
+@Service()
+export class PrimitiveHandler {
+  public constructor(@Inject('Faker') public readonly faker: Faker) {}
+
+  generateRandomValueFromPrimitive(ctor: string): ExactValue {
     const { faker } = this;
 
     if (ctor === 'String') {
