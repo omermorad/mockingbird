@@ -19,8 +19,8 @@ export class ClassAnalyzer<TClass = any> {
     ArrayValueHandler,
     SingleClassValueHandler,
     CallbackValueHandler,
-    ObjectLiteralValueHandler,
     RegexValueHandler,
+    ObjectLiteralValueHandler,
     PrimitiveValueHandler,
   ];
 
