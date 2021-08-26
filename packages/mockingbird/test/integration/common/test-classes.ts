@@ -75,4 +75,15 @@ export namespace TestClasses {
     @Mock({ type: Dog, count: 3 })
     dogs: Dog[];
   }
+
+  export class TestClassWithRegex {
+    @Mock(/1234/)
+    prop1: string;
+
+    @Mock(/^regex$/)
+    prop2: string;
+
+    @Mock(/^[a-z]{4,5}$/)
+    prop3: string;
+  }
 }
