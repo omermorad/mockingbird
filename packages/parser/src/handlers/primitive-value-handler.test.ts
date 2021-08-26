@@ -1,3 +1,4 @@
+import { Container } from 'typedi';
 import { Faker } from '@mockinbird/common';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { PrimitiveValueHandler } from './primitive-value-handler';
@@ -20,11 +21,12 @@ describe('PrimitiveValueHandler Unit', () => {
     setLocale: () => jest.fn(),
   } as unknown as Faker;
 
-  describe('given a PrimitiveValueHandler', () => {
-    beforeAll(() => {
-      handler = new PrimitiveValueHandler(fakerMock);
-    });
+  beforeAll(() => {
+    Container.set<Faker>('Faker', fakerMock);
+    handler = Container.get<PrimitiveValueHandler>(PrimitiveValueHandler);
+  });
 
+  describe('given a PrimitiveValueHandler', () => {
     describe("when calling 'shouldHandle' method", () => {
       describe('and the property type is not a function', () => {
         test('then return true when constructor name is a String', () => {

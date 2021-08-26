@@ -1,10 +1,14 @@
+import { Service } from 'typedi';
 import { Property } from '@mockinbird/reflect';
-import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
+import { PrimitiveHandler } from './primitive-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 
-export class PrimitiveValueHandler extends PrimitiveHandlerAbstract implements ValueHandler {
+@Service()
+export class PrimitiveValueHandler implements ValueHandler {
+  public constructor(private readonly primitiveHandler: PrimitiveHandler) {}
+
   public shouldHandle(property: Property): boolean {
-    return this.isPrimitive(property);
+    return this.primitiveHandler.isPrimitive(property);
   }
 
   public produceValue(property: Property): any {
@@ -20,6 +24,6 @@ export class PrimitiveValueHandler extends PrimitiveHandlerAbstract implements V
       return decoratorValue.value;
     }
 
-    return super.generateRandomValueFromPrimitive(property.constructorName);
+    return this.primitiveHandler.generateRandomValueFromPrimitive(property.constructorName);
   }
 }

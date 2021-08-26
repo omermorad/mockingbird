@@ -1,8 +1,9 @@
 import { Property } from '@mockinbird/reflect';
-import { AbstractValueHandler } from './abstract-value-handler';
 import { ValueHandler } from '../types/value-handler.interface';
+import { Service } from 'typedi';
 
-export class ObjectLiteralValueHandler extends AbstractValueHandler implements ValueHandler {
+@Service()
+export class ObjectLiteralValueHandler implements ValueHandler {
   public shouldHandle(property: Property): boolean {
     const { decoratorValue } = property;
     return decoratorValue.isObject() && !decoratorValue.isMultiClass() && !decoratorValue.isEnum();

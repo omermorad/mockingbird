@@ -1,9 +1,11 @@
+import { Container } from 'typedi';
 import { Faker } from '@mockinbird/common';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-
 import { EnumValueHandler } from './enum-value-handler';
 
 describe('EnumValueHandler Unit', () => {
+  let handler: EnumValueHandler;
+
   enum TestEnum {
     StateOne = 'one',
     StateTwo = 'two',
@@ -16,13 +18,12 @@ describe('EnumValueHandler Unit', () => {
     },
   } as unknown as Faker;
 
-  let handler: EnumValueHandler;
+  beforeAll(() => {
+    Container.set<Faker>('Faker', fakerMock);
+    handler = Container.get<EnumValueHandler>(EnumValueHandler);
+  });
 
   describe('given a EnumValueHandler', () => {
-    beforeAll(() => {
-      handler = new EnumValueHandler(fakerMock);
-    });
-
     describe("when calling 'shouldHandle' method with type object and { type: enum }", () => {
       test('then return true', () => {
         const property = new Property('testPropertyName', '', new PropertyDecoratorValue({ enum: TestEnum }));

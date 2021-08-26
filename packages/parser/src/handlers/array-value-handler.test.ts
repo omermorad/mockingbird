@@ -1,3 +1,4 @@
+import { Container } from 'typedi';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { Class, Faker, MultiClass } from '@mockinbird/common';
 import { ArrayValueHandler } from './array-value-handler';
@@ -26,11 +27,12 @@ describe('ArrayValueHandler Unit Test', () => {
     },
   } as unknown as Faker;
 
-  describe('given an ArrayValueHandler', () => {
-    beforeAll(() => {
-      handler = new ArrayValueHandler(fakerMock);
-    });
+  beforeAll(() => {
+    Container.set('Faker', fakerMock);
+    handler = Container.get(ArrayValueHandler);
+  });
 
+  describe('given an ArrayValueHandler', () => {
     describe("when calling 'shouldHandle' with type 'object' and decoratorValue of multi class ({ type: ClassType })", () => {
       test('then return true', () => {
         expect(

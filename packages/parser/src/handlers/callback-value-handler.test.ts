@@ -1,3 +1,4 @@
+import { Container } from 'typedi';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
 import { Faker } from '@mockinbird/common';
 import { CallbackValueHandler } from './callback-value-handler';
@@ -7,11 +8,12 @@ describe('CallbackValueHandler Unit', () => {
 
   const fakerMock = { internet: { email: jest.fn() } } as unknown as Faker;
 
-  describe('given a CallbackValueHandler', () => {
-    beforeAll(() => {
-      handler = new CallbackValueHandler(fakerMock);
-    });
+  beforeAll(() => {
+    Container.set<Faker>('Faker', fakerMock);
+    handler = Container.get<CallbackValueHandler>(CallbackValueHandler);
+  });
 
+  describe('given a CallbackValueHandler', () => {
     describe("when calling 'shouldHandle' method with type function name and empty constructor name", () => {
       test('then return true', () => {
         const property = new Property(

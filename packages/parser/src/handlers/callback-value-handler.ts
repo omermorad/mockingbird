@@ -1,9 +1,12 @@
+import { Inject, Service } from 'typedi';
 import { Property } from '@mockinbird/reflect';
-import { Callback } from '@mockinbird/common';
-import { AbstractValueHandler } from './abstract-value-handler';
+import { Callback, Faker } from '@mockinbird/common';
 import { ValueHandler } from '../types/value-handler.interface';
 
-export class CallbackValueHandler extends AbstractValueHandler implements ValueHandler {
+@Service()
+export class CallbackValueHandler implements ValueHandler {
+  public constructor(@Inject('Faker') private readonly faker: Faker) {}
+
   public shouldHandle(property: Property): boolean {
     return property.decoratorValue.isCallback() && (property.decoratorValue.value as Callback).name === '';
   }

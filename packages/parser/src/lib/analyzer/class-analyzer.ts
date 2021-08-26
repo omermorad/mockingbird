@@ -8,6 +8,7 @@ import { SingleClassValueHandler } from '../../handlers/single-class-value-handl
 import { CallbackValueHandler } from '../../handlers/callback-value-handler';
 import { ObjectLiteralValueHandler } from '../../handlers/object-literal-value-handler';
 import { PrimitiveValueHandler } from '../../handlers/primitive-value-handler';
+import { Container } from 'typedi';
 
 export class ClassAnalyzer<TClass = any> {
   private classReflection: ClassPropsReflection;
@@ -21,13 +22,13 @@ export class ClassAnalyzer<TClass = any> {
     PrimitiveValueHandler,
   ];
 
-  public constructor(private readonly targetClass: Class<TClass>, private readonly faker: Faker) {
+  public constructor(private readonly targetClass: Class<TClass>) {
     this.classReflection = ClassReflector.getInstance().reflectClass(targetClass);
   }
 
   private handlePropertyValue(property: Property): TClass | TClass[] {
     for (const classHandler of this.valueHandlers) {
-      const handler = new classHandler(this.faker);
+      const handler = Container.get(classHandler);
 
       if (handler.shouldHandle(property)) {
         return handler.produceValue<TClass>(property);
@@ -51,7 +52,8 @@ export class ClassAnalyzer<TClass = any> {
     }
 
     if (typeof mutations === 'function') {
-      mutations = (mutations as MutationsCallback<TClass>)(this.faker);
+      const faker = Container.get<Faker>('Faker');
+      mutations = (mutations as MutationsCallback<TClass>)(faker);
     }
 
     const deriveFromProps = (acc, property) => {
@@ -80,7 +82,7 @@ export class ClassAnalyzer<TClass = any> {
     return Object.assign(new this.targetClass(), derivedProps);
   }
 
-  public static create<TClass = any>(targetClass: Class<TClass>, faker: Faker): ClassAnalyzer<TClass> {
-    return new ClassAnalyzer<TClass>(targetClass, faker);
+  public static create<TClass = any>(targetClass: Class<TClass>): ClassAnalyzer<TClass> {
+    return new ClassAnalyzer<TClass>(targetClass);
   }
 }

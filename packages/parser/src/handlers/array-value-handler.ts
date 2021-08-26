@@ -1,11 +1,15 @@
+import { Service } from 'typedi';
 import { isPrimitive } from '@mockinbird/common';
 import { Property } from '@mockinbird/reflect';
 import { ExactValue, MultiClass } from '@mockinbird/common';
-import { PrimitiveHandlerAbstract } from './primitive-handler-abstract';
+import { PrimitiveHandler } from './primitive-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';
 
-export class ArrayValueHandler extends PrimitiveHandlerAbstract implements ValueHandler {
+@Service()
+export class ArrayValueHandler implements ValueHandler {
+  public constructor(private readonly primitiveHandler: PrimitiveHandler) {}
+
   public shouldHandle(property: Property): boolean {
     return property.decoratorValue.isMultiClass();
   }
@@ -23,14 +27,14 @@ export class ArrayValueHandler extends PrimitiveHandlerAbstract implements Value
       const instances = new Array<ExactValue>(count);
 
       for (let index = 0; index < count; index++) {
-        instances[index] = super.generateRandomValueFromPrimitive(type.name);
+        instances[index] = this.primitiveHandler.generateRandomValueFromPrimitive(type.name);
       }
 
       return instances;
     }
 
     const instances = new Array<TClass>(count);
-    const analyzer = ClassAnalyzer.create<TClass>(type, this.faker);
+    const analyzer = ClassAnalyzer.create<TClass>(type);
 
     for (let index = 0; index < count; index++) {
       instances[index] = analyzer.analyzeProps();

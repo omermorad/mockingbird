@@ -1,3 +1,4 @@
+import { Inject, Service } from 'typedi';
 import { Faker, Class } from '@mockinbird/common';
 import { ParserConfig } from '../../types/types';
 import { ClassAnalyzer } from '../analyzer/class-analyzer';
@@ -8,8 +9,9 @@ export interface ClassParser<TClass = any> {
   setFakerLocale(locale: Faker['locale']): void;
 }
 
+@Service()
 export class ClassParser<TClass = any> {
-  public constructor(private readonly faker: Faker) {}
+  public constructor(@Inject('Faker') private readonly faker: Faker) {}
 
   public setFakerLocale(locale: Faker['locale']): void {
     this.faker.setLocale(locale);
@@ -46,7 +48,7 @@ export class ClassParser<TClass = any> {
       throw new Error(`Target class is 'undefined'`);
     }
 
-    const analyzer = ClassAnalyzer.create<TClass>(targetClass, this.faker);
+    const analyzer = ClassAnalyzer.create<TClass>(targetClass);
     return analyzer.analyzeProps(config);
   }
 }
