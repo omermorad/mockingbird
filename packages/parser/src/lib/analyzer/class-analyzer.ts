@@ -9,6 +9,7 @@ import { CallbackValueHandler } from '../../handlers/callback-value-handler';
 import { ObjectLiteralValueHandler } from '../../handlers/object-literal-value-handler';
 import { PrimitiveValueHandler } from '../../handlers/primitive-value-handler';
 import { Container } from 'typedi';
+import { RegexValueHandler } from '../../handlers/regex-value-handler';
 
 export class ClassAnalyzer<TClass = any> {
   private classReflection: ClassPropsReflection;
@@ -19,6 +20,7 @@ export class ClassAnalyzer<TClass = any> {
     SingleClassValueHandler,
     CallbackValueHandler,
     ObjectLiteralValueHandler,
+    RegexValueHandler,
     PrimitiveValueHandler,
   ];
 
