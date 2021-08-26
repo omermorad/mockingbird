@@ -1,7 +1,7 @@
 import { Container } from 'typedi';
 import { ClassParser } from './lib/parser/class-parser';
 import { Faker } from '@mockinbird/common';
-import * as RandExp from 'randexp';
+import RandExp from 'randexp';
 
 export * from './types/types';
 export { ClassParser };
