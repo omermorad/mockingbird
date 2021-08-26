@@ -1,7 +1,8 @@
+import RandExp from 'randexp';
 import { Container } from 'typedi';
 import { Mock } from '@mockinbird/reflect';
-import { ClassParser } from './class-parser';
 import { Faker } from '@mockinbird/common';
+import { ClassParser } from './class-parser';
 
 describe('ClassParser Integration Test', () => {
   class Child {
@@ -26,6 +27,8 @@ describe('ClassParser Integration Test', () => {
 
   beforeAll(() => {
     Container.set('Faker', fakerMock);
+    Container.set('RandExp', RandExp);
+
     parser = Container.get(ClassParser);
   });
 
