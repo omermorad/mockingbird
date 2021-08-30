@@ -22,7 +22,9 @@
   "scripts": {
     "prebuild": "yarn rimraf dist",
     "build": "tsc",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "lint": "eslint '{src,test}/**/*.ts'",
+    "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
   },
   "files": [
     "dist",
