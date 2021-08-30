@@ -25,14 +25,6 @@ export function Mock(): PropertyDecorator;
 export function Mock(callback: Callback): PropertyDecorator;
 
 /**
- * Generate a value from regex
- *
- * @param regex {RegExp}
- * @constructor
- */
-export function Mock(regex: RegExp): PropertyDecorator;
-
-/**
  * Generate an object of the given class (who's properties can be decorated with Mock() as well)
  *
  * @example
@@ -63,6 +55,14 @@ export function Mock(options: EnumObject): PropertyDecorator;
  * @constructor
  */
 export function Mock(options: MultiClass): PropertyDecorator;
+
+/**
+ * Generate a value from regex
+ *
+ * @param regex {RegExp}
+ * @constructor
+ */
+export function Mock(regex: RegExp): PropertyDecorator;
 
 /**
  * Generate the exact given decoratorValue
