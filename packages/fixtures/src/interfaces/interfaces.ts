@@ -1,12 +1,12 @@
 import { ClassLiteral } from '@mockinbird/common';
 
 export type MockSnapshot<TClass> = {
-  name: string;
-  file: string;
-  targetClass: string;
+  fixtureName: string;
+  originFile: string;
+  originClass: string;
   baseClass: string | undefined;
   values: Partial<ClassLiteral<TClass>>;
-  variants?: { [key: string]: Omit<MockSnapshot<unknown>, 'file'> };
+  variants?: { [key: string]: Omit<MockSnapshot<unknown>, 'originFile'> };
 };
 
 export interface SnapshotFile {

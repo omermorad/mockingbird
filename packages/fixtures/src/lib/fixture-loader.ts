@@ -1,18 +1,30 @@
 import * as fs from 'fs';
+import { Container } from 'typedi';
 import { FixtureEngine } from './fixture-engine';
-import { SnapshotLoader } from './snapshot-loader';
+import { SnapshotParser } from './snapshot-parser';
+import { Snapshot } from './snapshot';
 
-export interface FixtureLoader<TClass = unknown> {
-  load(): Promise<TClass>;
+export interface FixtureLoader<TClass = any> {
+  /**
+   *
+   * @param name {string} the name of the fixture variant
+   */
+  variant(name: string): Omit<FixtureLoader<TClass>, 'variant'>;
+
+  /**
+   *
+   * @param fixtureName {string} the name of the fixture
+   */
+  load(fixtureName: string): Promise<TClass>;
 }
 
-export class FixtureLoader<TClass = unknown> {
+export class FixtureLoader<TClass = any> {
   private fixtureVariantName: string;
 
   public constructor(private readonly fixtureName: string) {}
 
-  public variant(variant: string): this {
-    this.fixtureVariantName = variant;
+  public variant(name: string): Omit<this, 'variant'> {
+    this.fixtureVariantName = name;
     return this;
   }
 
@@ -21,10 +33,12 @@ export class FixtureLoader<TClass = unknown> {
     const snapshotPath = `${mockDir}/snapshots`;
 
     if (!fs.existsSync(snapshotPath)) {
-      throw new Error('Can not find directory "snapshots" under "mocks"');
+      throw new Error(`Can not find directory 'snapshots' under directory '${mockDir}'`);
     }
 
-    const snapshot = SnapshotLoader.create<TClass>({ name: this.fixtureName, path: snapshotPath });
-    return snapshot.load(this.fixtureVariantName);
+    const snapshotParser = Container.get<SnapshotParser>(SnapshotParser);
+    const snapshot = Snapshot.create<TClass>({ name: this.fixtureName, path: snapshotPath });
+
+    return snapshotParser.parse<TClass>(snapshot, this.fixtureVariantName);
   }
 }
