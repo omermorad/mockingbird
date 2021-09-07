@@ -24,11 +24,12 @@ export class SnapshotParser {
     if (!importedClasses.hasOwnProperty(originClass)) {
       throw new Error(
         `
-        Mockingbird was trying to import class '${originClass}' from file '${originFile}'
-        but only the class(es) '${Object.keys(importedClasses).join("', ")}' were found!
+        Mockingbird was trying to import the class '${originClass}' from file '${originFile}'
+        but only the class(es) '${Object.keys(importedClasses).join("', ")}' were found.
         The origin file does not contain any class named '${originClass}'. \n
         It might be that you have changed the name of the origin class or moved it to another
         file.
+        Possible solution: hit "mockingbird regen" in you cli
         `
       );
     }
@@ -80,7 +81,7 @@ export class SnapshotParser {
       if (!SnapshotParser.isVariantExists(snapshot, variant)) {
         throw new Error(`Mockingbird can not find variant of fixture '${decoratorFixtureName}' named '${variant}'.
         Did you create a variant for your base fixture '${decoratorFixtureName}' named '${variant}'?
-        Note: check the file ${`${FixtureEngine.getMocksDirectory()}/${originFile}`}`);
+        Note: check the file '${FixtureEngine.getMocksDirectory()}/${originFile}'`);
       }
 
       return Object.assign(fixture, variants[variant].values);

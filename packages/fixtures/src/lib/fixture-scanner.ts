@@ -1,9 +1,8 @@
 import fs from 'fs';
 import path from 'path';
-import { ClassReflection } from '@plumier/reflect/lib/types';
 import { Class } from '@mockinbird/common';
 import { Logger } from '@mockinbird/logger';
-import { reflect } from '@plumier/reflect';
+import { ClassReflection, reflect } from '@plumier/reflect';
 
 const AAAAA = '/Users/omermorad/projects/mockingbird/sample/entities-monorepo/mocks';
 

@@ -6,12 +6,8 @@ export class FixtureEngine {
     const cwd = process.cwd();
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const pkg = require(`${cwd}/package.json`) as ObjectLiteral;
-    const mocksDir = get(pkg, 'mockingbird.mocksDir');
+    const { fixturesDir = '/fixtures' } = get(pkg, 'mockingbird');
 
-    if (mocksDir) {
-      return `${cwd}/${mocksDir}`;
-    }
-
-    return `${cwd}/mocks`;
+    return `${cwd}/${fixturesDir}`;
   }
 }

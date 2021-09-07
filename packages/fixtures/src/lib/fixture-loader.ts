@@ -29,11 +29,11 @@ export class FixtureLoader<TClass = any> {
   }
 
   public async load(): Promise<TClass> {
-    const mockDir = FixtureEngine.getMocksDirectory();
-    const snapshotPath = `${mockDir}/snapshots`;
+    const fixturesDir = FixtureEngine.getMocksDirectory();
+    const snapshotPath = `${fixturesDir}/snapshots`;
 
     if (!fs.existsSync(snapshotPath)) {
-      throw new Error(`Can not find directory 'snapshots' under directory '${mockDir}'`);
+      throw new Error(`Can not find directory 'snapshots' under directory '${fixturesDir}'`);
     }
 
     const snapshotParser = Container.get<SnapshotParser>(SnapshotParser);
