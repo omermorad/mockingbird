@@ -29,7 +29,7 @@ export class FixtureLoader<TClass = any> {
   }
 
   public async load(): Promise<TClass> {
-    const fixturesDir = FixtureEngine.getMocksDirectory();
+    const fixturesDir = FixtureEngine.getFixturesDirectory();
     const snapshotPath = `${fixturesDir}/snapshots`;
 
     if (!fs.existsSync(snapshotPath)) {

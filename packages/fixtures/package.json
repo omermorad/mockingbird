@@ -42,7 +42,9 @@
     "@mockinbird/logger": "^0.0.0",
     "@mockinbird/reflect": "^3.0.1",
     "@plumier/reflect": "^1.0.5",
-    "lodash.get": "^4.4.2"
+    "lodash.get": "^4.4.2",
+    "readdir": "^1.0.2",
+    "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
     "@mockinbird/common": "^2.0.2",

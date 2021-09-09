@@ -1,5 +1,5 @@
+import * as fs from 'fs';
 import { MockSnapshot, SnapshotFile } from '../interfaces/interfaces';
-import fs from 'fs';
 
 export class Snapshot<TClass = any> {
   private readonly snapshotContents: MockSnapshot<TClass>;

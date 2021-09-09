@@ -18,7 +18,7 @@ export class SnapshotParser {
     originClass: string
   ): Promise<Class<TClass>> {
     const importedClasses: { [key: string]: Class<TClass> } = await import(
-      `${FixtureEngine.getMocksDirectory()}/${originFile}`
+      `${FixtureEngine.getFixturesDirectory()}/${originFile}`
     );
 
     if (!importedClasses.hasOwnProperty(originClass)) {
@@ -81,7 +81,7 @@ export class SnapshotParser {
       if (!SnapshotParser.isVariantExists(snapshot, variant)) {
         throw new Error(`Mockingbird can not find variant of fixture '${decoratorFixtureName}' named '${variant}'.
         Did you create a variant for your base fixture '${decoratorFixtureName}' named '${variant}'?
-        Note: check the file '${FixtureEngine.getMocksDirectory()}/${originFile}'`);
+        Note: check the file '${FixtureEngine.getFixturesDirectory()}/${originFile}'`);
       }
 
       return Object.assign(fixture, variants[variant].values);
