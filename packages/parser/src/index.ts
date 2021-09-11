@@ -1,12 +1,12 @@
 import { Container } from 'typedi';
-import { ClassParser } from './lib/parser/class-parser';
+import { MockGenerator } from './lib/generator/mock-generator';
 import { Faker } from '@mockinbird/common';
 import RandExp from 'randexp';
 
-export * from './types/types';
-export { ClassParser };
+export * from './lib/types/types';
+export * from './lib/generator/mock-generator';
 
 Container.set('Faker', Faker);
 Container.set('RandExp', RandExp);
 
-export const classParser = Container.get(ClassParser);
+export const mockGenerator = Container.get(MockGenerator);

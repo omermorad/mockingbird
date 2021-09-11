@@ -1,6 +1,5 @@
-import { classParser as parser } from '@mockinbird/parser';
+import { mockGenerator } from '@mockinbird/parser';
 import { TestClasses } from './common/test-classes';
-import { MockGenerator } from '../../src/lib/generator/mock-generator';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
@@ -13,12 +12,10 @@ import TestClassWithRegex = TestClasses.TestClassWithRegex;
 describe('MockGenerator - Integration Test', () => {
   let result;
 
-  const generator = new MockGenerator(parser);
-
   describe('given a decorated class', () => {
     scenario('mock decorator with absolute values', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithAbsoluteValues);
+        result = mockGenerator.generate(TestClassWithAbsoluteValues);
       });
 
       test('then return the exact same values passed in the options of the mock decorator', () => {
@@ -29,7 +26,7 @@ describe('MockGenerator - Integration Test', () => {
 
       describe('and adding mutation keys', () => {
         beforeAll(() => {
-          result = generator.create(TestClassWithAbsoluteValues, { mutations: { name: 'Override Name' } });
+          result = mockGenerator.generate(TestClassWithAbsoluteValues, { mutations: { name: 'Override Name' } });
         });
 
         test('then return the same absolute value expect the constant name added from overrides', () => {
@@ -39,7 +36,7 @@ describe('MockGenerator - Integration Test', () => {
 
       describe('and adding omit keys', () => {
         beforeAll(() => {
-          result = generator.create(TestClassWithAbsoluteValues, { omit: ['name'] });
+          result = mockGenerator.generate(TestClassWithAbsoluteValues, { omit: ['name'] });
         });
 
         test('then return the same absolute value expect the constant name added from overrides', () => {
@@ -50,7 +47,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario('mock decorator with a callback (faker)', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithCallback);
+        result = mockGenerator.generate(TestClassWithCallback);
       });
 
       test('then return random values from faker', () => {
@@ -63,7 +60,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario('mock decorator with an enum decoratorValue', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithEnum);
+        result = mockGenerator.generate(TestClassWithEnum);
       });
 
       test('then return one random decoratorValue (not key)', () => {
@@ -73,7 +70,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario('mock decorator with no/empty values', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithNoValues);
+        result = mockGenerator.generate(TestClassWithNoValues);
       });
 
       test('then infer the decoratorValue from the type itself', () => {
@@ -88,7 +85,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario('mock decorator with a single class', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithOtherClass);
+        result = mockGenerator.generate(TestClassWithOtherClass);
       });
 
       test('then return an object with the given class', () => {
@@ -98,7 +95,7 @@ describe('MockGenerator - Integration Test', () => {
 
     describe('mock decorator with a regex', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithRegex);
+        result = mockGenerator.generate(TestClassWithRegex);
       });
 
       test('then return string generated to match the regex', () => {
@@ -110,7 +107,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario('mock decorator with a multi class', () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithMultiClass);
+        result = mockGenerator.generate(TestClassWithMultiClass);
       });
 
       test("then return contain a property 'dogs' which is array of Dog with length of 'count'", () => {
@@ -127,7 +124,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario("mock decorator with 'count' option", () => {
       beforeAll(() => {
-        result = generator.create(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
+        result = mockGenerator.generate(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
       });
 
       test("then return array with length of 'count'", () => {

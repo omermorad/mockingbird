@@ -1,10 +1,10 @@
+import { Service } from 'typedi';
 import { Class, ClassLiteral, isPrimitive } from '@mockinbird/common';
-import { ClassParser } from '@mockinbird/parser';
-import { MockGeneratorOptions } from '../../types/mock-generator-options.interface';
+import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
+import { ClassParser } from '../parser/class-parser';
 
+@Service()
 export class MockGenerator {
-  private static readonly DEFAULT_LOCALE = 'en';
-
   public constructor(private readonly classParser: ClassParser) {}
 
   private static classToPlain<TClass>(targetClass: TClass): ClassLiteral<TClass> {
@@ -37,7 +37,7 @@ export class MockGenerator {
    * @param targetClass {Class<TClass>}
    * @returns {TClass}
    */
-  public create<TClass = any>(targetClass: Class<TClass>): TClass;
+  public generate<TClass = any>(targetClass: Class<TClass>): TClass;
 
   /**
    * Return an array of objects with all the properties decorated by the
@@ -55,12 +55,12 @@ export class MockGenerator {
    * @param targetClass
    * @param options
    */
-  public create<TClass = any>(
+  public generate<TClass = any>(
     targetClass: Class<TClass>,
     options: MockGeneratorOptions<TClass>
   ): TClass | ClassLiteral<TClass>;
 
-  public create<TClass = any>(
+  public generate<TClass = any>(
     targetClass: Class<TClass>,
     options: MockGeneratorOptions<TClass>
   ): TClass[] | ClassLiteral<TClass>[];
@@ -72,13 +72,13 @@ export class MockGenerator {
    * @param targetClass
    * @param options
    */
-  public create<TClass = any>(
+  public generate<TClass = any>(
     targetClass: Class<TClass>,
     options: MockGeneratorOptions<TClass> = {}
   ): TClass | TClass[] | ClassLiteral<TClass> | ClassLiteral<TClass>[] {
-    const { count = 1, locale = MockGenerator.DEFAULT_LOCALE, plain = false, ...config } = options || {};
+    const { count = 1, plain = false, locale = 'en', ...config } = options || {};
 
-    this.classParser.setFakerLocale(locale);
+    this.classParser.setLocale(locale);
 
     if (count === 1) {
       const parsedClass = this.classParser.parse(targetClass, config);

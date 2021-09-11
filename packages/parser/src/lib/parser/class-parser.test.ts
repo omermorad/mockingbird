@@ -109,7 +109,7 @@ describe('ClassParser Integration Test', () => {
   });
 
   scenario('set a faker locale', () => {
-    beforeAll(() => parser.setFakerLocale('jp'));
+    beforeAll(() => parser.setLocale('jp'));
 
     test('then call faker locale function', () => {
       expect(fakerMock.setLocale).toHaveBeenCalledWith('jp');
