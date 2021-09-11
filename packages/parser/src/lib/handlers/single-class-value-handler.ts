@@ -1,8 +1,8 @@
-import { Service } from 'typedi';
+import { Container, Service } from 'typedi';
 import { Property } from '@mockinbird/reflect';
 import { Class, isPrimitive } from '@mockinbird/common';
 import { ValueHandler } from '../types/value-handler.interface';
-import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';
+import { ClassParser } from '../parser/class-parser';
 
 @Service()
 export class SingleClassValueHandler implements ValueHandler {
@@ -11,7 +11,7 @@ export class SingleClassValueHandler implements ValueHandler {
   }
 
   public produceValue<TClass>(property: Property): TClass {
-    const analyzer = ClassAnalyzer.create<TClass>(property.decoratorValue.value as Class<TClass>);
-    return analyzer.analyzeProps();
+    const analyzer = Container.get<ClassParser>(ClassParser);
+    return analyzer.parse(property.decoratorValue.value as Class<TClass>);
   }
 }

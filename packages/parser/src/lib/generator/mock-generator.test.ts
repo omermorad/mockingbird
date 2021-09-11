@@ -1,5 +1,5 @@
-import { ClassParser } from '@mockinbird/parser';
 import { MockGenerator } from './mock-generator';
+import { ClassParser } from '../parser/class-parser';
 
 /**
  * The full test of MockGenerator can be found under the 'test' folder,
@@ -13,7 +13,7 @@ describe('MockGenerator Unit Test', () => {
   }
 
   const parserMock = {
-    setFakerLocale: jest.fn(),
+    setLocale: jest.fn(),
     parse: jest.fn(),
   } as unknown as jest.Mocked<ClassParser>;
 
@@ -25,10 +25,10 @@ describe('MockGenerator Unit Test', () => {
   scenario('generate a SIMPLE mock from a class', () => {
     given('I want to generate a new mock from a class', () => {
       when('I call the create method with no configurations', () => {
-        beforeAll(() => generator.create(TestClass));
+        beforeAll(() => generator.generate(TestClass));
 
         test('then setup parser with the default locale', () => {
-          expect(parserMock.setFakerLocale).toHaveBeenCalledWith('en');
+          expect(parserMock.setLocale).toHaveBeenCalledWith('en');
         });
 
         test('then call parse one time only', () => {
@@ -41,17 +41,17 @@ describe('MockGenerator Unit Test', () => {
   scenario('generate mock from a class with a different configurations', () => {
     given('I want to generate a mock with different locale', () => {
       when('creating a new mock from generator passing the proper params', () => {
-        beforeAll(() => generator.create(TestClass, { locale: 'arbitrary-locale' }));
+        beforeAll(() => generator.generate(TestClass, { locale: 'arbitrary-locale' }));
 
         then('setup the parser with the locale from the options', () => {
-          expect(parserMock.setFakerLocale).toHaveBeenCalledWith('arbitrary-locale');
+          expect(parserMock.setLocale).toHaveBeenCalledWith('arbitrary-locale');
         });
       });
     });
 
     given('I want to generate a mock and mutate different values', () => {
       when('creating a new mock from generator passing the proper param', () => {
-        beforeAll(() => generator.create(TestClass, { mutations: { test: 'value' } }));
+        beforeAll(() => generator.generate(TestClass, { mutations: { test: 'value' } }));
 
         then('call parse with the valid options', () => {
           expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { mutations: { test: 'value' } });
@@ -61,7 +61,7 @@ describe('MockGenerator Unit Test', () => {
 
     given('I want to generate a mock and omit different values', () => {
       when('creating a new mock from generator passing the proper param', () => {
-        beforeAll(() => generator.create(TestClass, { omit: ['test'] }));
+        beforeAll(() => generator.generate(TestClass, { omit: ['test'] }));
 
         then('call parse with the valid options', () => {
           expect(parserMock.parse).toHaveBeenCalledWith(TestClass, { omit: ['test'] });
@@ -82,7 +82,7 @@ describe('MockGenerator Unit Test', () => {
             })()
           );
 
-          result = generator.create(TestClass, { plain: true });
+          result = generator.generate(TestClass, { plain: true });
         });
 
         then('', () => {

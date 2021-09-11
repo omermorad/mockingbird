@@ -1,10 +1,10 @@
-import { Service } from 'typedi';
+import { Container, Service } from 'typedi';
 import { isPrimitive } from '@mockinbird/common';
 import { Property } from '@mockinbird/reflect';
 import { ExactValue, MultiClass } from '@mockinbird/common';
 import { PrimitiveHandler } from './primitive-handler';
 import { ValueHandler } from '../types/value-handler.interface';
-import { ClassAnalyzer } from '../lib/analyzer/class-analyzer';
+import { ClassParser } from '../parser/class-parser';
 
 @Service()
 export class ArrayValueHandler implements ValueHandler {
@@ -34,10 +34,10 @@ export class ArrayValueHandler implements ValueHandler {
     }
 
     const instances = new Array<TClass>(count);
-    const analyzer = ClassAnalyzer.create<TClass>(type);
+    const parser = Container.get<ClassParser>(ClassParser);
 
     for (let index = 0; index < count; index++) {
-      instances[index] = analyzer.analyzeProps();
+      instances[index] = parser.parse(type);
     }
 
     return instances;

@@ -1,5 +1,6 @@
 import { Container } from 'typedi';
 import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
+import { Faker } from '@mockinbird/common';
 import { SingleClassValueHandler } from './single-class-value-handler';
 
 describe('SingleClassValueHandler Unit', () => {
@@ -9,6 +10,7 @@ describe('SingleClassValueHandler Unit', () => {
   const property = new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(DTO_CLASS_VALUE));
 
   beforeAll(() => {
+    Container.set('Faker', Faker);
     handler = Container.get<SingleClassValueHandler>(SingleClassValueHandler);
   });
 
