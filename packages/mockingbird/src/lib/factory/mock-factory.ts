@@ -1,7 +1,5 @@
 import { Class } from '@mockinbird/common';
-import { classParser } from '@mockinbird/parser';
 import { MockBuilder } from '../builder';
-import { MockGenerator } from '../generator/mock-generator';
 
 /**
  * MockFactory take the target class as a parameter and returns
@@ -12,7 +10,5 @@ import { MockGenerator } from '../generator/mock-generator';
  * @returns {MockBuilder<TClass>} new builder to compose a mock
  */
 export function MockFactory<TClass>(target: Class<TClass>): MockBuilder<TClass> {
-  const generator = new MockGenerator(classParser);
-
-  return new MockBuilder<TClass>(target, generator);
+  return new MockBuilder<TClass>(target);
 }
