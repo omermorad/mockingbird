@@ -8,6 +8,5 @@ module.exports = {
     '<rootDir>/packages/reflect',
     '<rootDir>/packages/parser',
     '<rootDir>/packages/logger',
-    '<rootDir>/packages/fixtures',
   ],
 };

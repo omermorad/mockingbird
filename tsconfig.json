@@ -46,8 +46,5 @@
     {
       "path": "packages/logger"
     },
-    {
-      "path": "packages/fixtures"
-    }
   ]
 }
