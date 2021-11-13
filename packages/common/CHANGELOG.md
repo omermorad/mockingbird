@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.3-rc.0 (2021-11-13)
+
+**Note:** Version bump only for package @mockinbird/common
+
+
+
+
+
 ## [2.0.2](https://github.com/omermorad/mockingbird/compare/@mockinbird/common@2.0.1...@mockinbird/common@2.0.2) (2021-08-21)
 
 **Note:** Version bump only for package @mockinbird/common

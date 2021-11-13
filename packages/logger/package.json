@@ -1,6 +1,6 @@
 {
   "name": "@mockinbird/logger",
-  "version": "0.0.0",
+  "version": "0.0.1-rc.0",
   "license": "MIT",
   "description": "Mockingbird Logger Package",
   "main": "dist/index.js",
