@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.1.0-rc.0](https://github.com/omermorad/mockingbird/compare/@mockinbird/reflect@3.0.1...@mockinbird/reflect@3.1.0-rc.0) (2021-11-13)
+
+
+### Features
+
+* **parser:** add regex functionality/handler ([#98](https://github.com/omermorad/mockingbird/issues/98)) ([ae1bac8](https://github.com/omermorad/mockingbird/commit/ae1bac8629047385741f85620a725405a3c3fa27))
+* **reflect:** add regex to mock decorator value options ([055dbd9](https://github.com/omermorad/mockingbird/commit/055dbd906f8e59a796f49842d9b3003b3a95c2cb))
+
+
+
+
+
 ## [3.0.1](https://github.com/omermorad/mockingbird/compare/@mockinbird/reflect@3.0.0...@mockinbird/reflect@3.0.1) (2021-08-21)
 
 

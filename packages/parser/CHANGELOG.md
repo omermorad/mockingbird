@@ -3,6 +3,45 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-rc.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@3.0.1...@mockinbird/parser@4.0.0-rc.0) (2021-11-13)
+
+
+### Bug Fixes
+
+* **parser:** fix import and handler priority of regex + randexp ([704d392](https://github.com/omermorad/mockingbird-ts/commit/704d39282cd2056dc4baac8bedf164bdaa95d712))
+
+
+### Code Refactoring
+
+* **parser:** add mock generator and remove analyzer ([#107](https://github.com/omermorad/mockingbird-ts/issues/107)) ([32c0ff6](https://github.com/omermorad/mockingbird-ts/commit/32c0ff62895a18d9e892e1280572aea3ad500491))
+
+
+### Features
+
+* **parser:** add regex functionality/handler ([#98](https://github.com/omermorad/mockingbird-ts/issues/98)) ([ae1bac8](https://github.com/omermorad/mockingbird-ts/commit/ae1bac8629047385741f85620a725405a3c3fa27))
+
+
+### BREAKING CHANGES
+
+* **parser:** ClassAnalayzer has been removed and all the logic has been moved to ClassParser
+
+* test(parser): add (move) mock generator integration test
+
+* chore(parser): config jest and typescript to run integration test
+
+* fix(mockingbird-ts): use mock generator differently (singleton)
+
+Remove mock generator from mockingbird-ts and import it from @mockinbird/parser instead
+mock generator acts as a singleton now
+
+* refactor(mockingbird-ts): fix mock factory
+
+* chore(mockingbird-ts): config jest to collect coverage properly
+
+
+
+
+
 ## [3.0.1](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@3.0.0...@mockinbird/parser@3.0.1) (2021-08-21)
 
 

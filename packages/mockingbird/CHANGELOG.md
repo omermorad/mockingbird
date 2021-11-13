@@ -3,6 +3,35 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-rc.0](https://github.com/omermorad/mockingbird/compare/mockingbird-ts@2.1.1...mockingbird-ts@3.0.0-rc.0) (2021-11-13)
+
+
+### Code Refactoring
+
+* **parser:** add mock generator and remove analyzer ([#107](https://github.com/omermorad/mockingbird/issues/107)) ([32c0ff6](https://github.com/omermorad/mockingbird/commit/32c0ff62895a18d9e892e1280572aea3ad500491))
+
+
+### BREAKING CHANGES
+
+* **parser:** ClassAnalayzer has been removed and all the logic has been moved to ClassParser
+
+* test(parser): add (move) mock generator integration test
+
+* chore(parser): config jest and typescript to run integration test
+
+* fix(mockingbird-ts): use mock generator differently (singleton)
+
+Remove mock generator from mockingbird-ts and import it from @mockinbird/parser instead
+mock generator acts as a singleton now
+
+* refactor(mockingbird-ts): fix mock factory
+
+* chore(mockingbird-ts): config jest to collect coverage properly
+
+
+
+
+
 ## [2.1.1](https://github.com/omermorad/mockingbird/compare/mockingbird-ts@2.1.0...mockingbird-ts@2.1.1) (2021-08-21)
 
 
