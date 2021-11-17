@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## 2.0.3-rc.1 (2021-11-17)
+
+
+### Features
+
+* **common:** add regex constructor to exact value ([10263fb](https://github.com/omermorad/mockingbird/commit/10263fb17287eb86516bd4778960586106011c2f))
+
+
+
+## 2.1.1 (2021-08-21)
+
+
+
+# 2.1.0 (2021-08-21)
+
+
+
+
+
 ## 2.0.3-rc.0 (2021-11-13)
 
 **Note:** Version bump only for package @mockingbird/common
