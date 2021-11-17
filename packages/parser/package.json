@@ -1,5 +1,5 @@
 {
-  "name": "@mockinbird/parser",
+  "name": "@mockingbird/parser",
   "version": "3.0.2-rc.0",
   "license": "MIT",
   "main": "dist/index.js",
