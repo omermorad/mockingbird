@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/common",
-  "version": "2.0.3-rc.2",
+  "version": "2.0.3",
   "license": "MIT",
   "description": "Mockingbird Common Package",
   "main": "dist/index.js",
