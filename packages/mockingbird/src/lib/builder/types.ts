@@ -1,5 +1,5 @@
-import { ParserConfig } from '@mockinbird/parser';
-import { ClassLiteral } from '@mockinbird/common';
+import { ParserConfig } from '@mockingbird/parser';
+import { ClassLiteral } from '@mockingbird/common';
 
 export type GeneratedMock<TClass> = TClass | ClassLiteral<TClass> | TClass[] | ClassLiteral<TClass>[];
 

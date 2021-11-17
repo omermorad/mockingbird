@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
-import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Class, Faker, MultiClass } from '@mockinbird/common';
+import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
+import { Class, Faker, MultiClass } from '@mockingbird/common';
 import { ArrayValueHandler } from './array-value-handler';
 
 describe('ArrayValueHandler Unit Test', () => {

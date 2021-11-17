@@ -5,4 +5,4 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 0.0.1-rc.0 (2021-11-13)
 
-**Note:** Version bump only for package @mockinbird/logger
+**Note:** Version bump only for package @mockingbird/logger

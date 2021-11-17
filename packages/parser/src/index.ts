@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
 import { MockGenerator } from './lib/generator/mock-generator';
-import { Faker } from '@mockinbird/common';
+import { Faker } from '@mockingbird/common';
 import RandExp from 'randexp';
 
 export * from './lib/types/types';

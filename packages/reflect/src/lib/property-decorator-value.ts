@@ -1,4 +1,4 @@
-import { MultiClass } from '@mockinbird/common';
+import { MultiClass } from '@mockingbird/common';
 import { MockOptions } from '../types/mock-options.type';
 
 export interface PropertyDecoratorValue {

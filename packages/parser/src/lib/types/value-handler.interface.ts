@@ -1,4 +1,4 @@
-import { Property } from '@mockinbird/reflect';
+import { Property } from '@mockingbird/reflect';
 
 export interface ValueHandler {
   shouldHandle(property: Property): boolean;

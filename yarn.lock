@@ -1430,22 +1430,6 @@
     globby "^11.0.0"
     read-yaml-file "^1.1.0"
 
-"@mockinbird/common@^2.0.3-rc.0":
-  version "2.0.3-rc.0"
-  resolved "https://registry.yarnpkg.com/@mockinbird/common/-/common-2.0.3-rc.0.tgz#3ac5be928fd2c29a94b1a1ab84a028899b1c7b87"
-  integrity sha512-LI4I5HYTerr/es947f/qHJsHt5kAG6lUiP04XxGLW7Zz3z357BqpOhAMdRXBsZySozPJbs1detB75gcN69Wgtw==
-  dependencies:
-    faker "^5.5.3"
-
-"@mockinbird/reflect@^3.0.2-rc.0":
-  version "3.0.2-rc.0"
-  resolved "https://registry.yarnpkg.com/@mockinbird/reflect/-/reflect-3.0.2-rc.0.tgz#594c32bb1d1c439f11c20aa7b8e30de6e778652d"
-  integrity sha512-DY3VqHvLYE4yj7mdSVGsJ18G+fCkdwYR6JobLByMTUIKzTYi8TQfQyPBnhJUQ1Fnm6ZW4MAd7MoIp53uRcmxUA==
-  dependencies:
-    "@plumier/reflect" "^1.0.5"
-    reflect-metadata "^0.1.13"
-    tslib "^2.3.0"
-
 "@mrmlnc/readdir-enhanced@^2.2.1":
   version "2.2.1"
   resolved "https://registry.yarnpkg.com/@mrmlnc/readdir-enhanced/-/readdir-enhanced-2.2.1.tgz#524af240d1a360527b730475ecfa1344aa540dde"

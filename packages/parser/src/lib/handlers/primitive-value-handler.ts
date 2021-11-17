@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { Property } from '@mockinbird/reflect';
+import { Property } from '@mockingbird/reflect';
 import { PrimitiveHandler } from './primitive-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 

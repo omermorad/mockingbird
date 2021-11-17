@@ -1,6 +1,6 @@
-import { Class } from '@mockinbird/common';
+import { Class } from '@mockingbird/common';
 import { Keys, Mutations } from './types';
-import { mockGenerator } from '@mockinbird/parser';
+import { mockGenerator } from '@mockingbird/parser';
 
 interface ExtraKeys<TClass> {
   omit?: Keys<TClass>;

@@ -1,6 +1,6 @@
 import { Container, Inject, Service } from 'typedi';
-import { ClassReflector, Property } from '@mockinbird/reflect';
-import { Class, Faker } from '@mockinbird/common';
+import { ClassReflector, Property } from '@mockingbird/reflect';
+import { Class, Faker } from '@mockingbird/common';
 import { MutationsCallback, ParserConfig, ParsingStrategy } from '../types/types';
 import { ValueHandler } from '../types/value-handler.interface';
 import { EnumValueHandler } from '../handlers/enum-value-handler';
