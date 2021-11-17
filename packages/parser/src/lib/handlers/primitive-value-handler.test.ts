@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
-import { Faker } from '@mockinbird/common';
-import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
+import { Faker } from '@mockingbird/common';
+import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
 import { PrimitiveValueHandler } from './primitive-value-handler';
 
 describe('PrimitiveValueHandler Unit', () => {

@@ -1,6 +1,6 @@
 import { Inject, Service } from 'typedi';
-import { Property } from '@mockinbird/reflect';
-import { Callback, Faker } from '@mockinbird/common';
+import { Property } from '@mockingbird/reflect';
+import { Callback, Faker } from '@mockingbird/common';
 import { ValueHandler } from '../types/value-handler.interface';
 
 @Service()

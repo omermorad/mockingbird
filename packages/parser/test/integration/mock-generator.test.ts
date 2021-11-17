@@ -1,4 +1,4 @@
-import { mockGenerator } from '@mockinbird/parser';
+import { mockGenerator } from '@mockingbird/parser';
 import { TestClasses } from './common/test-classes';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;

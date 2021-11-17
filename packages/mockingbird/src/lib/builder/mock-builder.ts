@@ -1,4 +1,4 @@
-import { ClassLiteral, Class } from '@mockinbird/common';
+import { ClassLiteral, Class } from '@mockingbird/common';
 import { Keys, Mutations } from './types';
 import { MockProducer } from './mock-producer';
 

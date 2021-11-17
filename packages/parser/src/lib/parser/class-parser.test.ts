@@ -1,7 +1,7 @@
 import RandExp from 'randexp';
 import { Container } from 'typedi';
-import { Mock } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/common';
+import { Mock } from '@mockingbird/reflect';
+import { Faker } from '@mockingbird/common';
 import { ClassParser } from './class-parser';
 
 describe('ClassParser Integration Test', () => {

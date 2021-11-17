@@ -1,5 +1,5 @@
 import { Service } from 'typedi';
-import { Class, ClassLiteral, isPrimitive } from '@mockinbird/common';
+import { Class, ClassLiteral, isPrimitive } from '@mockingbird/common';
 import { MockGeneratorOptions } from '../types/mock-generator-options.interface';
 import { ClassParser } from '../parser/class-parser';
 

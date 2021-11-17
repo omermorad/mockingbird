@@ -1,6 +1,6 @@
 import RandExp from 'randexp';
 import { Container } from 'typedi';
-import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
+import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
 import { RegexValueHandler } from './regex-value-handler';
 
 describe('RegexHandler Unit', () => {

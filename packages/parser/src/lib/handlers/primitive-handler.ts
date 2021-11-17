@@ -1,6 +1,6 @@
 import { Inject, Service } from 'typedi';
-import { Property } from '@mockinbird/reflect';
-import { ExactValue, Faker, isPrimitive } from '@mockinbird/common';
+import { Property } from '@mockingbird/reflect';
+import { ExactValue, Faker, isPrimitive } from '@mockingbird/common';
 
 @Service()
 export class PrimitiveHandler {
