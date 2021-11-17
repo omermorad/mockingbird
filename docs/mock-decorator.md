@@ -27,7 +27,7 @@ actual `faker` instance.
 So the result of the following code:
 
 ```typescript
-import { MockFactory } from 'mockingbird-ts';
+import { MockFactory } from 'mockingbird';
 
 class Person {
   @Mock(faker => faker.internet.email())
@@ -53,7 +53,7 @@ When using the `Mock` decorator without any value will generate a random value i
 So the result of the following code:
 
 ```typescript
-import { MockFactory } from 'mockingbird-ts';
+import { MockFactory } from 'mockingbird';
 
 class Person {
   @Mock()
@@ -91,7 +91,7 @@ Passing a class will generate an object with the matching keys (decorated by the
 So the result of the following code:
 
 ```typescript
-import { MockFactory } from 'mockingbird-ts';
+import { MockFactory } from 'mockingbird';
 
 class Dog {
   @Mock(faker => faker.name.firstName())
@@ -137,7 +137,7 @@ value that has been passed
 So the result of the following code:
 
 ```typescript
-import { MockFactory } from 'mockingbird-ts';
+import { MockFactory } from 'mockingbird';
 
 class Person {
   @Mock('John')
@@ -171,7 +171,7 @@ Passing an enum object to the `Mock` decorator will generate a random value from
 So the result of the following code:
 
 ```typescript
-import {MockFactory} from 'mockingbird-ts';
+import {MockFactory} from 'mockingbird';
 
 enum Mood {
   Happy = 'happy',
@@ -201,7 +201,7 @@ Will be:
 Just as it is possible to move a class as a parameter, so it is also possible to pass an "array" of classes:
 
 ```typescript
-import {MockFactory} from 'mockingbird-ts';
+import {MockFactory} from 'mockingbird';
 
 class Dog {
   @Mock()

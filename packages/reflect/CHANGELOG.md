@@ -138,7 +138,7 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 ### chore
 
-* **release:** release version v2.0.0 ([#53](https://github.com/omermorad/mockingbird-ts/issues/53)) ([f598ef3](https://github.com/omermorad/mockingbird-ts/commit/f598ef35d5b9111f66202f119b8961314483f4fb)), closes [#51](https://github.com/omermorad/mockingbird-ts/issues/51) [#40](https://github.com/omermorad/mockingbird-ts/issues/40) [#42](https://github.com/omermorad/mockingbird-ts/issues/42) [#37](https://github.com/omermorad/mockingbird-ts/issues/37) [#46](https://github.com/omermorad/mockingbird-ts/issues/46) [#47](https://github.com/omermorad/mockingbird-ts/issues/47) [#49](https://github.com/omermorad/mockingbird-ts/issues/49) [#50](https://github.com/omermorad/mockingbird-ts/issues/50) [#52](https://github.com/omermorad/mockingbird-ts/issues/52) [#54](https://github.com/omermorad/mockingbird-ts/issues/54) [#42](https://github.com/omermorad/mockingbird-ts/issues/42) [#55](https://github.com/omermorad/mockingbird-ts/issues/55) [#42](https://github.com/omermorad/mockingbird-ts/issues/42) [#56](https://github.com/omermorad/mockingbird-ts/issues/56) [#57](https://github.com/omermorad/mockingbird-ts/issues/57) [#58](https://github.com/omermorad/mockingbird-ts/issues/58) [#59](https://github.com/omermorad/mockingbird-ts/issues/59) [#60](https://github.com/omermorad/mockingbird-ts/issues/60) [#42](https://github.com/omermorad/mockingbird-ts/issues/42) [#61](https://github.com/omermorad/mockingbird-ts/issues/61) [#62](https://github.com/omermorad/mockingbird-ts/issues/62) [#64](https://github.com/omermorad/mockingbird-ts/issues/64) [#63](https://github.com/omermorad/mockingbird-ts/issues/63) [#67](https://github.com/omermorad/mockingbird-ts/issues/67) [#68](https://github.com/omermorad/mockingbird-ts/issues/68)
+* **release:** release version v2.0.0 ([#53](https://github.com/omermorad/mockingbird/issues/53)) ([f598ef3](https://github.com/omermorad/mockingbird/commit/f598ef35d5b9111f66202f119b8961314483f4fb)), closes [#51](https://github.com/omermorad/mockingbird/issues/51) [#40](https://github.com/omermorad/mockingbird/issues/40) [#42](https://github.com/omermorad/mockingbird/issues/42) [#37](https://github.com/omermorad/mockingbird/issues/37) [#46](https://github.com/omermorad/mockingbird/issues/46) [#47](https://github.com/omermorad/mockingbird/issues/47) [#49](https://github.com/omermorad/mockingbird/issues/49) [#50](https://github.com/omermorad/mockingbird/issues/50) [#52](https://github.com/omermorad/mockingbird/issues/52) [#54](https://github.com/omermorad/mockingbird/issues/54) [#42](https://github.com/omermorad/mockingbird/issues/42) [#55](https://github.com/omermorad/mockingbird/issues/55) [#42](https://github.com/omermorad/mockingbird/issues/42) [#56](https://github.com/omermorad/mockingbird/issues/56) [#57](https://github.com/omermorad/mockingbird/issues/57) [#58](https://github.com/omermorad/mockingbird/issues/58) [#59](https://github.com/omermorad/mockingbird/issues/59) [#60](https://github.com/omermorad/mockingbird/issues/60) [#42](https://github.com/omermorad/mockingbird/issues/42) [#61](https://github.com/omermorad/mockingbird/issues/61) [#62](https://github.com/omermorad/mockingbird/issues/62) [#64](https://github.com/omermorad/mockingbird/issues/64) [#63](https://github.com/omermorad/mockingbird/issues/63) [#67](https://github.com/omermorad/mockingbird/issues/67) [#68](https://github.com/omermorad/mockingbird/issues/68)
 
 
 ### BREAKING CHANGES
@@ -170,7 +170,7 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 
-## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/reflect@1.0.1-alpha.2...@mockingbird/reflect@1.0.1-alpha.3) (2021-07-23)
+## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird/compare/@mockingbird/reflect@1.0.1-alpha.2...@mockingbird/reflect@1.0.1-alpha.3) (2021-07-23)
 
 **Note:** Version bump only for package @mockingbird/reflect
 
@@ -183,9 +183,9 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 ### Bug Fixes
 
-* **types:** add build to export a js file to include the faker instance (for runtime) ([#61](https://github.com/omermorad/mockingbird-ts/issues/61)) ([f4e3092](https://github.com/omermorad/mockingbird-ts/commit/f4e3092e683eb9c288d4e879113e71f74ec5038a))
+* **types:** add build to export a js file to include the faker instance (for runtime) ([#61](https://github.com/omermorad/mockingbird/issues/61)) ([f4e3092](https://github.com/omermorad/mockingbird/commit/f4e3092e683eb9c288d4e879113e71f74ec5038a))
 
 
 ### Reverts
 
-* **repo:** release packages ([7f9390d](https://github.com/omermorad/mockingbird-ts/commit/7f9390d051f9c9c9c3eb172f4db8a9fe533b03c4))
+* **repo:** release packages ([7f9390d](https://github.com/omermorad/mockingbird/commit/7f9390d051f9c9c9c3eb172f4db8a9fe533b03c4))
