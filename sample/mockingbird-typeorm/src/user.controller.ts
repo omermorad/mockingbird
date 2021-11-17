@@ -1,6 +1,6 @@
 import { Request, Response, Router } from 'express';
 import { Repository } from 'typeorm';
-import { MockFactory } from 'mockingbird-ts';
+import { MockFactory } from 'mockingbird';
 import { User } from './interface/user.interface';
 import { UserEntity } from './entity/user.entity';
 

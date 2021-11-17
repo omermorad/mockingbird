@@ -1,4 +1,4 @@
-import { Mock } from 'mockingbird-ts';
+import { Mock } from 'mockingbird';
 import { UserEntity } from '../../src/entity/user.entity';
 
 export class UserEntityMock implements UserEntity {

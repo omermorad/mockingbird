@@ -1,7 +1,7 @@
 import supertest, { Response } from 'supertest';
 import { Application } from 'express';
 import { Database } from 'sqlite3';
-import { MockFactory } from 'mockingbird-ts';
+import { MockFactory } from 'mockingbird';
 import { Connection } from 'typeorm';
 import { UserEntityMock } from './mocks/user-entity.mock';
 import { applicationFactory } from '../src/app';
