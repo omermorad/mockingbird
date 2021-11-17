@@ -321,6 +321,11 @@
   resolved "https://registry.yarnpkg.com/@changesets/types/-/types-0.4.0.tgz#3413badb2c3904357a36268cb9f8c7e0afc3a804"
   integrity sha512-TclHHKDVYQ8rJGZgVeWiF7c91yWzTTWdPagltgutelGu/Psup5PQlUq6svx7S8suj+jXcaE34yEEsfIvzXXB2Q==
 
+"@changesets/types@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@changesets/types/-/types-4.0.1.tgz#85cf3cc32baff0691112d9d15fc21fbe022c9f0a"
+  integrity sha512-zVfv752D8K2tjyFmxU/vnntQ+dPu+9NupOSguA/2Zuym4tVxRh0ylArgKZ1bOAi2eXfGlZMxJU/kj7uCSI15RQ==
+
 "@commitlint/cli@^12.1.4":
   version "12.1.4"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-12.1.4.tgz#af4d9dd3c0122c7b39a61fa1cd2abbad0422dbe0"
@@ -1388,13 +1393,13 @@
     npmlog "^4.1.2"
     write-file-atomic "^3.0.3"
 
-"@manypkg/cli@^0.18.0":
-  version "0.18.0"
-  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.18.0.tgz#2b40d5aa7f88d43142e041de8fc8d7e44aa28a1d"
-  integrity sha512-dlgraFHLEnCJ8hrGULCOLZuiJWSzaWDgq0tq+O7pe37K37S2Mjrb7x/BcNHj8caZLf3kiPC0KW0iSMo8UyvpbQ==
+"@manypkg/cli@^0.19.1":
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/@manypkg/cli/-/cli-0.19.1.tgz#2dec45d340e1265276625c4b6c9b284d3376bd10"
+  integrity sha512-EXBPPh6wYSKmSD5DdUjNG2rc55C2G/poIJ0D3O8tnk83o3nZh8g94JwN5/AumbSsDZ0yagmkS+DChNlRhIUG7w==
   dependencies:
     "@babel/runtime" "^7.5.5"
-    "@manypkg/get-packages" "^1.1.1"
+    "@manypkg/get-packages" "^1.1.3"
     chalk "^2.4.2"
     detect-indent "^6.0.0"
     find-up "^4.1.0"
@@ -1419,12 +1424,13 @@
     find-up "^4.1.0"
     fs-extra "^8.1.0"
 
-"@manypkg/get-packages@^1.1.1":
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@manypkg/get-packages/-/get-packages-1.1.1.tgz#7c7e72d0061ab2e61d2ce4da58ce91290a60ac8d"
-  integrity sha512-J6VClfQSVgR6958eIDTGjfdCrELy1eT+SHeoSMomnvRQVktZMnEA5edIr5ovRFNw5y+Bk/jyoevPzGYod96mhw==
+"@manypkg/get-packages@^1.1.3":
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@manypkg/get-packages/-/get-packages-1.1.3.tgz#e184db9bba792fa4693de4658cfb1463ac2c9c47"
+  integrity sha512-fo+QhuU3qE/2TQMQmbVMqaQ6EWbMhi4ABWP+O4AM1NqPBuy0OrApV5LO6BrrgnhtAHS2NH6RrVk9OL181tTi8A==
   dependencies:
     "@babel/runtime" "^7.5.5"
+    "@changesets/types" "^4.0.1"
     "@manypkg/find-root" "^1.1.0"
     fs-extra "^8.1.0"
     globby "^11.0.0"
@@ -1719,11 +1725,6 @@
   version "0.0.50"
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
   integrity sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==
-
-"@types/faker@^5.5.3":
-  version "5.5.9"
-  resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.9.tgz#588ede92186dc557bff8341d294335d50d255f0c"
-  integrity sha512-uCx6mP3UY5SIO14XlspxsGjgaemrxpssJI0Ol+GfhxtcKpv9pgRZYsS4eeKeHVLje6Qtc8lGszuBI461+gVZBA==
 
 "@types/faker@^5.5.7":
   version "5.5.7"
