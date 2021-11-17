@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.1](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@3.0.0...@mockinbird/parser@3.0.1) (2021-08-21)
+## 3.0.2-rc.0 (2021-11-13)
+
+**Note:** Version bump only for package @mockingbird/parser
+
+
+
+
+
+## [3.0.1](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/parser@3.0.0...@mockingbird/parser@3.0.1) (2021-08-21)
 
 
 ### Bug Fixes
@@ -14,7 +22,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 
 
-# [3.0.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@2.0.0...@mockinbird/parser@3.0.0) (2021-08-21)
+# [3.0.0](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/parser@2.0.0...@mockingbird/parser@3.0.0) (2021-08-21)
 
 
 ### Bug Fixes
@@ -83,9 +91,9 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 
-## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@1.0.1-alpha.2...@mockinbird/parser@1.0.1-alpha.3) (2021-07-23)
+## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/parser@1.0.1-alpha.2...@mockingbird/parser@1.0.1-alpha.3) (2021-07-23)
 
-**Note:** Version bump only for package @mockinbird/parser
+**Note:** Version bump only for package @mockingbird/parser
 
 
 
@@ -107,7 +115,7 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 
-## [1.0.1-alpha.1](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/parser@2.0.0...@mockinbird/parser@1.0.1-alpha.1) (2021-07-22)
+## [1.0.1-alpha.1](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/parser@2.0.0...@mockingbird/parser@1.0.1-alpha.1) (2021-07-22)
 
 
 ### Reverts

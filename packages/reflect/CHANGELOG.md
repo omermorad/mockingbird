@@ -3,7 +3,15 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [3.0.1](https://github.com/omermorad/mockingbird/compare/@mockinbird/reflect@3.0.0...@mockinbird/reflect@3.0.1) (2021-08-21)
+## 3.0.2-rc.0 (2021-11-13)
+
+**Note:** Version bump only for package @mockingbird/reflect
+
+
+
+
+
+## [3.0.1](https://github.com/omermorad/mockingbird/compare/@mockingbird/reflect@3.0.0...@mockingbird/reflect@3.0.1) (2021-08-21)
 
 
 ### Bug Fixes
@@ -97,9 +105,9 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 
-## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/reflect@1.0.1-alpha.2...@mockinbird/reflect@1.0.1-alpha.3) (2021-07-23)
+## [1.0.1-alpha.3](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/reflect@1.0.1-alpha.2...@mockingbird/reflect@1.0.1-alpha.3) (2021-07-23)
 
-**Note:** Version bump only for package @mockinbird/reflect
+**Note:** Version bump only for package @mockingbird/reflect
 
 
 

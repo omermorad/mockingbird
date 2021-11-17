@@ -1,5 +1,5 @@
 import { Container } from 'typedi';
-import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
+import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
 import { ObjectLiteralValueHandler } from './object-literal-value-handler';
 
 describe('ObjectLiteralValueHandler Unit', () => {

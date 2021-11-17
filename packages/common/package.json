@@ -1,6 +1,6 @@
 {
-  "name": "@mockinbird/common",
-  "version": "2.0.2",
+  "name": "@mockingbird/common",
+  "version": "2.0.3-rc.0",
   "license": "MIT",
   "description": "Mockingbird Common Package",
   "main": "dist/index.js",
@@ -37,10 +37,10 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
+    "@types/faker": "^5.5.7",
     "faker": "^5.5.3"
   },
   "devDependencies": {
-    "@types/faker": "^5.5.7",
     "ts-loader": "^6.2.2",
     "ts-node": "8.10.2",
     "tsconfig-paths": "^3.9.0",

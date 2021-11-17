@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
-import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/common';
+import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
+import { Faker } from '@mockingbird/common';
 import { CallbackValueHandler } from './callback-value-handler';
 
 describe('CallbackValueHandler Unit', () => {

@@ -54,7 +54,7 @@
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@commitlint/config-lerna-scopes": "^12.1.4",
-    "@manypkg/cli": "^0.18.0",
+    "@manypkg/cli": "^0.19.1",
     "@types/faker": "^5.5.7",
     "@types/jest": "26.0.24",
     "@types/node": "^12.20.15",

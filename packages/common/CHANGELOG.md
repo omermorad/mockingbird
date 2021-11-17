@@ -3,9 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-## [2.0.2](https://github.com/omermorad/mockingbird/compare/@mockinbird/common@2.0.1...@mockinbird/common@2.0.2) (2021-08-21)
+## 2.0.3-rc.0 (2021-11-13)
 
-**Note:** Version bump only for package @mockinbird/common
+**Note:** Version bump only for package @mockingbird/common
+
+
+
+
+
+## [2.0.2](https://github.com/omermorad/mockingbird/compare/@mockingbird/common@2.0.1...@mockingbird/common@2.0.2) (2021-08-21)
+
+**Note:** Version bump only for package @mockingbird/common
 
 
 
@@ -13,7 +21,7 @@ See [Conventional Commits](https://conventionalcommits.org) for commit guideline
 
 ## 2.0.1 (2021-08-21)
 
-**Note:** Version bump only for package @mockinbird/common
+**Note:** Version bump only for package @mockingbird/common
 
 
 
@@ -56,7 +64,7 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 
-# [2.0.0-alpha.2](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0-alpha.1...@mockinbird/types@2.0.0-alpha.2) (2021-07-23)
+# [2.0.0-alpha.2](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/types@2.0.0-alpha.1...@mockingbird/types@2.0.0-alpha.2) (2021-07-23)
 
 
 ### Bug Fixes
@@ -94,7 +102,7 @@ MockGenerator. Add fluent API and ability to persist mock data
 
 
 # Change Log
-# [2.0.0-alpha.0](https://github.com/omermorad/mockingbird-ts/compare/@mockinbird/types@2.0.0...@mockinbird/types@2.0.0-alpha.0) (2021-07-22)
+# [2.0.0-alpha.0](https://github.com/omermorad/mockingbird-ts/compare/@mockingbird/types@2.0.0...@mockingbird/types@2.0.0-alpha.0) (2021-07-22)
 
 ### Features
 

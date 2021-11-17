@@ -1,6 +1,6 @@
 import { Container } from 'typedi';
-import { Property, PropertyDecoratorValue } from '@mockinbird/reflect';
-import { Faker } from '@mockinbird/common';
+import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
+import { Faker } from '@mockingbird/common';
 import { SingleClassValueHandler } from './single-class-value-handler';
 
 describe('SingleClassValueHandler Unit', () => {

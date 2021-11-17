@@ -1,4 +1,4 @@
-import { Faker } from '@mockinbird/common';
+import { Faker } from '@mockingbird/common';
 
 export interface MockDecoratorFactoryOptions {
   count: number;
