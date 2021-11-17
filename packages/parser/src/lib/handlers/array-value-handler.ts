@@ -1,7 +1,7 @@
 import { Container, Service } from 'typedi';
-import { isPrimitive } from '@mockinbird/common';
-import { Property } from '@mockinbird/reflect';
-import { ExactValue, MultiClass } from '@mockinbird/common';
+import { isPrimitive } from '@mockingbird/common';
+import { Property } from '@mockingbird/reflect';
+import { ExactValue, MultiClass } from '@mockingbird/common';
 import { PrimitiveHandler } from './primitive-handler';
 import { ValueHandler } from '../types/value-handler.interface';
 import { ClassParser } from '../parser/class-parser';

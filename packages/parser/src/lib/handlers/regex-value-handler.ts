@@ -1,8 +1,8 @@
 import RandExp from 'randexp';
 import { Inject, Service } from 'typedi';
-import { Property } from '@mockinbird/reflect';
+import { Property } from '@mockingbird/reflect';
 import { ValueHandler } from '../types/value-handler.interface';
-import { Class } from '@mockinbird/common';
+import { Class } from '@mockingbird/common';
 
 @Service()
 export class RegexValueHandler implements ValueHandler {

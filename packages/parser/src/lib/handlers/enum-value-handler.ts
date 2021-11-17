@@ -1,7 +1,7 @@
-import { Property } from '@mockinbird/reflect';
+import { Property } from '@mockingbird/reflect';
 import { ValueHandler } from '../types/value-handler.interface';
 import { Inject, Service } from 'typedi';
-import { Faker } from '@mockinbird/common';
+import { Faker } from '@mockingbird/common';
 
 @Service()
 export class EnumValueHandler implements ValueHandler {

@@ -1,4 +1,4 @@
-import { Property } from '@mockinbird/reflect';
+import { Property } from '@mockingbird/reflect';
 import { ValueHandler } from '../types/value-handler.interface';
 import { Service } from 'typedi';
 

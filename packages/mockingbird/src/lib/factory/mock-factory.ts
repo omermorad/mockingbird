@@ -1,4 +1,4 @@
-import { Class } from '@mockinbird/common';
+import { Class } from '@mockingbird/common';
 import { MockBuilder } from '../builder';
 
 /**

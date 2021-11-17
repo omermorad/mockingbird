@@ -1,5 +1,5 @@
-import { ParserConfig } from '@mockinbird/parser';
-import { Faker } from '@mockinbird/common';
+import { ParserConfig } from '@mockingbird/parser';
+import { Faker } from '@mockingbird/common';
 
 export interface MockGeneratorOptions<TClass = any> extends ParserConfig<TClass> {
   count?: number;
