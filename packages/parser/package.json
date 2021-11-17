@@ -17,12 +17,12 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/omermorad/mockingbird-ts.git"
+    "url": "https://github.com/omermorad/mockingbird.git"
   },
   "bugs": {
-    "url": "https://github.com/omermorad/mockingbird-ts/issues"
+    "url": "https://github.com/omermorad/mockingbird/issues"
   },
-  "readme": "https://github.com/omermorad/mockingbird-ts/tree/refactor/master/packages/parser/README.md",
+  "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/parser/README.md",
   "scripts": {
     "prebuild": "npx rimraf dist",
     "build": "tsc",
