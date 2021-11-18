@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/reflect",
-  "version": "3.0.2-rc.2",
+  "version": "3.0.2-rc.3",
   "license": "MIT",
   "description": "Mockingbird Reflect Package",
   "main": "dist/index.js",
@@ -43,7 +43,7 @@
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@mockingbird/common": "^2.0.3-rc.2",
+    "@mockingbird/common": "^2.0.3-rc.3",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",

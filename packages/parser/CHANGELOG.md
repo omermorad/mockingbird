@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [3.0.2-rc.3](https://github.com/omermorad/mockingbird/compare/@mockingbird/parser@3.0.2-rc.1...@mockingbird/parser@3.0.2-rc.3) (2021-11-18)
+
+**Note:** Version bump only for package @mockingbird/parser
+
+
+
+
+
 ## [3.0.2-rc.2](https://github.com/omermorad/mockingbird/compare/@mockingbird/parser@3.0.2-rc.1...@mockingbird/parser@3.0.2-rc.2) (2021-11-18)
 
 **Note:** Version bump only for package @mockingbird/parser
