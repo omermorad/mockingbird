@@ -490,36 +490,27 @@
     "@types/yargs" "^15.0.0"
     chalk "^4.0.0"
 
-"@mockinbird/reflect@^3.0.2-rc.0":
-  version "3.0.2-rc.0"
-  resolved "https://registry.yarnpkg.com/@mockinbird/reflect/-/reflect-3.0.2-rc.0.tgz#594c32bb1d1c439f11c20aa7b8e30de6e778652d"
-  integrity sha512-DY3VqHvLYE4yj7mdSVGsJ18G+fCkdwYR6JobLByMTUIKzTYi8TQfQyPBnhJUQ1Fnm6ZW4MAd7MoIp53uRcmxUA==
+"@mockingbird/common@^2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@mockingbird/common/-/common-2.0.3.tgz#fbe996e01e51fc294b9eb9e917f7f10bd3d2de62"
+  integrity sha512-HD/wHlbdyL4wq3kM89HzIymgP+hBb17uWvT8ILcBuTTz0s42MaBFwSJgUj7qMc1p62Url4yGox5fEBqrzc1bcg==
   dependencies:
-    "@plumier/reflect" "^1.0.5"
-    reflect-metadata "^0.1.13"
-    tslib "^2.3.0"
-
-"@mockingbird/common@^2.0.3-rc.0":
-  version "2.0.3-rc.0"
-  resolved "https://registry.yarnpkg.com/@mockingbird/common/-/common-2.0.3-rc.0.tgz#42cdd9b8bfb48c526f0a62442b3a9d532367c40e"
-  integrity sha512-1GFLiymGqpJMfGdavsL0O/r0NkGBa46yg6ukMd15Pff6IYGnx+diEEBvRxHNliQo2Kg3TvOyb6sI4HPeCk3yXA==
-  dependencies:
-    "@types/faker" "^5.5.3"
+    "@types/faker" "^5.5.7"
     faker "^5.5.3"
 
-"@mockingbird/parser@^3.0.2-rc.0":
-  version "3.0.2-rc.0"
-  resolved "https://registry.yarnpkg.com/@mockingbird/parser/-/parser-3.0.2-rc.0.tgz#05901cf612da6fb701105acf4b6a091dc3f45cbd"
-  integrity sha512-NSPfgB3s0vexPlmKY13j7jmKBywo6ZnRjb5DC59m/nE9eMrmXgTZ4Dkgk93pea6QpMigqowm97KcVQsdU9lplA==
+"@mockingbird/parser@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@mockingbird/parser/-/parser-3.0.2.tgz#766b3a32ba4fc563f774a12cb25662ea1776d0e4"
+  integrity sha512-UgwYwquxzOWgzrA3sHq/buaIUwzB+dJHCtaT8ZV244v3FKDRMLfqzHLulh4RV5dyVztGceU2ytMHcRFgASIcSg==
   dependencies:
-    "@mockinbird/reflect" "^3.0.2-rc.0"
+    "@mockingbird/reflect" "^3.0.2"
     randexp "^0.5.3"
     typedi "^0.10.0"
 
-"@mockingbird/reflect@^3.0.2-rc.0":
-  version "3.0.2-rc.0"
-  resolved "https://registry.yarnpkg.com/@mockingbird/reflect/-/reflect-3.0.2-rc.0.tgz#6b906a2f35140e72e37440cda792f408de402def"
-  integrity sha512-WhAA8BkFuhSC9nPrY33q2LoHEp30ZXI6TUaUStLLuadzEVGT/BRcS2hgp4/3vUTqjGmfXE1UnNUNrTbA7fasGw==
+"@mockingbird/reflect@^3.0.2":
+  version "3.0.2"
+  resolved "https://registry.yarnpkg.com/@mockingbird/reflect/-/reflect-3.0.2.tgz#bd562698c6d9bd508a51e04c6480c467873ae33f"
+  integrity sha512-gvkoO6NthV80nyarVNaBRpWEm1mlk/brxbcWT82Z1z84tTtrZev0bTb86oRhU1c29MIKzfh3VCkzIRc/2ooWSA==
   dependencies:
     "@plumier/reflect" "^1.0.5"
     reflect-metadata "^0.1.13"
@@ -647,7 +638,7 @@
   resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.8.tgz#6649adfdfdbb0acf95361fc48f2d0ca6e88bd1cf"
   integrity sha512-bsl0rYsaZVHlZkynL5O04q6YXDmVjcid6MbOHWqvtE2WWs/EKhp0qchDDhVWlWyQXUffX1G83X9LnMxRl8S/Mw==
 
-"@types/faker@^5.5.3":
+"@types/faker@^5.5.7":
   version "5.5.9"
   resolved "https://registry.yarnpkg.com/@types/faker/-/faker-5.5.9.tgz#588ede92186dc557bff8341d294335d50d255f0c"
   integrity sha512-uCx6mP3UY5SIO14XlspxsGjgaemrxpssJI0Ol+GfhxtcKpv9pgRZYsS4eeKeHVLje6Qtc8lGszuBI461+gVZBA==
@@ -3281,14 +3272,14 @@ mkdirp@1.x, mkdirp@^1.0.4:
   dependencies:
     minimist "^1.2.5"
 
-mockingbird@^2.1.2-rc.2:
-  version "2.1.2-rc.1"
-  resolved "https://registry.yarnpkg.com/mockingbird/-/mockingbird-2.1.2-rc.1.tgz#4707f4a387477462b34cb0c13ccaf4aa9f4f02b4"
-  integrity sha512-4unJeskdlnTslqPsvFM2QU7vJCy+OjuOH40aBpbeQ6aK05ys8DA3mej5q4hEAIpHBL0ppaHhY6frxewc1tJFXA==
+mockingbird@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.yarnpkg.com/mockingbird/-/mockingbird-2.1.2.tgz#a8feb77c51e70c6aea0445e8a6e3f6937030fe95"
+  integrity sha512-FxPChvI9QVY/mq4Mx8b2JWpbBZNunP7ab539uyJvGI4+JxLDJ6S4w4xHEKbqnM7S9RcSmeUShNEKeoa6g8GV8g==
   dependencies:
-    "@mockingbird/common" "^2.0.3-rc.0"
-    "@mockingbird/parser" "^3.0.2-rc.0"
-    "@mockingbird/reflect" "^3.0.2-rc.0"
+    "@mockingbird/common" "^2.0.3"
+    "@mockingbird/parser" "^3.0.2"
+    "@mockingbird/reflect" "^3.0.2"
 
 ms@2.0.0:
   version "2.0.0"
