@@ -42,6 +42,9 @@
     },
     {
       "path": "packages/mockingbird"
-    }
+    },
+    {
+      "path": "packages/logger"
+    },
   ]
 }

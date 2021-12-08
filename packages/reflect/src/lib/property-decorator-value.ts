@@ -1,4 +1,4 @@
-import { MultiClass } from '@mockinbird/common';
+import { MultiClass } from '@mockingbird/common';
 import { MockOptions } from '../types/mock-options.type';
 
 export interface PropertyDecoratorValue {
@@ -7,6 +7,7 @@ export interface PropertyDecoratorValue {
   isMultiClass(): boolean;
   isCallback(): boolean;
   isEnum(): boolean;
+  isRegex(): boolean;
 }
 
 export class PropertyDecoratorValue {
@@ -30,5 +31,9 @@ export class PropertyDecoratorValue {
 
   public isEnum(): boolean {
     return this.isObject() && this.value.hasOwnProperty('enum');
+  }
+
+  public isRegex(): boolean {
+    return this.value instanceof RegExp;
   }
 }

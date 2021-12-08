@@ -25,7 +25,7 @@ Returns `MockBuilder` when invoked.
 Consider the following class (we will use it in the following examples of each method):
 
 ```typescript
-import { Mock } from 'mockingbird-ts'; 
+import { Mock } from 'mockingbird'; 
 
 export class Bird {
   @Mock((faker) => faker.random.name())
