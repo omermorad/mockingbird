@@ -2,7 +2,8 @@
   "name": "@mockingbird/parser",
   "version": "3.0.2",
   "license": "MIT",
-  "main": "dist/index.js",
+  "main": "dist/mockingbird-parser.cjs.js",
+  "module": "dist/mockingbird-parser.esm.js",
   "types": "dist/index.d.ts",
   "description": "Mockingbird Parser Package",
   "contributors": [

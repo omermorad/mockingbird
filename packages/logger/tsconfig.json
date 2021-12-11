@@ -2,7 +2,6 @@
   "extends": "../tsconfig.build.json",
   "compilerOptions": {
     "rootDir": "./src",
-    "outDir": "./dist",
     "target": "es6"
   },
   "exclude": [

@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "license": "MIT",
   "description": "Mockingbird Logger Package",
-  "main": "dist/index.js",
+  "main": "dist/mockingbird-logger.cjs.js",
+  "module": "dist/mockingbird-logger.esm.js",
   "types": "dist/index.d.ts",
   "contributors": [
     {

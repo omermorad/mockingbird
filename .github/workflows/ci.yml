@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Yarn Init
+      - name: Restore Cache
         id: yarn-cache
         uses: actions/cache@v2
         with:
@@ -41,19 +41,20 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
 
+      - name: Yarn Init
+        run: yarn
+
       - name: Lint Commit Message
-        run: |
-          yarn add -D -W @commitlint/config-conventional
-          echo $(git log -1 --pretty=format:"%s") | yarn commitlint
+        run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
 
       - name: Lint
         run: lerna exec --parallel -- yarn lint
 
-      - name: Build
-        run: yarn build
-
       - name: Test
         run: yarn test:cov
+
+      - name: Build
+        run: yarn build
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
