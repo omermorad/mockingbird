@@ -42,18 +42,16 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Lint Commit Message
-        run: |
-          yarn add -D -W @commitlint/config-conventional
-          echo $(git log -1 --pretty=format:"%s") | yarn commitlint
+        run: echo $(git log -1 --pretty=format:"%s") | yarn commitlint
 
       - name: Lint
         run: lerna exec --parallel -- yarn lint
 
-      - name: Build
-        run: yarn build
-
       - name: Test
         run: yarn test:cov
+
+      - name: Build
+        run: yarn build
 
       - name: Upload Report to Codecov
         uses: codecov/codecov-action@v1
