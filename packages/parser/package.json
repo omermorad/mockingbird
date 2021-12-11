@@ -39,12 +39,12 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
+    "@mockingbird/common": "^2.0.3",
     "@mockingbird/reflect": "^3.0.2",
     "randexp": "^0.5.3",
     "typedi": "^0.10.0"
   },
   "devDependencies": {
-    "@mockingbird/common": "^2.0.3",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",

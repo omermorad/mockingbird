@@ -27,7 +27,7 @@ export class ClassParser<TClass = any> {
 
   private handlePropertyValue(property: Property): TClass | TClass[] {
     for (const classHandler of this.valueHandlers) {
-      const handler = Container.get(classHandler);
+      const handler = Container.get<ValueHandler>(classHandler);
 
       if (handler.shouldHandle(property)) {
         return handler.produceValue<TClass>(property);
