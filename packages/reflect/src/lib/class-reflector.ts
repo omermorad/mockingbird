@@ -3,7 +3,7 @@ import { Class } from '@mockingbird/common';
 import { MockOptions } from '../types';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
 import { Property } from './property';
-import { ClassPropsReflection } from '../types/class-reflection.type';
+import { ClassPropsReflection } from '../types';
 
 export class ClassReflector {
   private static instance: ClassReflector;
@@ -29,7 +29,9 @@ export class ClassReflector {
 
   public reflectClass<TClass = any>(target: Class<TClass>): ClassPropsReflection {
     if (!ClassReflector.REFLECTED_CLASSES.hasOwnProperty(target.name)) {
-      ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflect(target));
+      const reflection = reflect(target) as unknown as ClassReflection;
+
+      ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflection);
     }
 
     return ClassReflector.REFLECTED_CLASSES[target.name];
