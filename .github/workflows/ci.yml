@@ -32,15 +32,17 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Yarn Init
+      - name: Restore Cache
         id: yarn-cache
         uses: actions/cache@v2
-        run: yarn
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
+
+      - name: Yarn Init
+        run: yarn
 
       - name: Lint Commit Message
         run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
