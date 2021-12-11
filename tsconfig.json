@@ -26,25 +26,8 @@
     "allowSyntheticDefaultImports": true
   },
   "exclude": [
-    "node_modules",
-    "dist",
-    "sample"
-  ],
-  "references": [
-    {
-      "path": "packages/reflect"
-    },
-    {
-      "path": "packages/common"
-    },
-    {
-      "path": "packages/parser"
-    },
-    {
-      "path": "packages/mockingbird"
-    },
-    {
-      "path": "packages/logger"
-    },
+    "**/node_modules",
+    "**/dist",
+    "**/sample"
   ]
 }

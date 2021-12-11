@@ -3,7 +3,8 @@
   "version": "3.0.2",
   "license": "MIT",
   "description": "Mockingbird Reflect Package",
-  "main": "dist/index.js",
+  "main": "dist/mockingbird-reflect.cjs.js",
+  "module": "dist/mockingbird-reflect.esm.js",
   "types": "dist/index.d.ts",
   "contributors": [
     {

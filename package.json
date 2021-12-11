@@ -37,12 +37,12 @@
   "readme": "https://github.com/omermorad/mockingbird/README.md",
   "scripts": {
     "prepare": "husky install",
-    "build": "lerna run build --stream",
+    "build": "tsc --noEmit && preconstruct build",
     "watch": "lerna exec -- watch",
     "test": "jest --runInBand && yarn test:sample",
     "test:sample": "export NODE_ENV=test && cd sample/mockingbird-typeorm && yarn test",
     "test:cov": "jest --coverage --runInBand --reporters=jest-junit",
-    "lint": "lerna run lint --since HEAD"
+    "lint": "lerna run lint"
   },
   "files": [
     "dist",
@@ -51,10 +51,15 @@
     "README.md"
   ],
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@commitlint/config-lerna-scopes": "^12.1.4",
     "@manypkg/cli": "^0.19.1",
+    "@preconstruct/cli": "^2.1.5",
     "@types/faker": "^5.5.7",
     "@types/jest": "26.0.24",
     "@types/node": "^12.20.15",
@@ -86,9 +91,6 @@
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.9.7"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "lint-staged": {
     "*.ts": [
       "eslint --ext .ts --fix"
@@ -101,5 +103,10 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "preconstruct": {
+    "packages": [
+      "packages/*"
+    ]
+  }
 }
