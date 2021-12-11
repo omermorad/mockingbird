@@ -42,7 +42,7 @@ jobs:
             ${{ runner.os }}-yarn-
 
       - name: Lint Commit Message
-        run: echo $(git log -1 --pretty=format:"%s") | yarn commitlint
+        run: echo $(git log -1 --pretty=format:"%s") | npx commitlint
 
       - name: Lint
         run: lerna exec --parallel -- yarn lint
