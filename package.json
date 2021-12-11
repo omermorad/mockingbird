@@ -57,7 +57,7 @@
     "@babel/preset-env": "^7.16.4",
     "@babel/preset-typescript": "^7.16.0",
     "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-conventional": "^15.0.0",
     "@commitlint/config-lerna-scopes": "^12.1.4",
     "@manypkg/cli": "^0.19.1",
     "@preconstruct/cli": "^2.1.5",
