@@ -4,16 +4,11 @@
   "license": "MIT",
   "main": "dist/mockingbird-parser.cjs.js",
   "module": "dist/mockingbird-parser.esm.js",
-  "types": "dist/index.d.ts",
   "description": "Mockingbird Parser Package",
   "contributors": [
     {
       "name": "Omer Morad",
       "email": "omer.moradd@gmail.com"
-    },
-    {
-      "name": "Idan Ptichi",
-      "email": "idanpt@gmail.com"
     }
   ],
   "repository": {

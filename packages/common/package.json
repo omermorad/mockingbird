@@ -5,15 +5,10 @@
   "description": "Mockingbird Common Package",
   "main": "dist/mockingbird-common.cjs.js",
   "module": "dist/mockingbird-common.esm.js",
-  "types": "dist/index.d.ts",
   "contributors": [
     {
       "name": "Omer Morad",
       "email": "omer.moradd@gmail.com"
-    },
-    {
-      "name": "Idan Ptichi",
-      "email": "idanpt@gmail.com"
     }
   ],
   "repository": {
