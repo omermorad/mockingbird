@@ -1,16 +1,23 @@
 import { Container } from 'typedi';
-import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
-import { Class, Faker, MultiClass } from '@mockingbird/common';
-import { ArrayValueHandler } from './array-value-handler';
+import { DecoratorValueOptions, DecoratorValueArg, Property, PropertyDecoratorValue } from '@mockingbird/reflect';
+import { Class, Faker } from '@mockingbird/common';
+import { ArrayOfClassesValueHandler } from './array-of-classes-value-handler';
 
 describe('ArrayValueHandler Unit Test', () => {
   const DTO_CLASS_VALUE = class TestClass {};
   const DEFAULT_COUNT_FOR_DTO = 3;
 
-  let handler: ArrayValueHandler;
+  let handler: ArrayOfClassesValueHandler;
 
-  function createProperty(mockValue: MultiClass): Property {
-    return new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(mockValue));
+  function createProperty(mockValue: DecoratorValueArg, options?: DecoratorValueOptions): Property {
+    return new Property(
+      'testPropertyName',
+      'TestClass',
+      new PropertyDecoratorValue({
+        value: mockValue,
+        options,
+      })
+    );
   }
 
   const fakerMock = {
@@ -29,14 +36,14 @@ describe('ArrayValueHandler Unit Test', () => {
 
   beforeAll(() => {
     Container.set('Faker', fakerMock);
-    handler = Container.get(ArrayValueHandler);
+    handler = Container.get(ArrayOfClassesValueHandler);
   });
 
   describe('given an ArrayValueHandler', () => {
     describe("when calling 'shouldHandle' with type 'object' and decoratorValue of multi class ({ type: ClassType })", () => {
       test('then return true', () => {
         expect(
-          handler.shouldHandle(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }))
+          handler.shouldHandle(createProperty(() => DTO_CLASS_VALUE, { count: DEFAULT_COUNT_FOR_DTO }))
         ).toBeTruthy();
       });
     });
@@ -53,7 +60,7 @@ describe('ArrayValueHandler Unit Test', () => {
         let result: any[];
 
         beforeAll(() => {
-          const property = createProperty({ type: String, count: DEFAULT_COUNT_FOR_DTO });
+          const property = createProperty(() => String, { count: DEFAULT_COUNT_FOR_DTO });
           result = handler.produceValue(property);
         });
 
@@ -76,7 +83,7 @@ describe('ArrayValueHandler Unit Test', () => {
         let result;
 
         beforeAll(() => {
-          result = handler.produceValue(createProperty({ type: Number, count: DEFAULT_COUNT_FOR_DTO }));
+          result = handler.produceValue(createProperty(() => Number, { count: DEFAULT_COUNT_FOR_DTO }));
         });
 
         test('then call random alpha string from faker', () => {
@@ -92,14 +99,14 @@ describe('ArrayValueHandler Unit Test', () => {
 
       describe('and the primitive decoratorValue is Boolean', () => {
         test('and the primitive decoratorValue is Boolean', () => {
-          handler.produceValue(createProperty({ type: Boolean, count: DEFAULT_COUNT_FOR_DTO }));
+          handler.produceValue(createProperty(() => Boolean, { count: DEFAULT_COUNT_FOR_DTO }));
           expect(fakerMock.datatype.boolean).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
         });
       });
 
       describe('and the primitive decoratorValue is Date', () => {
         test('and the primitive decoratorValue is Date', () => {
-          handler.produceValue(createProperty({ type: Date, count: DEFAULT_COUNT_FOR_DTO }));
+          handler.produceValue(createProperty(() => Date, { count: DEFAULT_COUNT_FOR_DTO }));
           expect(fakerMock.date.recent).toHaveBeenCalledTimes(DEFAULT_COUNT_FOR_DTO);
         });
       });
@@ -109,7 +116,7 @@ describe('ArrayValueHandler Unit Test', () => {
       let value;
 
       beforeAll(() => {
-        value = handler.produceValue(createProperty({ type: DTO_CLASS_VALUE, count: DEFAULT_COUNT_FOR_DTO }));
+        value = handler.produceValue(createProperty(() => DTO_CLASS_VALUE, { count: DEFAULT_COUNT_FOR_DTO }));
       });
 
       test('then return an array with length of 3', () => {

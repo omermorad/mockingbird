@@ -12,7 +12,13 @@ describe('ObjectLiteralValueHandler Unit', () => {
 
   describe('given a ObjectLiteralValueHandler', () => {
     beforeAll(() => {
-      property = new Property('testPropertyName', '', new PropertyDecoratorValue(OBJECT_LITERAL_VALUE));
+      property = new Property(
+        'testPropertyName',
+        '',
+        new PropertyDecoratorValue({
+          value: OBJECT_LITERAL_VALUE,
+        })
+      );
     });
 
     describe("when calling 'shouldHandle' method with object literal", () => {

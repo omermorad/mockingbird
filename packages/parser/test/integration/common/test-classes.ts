@@ -24,11 +24,11 @@ export namespace TestClasses {
     objectLiteral: Record<string, unknown>;
   }
 
-  export class TestClassWithCallback {
+  export class TestClassWithFakerFn {
     @Mock((faker) => faker.internet.email())
     email: string;
 
-    @Mock((faker) => faker.name.firstName())
+    @Mock(({ name }) => name.firstName())
     name: string;
   }
 
@@ -54,11 +54,11 @@ export namespace TestClasses {
   }
 
   export class TestClassWithEnum {
-    @Mock({ enum: TestEnum })
+    @Mock({ enum: () => TestEnum })
     someEnumVal: string;
   }
 
-  class Dog {
+  export class Dog {
     @Mock()
     name: string;
 
@@ -67,12 +67,12 @@ export namespace TestClasses {
   }
 
   export class TestClassWithSingleClass {
-    @Mock(Dog)
+    @Mock(() => Dog)
     dog: Dog;
   }
 
-  export class TestClassWithMultiClass {
-    @Mock({ type: Dog, count: 3 })
+  export class TestClassWithArrayOfClasses {
+    @Mock(() => Dog, { count: 3 })
     dogs: Dog[];
   }
 

@@ -3,10 +3,10 @@ import { TestClasses } from './common/test-classes';
 
 import TestClassWithAbsoluteValues = TestClasses.TestClassWithAbsoluteValues;
 import TestClassWithNoValues = TestClasses.TestClassWithNoValues;
-import TestClassWithCallback = TestClasses.TestClassWithCallback;
+import TestClassWithCallback = TestClasses.TestClassWithFakerFn;
 import TestClassWithEnum = TestClasses.TestClassWithEnum;
 import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
-import TestClassWithMultiClass = TestClasses.TestClassWithMultiClass;
+import TestClassWithMultiClass = TestClasses.TestClassWithArrayOfClasses;
 import TestClassWithRegex = TestClasses.TestClassWithRegex;
 
 describe('MockGenerator - Integration Test', () => {
@@ -105,7 +105,7 @@ describe('MockGenerator - Integration Test', () => {
       });
     });
 
-    scenario('mock decorator with a multi class', () => {
+    scenario('mock decorator with an array of classes', () => {
       beforeAll(() => {
         result = mockGenerator.generate(TestClassWithMultiClass);
       });

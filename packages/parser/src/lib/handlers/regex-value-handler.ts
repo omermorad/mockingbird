@@ -9,12 +9,12 @@ export class RegexValueHandler implements ValueHandler {
   public constructor(@Inject('RandExp') private readonly randexp: Class<RandExp>) {}
 
   public shouldHandle(property: Property): boolean {
-    return property.decoratorValue.isRegex();
+    return property.propertyValue.isRegex();
   }
 
   public produceValue(property: Property): any {
-    const { decoratorValue } = property;
-    const { value: regex } = decoratorValue;
+    const { propertyValue } = property;
+    const { value: regex } = propertyValue.decorator;
 
     const randexp = new this.randexp(regex as RegExp);
     return randexp.gen() as string;

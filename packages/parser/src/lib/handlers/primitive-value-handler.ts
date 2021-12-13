@@ -12,16 +12,16 @@ export class PrimitiveValueHandler implements ValueHandler {
   }
 
   public produceValue(property: Property): any {
-    const { decoratorValue } = property;
+    const { propertyValue } = property;
 
-    if (typeof decoratorValue.value !== 'undefined') {
-      if (decoratorValue.isMultiClass()) {
+    if (typeof propertyValue.decorator.value !== 'undefined') {
+      if (propertyValue.isArrayOfClasses()) {
         throw new Error(
           'Type mismatch. Properties decorated with @Mock({ type: ClassType }) must be typed as array (e.g. prop: string[])'
         );
       }
 
-      return decoratorValue.value;
+      return propertyValue.decorator.value;
     }
 
     return this.primitiveHandler.generateRandomValueFromPrimitive(property.constructorName);
