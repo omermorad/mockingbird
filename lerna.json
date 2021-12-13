@@ -2,12 +2,12 @@
   "version": "independent",
   "command": {
     "publish": {
-      "allowBranch": ["master", "release"],
+      "allowBranch": ["master", "next"],
       "message": "chore(packages): release packages [skip ci]",
       "conventionalCommits": true
     },
     "version": {
-      "allowBranch": ["master", "release"],
+      "allowBranch": ["master", "next"],
       "message": "chore(packages): version packages [skip ci]",
       "conventionalCommits": true
     }
