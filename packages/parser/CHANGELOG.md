@@ -3,6 +3,44 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-rc.0](https://github.com/omermorad/mockingbird/compare/@mockingbird/parser@3.0.1...@mockingbird/parser@4.0.0-rc.0) (2021-12-13)
+
+
+### chore
+
+* release packages ([#114](https://github.com/omermorad/mockingbird/issues/114)) ([c6f521f](https://github.com/omermorad/mockingbird/commit/c6f521f42dbb12c9e3a4e0441484ce5aa6a4c4e6)), closes [#96](https://github.com/omermorad/mockingbird/issues/96) [#98](https://github.com/omermorad/mockingbird/issues/98) [#104](https://github.com/omermorad/mockingbird/issues/104) [#105](https://github.com/omermorad/mockingbird/issues/105) [#106](https://github.com/omermorad/mockingbird/issues/106) [#107](https://github.com/omermorad/mockingbird/issues/107) [#110](https://github.com/omermorad/mockingbird/issues/110) [#111](https://github.com/omermorad/mockingbird/issues/111) [#116](https://github.com/omermorad/mockingbird/issues/116) [#117](https://github.com/omermorad/mockingbird/issues/117) [#118](https://github.com/omermorad/mockingbird/issues/118) [#119](https://github.com/omermorad/mockingbird/issues/119) [#2](https://github.com/omermorad/mockingbird/issues/2)
+
+
+### Code Refactoring
+
+* **parser:** change handlers order and handlers logic ([a6374f5](https://github.com/omermorad/mockingbird/commit/a6374f5545a8aad2a0d768e6988203435cf336fb))
+
+
+### BREAKING CHANGES
+
+* **parser:** Handlers are now processing classes and enums differently
+Logic changes for processing objects and faker
+* ClassAnalayzer has been removed and all the logic has been moved to ClassParser
+
+* test(parser): add (move) mock generator integration test
+
+* chore(parser): config jest and typescript to run integration test
+
+* fix(mockingbird-ts): use mock generator differently (singleton)
+
+Remove mock generator from mockingbird-ts and import it from @mockinbird/parser instead
+mock generator acts as a singleton now
+
+* refactor(mockingbird-ts): fix mock factory
+
+* chore(mockingbird-ts): config jest to collect coverage properly
+
+* revert: revert commit 3bcde461 fixtures package
+
+
+
+
+
 ## [3.0.2](https://github.com/omermorad/mockingbird/compare/@mockingbird/parser@3.0.2-rc.3...@mockingbird/parser@3.0.2) (2021-12-08)
 
 **Note:** Version bump only for package @mockingbird/parser

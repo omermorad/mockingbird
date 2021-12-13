@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/parser",
-  "version": "3.0.2",
+  "version": "4.0.0-rc.0",
   "license": "MIT",
   "main": "dist/mockingbird-parser.cjs.js",
   "module": "dist/mockingbird-parser.esm.js",
@@ -35,8 +35,8 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@mockingbird/common": "^2.0.3",
-    "@mockingbird/reflect": "^3.0.2",
+    "@mockingbird/common": "^3.0.0-rc.0",
+    "@mockingbird/reflect": "^4.0.0-rc.0",
     "randexp": "^0.5.3",
     "typedi": "^0.10.0"
   },
