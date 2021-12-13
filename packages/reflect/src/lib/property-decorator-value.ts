@@ -1,39 +1,76 @@
-import { MultiClass } from '@mockingbird/common';
-import { MockOptions } from '../types/mock-options.type';
+import { Class, LazyEnum, isPrimitive, LazyType } from '@mockingbird/common';
+import { DecoratorArgs } from '../types';
 
 export interface PropertyDecoratorValue {
-  readonly value: MockOptions;
-  sObject(): boolean;
+  readonly decorator: DecoratorArgs;
+  isObject(): boolean;
   isMultiClass(): boolean;
-  isCallback(): boolean;
+  isFunction(): boolean;
   isEnum(): boolean;
   isRegex(): boolean;
 }
 
 export class PropertyDecoratorValue {
-  private readonly type: string;
+  private readonly valueType: string;
 
-  public constructor(public readonly value: MockOptions) {
-    this.type = typeof value;
+  public constructor(public readonly decorator: DecoratorArgs) {
+    this.valueType = typeof decorator.value;
+  }
+
+  private static isConstructor(ctor: Class) {
+    return ctor.prototype && ctor.prototype.constructor;
+  }
+
+  public isClassCb(): boolean {
+    if (this.isFunction()) {
+      const { value } = this.decorator;
+      const type = (value as LazyType)();
+
+      return PropertyDecoratorValue.isConstructor(type);
+    }
+
+    return false;
   }
 
   public isObject(): boolean {
-    return this.type === 'object';
+    return this.valueType === 'object';
   }
 
-  public isMultiClass(): boolean {
-    return this.isObject() && (this.value as MultiClass).hasOwnProperty('type');
+  public isArrayOfClasses(): boolean {
+    if (!this.isFunction()) {
+      return false;
+    }
+
+    const { value } = this.decorator;
+    const type = (value as LazyType)();
+
+    if (isPrimitive(type.name) && this.decorator.options?.count !== undefined) {
+      return true;
+    }
+
+    return this.isClassCb() && this.decorator.options?.count !== undefined;
   }
 
-  public isCallback(): boolean {
-    return this.type === 'function';
+  public isFunction(): boolean {
+    return this.valueType === 'function';
   }
 
   public isEnum(): boolean {
-    return this.isObject() && this.value.hasOwnProperty('enum');
+    const { value } = this.decorator;
+
+    if (!value) {
+      return false;
+    }
+
+    if (!Object.prototype.hasOwnProperty.call(value, 'enum')) {
+      return false;
+    }
+
+    const enumObj = value as LazyEnum;
+    return typeof enumObj.enum === 'function';
   }
 
   public isRegex(): boolean {
-    return this.value instanceof RegExp;
+    return this.decorator.value instanceof RegExp;
   }
 }
