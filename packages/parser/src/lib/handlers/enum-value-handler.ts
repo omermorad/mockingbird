@@ -1,7 +1,7 @@
 import { Property } from '@mockingbird/reflect';
 import { ValueHandler } from '../types/value-handler.interface';
 import { Inject, Service } from 'typedi';
-import { Faker } from '@mockingbird/common';
+import { LazyEnum, Faker } from '@mockingbird/common';
 
 @Service()
 export class EnumValueHandler implements ValueHandler {
@@ -23,16 +23,14 @@ export class EnumValueHandler implements ValueHandler {
     return valuesList;
   }
 
-  public shouldHandle(propertyDto: Property): boolean {
-    return propertyDto.decoratorValue.isEnum();
+  public shouldHandle(property: Property): boolean {
+    return property.propertyValue.isEnum();
   }
 
-  public produceValue(propertyDto: Property): any {
-    const {
-      decoratorValue: { value },
-    } = propertyDto;
-    const { enum: enumObj } = value as { enum: Record<string, unknown> };
+  public produceValue(property: Property): any {
+    const enumObj = property.propertyValue.decorator.value as LazyEnum;
+    const actual = enumObj.enum();
 
-    return this.faker.random.arrayElement(EnumValueHandler.getEnumValues(enumObj));
+    return EnumValueHandler.getEnumValues(actual).sort(() => 0.5 - Math.random())[0];
   }
 }

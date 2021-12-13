@@ -30,22 +30,22 @@ describe('PrimitiveValueHandler Unit', () => {
     describe("when calling 'shouldHandle' method", () => {
       describe('and the property type is not a function', () => {
         test('then return true when constructor name is a String', () => {
-          const property = new Property('some-prop-name', 'String', new PropertyDecoratorValue(undefined));
+          const property = new Property('some-prop-name', 'String', new PropertyDecoratorValue({ value: undefined }));
           expect(handler.shouldHandle(property)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Number', () => {
-          const property = new Property('some-prop-name', 'Number', new PropertyDecoratorValue(undefined));
+          const property = new Property('some-prop-name', 'Number', new PropertyDecoratorValue({ value: undefined }));
           expect(handler.shouldHandle(property)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Boolean', () => {
-          const property = new Property('some-prop-name', 'Boolean', new PropertyDecoratorValue(undefined));
+          const property = new Property('some-prop-name', 'Boolean', new PropertyDecoratorValue({ value: undefined }));
           expect(handler.shouldHandle(property)).toBeTruthy();
         });
 
         test('then return true when constructor name is a Date', () => {
-          const property = new Property('some-prop-name', 'Date', new PropertyDecoratorValue(undefined));
+          const property = new Property('some-prop-name', 'Date', new PropertyDecoratorValue({ value: undefined }));
           expect(handler.shouldHandle(property)).toBeTruthy();
         });
       });
@@ -54,28 +54,21 @@ describe('PrimitiveValueHandler Unit', () => {
     describe("when calling 'produceValue' method", () => {
       describe('and there is a decoratorValue', () => {
         test('then return the exact same decoratorValue', () => {
-          let property = new Property('name', '', new PropertyDecoratorValue('TestStr'));
+          let property = new Property('name', '', new PropertyDecoratorValue({ value: 'TestStr' }));
           expect(handler.produceValue(property)).toBe('TestStr');
 
-          property = new Property('name', '', new PropertyDecoratorValue(12345));
+          property = new Property('name', '', new PropertyDecoratorValue({ value: 12345 }));
           expect(handler.produceValue(property)).toBe(12345);
 
-          property = new Property('name', '', new PropertyDecoratorValue(true));
+          property = new Property('name', '', new PropertyDecoratorValue({ value: true }));
           expect(handler.produceValue(property)).toBe(true);
-        });
-      });
-
-      describe('and the decoratorValue is including { type } inside (multi class)', () => {
-        test('then throw an error about type mismatch', () => {
-          const property = new Property('name', '', new PropertyDecoratorValue({ type: String, count: 3 }));
-          expect(() => handler.produceValue(property)).toThrowError(Error);
         });
       });
 
       describe('and there is no decoratorValue (empty decoratorValue)', () => {
         describe('and the constructor is a String', () => {
           test('then generate a random string from faker', () => {
-            const property = new Property('name', 'String', new PropertyDecoratorValue(undefined));
+            const property = new Property('name', 'String', new PropertyDecoratorValue({ value: undefined }));
             handler.produceValue(property);
 
             expect(fakerMock.random.alpha).toHaveBeenCalledTimes(1);
@@ -84,7 +77,7 @@ describe('PrimitiveValueHandler Unit', () => {
 
         describe('and the constructor is a Number', () => {
           test('then return a random number between 1 to 1000 from faker', () => {
-            const property = new Property('name', 'Number', new PropertyDecoratorValue(undefined));
+            const property = new Property('name', 'Number', new PropertyDecoratorValue({ value: undefined }));
             handler.produceValue(property);
 
             expect(fakerMock.datatype.number).toHaveBeenCalledTimes(1);
@@ -94,7 +87,7 @@ describe('PrimitiveValueHandler Unit', () => {
 
         describe('and the constructor is a Boolean', () => {
           test('then return random boolean decoratorValue', () => {
-            const property = new Property('name', 'Boolean', new PropertyDecoratorValue(undefined));
+            const property = new Property('name', 'Boolean', new PropertyDecoratorValue({ value: undefined }));
             handler.produceValue(property);
             expect(fakerMock.datatype.boolean).toHaveBeenCalledTimes(1);
           });
@@ -102,7 +95,7 @@ describe('PrimitiveValueHandler Unit', () => {
 
         describe('and the constructor is a Date', () => {
           test('then return a random date', () => {
-            const property = new Property('name', 'Date', new PropertyDecoratorValue(undefined));
+            const property = new Property('name', 'Date', new PropertyDecoratorValue({ value: undefined }));
             handler.produceValue(property);
             expect(fakerMock.date.recent).toHaveBeenCalledTimes(1);
           });
@@ -110,7 +103,7 @@ describe('PrimitiveValueHandler Unit', () => {
 
         describe('and constructor is not a primitive one', () => {
           test('then return alpha numeric string', () => {
-            const property = new Property('name', 'not-a-primitive', new PropertyDecoratorValue(undefined));
+            const property = new Property('name', 'not-a-primitive', new PropertyDecoratorValue({ value: undefined }));
             handler.produceValue(property);
             expect(fakerMock.random.alphaNumeric).toHaveBeenCalledTimes(1);
           });

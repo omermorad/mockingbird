@@ -1,17 +1,22 @@
 import { Container } from 'typedi';
 import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
 import { Faker } from '@mockingbird/common';
-import { SingleClassValueHandler } from './single-class-value-handler';
+import { ClassCallbackHandler } from './class-callback-handler';
 
 describe('SingleClassValueHandler Unit', () => {
-  let handler: SingleClassValueHandler;
+  let handler: ClassCallbackHandler;
 
   const DTO_CLASS_VALUE = class TestClass {};
-  const property = new Property('testPropertyName', 'TestClass', new PropertyDecoratorValue(DTO_CLASS_VALUE));
+
+  const property = new Property(
+    'testPropertyName',
+    'TestClass',
+    new PropertyDecoratorValue({ value: () => DTO_CLASS_VALUE })
+  );
 
   beforeAll(() => {
     Container.set('Faker', Faker);
-    handler = Container.get<SingleClassValueHandler>(SingleClassValueHandler);
+    handler = Container.get<ClassCallbackHandler>(ClassCallbackHandler);
   });
 
   describe('given a SingleClassValueHandler', () => {

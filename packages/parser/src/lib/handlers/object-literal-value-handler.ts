@@ -5,11 +5,12 @@ import { Service } from 'typedi';
 @Service()
 export class ObjectLiteralValueHandler implements ValueHandler {
   public shouldHandle(property: Property): boolean {
-    const { decoratorValue } = property;
-    return decoratorValue.isObject() && !decoratorValue.isMultiClass() && !decoratorValue.isEnum();
+    const { propertyValue } = property;
+
+    return propertyValue.isObject() && !propertyValue.isArrayOfClasses() && !propertyValue.isEnum();
   }
 
   public produceValue(propertyDto: Property): any {
-    return propertyDto.decoratorValue.value;
+    return propertyDto.propertyValue.decorator.value;
   }
 }

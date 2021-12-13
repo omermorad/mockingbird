@@ -13,7 +13,7 @@ describe('ClassParser Integration Test', () => {
     @Mock() name = 'default-name';
     @Mock() isAwesome: boolean;
     @Mock() rating: number;
-    @Mock(Child) child: Child;
+    @Mock(() => Child) child: Child;
   }
 
   const fakerMock: jest.Mocked<Partial<Faker>> = {

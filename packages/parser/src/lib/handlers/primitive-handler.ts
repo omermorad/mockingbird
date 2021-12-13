@@ -1,12 +1,12 @@
 import { Inject, Service } from 'typedi';
 import { Property } from '@mockingbird/reflect';
-import { ExactValue, Faker, isPrimitive } from '@mockingbird/common';
+import { AbsoluteValue, Faker, isPrimitive } from '@mockingbird/common';
 
 @Service()
 export class PrimitiveHandler {
   public constructor(@Inject('Faker') public readonly faker: Faker) {}
 
-  generateRandomValueFromPrimitive(ctor: string): ExactValue {
+  generateRandomValueFromPrimitive(ctor: string): boolean | number | string | Date {
     const { faker } = this;
 
     if (ctor === 'String') {
@@ -23,6 +23,6 @@ export class PrimitiveHandler {
   }
 
   public isPrimitive(propertyDto: Property): boolean {
-    return isPrimitive(propertyDto.constructorName) && !propertyDto.decoratorValue.isCallback();
+    return isPrimitive(propertyDto.constructorName) && !propertyDto.propertyValue.isFunction();
   }
 }

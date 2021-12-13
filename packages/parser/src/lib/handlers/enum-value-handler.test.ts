@@ -1,5 +1,5 @@
 import { Container } from 'typedi';
-import { Faker } from '@mockingbird/common';
+import { LazyEnum, Faker } from '@mockingbird/common';
 import { Property, PropertyDecoratorValue } from '@mockingbird/reflect';
 import { EnumValueHandler } from './enum-value-handler';
 
@@ -13,9 +13,7 @@ describe('EnumValueHandler Unit', () => {
   }
 
   const fakerMock = {
-    random: {
-      arrayElement: jest.fn(),
-    },
+    random: { arrayElement: jest.fn() },
   } as unknown as Faker;
 
   beforeAll(() => {
@@ -23,21 +21,43 @@ describe('EnumValueHandler Unit', () => {
     handler = Container.get<EnumValueHandler>(EnumValueHandler);
   });
 
-  describe('given a EnumValueHandler', () => {
+  describe('given an EnumValueHandler', () => {
     describe("when calling 'shouldHandle' method with type object and { type: enum }", () => {
       test('then return true', () => {
-        const property = new Property('testPropertyName', '', new PropertyDecoratorValue({ enum: TestEnum }));
+        const property = new Property(
+          'testPropertyName',
+          '',
+          new PropertyDecoratorValue({
+            value: { enum: () => TestEnum },
+          })
+        );
+
         expect(handler.shouldHandle(property)).toBeTruthy();
       });
     });
 
     describe("when calling 'produceValue' method", () => {
-      test('then call faker random array element', () => {
-        const property = new Property('testPropertyName', '', new PropertyDecoratorValue({ enum: TestEnum }));
-        handler.produceValue(property);
+      let property, result;
 
-        expect(fakerMock.random.arrayElement).toHaveBeenCalledTimes(1);
-        expect(fakerMock.random.arrayElement).toHaveBeenCalledWith(['one', 'two', 'three']);
+      beforeAll(() => {
+        property = new Property(
+          'testPropertyName',
+          '',
+          new PropertyDecoratorValue({
+            value: { enum: jest.fn().mockReturnValue(TestEnum) },
+          })
+        );
+
+        result = handler.produceValue(property);
+      });
+
+      test('then invoke the enum function', () => {
+        const lol = property.propertyValue.decorator.value as LazyEnum;
+        expect(lol.enum).toHaveBeenCalled();
+      });
+
+      test('then generate random value from the enum', () => {
+        expect(Object.values(TestEnum)).toContain(result);
       });
     });
   });

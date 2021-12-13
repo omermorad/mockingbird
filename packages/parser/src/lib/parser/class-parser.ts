@@ -4,20 +4,20 @@ import { Class, Faker } from '@mockingbird/common';
 import { MutationsCallback, ParserConfig, ParsingStrategy } from '../types/types';
 import { ValueHandler } from '../types/value-handler.interface';
 import { EnumValueHandler } from '../handlers/enum-value-handler';
-import { ArrayValueHandler } from '../handlers/array-value-handler';
-import { SingleClassValueHandler } from '../handlers/single-class-value-handler';
-import { CallbackValueHandler } from '../handlers/callback-value-handler';
+import { ArrayOfClassesValueHandler } from '../handlers/array-of-classes-value-handler';
+import { FakerCallbackValueHandler } from '../handlers/faker-callback-value-handler';
 import { ObjectLiteralValueHandler } from '../handlers/object-literal-value-handler';
 import { PrimitiveValueHandler } from '../handlers/primitive-value-handler';
 import { RegexValueHandler } from '../handlers/regex-value-handler';
+import { ClassCallbackHandler } from '../handlers/class-callback-handler';
 
 @Service()
 export class ClassParser<TClass = any> {
   private readonly valueHandlers: Class<ValueHandler>[] = [
+    FakerCallbackValueHandler,
+    ArrayOfClassesValueHandler,
+    ClassCallbackHandler,
     EnumValueHandler,
-    ArrayValueHandler,
-    SingleClassValueHandler,
-    CallbackValueHandler,
     RegexValueHandler,
     ObjectLiteralValueHandler,
     PrimitiveValueHandler,
