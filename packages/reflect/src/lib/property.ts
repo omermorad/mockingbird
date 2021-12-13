@@ -1,21 +1,21 @@
 import { PropertyReflection } from '@plumier/reflect';
-import { MockOptions } from '../types/mock-options.type';
+import { DecoratorArgs } from '../types';
 import { PropertyDecoratorValue } from './property-decorator-value';
 
 export interface Property {
   readonly name: string;
   readonly constructorName: string;
-  readonly decoratorValue: PropertyDecoratorValue;
+  readonly propertyValue: PropertyDecoratorValue;
 }
 
 export class Property {
   constructor(
     public readonly name: string,
     public readonly constructorName: string,
-    public readonly decoratorValue: PropertyDecoratorValue
+    public readonly propertyValue: PropertyDecoratorValue
   ) {}
 
-  public static create(property: PropertyReflection, mockDecoratorValue: MockOptions | null): Property {
+  public static create(property: PropertyReflection, mockDecoratorValue: DecoratorArgs): Property {
     const {
       name,
       type: { name: constructorName },

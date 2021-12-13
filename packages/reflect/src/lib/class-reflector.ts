@@ -1,9 +1,8 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
 import { Class } from '@mockingbird/common';
-import { MockOptions } from '../types';
+import { DecoratorArgs, ClassPropsReflection } from '../types';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
 import { Property } from './property';
-import { ClassPropsReflection } from '../types';
 
 export class ClassReflector {
   private static instance: ClassReflector;
@@ -12,11 +11,14 @@ export class ClassReflector {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
-  private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
+  private static extractMockDecoratorValue(property: PropertyReflection): DecoratorArgs | undefined {
     const { decorators } = property;
     const mockDecorator = decorators.find((decorator) => decorator.type === MOCK_DECORATOR_NAME);
 
-    return mockDecorator.value;
+    return {
+      value: mockDecorator.value,
+      options: mockDecorator.options,
+    };
   }
 
   private extractDecoratedProperties(classReflection: ClassReflection): Property[] {
