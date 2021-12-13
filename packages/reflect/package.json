@@ -5,15 +5,10 @@
   "description": "Mockingbird Reflect Package",
   "main": "dist/mockingbird-reflect.cjs.js",
   "module": "dist/mockingbird-reflect.esm.js",
-  "types": "dist/index.d.ts",
   "contributors": [
     {
       "name": "Omer Morad",
       "email": "omer.moradd@gmail.com"
-    },
-    {
-      "name": "Idan Ptichi",
-      "email": "idanpt@gmail.com"
     }
   ],
   "repository": {
@@ -39,12 +34,12 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
+    "@mockingbird/common": "^2.0.3",
     "@plumier/reflect": "^1.0.5",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.0"
   },
   "devDependencies": {
-    "@mockingbird/common": "^2.0.3",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",
