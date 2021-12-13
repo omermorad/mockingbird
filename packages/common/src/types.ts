@@ -5,17 +5,20 @@ export type Faker = FakerStatic;
 export const Faker = faker;
 
 export interface ObjectLiteral {
-  [key: string]: any;
+  [key: string]: unknown;
 }
+
 export type Class<T = any> = new (...args: any[]) => T;
 
-export type ExactValue = string | number | boolean | ObjectLiteral | Date | RegExp;
+export type AbsoluteValue = string | number | boolean | ObjectLiteral | RegExp | Date;
 
-export type MultiClass = { type: Class; count: number };
+export type FakerCallback = (faker: Faker) => any;
 
-export type EnumObject = { enum: Record<string, unknown> };
+export type LazyType<T = any> = () => Class<T>;
 
-export type Callback = (faker: Faker) => any;
+export type Enum<E> = Record<keyof E, number | string> & { [key: number]: string };
+
+export type LazyEnum<E = any> = { enum: () => Enum<E> };
 
 export type ClassLiteral<TClass = any> = { [K in keyof TClass]: TClass[K] };
 
