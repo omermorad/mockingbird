@@ -37,7 +37,7 @@
   "readme": "https://github.com/omermorad/mockingbird/README.md",
   "scripts": {
     "prepare": "husky install",
-    "postinstall": "preconstruct dev",
+    "postinstall": "preconstruct dev && lerna run build",
     "build": "tsc --noEmit && preconstruct build",
     "watch": "lerna exec -- watch",
     "test": "jest --runInBand && yarn test:sample",
