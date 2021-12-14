@@ -81,8 +81,4 @@ export class ClassParser<TClass = any> {
     const derivedProps = classReflection.reduce(deriveFromProps, {});
     return Object.assign(new targetClass(), derivedProps);
   }
-
-  public setLocale(locale: string): void {
-    this.faker.setLocale(locale);
-  }
 }
