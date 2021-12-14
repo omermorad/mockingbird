@@ -12,9 +12,11 @@
       "conventionalCommits": true
     }
   },
+  "ignoreChanges": ["sample"],
   "useWorkspaces": true,
   "npmClient": "yarn",
   "packages": [
+    "!sample",
     "packages/*"
   ]
 }
