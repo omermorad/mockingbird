@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [4.0.0-rc.2](https://github.com/omermorad/mockingbird/compare/@mockingbird/parser@4.0.0-rc.1...@mockingbird/parser@4.0.0-rc.2) (2021-12-14)
+
+
+### Code Refactoring
+
+* **parser:** remove faker locale option ([c99387d](https://github.com/omermorad/mockingbird/commit/c99387dad5777ba9274a3fc59bab49d5ee15db6f))
+
+
+### BREAKING CHANGES
+
+* **parser:** Remove the options to set different faker locale
+
+
+
+
+
 # [4.0.0-rc.1](https://github.com/omermorad/mockingbird/compare/@mockingbird/parser@4.0.0-rc.0...@mockingbird/parser@4.0.0-rc.1) (2021-12-14)
 
 **Note:** Version bump only for package @mockingbird/parser

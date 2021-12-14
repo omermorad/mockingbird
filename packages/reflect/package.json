@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/reflect",
-  "version": "4.0.0-rc.1",
+  "version": "4.0.0-rc.2",
   "license": "MIT",
   "description": "Mockingbird Reflect Package",
   "main": "dist/mockingbird-reflect.cjs.js",
@@ -32,7 +32,7 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@mockingbird/common": "^3.0.0-rc.1",
+    "@mockingbird/common": "^3.0.0-rc.2",
     "@plumier/reflect": "^1.0.5",
     "reflect-metadata": "^0.1.13",
     "tslib": "^2.3.0"
