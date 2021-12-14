@@ -1,12 +1,11 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
+    "isolatedModules": true,
     "incremental": false,
-    "sourceMap": false,
-    "target": "es6"
+    "sourceMap": true
   },
   "exclude": [
-    "**/jest.config.js",
     "node_modules",
     "dist",
     "test",

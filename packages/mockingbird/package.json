@@ -2,8 +2,8 @@
   "name": "mockingbird",
   "version": "3.0.0-rc.2",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/mockingbird.cjs.js",
+  "module": "dist/mockingbird.esm.js",
   "description": "Super Simple, Yet Powerful, TypeScript Library for Creating Mocks. Mockingbird allows you to create class mocks like a breeze with a simple yet powerful @Mock decorator",
   "keywords": [
     "faker",
@@ -37,8 +37,6 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/README.md",
   "scripts": {
-    "prebuild": "npx rimraf dist",
-    "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest --runInBand --verbose",
     "lint": "eslint '{src,test}/**/*.ts'",
