@@ -37,7 +37,6 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/README.md",
   "scripts": {
-    "prebuild": "npx rimraf dist",
     "watch": "tsc --watch",
     "test": "jest --runInBand --verbose",
     "lint": "eslint '{src,test}/**/*.ts'",

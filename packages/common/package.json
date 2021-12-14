@@ -3,8 +3,7 @@
   "version": "3.0.0-rc.0",
   "license": "MIT",
   "description": "Mockingbird Common Package",
-  "main": "dist/mockingbird-common.cjs.js",
-  "module": "dist/mockingbird-common.esm.js",
+  "types": "dist/index.d.ts",
   "contributors": [
     {
       "name": "Omer Morad",
@@ -24,8 +23,8 @@
     "build": "tsc",
     "watch": "tsc --watch",
     "test": "exit 0;",
-    "lint": "eslint 'src/index.ts'",
-    "lint:fix": "eslint 'src/index.ts' --fix"
+    "lint": "eslint 'src/**/*.ts'",
+    "lint:fix": "eslint 'src/**/*.ts' --fix"
   },
   "files": [
     "dist",

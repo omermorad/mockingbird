@@ -20,8 +20,6 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/parser/README.md",
   "scripts": {
-    "prebuild": "npx rimraf dist",
-    "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest --runInBand --verbose",
     "lint": "eslint '{src,test}/**/*.ts'",

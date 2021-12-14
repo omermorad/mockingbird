@@ -107,6 +107,7 @@
   ],
   "preconstruct": {
     "packages": [
+      "!packages/common",
       "packages/*"
     ]
   }
