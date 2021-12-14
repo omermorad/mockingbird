@@ -1,21 +1,35 @@
 import { Mock } from 'mockingbird';
 import { UserEntity } from '../../src/entity/user.entity';
 
+export class ProductMock {
+  @Mock(({ datatype }) => datatype.uuid())
+  id!: string;
+
+  @Mock(({ commerce }) => commerce.product())
+  name!: string;
+}
+
 export class UserEntityMock implements UserEntity {
   id: number;
 
-  @Mock((faker) => faker.name.firstName())
+  @Mock(({ name }) => name.firstName())
   firstName!: string;
 
-  @Mock((faker) => faker.name.lastName())
+  @Mock(({ name }) => name.lastName())
   lastName!: string;
 
-  @Mock((faker) => faker.address.streetAddress(true))
+  @Mock(({ address }) => address.streetAddress(true))
   address!: string;
 
   @Mock()
   birthday!: Date;
 
-  @Mock((faker) => faker.internet.email())
+  @Mock(({ internet }) => internet.email())
   email!: string;
+
+  @Mock(() => ProductMock, { count: 3 })
+  products: ProductMock[];
+
+  @Mock(() => ProductMock)
+  product: ProductMock;
 }
