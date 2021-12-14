@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/common",
-  "version": "3.0.0-rc.2",
+  "version": "3.0.0-rc.3",
   "license": "MIT",
   "description": "Mockingbird Common Package",
   "types": "dist/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@mockingbird/parser",
-  "version": "4.0.0-rc.2",
+  "version": "4.0.0-rc.3",
   "license": "MIT",
   "types": "dist/index.d.ts",
   "main": "dist/index.js",
@@ -35,8 +35,8 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@mockingbird/common": "^3.0.0-rc.2",
-    "@mockingbird/reflect": "^4.0.0-rc.2",
+    "@mockingbird/common": "^3.0.0-rc.3",
+    "@mockingbird/reflect": "^4.0.0-rc.3",
     "randexp": "^0.5.3",
     "typedi": "^0.10.0"
   },
