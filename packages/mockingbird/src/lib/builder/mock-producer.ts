@@ -10,20 +10,12 @@ interface ExtraKeys<TClass> {
 }
 
 export class MockProducer<TClass = any> {
-  protected locale = 'en';
-
   protected constructor(protected readonly targetClass: Class<TClass>) {}
 
-  public setLocale(locale: string): void {
-    this.locale = locale;
-  }
-
   protected createMany(count: number, config: ExtraKeys<TClass> = {}): TClass[] {
-    const { locale } = this;
     const { mutations = {}, plain = false, pick = [], omit = [] } = config;
 
     return mockGenerator.generate(this.targetClass, {
-      locale,
       mutations,
       pick,
       omit,
@@ -33,11 +25,9 @@ export class MockProducer<TClass = any> {
   }
 
   protected createOne(config: ExtraKeys<TClass> = {}): TClass {
-    const { locale } = this;
     const { mutations = {}, plain = false, pick = [], omit = [] } = config;
 
     return mockGenerator.generate(this.targetClass, {
-      locale,
       mutations,
       pick,
       omit,
