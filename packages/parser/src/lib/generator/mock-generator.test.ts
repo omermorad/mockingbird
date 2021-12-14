@@ -27,10 +27,6 @@ describe('MockGenerator Unit Test', () => {
       when('I call the create method with no configurations', () => {
         beforeAll(() => generator.generate(TestClass));
 
-        test('then setup parser with the default locale', () => {
-          expect(parserMock.setLocale).toHaveBeenCalledWith('en');
-        });
-
         test('then call parse one time only', () => {
           expect(parserMock.parse).toHaveBeenCalledTimes(1);
         });
@@ -39,16 +35,6 @@ describe('MockGenerator Unit Test', () => {
   });
 
   scenario('generate mock from a class with a different configurations', () => {
-    given('I want to generate a mock with different locale', () => {
-      when('creating a new mock from generator passing the proper params', () => {
-        beforeAll(() => generator.generate(TestClass, { locale: 'arbitrary-locale' }));
-
-        then('setup the parser with the locale from the options', () => {
-          expect(parserMock.setLocale).toHaveBeenCalledWith('arbitrary-locale');
-        });
-      });
-    });
-
     given('I want to generate a mock and mutate different values', () => {
       when('creating a new mock from generator passing the proper param', () => {
         beforeAll(() => generator.generate(TestClass, { mutations: { test: 'value' } }));

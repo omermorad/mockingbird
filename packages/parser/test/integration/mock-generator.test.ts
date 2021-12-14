@@ -124,7 +124,7 @@ describe('MockGenerator - Integration Test', () => {
 
     scenario("mock decorator with 'count' option", () => {
       beforeAll(() => {
-        result = mockGenerator.generate(TestClassWithAbsoluteValues, { count: 4, locale: 'ja' });
+        result = mockGenerator.generate(TestClassWithAbsoluteValues, { count: 4 });
       });
 
       test("then return array with length of 'count'", () => {

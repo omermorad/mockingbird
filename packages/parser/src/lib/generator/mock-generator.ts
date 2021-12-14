@@ -76,9 +76,7 @@ export class MockGenerator {
     targetClass: Class<TClass>,
     options: MockGeneratorOptions<TClass> = {}
   ): TClass | TClass[] | ClassLiteral<TClass> | ClassLiteral<TClass>[] {
-    const { count = 1, plain = false, locale = 'en', ...config } = options || {};
-
-    this.classParser.setLocale(locale);
+    const { count = 1, plain = false, ...config } = options || {};
 
     if (count === 1) {
       const parsedClass = this.classParser.parse(targetClass, config);
