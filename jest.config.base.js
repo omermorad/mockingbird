@@ -4,9 +4,9 @@ module.exports = {
   testEnvironment: 'node',
   collectCoverage: false,
   coveragePathIgnorePatterns: [
-    '<rootDir>/dist/',
-    '<rootDir>/node_modules/',
-    '<rootDir/>/index.js',
+    'dist',
+    'node_modules',
+    'jest.config.js',
   ],
   coverageReporters: [
     'text',
