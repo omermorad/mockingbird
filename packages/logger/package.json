@@ -3,9 +3,8 @@
   "version": "1.0.0-rc.1",
   "license": "MIT",
   "description": "Mockingbird Logger Package",
-  "main": "dist/mockingbird-logger.cjs.js",
-  "module": "dist/mockingbird-logger.esm.js",
   "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "contributors": [
     {
       "name": "Omer Morad",
@@ -21,6 +20,8 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/logger/README.md",
   "scripts": {
+    "prebuild": "npx rimraf dist",
+    "build": "tsc",
     "watch": "tsc --watch",
     "lint": "eslint '{src,test}/**/*.ts'",
     "lint:fix": "eslint '{src,test}/**/*.ts' --fix"
