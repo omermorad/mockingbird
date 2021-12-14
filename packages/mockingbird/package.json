@@ -1,6 +1,6 @@
 {
   "name": "mockingbird",
-  "version": "3.0.0-rc.0",
+  "version": "3.0.0-rc.1",
   "license": "MIT",
   "main": "dist/mockingbird.cjs.js",
   "module": "dist/mockingbird.esm.js",
@@ -48,9 +48,9 @@
     "README.md"
   ],
   "dependencies": {
-    "@mockingbird/common": "^3.0.0-rc.0",
-    "@mockingbird/parser": "^4.0.0-rc.0",
-    "@mockingbird/reflect": "^4.0.0-rc.0"
+    "@mockingbird/common": "^3.0.0-rc.1",
+    "@mockingbird/parser": "^4.0.0-rc.1",
+    "@mockingbird/reflect": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "jest": "27.0.6",
