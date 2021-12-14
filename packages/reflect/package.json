@@ -3,8 +3,8 @@
   "version": "4.0.0-rc.2",
   "license": "MIT",
   "description": "Mockingbird Reflect Package",
-  "main": "dist/mockingbird-reflect.cjs.js",
-  "module": "dist/mockingbird-reflect.esm.js",
+  "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "contributors": [
     {
       "name": "Omer Morad",
@@ -20,6 +20,8 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/reflect/README.md",
   "scripts": {
+    "prebuild": "npx rimraf dist",
+    "build": "tsc",
     "watch": "tsc --watch",
     "test": "jest --runInBand --verbose",
     "lint": "eslint '{src,test}/**/*.ts'",

@@ -1,8 +1,10 @@
 {
   "extends": "../tsconfig.build.json",
   "compilerOptions": {
-    "rootDir": "./src",
-    "target": "es2018"
+    "rootDir": "src",
+    "baseUrl": ".",
+    "outDir": "dist",
+    "target": "es6"
   },
   "exclude": [
     "index.ts",
