@@ -21,8 +21,6 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/logger/README.md",
   "scripts": {
-    "prebuild": "yarn rimraf dist",
-    "build": "tsc",
     "watch": "tsc --watch",
     "lint": "eslint '{src,test}/**/*.ts'",
     "lint:fix": "eslint '{src,test}/**/*.ts' --fix"

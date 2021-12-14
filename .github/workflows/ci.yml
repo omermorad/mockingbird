@@ -51,19 +51,19 @@ jobs:
         run: lerna exec --parallel -- yarn lint
 
       - name: Test
-        run: yarn test:cov
-        env:
-          JEST_JUNIT_OUTPUT_NAME: 'junit.xml'
-
-      - name: Tests Report (Sync)
-        uses: dorny/test-reporter@v1
-        if: failure()
-        with:
-          reporter: 'jest-junit'
-          name: 'Tests Report'
-          path: 'junit.xml'
-          list-tests: 'failed'
-          fail-on-error: false
+        run: yarn jest
+#        env:
+#          JEST_JUNIT_OUTPUT_NAME: 'junit.xml'
+#
+#      - name: Tests Report (Sync)
+#        uses: dorny/test-reporter@v1
+#        if: failure()
+#        with:
+#          reporter: 'jest-junit'
+#          name: 'Tests Report'
+#          path: 'junit.xml'
+#          list-tests: 'failed'
+#          fail-on-error: false
 
       - name: Build
         run: yarn build

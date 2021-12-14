@@ -1,4 +1,5 @@
-export { Mock, DecoratorValueArg } from '@mockingbird/reflect';
+export { Mock } from '@mockingbird/reflect';
+export type { DecoratorValueArg } from '@mockingbird/reflect';
 
 export * from '@mockingbird/parser';
 export * from '@mockingbird/common';
