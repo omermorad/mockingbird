@@ -13,7 +13,7 @@ describe('ClassParser Integration Test', () => {
     @Mock() name = 'default-name';
     @Mock() isAwesome: boolean;
     @Mock() rating: number;
-    @Mock(Child) child: Child;
+    @Mock(() => Child) child: Child;
   }
 
   const fakerMock: jest.Mocked<Partial<Faker>> = {
@@ -105,14 +105,6 @@ describe('ClassParser Integration Test', () => {
         returnValue = parser.parse(Bird);
         expect(returnValue).toBeInstanceOf(Bird);
       });
-    });
-  });
-
-  scenario('set a faker locale', () => {
-    beforeAll(() => parser.setLocale('jp'));
-
-    test('then call faker locale function', () => {
-      expect(fakerMock.setLocale).toHaveBeenCalledWith('jp');
     });
   });
 });

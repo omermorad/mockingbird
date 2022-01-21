@@ -1,9 +1,8 @@
 import reflect, { ClassReflection, PropertyReflection } from '@plumier/reflect';
 import { Class } from '@mockingbird/common';
-import { MockOptions } from '../types';
+import { DecoratorArgs, ClassPropsReflection } from '../types';
 import { MOCK_DECORATOR_NAME } from '../decorators/mock.decorator';
 import { Property } from './property';
-import { ClassPropsReflection } from '../types/class-reflection.type';
 
 export class ClassReflector {
   private static instance: ClassReflector;
@@ -12,11 +11,14 @@ export class ClassReflector {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   private constructor() {}
 
-  private static extractMockDecoratorValue(property: PropertyReflection): MockOptions | undefined {
+  private static extractMockDecoratorValue(property: PropertyReflection): DecoratorArgs | undefined {
     const { decorators } = property;
     const mockDecorator = decorators.find((decorator) => decorator.type === MOCK_DECORATOR_NAME);
 
-    return mockDecorator.value;
+    return {
+      value: mockDecorator.value,
+      options: mockDecorator.options,
+    };
   }
 
   private extractDecoratedProperties(classReflection: ClassReflection): Property[] {
@@ -29,7 +31,9 @@ export class ClassReflector {
 
   public reflectClass<TClass = any>(target: Class<TClass>): ClassPropsReflection {
     if (!ClassReflector.REFLECTED_CLASSES.hasOwnProperty(target.name)) {
-      ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflect(target));
+      const reflection = reflect(target) as unknown as ClassReflection;
+
+      ClassReflector.REFLECTED_CLASSES[target.name] = this.extractDecoratedProperties(reflection);
     }
 
     return ClassReflector.REFLECTED_CLASSES[target.name];

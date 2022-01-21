@@ -12,7 +12,7 @@ describe('RegexHandler Unit', () => {
   RandExpMock.prototype.gen = jest.fn();
 
   beforeAll(() => {
-    property = new Property('some-prop-name', 'RegExp', new PropertyDecoratorValue(/^123$/));
+    property = new Property('some-prop-name', 'RegExp', new PropertyDecoratorValue({ value: /^123$/ }));
   });
 
   describe('given a RegexHandler', () => {

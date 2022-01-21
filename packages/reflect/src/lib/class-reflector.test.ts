@@ -1,6 +1,6 @@
 import { ClassReflector } from './class-reflector';
 import { Mock } from '../decorators';
-import { ClassPropsReflection } from '../types/class-reflection.type';
+import { ClassPropsReflection } from '../types';
 
 describe('ClassReflector', () => {
   let reflector: ClassReflector;
@@ -37,11 +37,6 @@ describe('ClassReflector', () => {
         test('then return an array of properties which the length is the number of decorators', () => {
           expect(classReflection).toBeInstanceOf(Array);
           expect(classReflection).toHaveLength(2);
-        });
-
-        test('then create a property dto for each of the properties', () => {
-          const reflectedClassKeys = Object.keys(classReflection[0]);
-          expect(reflectedClassKeys).toEqual(['name', 'constructorName', 'decoratorValue']);
         });
 
         test('then register the class in the reflected classes storage', () => {

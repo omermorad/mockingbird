@@ -1,10 +1,10 @@
 {
   "name": "@mockingbird/logger",
-  "version": "0.0.1",
+  "version": "1.0.0-rc.2",
   "license": "MIT",
   "description": "Mockingbird Logger Package",
-  "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "contributors": [
     {
       "name": "Omer Morad",
@@ -20,7 +20,7 @@
   },
   "readme": "https://github.com/omermorad/mockingbird/tree/refactor/master/packages/logger/README.md",
   "scripts": {
-    "prebuild": "yarn rimraf dist",
+    "prebuild": "npx rimraf dist",
     "build": "tsc",
     "watch": "tsc --watch",
     "lint": "eslint '{src,test}/**/*.ts'",

@@ -1,3 +1,3 @@
-import { Callback, EnumObject, ExactValue, MultiClass, Class } from '@mockingbird/common';
+import { FakerCallback, AbsoluteValue, LazyType, LazyEnum } from '@mockingbird/common';
 
-export type MockOptions = Callback | ExactValue | Class | EnumObject | MultiClass;
+export type DecoratorValueArg = LazyType | LazyEnum | FakerCallback | AbsoluteValue | null;

@@ -1,18 +1,14 @@
 {
   "name": "@mockingbird/parser",
-  "version": "3.0.2",
+  "version": "4.0.0-rc.3",
   "license": "MIT",
-  "main": "dist/index.js",
   "types": "dist/index.d.ts",
+  "main": "dist/index.js",
   "description": "Mockingbird Parser Package",
   "contributors": [
     {
       "name": "Omer Morad",
       "email": "omer.moradd@gmail.com"
-    },
-    {
-      "name": "Idan Ptichi",
-      "email": "idanpt@gmail.com"
     }
   ],
   "repository": {
@@ -39,12 +35,12 @@
     "CHANGELOG.md"
   ],
   "dependencies": {
-    "@mockingbird/reflect": "^3.0.2",
+    "@mockingbird/common": "^3.0.0-rc.3",
+    "@mockingbird/reflect": "^4.0.0-rc.3",
     "randexp": "^0.5.3",
     "typedi": "^0.10.0"
   },
   "devDependencies": {
-    "@mockingbird/common": "^2.0.3",
     "jest": "27.0.6",
     "rimraf": "^3.0.2",
     "ts-jest": "^27.0.3",

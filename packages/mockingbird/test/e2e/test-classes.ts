@@ -11,10 +11,10 @@ export namespace TestClassesE2E {
   }
 
   export class Person {
-    @Mock({ enum: Gender })
+    @Mock({ enum: () => Gender })
     gender: Gender;
 
-    @Mock(Car)
+    @Mock(() => Car)
     car: Car;
   }
 
@@ -22,7 +22,7 @@ export namespace TestClassesE2E {
     @Mock('BirdyBird')
     name: string;
 
-    @Mock(Person)
+    @Mock(() => Person)
     owner: Person;
 
     @Mock()

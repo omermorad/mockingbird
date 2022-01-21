@@ -3,6 +3,72 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [3.0.0-rc.3](https://github.com/omermorad/mockingbird/compare/mockingbird@3.0.0-rc.2...mockingbird@3.0.0-rc.3) (2021-12-14)
+
+
+### Reverts
+
+* change build strategy remove preconstruct ([a86d0af](https://github.com/omermorad/mockingbird/commit/a86d0afe3c99100e04fcb2eef9217171aa895da9))
+
+
+
+
+
+# [3.0.0-rc.2](https://github.com/omermorad/mockingbird/compare/mockingbird@3.0.0-rc.1...mockingbird@3.0.0-rc.2) (2021-12-14)
+
+**Note:** Version bump only for package mockingbird
+
+
+
+
+
+# [3.0.0-rc.1](https://github.com/omermorad/mockingbird/compare/mockingbird@3.0.0-rc.0...mockingbird@3.0.0-rc.1) (2021-12-14)
+
+**Note:** Version bump only for package mockingbird
+
+
+
+
+
+# [3.0.0-rc.0](https://github.com/omermorad/mockingbird/compare/mockingbird@2.1.1...mockingbird@3.0.0-rc.0) (2021-12-13)
+
+
+### chore
+
+* release packages ([#114](https://github.com/omermorad/mockingbird/issues/114)) ([c6f521f](https://github.com/omermorad/mockingbird/commit/c6f521f42dbb12c9e3a4e0441484ce5aa6a4c4e6)), closes [#96](https://github.com/omermorad/mockingbird/issues/96) [#98](https://github.com/omermorad/mockingbird/issues/98) [#104](https://github.com/omermorad/mockingbird/issues/104) [#105](https://github.com/omermorad/mockingbird/issues/105) [#106](https://github.com/omermorad/mockingbird/issues/106) [#107](https://github.com/omermorad/mockingbird/issues/107) [#110](https://github.com/omermorad/mockingbird/issues/110) [#111](https://github.com/omermorad/mockingbird/issues/111) [#116](https://github.com/omermorad/mockingbird/issues/116) [#117](https://github.com/omermorad/mockingbird/issues/117) [#118](https://github.com/omermorad/mockingbird/issues/118) [#119](https://github.com/omermorad/mockingbird/issues/119) [#2](https://github.com/omermorad/mockingbird/issues/2)
+
+
+### Code Refactoring
+
+* **mockingbird:** remove redundant types, change exports ([81b0be7](https://github.com/omermorad/mockingbird/commit/81b0be799ef60ad03bab5da569e5caf42a608bf6))
+
+
+### BREAKING CHANGES
+
+* **mockingbird:** Remove export of `MockOptions`
+`Mock` decorator now takes different options
+Classes and enums in `Mock` decorator are now passed with lazy evaluation (through a function)
+* ClassAnalayzer has been removed and all the logic has been moved to ClassParser
+
+* test(parser): add (move) mock generator integration test
+
+* chore(parser): config jest and typescript to run integration test
+
+* fix(mockingbird-ts): use mock generator differently (singleton)
+
+Remove mock generator from mockingbird-ts and import it from @mockinbird/parser instead
+mock generator acts as a singleton now
+
+* refactor(mockingbird-ts): fix mock factory
+
+* chore(mockingbird-ts): config jest to collect coverage properly
+
+* revert: revert commit 3bcde461 fixtures package
+
+
+
+
+
 ## [2.1.2](https://github.com/omermorad/mockingbird/compare/mockingbird@2.1.2-rc.4...mockingbird@2.1.2) (2021-12-08)
 
 **Note:** Version bump only for package mockingbird

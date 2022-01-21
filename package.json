@@ -37,12 +37,12 @@
   "readme": "https://github.com/omermorad/mockingbird/README.md",
   "scripts": {
     "prepare": "husky install",
-    "build": "lerna run build --stream",
+    "build": "lerna run build",
     "watch": "lerna exec -- watch",
     "test": "jest --runInBand && yarn test:sample",
     "test:sample": "export NODE_ENV=test && cd sample/mockingbird-typeorm && yarn test",
-    "test:cov": "jest --coverage --runInBand --reporters=jest-junit",
-    "lint": "lerna run lint --since HEAD"
+    "test:cov": "jest --coverage --reporters=jest-junit",
+    "lint": "lerna run lint"
   },
   "files": [
     "dist",
@@ -51,9 +51,14 @@
     "README.md"
   ],
   "dependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/plugin-proposal-decorators": "^7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-typescript": "^7.16.0",
     "@commitlint/cli": "^12.1.4",
-    "@commitlint/config-conventional": "^12.1.4",
+    "@commitlint/config-conventional": "^15.0.0",
     "@commitlint/config-lerna-scopes": "^12.1.4",
+    "@faker-js/faker": "^5.5.3",
     "@manypkg/cli": "^0.19.1",
     "@types/faker": "^5.5.7",
     "@types/jest": "26.0.24",
@@ -69,7 +74,6 @@
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-jest": "^23.11.0",
     "eslint-plugin-prettier": "^3.1.3",
-    "faker": "^5.5.3",
     "husky": "^7.0.1",
     "jest": "27.0.6",
     "jest-gherkin": "^0.0.0",
@@ -86,9 +90,6 @@
     "tslint-config-airbnb": "^5.11.2",
     "typescript": "^3.9.7"
   },
-  "publishConfig": {
-    "access": "public"
-  },
   "lint-staged": {
     "*.ts": [
       "eslint --ext .ts --fix"
@@ -101,5 +102,11 @@
   },
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "preconstruct": {
+    "packages": [
+      "!packages/common",
+      "packages/*"
+    ]
+  }
 }
