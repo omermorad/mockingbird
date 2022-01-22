@@ -10,9 +10,11 @@ export class ClassCallbackHandler implements ValueHandler {
     return property.propertyValue.isClassCb();
   }
 
-  public produceValue<TClass>(property: Property): TClass {
-    const analyzer = Container.get<ClassParser>(ClassParser);
+  public produceValue<TClass>(property: Property, config: { reference: string }): TClass | null {
+    const parser = Container.get<ClassParser>(ClassParser);
 
-    return analyzer.parse((property.propertyValue.decorator.value as LazyType<TClass>)());
+    return parser.parse((property.propertyValue.decorator.value as LazyType<TClass>)(), {
+      reference: config.reference,
+    });
   }
 }

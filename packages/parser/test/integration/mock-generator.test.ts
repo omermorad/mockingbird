@@ -8,6 +8,8 @@ import TestClassWithEnum = TestClasses.TestClassWithEnum;
 import TestClassWithOtherClass = TestClasses.TestClassWithSingleClass;
 import TestClassWithMultiClass = TestClasses.TestClassWithArrayOfClasses;
 import TestClassWithRegex = TestClasses.TestClassWithRegex;
+import InverseTestClassOne = TestClasses.InverseTestClassOne;
+import InverseTestClassTwo = TestClasses.InverseTestClassTwo;
 
 describe('MockGenerator - Integration Test', () => {
   let result;
@@ -89,7 +91,7 @@ describe('MockGenerator - Integration Test', () => {
       });
 
       test('then return an object with the given class', () => {
-        expect(Object.keys(result.dog)).toEqual(['name', 'points']);
+        expect(Object.keys(result.dog)).toEqual(['points', 'name']);
       });
     });
 
@@ -130,6 +132,26 @@ describe('MockGenerator - Integration Test', () => {
       test("then return array with length of 'count'", () => {
         expect(result).toBeInstanceOf(Array);
         expect(result).toHaveLength(4);
+      });
+    });
+
+    describe('mock with circular/inverse class', () => {
+      beforeAll(() => {
+        result = mockGenerator.generate(InverseTestClassOne);
+      });
+
+      test("then return array with length of 'count'", () => {
+        expect(result.classTwo).not.toHaveProperty('classOne');
+      });
+    });
+
+    describe('mock with circular/inverse class', () => {
+      beforeAll(() => {
+        result = mockGenerator.generate(InverseTestClassTwo);
+      });
+
+      test("then return array with length of 'count'", () => {
+        expect(result.classOne).not.toHaveProperty('classTwo');
       });
     });
   });

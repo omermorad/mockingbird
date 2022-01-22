@@ -28,7 +28,7 @@ describe('SingleClassValueHandler Unit', () => {
 
     describe("when calling 'produceValue' method", () => {
       test("then call 'parse' with the given class", () => {
-        expect(handler.produceValue(property)).toBeInstanceOf(DTO_CLASS_VALUE);
+        expect(handler.produceValue(property, { reference: undefined })).toBeInstanceOf(DTO_CLASS_VALUE);
       });
     });
   });

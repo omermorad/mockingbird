@@ -6,6 +6,7 @@ export interface ParserConfig<TClass> {
   mutations?: OptionalClassValues<TClass> | MutationsCallback<TClass>;
   omit?: (keyof TClass)[];
   pick?: (keyof TClass)[];
+  reference?: string;
 }
 
 export type ParsingStrategy = 'pick' | 'omit' | undefined;
