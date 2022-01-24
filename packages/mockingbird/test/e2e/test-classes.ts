@@ -28,4 +28,20 @@ export namespace TestClassesE2E {
     @Mock()
     birthday: Date;
   }
+
+  export class AnotherBird {
+    @Mock('AnotherBirdyBird')
+    name: string;
+
+    @Mock(() => BirdNest)
+    nest: unknown;
+  }
+
+  export class BirdNest {
+    @Mock('location')
+    location: string;
+
+    @Mock(() => Bird)
+    bird: Bird;
+  }
 }

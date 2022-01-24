@@ -1,7 +1,9 @@
-import { MockFactory } from '../../src';
-import { TestClassesE2E } from './test-classes';
 import * as faker from 'faker';
+import { TestClassesE2E } from './test-classes';
+import { MockFactory } from '../../src';
+
 import Bird = TestClassesE2E.Bird;
+import AnotherBird = TestClassesE2E.AnotherBird;
 
 describe('MockFactory e2e Test', () => {
   let result;
@@ -85,6 +87,20 @@ describe('MockFactory e2e Test', () => {
       });
 
       then('match the given result object (snapshot)', () => {
+        expect(mock).toMatchSnapshot();
+      });
+    });
+  });
+
+  scenario('circular mocks', () => {
+    let mock;
+
+    when('when I create a factory with circular refernse', () => {
+      beforeAll(() => {
+        mock = MockFactory(AnotherBird).one();
+      });
+
+      then('do have something', () => {
         expect(mock).toMatchSnapshot();
       });
     });

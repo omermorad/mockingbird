@@ -3,7 +3,6 @@ import { Mock } from '@mockingbird/reflect';
 enum TestEnum {
   Foo = 'foo',
   Bar = 111,
-  Bazz = 'Bazz1234',
 }
 
 export namespace TestClasses {
@@ -85,5 +84,21 @@ export namespace TestClasses {
 
     @Mock(/^[a-z]{4,5}$/)
     prop3: string;
+  }
+
+  export class InverseTestClassOne {
+    @Mock()
+    title: string;
+
+    @Mock(() => InverseTestClassTwo)
+    classTwo: any;
+  }
+
+  export class InverseTestClassTwo {
+    @Mock()
+    name: string;
+
+    @Mock(() => InverseTestClassOne)
+    classOne: any;
   }
 }
