@@ -1,5 +1,24 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`MockFactory e2e Test Scenario:  circular mocks when when I create a factory with circular refernse then do have something 1`] = `
+AnotherBird {
+  "name": "AnotherBirdyBird",
+  "nest": BirdNest {
+    "bird": Bird {
+      "birthday": 2000-01-01T00:00:00.000Z,
+      "name": "BirdyBird",
+      "owner": Person {
+        "car": Car {
+          "model": "BMW",
+        },
+        "gender": "male",
+      },
+    },
+    "location": "location",
+  },
+}
+`;
+
 exports[`MockFactory e2e Test Scenario:  using a plain object when I create 3 birds and covert them into a plain object then return a nested plain object 1`] = `
 Array [
   Object {
